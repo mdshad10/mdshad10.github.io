@@ -1,1257 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Professional portfolio of Md S. Shad, Embedded Systems Engineer at Cornell University">
-  <title>Md S. Shad | Embedded Systems Engineer</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #3b82f6;
-      --primary-dark: #2563eb;
-      --secondary: #1e293b;
-      --text: #2c3e50;
-      --text-light: #64748b;
-      --text-lighter: #94a3b8;
-      --bg-light: #f8fafc;
-      --border: #e2e8f0;
-      --white: #ffffff;
-      --success: #10b981;
-    }
-    
-    * { 
-      margin: 0; 
-      padding: 0; 
-      box-sizing: border-box; 
-    }
-    
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      line-height: 1.6; 
-      color: var(--text); 
-      background: var(--white);
-      scroll-behavior: smooth;
-    }
-    
-    .container { 
-      max-width: 1200px; 
-      margin: 0 auto; 
-      padding: 0 2rem; 
-    }
-
-    /* Typography */
-    h1, h2, h3, h4 {
-      font-weight: 700;
-      line-height: 1.2;
-      color: var(--secondary);
-    }
-    
-    /* Navigation */
-    nav {
-      background: rgba(255,255,255,0.98);
-      backdrop-filter: blur(10px);
-      position: fixed; 
-      top: 0; 
-      width: 100%; 
-      z-index: 1000;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-      transition: all 0.3s ease;
-    }
-    
-    nav.scrolled { 
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
-    }
-    
-    .nav-container {
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center;
-      padding: 1.5rem 0;
-    }
-    
-    .logo { 
-      font-size: 1.5rem; 
-      font-weight: 700; 
-      color: var(--secondary); 
-    }
-    
-    .nav-links {
-      display: flex; 
-      list-style: none; 
-      gap: 2rem;
-    }
-    
-    .nav-links a {
-      color: var(--text-light); 
-      text-decoration: none; 
-      font-weight: 500;
-      font-size: 0.95rem; 
-      position: relative; 
-      transition: all 0.2s ease;
-    }
-    
-    .nav-links a::after {
-      content: ''; 
-      position: absolute; 
-      bottom: -4px; 
-      left: 0;
-      width: 0; 
-      height: 2px; 
-      background: var(--primary); 
-      transition: width 0.2s ease;
-    }
-    
-    .nav-links a:hover { 
-      color: var(--primary); 
-    }
-    
-    .nav-links a:hover::after { 
-      width: 100%; 
-    }
-
-    /* Hero Section */
-    .hero {
-      min-height: 100vh; 
-      display: flex; 
-      align-items: center;
-      padding: 10rem 0 5rem;
-      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-    }
-    
-    .hero-content {
-      display: grid; 
-      grid-template-columns: 1.5fr 1fr; 
-      gap: 4rem; 
-      align-items: center;
-    }
-    
-    .hero-text h1 {
-      font-size: 3.25rem; 
-      font-weight: 800; 
-      line-height: 1.1;
-      margin-bottom: 1.25rem; 
-      color: var(--secondary);
-    }
-    
-    .subtitle { 
-      font-size: 1.25rem; 
-      color: var(--text-light); 
-      margin-bottom: 1.75rem; 
-      font-weight: 400; 
-    }
-    
-    .description { 
-      font-size: 1.1rem; 
-      color: var(--text-light); 
-      margin-bottom: 2.5rem; 
-      line-height: 1.7; 
-    }
-    
-    .contact-info {
-      display: flex; 
-      flex-direction: column; 
-      gap: 0.75rem; 
-      margin-bottom: 2.5rem;
-    }
-    
-    .contact-item {
-      display: flex; 
-      align-items: center; 
-      gap: 0.75rem; 
-      color: var(--text-light);
-      font-size: 0.95rem;
-    }
-    
-    .contact-item i { 
-      color: var(--primary); 
-      width: 20px; 
-    }
-    
-    .hero-buttons { 
-      display: flex; 
-      gap: 1rem; 
-    }
-    
-    .btn {
-      padding: 0.9rem 1.75rem; 
-      border-radius: 6px; 
-      font-weight: 600;
-      text-decoration: none; 
-      display: inline-flex; 
-      align-items: center; 
-      gap: 0.5rem;
-      font-size: 0.95rem; 
-      transition: all 0.2s ease; 
-      border: none; 
-      cursor: pointer;
-    }
-    
-    .btn-primary {
-      background: var(--primary); 
-      color: var(--white);
-    }
-    
-    .btn-primary:hover {
-      background: var(--primary-dark); 
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(59,130,246,0.2);
-    }
-    
-    .btn-secondary {
-      border: 1px solid var(--border); 
-      color: var(--text-light); 
-      background: var(--white);
-    }
-    
-    .btn-secondary:hover {
-      border-color: var(--primary); 
-      color: var(--primary);
-      transform: translateY(-2px);
-    }
-    
-    .hero-image {
-      width: 100%; 
-      height: 380px; 
-      background: linear-gradient(135deg, var(--primary), #1d4ed8);
-      border-radius: 10px; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center;
-      border: 1px solid var(--border); 
-      position: relative; 
-      overflow: hidden;
-      box-shadow: 0 15px 30px rgba(59,130,246,0.15);
-    }
-    
-    .hero-image i { 
-      font-size: 5.5rem; 
-      color: var(--white); 
-      opacity: 0.9; 
-      z-index: 1; 
-      position: relative; 
-    }
-
-    /* Sections */
-    section { 
-      padding: 6rem 0; 
-    }
-    
-    .section-header { 
-      text-align: center; 
-      margin-bottom: 4rem; 
-    }
-    
-    .section-title {
-      font-size: 2.25rem; 
-      font-weight: 700; 
-      color: var(--secondary);
-      margin-bottom: 1rem; 
-    }
-    
-    .section-subtitle {
-      font-size: 1.1rem; 
-      color: var(--text-light); 
-      max-width: 700px;
-      margin: 0 auto; 
-      line-height: 1.7;
-    }
-
-    /* About */
-    .about-content {
-      display: grid; 
-      grid-template-columns: 1fr 2fr; 
-      gap: 4rem; 
-      align-items: start;
-    }
-    
-    .about-stats {
-      background: var(--bg-light); 
-      padding: 2.5rem; 
-      border-radius: 10px;
-      border: 1px solid var(--border);
-    }
-    
-    .stat-item { 
-      margin-bottom: 2rem; 
-    }
-    
-    .stat-number {
-      font-size: 2.25rem; 
-      font-weight: 800; 
-      color: var(--primary); 
-      display: block;
-    }
-    
-    .stat-label {
-      color: var(--text-light); 
-      font-weight: 500; 
-      font-size: 0.9rem;
-      text-transform: uppercase; 
-      letter-spacing: 0.5px;
-    }
-    
-    .about-text { 
-      font-size: 1.1rem; 
-      line-height: 1.8; 
-      color: var(--text-light); 
-    }
-    
-    .about-text p { 
-      margin-bottom: 1.5rem; 
-    }
-
-    /* Education */
-    .education-section { 
-      background: var(--bg-light); 
-    }
-    
-    .education-card {
-      background: var(--white); 
-      padding: 2.5rem; 
-      border-radius: 10px;
-      border: 1px solid var(--border); 
-      margin-bottom: 2rem;
-      transition: transform 0.2s ease;
-    }
-    
-    .education-card:hover {
-      transform: translateY(-5px);
-    }
-    
-    .education-header {
-      display: flex; 
-      justify-content: space-between; 
-      align-items: start;
-      margin-bottom: 1rem;
-    }
-    
-    .school-name {
-      font-size: 1.25rem; 
-      font-weight: 700; 
-      color: var(--secondary); 
-      margin-bottom: 0.5rem;
-    }
-    
-    .degree { 
-      font-size: 1.1rem; 
-      color: var(--primary); 
-      font-weight: 600; 
-    }
-    
-    .date { 
-      color: var(--text-light); 
-      font-weight: 500; 
-    }
-    
-    .coursework {
-      margin-top: 1rem; 
-      padding-top: 1rem; 
-      border-top: 1px solid var(--border);
-    }
-    
-    .coursework h4 { 
-      color: var(--secondary); 
-      margin-bottom: 0.5rem; 
-      font-weight: 600; 
-    }
-    
-    .coursework p { 
-      color: var(--text-light); 
-      line-height: 1.6; 
-    }
-
-    /* Skills */
-    .skills-grid {
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-      gap: 2rem;
-    }
-    
-    .skill-card {
-      background: var(--white); 
-      padding: 2.5rem; 
-      border-radius: 10px;
-      border: 1px solid var(--border); 
-      transition: all 0.2s ease;
-    }
-    
-    .skill-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.05);
-      border-color: var(--primary);
-    }
-    
-    .skill-icon {
-      width: 55px; 
-      height: 55px;
-      background: linear-gradient(135deg, var(--primary), #1d4ed8);
-      border-radius: 10px; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center;
-      margin-bottom: 1.5rem;
-    }
-    
-    .skill-icon i { 
-      font-size: 1.4rem; 
-      color: var(--white); 
-    }
-    
-    .skill-card h3 {
-      font-size: 1.25rem; 
-      font-weight: 700; 
-      margin-bottom: 1rem; 
-      color: var(--secondary);
-    }
-    
-    .skill-card p { 
-      color: var(--text-light); 
-      line-height: 1.6; 
-    }
-    
-    .skill-list {
-      list-style: none; 
-      margin-top: 1rem;
-    }
-    
-    .skill-list li {
-      color: var(--text-light); 
-      padding: 0.3rem 0; 
-      display: flex; 
-      align-items: center; 
-      gap: 0.5rem;
-    }
-    
-    .skill-list li::before {
-      content: '▸'; 
-      color: var(--primary); 
-      font-weight: bold;
-    }
-
-    /* Projects */
-    .projects-grid {
-      display: grid; 
-      gap: 2.5rem;
-    }
-    
-    .project-card {
-      background: var(--white); 
-      border-radius: 10px; 
-      overflow: hidden;
-      border: 1px solid var(--border); 
-      transition: all 0.2s ease;
-    }
-    
-    .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-    }
-    
-    .project-header {
-      background: linear-gradient(135deg, var(--secondary) 0%, #334155 100%);
-      color: var(--white); 
-      padding: 2.5rem;
-    }
-    
-    .project-title {
-      font-size: 1.4rem; 
-      font-weight: 700; 
-      margin-bottom: 0.5rem;
-    }
-    
-    .project-duration {
-      color: rgba(255,255,255,0.8); 
-      font-size: 0.9rem; 
-      margin-bottom: 1rem;
-    }
-    
-    .project-association {
-      color: var(--primary); 
-      font-weight: 600; 
-      font-size: 0.9rem;
-      background: rgba(59,130,246,0.1); 
-      padding: 0.3rem 0.8rem;
-      border-radius: 20px; 
-      display: inline-block; 
-      margin-bottom: 1rem;
-    }
-    
-    .project-content { 
-      padding: 2.5rem; 
-    }
-    
-    .project-description {
-      color: var(--text-light); 
-      line-height: 1.7; 
-      margin-bottom: 1.5rem;
-    }
-    
-    .tech-stack { 
-      display: flex; 
-      flex-wrap: wrap; 
-      gap: 0.8rem; 
-      margin-bottom: 1.5rem; 
-    }
-    
-    .tech-tag {
-      background: var(--bg-light); 
-      color: var(--text-light);
-      padding: 0.4rem 0.9rem; 
-      border-radius: 20px; 
-      font-size: 0.85rem; 
-      font-weight: 500;
-      border: 1px solid var(--border);
-    }
-    
-    .project-highlights {
-      list-style: none; 
-      margin-top: 1.5rem;
-    }
-    
-    .project-highlights li {
-      color: var(--text-light); 
-      padding: 0.5rem 0; 
-      display: flex; 
-      align-items: flex-start; 
-      gap: 0.8rem;
-      line-height: 1.6;
-    }
-    
-    .project-highlights li::before {
-      content: '✓'; 
-      color: var(--success); 
-      font-weight: bold; 
-      margin-top: 0.1rem;
-    }
-
-    /* Project Links */
-    .project-links {
-      display: flex;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-    
-    .project-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.2s ease;
-    }
-    
-    .project-link:hover {
-      color: var(--primary-dark);
-      text-decoration: underline;
-    }
-    
-    .project-link i {
-      font-size: 1rem;
-    }
-
-    /* Experience */
-    .experience-section { 
-      background: var(--bg-light); 
-    }
-    
-    .experience-timeline {
-      position: relative; 
-      padding-left: 2rem;
-    }
-    
-    .experience-timeline::before {
-      content: ''; 
-      position: absolute; 
-      left: 0; 
-      top: 0; 
-      bottom: 0;
-      width: 2px; 
-      background: var(--border);
-    }
-    
-    .experience-item {
-      background: var(--white); 
-      padding: 2.5rem; 
-      border-radius: 10px;
-      border: 1px solid var(--border); 
-      margin-bottom: 2rem; 
-      position: relative;
-      margin-left: 2rem;
-      transition: transform 0.2s ease;
-    }
-    
-    .experience-item:hover {
-      transform: translateY(-5px);
-    }
-    
-    .experience-item::before {
-      content: ''; 
-      position: absolute; 
-      left: -3rem; 
-      top: 2.5rem;
-      width: 12px; 
-      height: 12px; 
-      background: var(--primary); 
-      border-radius: 50%;
-      border: 3px solid var(--white); 
-      box-shadow: 0 0 0 3px var(--border);
-    }
-    
-    .experience-header {
-      display: flex; 
-      justify-content: space-between; 
-      align-items: start;
-      margin-bottom: 1rem;
-    }
-    
-    .job-title {
-      font-size: 1.25rem; 
-      font-weight: 700; 
-      color: var(--secondary); 
-      margin-bottom: 0.3rem;
-    }
-    
-    .company { 
-      color: var(--primary); 
-      font-weight: 600; 
-    }
-    
-    .experience-duration { 
-      color: var(--text-light); 
-      font-weight: 500; 
-    }
-    
-    .experience-description {
-      list-style: none; 
-      margin-top: 1rem;
-    }
-    
-    .experience-description li {
-      color: var(--text-light); 
-      padding: 0.5rem 0; 
-      display: flex; 
-      align-items: flex-start; 
-      gap: 0.8rem;
-      line-height: 1.6;
-    }
-    
-    .experience-description li::before {
-      content: '•'; 
-      color: var(--primary); 
-      font-weight: bold; 
-      margin-top: 0.1rem;
-    }
-
-    /* Contact */
-    .contact-section {
-      background: linear-gradient(135deg, var(--secondary) 0%, #334155 100%);
-      color: var(--white);
-    }
-    
-    .contact-grid {
-      display: grid; 
-      grid-template-columns: 1fr 1fr; 
-      gap: 4rem; 
-      align-items: center;
-    }
-    
-    .contact-text h2 {
-      font-size: 2.25rem; 
-      font-weight: 700; 
-      margin-bottom: 1.5rem;
-    }
-    
-    .contact-text p {
-      font-size: 1.1rem; 
-      opacity: 0.9; 
-      line-height: 1.7; 
-      margin-bottom: 2rem;
-    }
-    
-    .contact-methods {
-      display: flex; 
-      flex-direction: column; 
-      gap: 1.25rem;
-    }
-    
-    .contact-method {
-      display: flex; 
-      align-items: center; 
-      gap: 1rem;
-      background: rgba(255,255,255,0.1); 
-      padding: 1.25rem; 
-      border-radius: 8px;
-      backdrop-filter: blur(10px); 
-      border: 1px solid rgba(255,255,255,0.2);
-      transition: all 0.2s ease;
-    }
-    
-    .contact-method:hover {
-      background: rgba(255,255,255,0.15);
-      transform: translateX(5px);
-    }
-    
-    .contact-method i {
-      font-size: 1.2rem; 
-      color: var(--primary); 
-      width: 24px;
-    }
-    
-    .contact-method a {
-      color: var(--white); 
-      text-decoration: none; 
-      font-weight: 500;
-    }
-
-    /* Footer */
-    footer {
-      background: var(--secondary);
-      color: var(--white);
-      padding: 2rem 0;
-      text-align: center;
-    }
-    
-    .footer-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-    
-    .social-links {
-      display: flex;
-      gap: 1.5rem;
-    }
-    
-    .social-links a {
-      color: var(--white);
-      font-size: 1.2rem;
-      transition: color 0.2s ease;
-    }
-    
-    .social-links a:hover {
-      color: var(--primary);
-    }
-    
-    .copyright {
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .hero-content, .about-content, .contact-grid {
-        grid-template-columns: 1fr; 
-        gap: 3rem;
-      }
-      
-      .hero-text { 
-        order: 1; 
-      }
-      
-      .hero-image { 
-        height: 300px; 
-        order: 0; 
-      }
-    }
-    
-    @media (max-width: 768px) {
-      section { 
-        padding: 4rem 0; 
-      }
-      
-      .hero {
-        padding: 8rem 0 3rem;
-      }
-      
-      .hero-text h1 { 
-        font-size: 2.5rem; 
-      }
-      
-      .section-title { 
-        font-size: 2rem; 
-      }
-      
-      .nav-links { 
-        display: none; 
-      }
-      
-      .experience-timeline { 
-        padding-left: 1rem; 
-      }
-      
-      .experience-item { 
-        margin-left: 1rem; 
-      }
-      
-      .education-header, .experience-header {
-        flex-direction: column; 
-        align-items: start; 
-        gap: 0.5rem;
-      }
-      
-      .hero-buttons {
-        flex-direction: column;
-      }
-      
-      .btn {
-        width: 100%;
-        justify-content: center;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Basketball-Hoop Scoring Tracker</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 8px;
+        }
+        
+        h3 {
+            color: #2980b9;
+            margin-top: 25px;
+            font-size: 1.4rem;
+        }
+        
+        .content-block {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .video-container, .diagram-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 25px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .video-container iframe, 
+        .diagram-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        ul, ol {
+            margin-left: 20px;
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .team-section {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        
+        .team-member {
+            flex: 1;
+            min-width: 250px;
+            margin: 10px;
+            padding: 15px;
+            background-color: #eaf2f8;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .highlight {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .team-section {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav id="navbar">
-    <div class="container">
-      <div class="nav-container">
-        <div class="logo">Md S. Shad</div>
-        <ul class="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#education">Education</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#contact">Contact</a></li>
+    <h1>Smart Basketball-Hoop Scoring Tracker</h1>
+    
+    <div class="content-block">
+        <h2>Overview</h2>
+        <p>Our final project is an intelligent basketball scoring system that tracks successful shots within a customizable time period. The system utilizes an infrared break-beam sensor mounted beneath the hoop rim to detect successful baskets. When a ball passes through the hoop, interrupting the laser beam, the microcontroller:</p>
+        
+        <ul>
+            <li>Increments an internal score counter</li>
+            <li>Activates visual feedback (LED illumination)</li>
+            <li>Generates audio confirmation ("Cha-Ching!" sound)</li>
+            <li>Updates the LCD display with the current score</li>
         </ul>
-      </div>
+        
+        <p>The game duration is fully customizable by the player. Switch 1 adjusts the round length in 5-second increments (up to 60 seconds), with a long press resetting to a 30-second default. Switch 3 initiates gameplay, triggering a 3-second countdown followed by an audible start signal. Throughout gameplay, the LCD continuously displays both the remaining time and current score.</p>
+        
+        <p>This project was inspired by commercial smart basketball systems like those from Huupe, which combine shot tracking with real-time feedback to enhance player experience. Our implementation demonstrates core embedded systems concepts including interrupt handling, real-time timing, and hardware control using the FRDM-KL46Z microcontroller.</p>
     </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-text">
-          <h1>Md S. Shad</h1>
-          <p class="subtitle">Embedded Systems Engineer</p>
-          <div class="contact-info">
-            <div class="contact-item">
-              <i class="fas fa-envelope"></i>
-              <span>md04shad@gmail.com</span>
-            </div>
-            <div class="contact-item">
-              <i class="fas fa-phone"></i>
-              <span>(929) 225-0452</span>
-            </div>
-            <div class="contact-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <span>New York, NY</span>
-            </div>
-          </div>
-          <p class="description">
-            Electrical and Computer Engineering student at Cornell University specializing in embedded systems, 
-            digital logic design, and hardware-software integration. Passionate about developing innovative 
-            solutions that bridge hardware and software domains.
-          </p>
-          <div class="hero-buttons">
-            <a href="#projects" class="btn btn-primary">
-              <i class="fas fa-code"></i> View Projects
-            </a>
-            <a href="#contact" class="btn btn-secondary">
-              <i class="fas fa-envelope"></i> Contact Me
-            </a>
-          </div>
-        </div>
-        <div class="hero-image">
-          <i class="fas fa-microchip"></i>
-        </div>
-      </div>
+    
+    <h2>Project Demonstration</h2>
+    <div class="video-container">
+        <iframe src="https://drive.google.com/file/d/19WirKPllfCPig7lkLNfI8Ul6PIVjNu1b/preview" allowfullscreen></iframe>
     </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">About Me</h2>
-        <p class="section-subtitle">
-          Combining technical expertise with innovative problem-solving in embedded systems engineering
-        </p>
-      </div>
-      <div class="about-content">
-        <div class="about-stats">
-          <div class="stat-item">
-            <span class="stat-number">2027</span>
-            <span class="stat-label">Expected Graduation</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">3+</span>
-            <span class="stat-label">Programming Languages</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">10+</span>
-            <span class="stat-label">Technical Skills</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">5+</span>
-            <span class="stat-label">Completed Projects</span>
-          </div>
-        </div>
-        <div class="about-text">
-          <p>
-            I am an Electrical and Computer Engineering student at Cornell University with a specialized focus 
-            on embedded systems and digital design. My academic journey, which began at Stuyvesant High School, 
-            has cultivated a strong foundation in engineering principles and practical problem-solving.
-          </p>
-          <p>
-            Currently pursuing my Bachelor's degree with an expected graduation in May 2027, I have immersed 
-            myself in advanced coursework including Embedded Systems, Digital Logic and Computer Organization, 
-            and Microelectronics. My hands-on experience encompasses designing custom processors, developing 
-            real-time embedded applications, and implementing hardware-software integration solutions.
-          </p>
-          <p>
-            Beyond the classroom, I contribute to Engineers Without Borders, where I develop hardware solutions 
-            for digital agriculture initiatives. As a Teaching Assistant, I guide students through complex 
-            concepts in digital logic and computer organization, reinforcing my own understanding while helping 
-            others succeed.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Education Section -->
-  <section id="education" class="education-section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Education</h2>
-        <p class="section-subtitle">
-          Academic foundation in engineering and technology
-        </p>
-      </div>
-      
-      <div class="education-card">
-        <div class="education-header">
-          <div>
-            <h3 class="school-name">Cornell University, College of Engineering</h3>
-            <p class="degree">Bachelor of Science in Electrical and Computer Engineering</p>
-          </div>
-          <span class="date">Expected May 2027</span>
-        </div>
-        <div class="coursework">
-          <h4>Relevant Coursework:</h4>
-          <p>Embedded Systems • Microelectronics • Circuits • Digital Logic and Computer Organization • Object-Oriented Programming and Data Structures • Differential Equations • Linear Algebra • Data Science for Engineers</p>
-        </div>
-      </div>
-
-      <div class="education-card">
-        <div class="education-header">
-          <div>
-            <h3 class="school-name">Stuyvesant High School</h3>
-            <p class="degree">Advanced Regents Diploma with Honors</p>
-          </div>
-          <span class="date">June 2022</span>
-        </div>
-        <div class="coursework">
-          <h4>Notable Achievements:</h4>
-          <p>Specialized in advanced mathematics and sciences • Developed foundational engineering skills • Participated in STEM-focused extracurricular activities</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills Section -->
-  <section id="skills">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Technical Skills</h2>
-        <p class="section-subtitle">
-          Expertise across hardware design, programming, and engineering tools
-        </p>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-card">
-          <div class="skill-icon">
-            <i class="fas fa-code"></i>
-          </div>
-          <h3>Programming Languages</h3>
-          <p>Proficient in multiple programming languages for embedded and software development</p>
-          <ul class="skill-list">
-            <li>Python (Advanced)</li>
-            <li>Java (Advanced)</li>
-            <li>C/C++ (Intermediate)</li>
-            <li>Verilog (Intermediate)</li>
-            <li>MATLAB (Intermediate)</li>
-          </ul>
+    
+    <div class="content-block">
+        <h2>System Architecture</h2>
+        <div class="diagram-container">
+            <iframe src="https://drive.google.com/file/d/1VFXiUNhIHJkyfCTLeu_h4EKW3pZBmH1o/preview" allowfullscreen></iframe>
         </div>
         
-        <div class="skill-card">
-          <div class="skill-icon">
-            <i class="fas fa-microchip"></i>
-          </div>
-          <h3>Hardware & Tools</h3>
-          <p>Experience with industry-standard hardware design and testing equipment</p>
-          <ul class="skill-list">
-            <li>Cyclone V FPGA</li>
-            <li>FRDM-KL46Z Microcontroller</li>
-            <li>Intel Quartus Prime</li>
-            <li>Oscilloscopes & Signal Generators</li>
-            <li>Raspberry Pi</li>
-          </ul>
-        </div>
+        <h3>Technical Implementation</h3>
+        <p>The system operates as a finite-state machine (FSM) with four distinct states:</p>
+        <ol>
+            <li><strong>IDLE:</strong> Waiting for player input to configure game duration</li>
+            <li><strong>PREP:</strong> 3-second countdown before gameplay begins</li>
+            <li><strong>RUN:</strong> Active gameplay with real-time scoring</li>
+            <li><strong>END:</strong> Game completion with final score display</li>
+        </ol>
         
-        <div class="skill-card">
-          <div class="skill-icon">
-            <i class="fas fa-drafting-compass"></i>
-          </div>
-          <h3>Design & CAD</h3>
-          <p>Proficient in computer-aided design and circuit simulation tools</p>
-          <ul class="skill-list">
-            <li>AutoCAD</li>
-            <li>OnShape</li>
-            <li>Revit</li>
-            <li>LTspice</li>
-            <li>Microsoft Office Suite</li>
-          </ul>
-        </div>
-        
-        <div class="skill-card">
-          <div class="skill-icon">
-            <i class="fas fa-globe"></i>
-          </div>
-          <h3>Languages</h3>
-          <p>Multilingual communication abilities for global collaboration</p>
-          <ul class="skill-list">
-            <li>English (Fluent)</li>
-            <li>Bangla (Fluent)</li>
-            <li>Spanish (Intermediate)</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Featured Projects</h2>
-        <p class="section-subtitle">
-          Innovative embedded systems and hardware solutions
-        </p>
-      </div>
-      
-      <div class="projects-grid">
-        <!-- Smart Basketball Hoop Project -->
-        <div class="project-card">
-          <div class="project-header">
-            <div class="project-association">Cornell University</div>
-            <h3 class="project-title">Smart Basketball Hoop Scoring Tracker</h3>
-            <p class="project-duration">April 2025 - May 2025</p>
-          </div>
-          <div class="project-content">
-            <p class="project-description">
-              Developed an embedded system that tracks basketball shot accuracy in real-time using a KL46Z microcontroller. 
-              The system features interrupt-driven architecture with four game states and provides immediate feedback through 
-              LED indicators, synthesized audio, and LCD display updates.
-            </p>
-            
-            <div class="tech-stack">
-              <span class="tech-tag">KL46Z Microcontroller</span>
-              <span class="tech-tag">C Programming</span>
-              <span class="tech-tag">ADC</span>
-              <span class="tech-tag">PWM</span>
-              <span class="tech-tag">GPIO Interrupts</span>
-              <span class="tech-tag">SysTick Timers</span>
-              <span class="tech-tag">Finite State Machine</span>
-            </div>
-            
-            <ul class="project-highlights">
-              <li>Implemented infrared break-beam sensor system with laser and photodiode for accurate shot detection</li>
-              <li>Architected interrupt-driven finite-state machine with four game states (IDLE, PREP, RUN, END)</li>
-              <li>Developed real-time feedback system with LED indicators, PWM-synthesized audio, and LCD scoring display</li>
-              <li>Built robust logic with countdown timers and false-positive prevention using blocking audio delays</li>
-              <li>Handled full-stack development from circuit design and soldering to software integration and testing</li>
+        <div class="highlight">
+            <p><strong>Key Technical Features:</strong></p>
+            <ul>
+                <li><strong>Precise Timing:</strong> SysTick provides millisecond-accurate system clock for debouncing and countdown</li>
+                <li><strong>Interrupt-Driven Input:</strong> PORTC interrupts handle button presses without polling</li>
+                <li><strong>Accurate Scoring:</strong> ADC-driven break-beam detection with >900 count threshold</li>
+                <li><strong>Multi-Sensory Feedback:</strong> Integrated LED, buzzer, and LCD responses</li>
+                <li><strong>Power Efficiency:</strong> All peripherals operate on 3.3V rail without level shifting</li>
             </ul>
-            
-            <div class="project-links">
-              <a href="https://github.com/mdshad10/Smart-Basketball-Hoop-Embedded-Systems" class="project-link" target="_blank">
-                <i class="fab fa-github"></i> View on GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- TinyRV1 Processor Project -->
-        <div class="project-card">
-          <div class="project-header">
-            <div class="project-association">Cornell University</div>
-            <h3 class="project-title">TinyRV1 Processor & Accelerator Design</h3>
-            <p class="project-duration">November 2024 - December 2024</p>
-          </div>
-          <div class="project-content">
-            <p class="project-description">
-              Implemented a 32-bit single-cycle processor following the TinyRV1 RISC-V instruction set architecture using SystemVerilog. 
-              Designed and prototyped both the general-purpose processor and a specialized accumulate accelerator, comparing their 
-              performance and efficiency characteristics.
-            </p>
-            
-            <div class="tech-stack">
-              <span class="tech-tag">SystemVerilog</span>
-              <span class="tech-tag">RISC-V Architecture</span>
-              <span class="tech-tag">Intel Cyclone V FPGA</span>
-              <span class="tech-tag">Quartus Prime</span>
-              <span class="tech-tag">RTL Design</span>
-              <span class="tech-tag">FSM Design</span>
-            </div>
-            
-            <ul class="project-highlights">
-              <li>Developed complete processor datapath with multiplexers, adders, comparators, and register files</li>
-              <li>Implemented structural RTL design principles with comprehensive control unit architecture</li>
-              <li>Verified functionality through directed tests and trace-based simulations</li>
-              <li>Created custom accumulate accelerator with parameterized datapath and FSM-based control</li>
-              <li>Conducted detailed hardware analysis including critical path identification and resource utilization</li>
-              <li>Demonstrated accelerator advantages in cycle count and area efficiency over general-purpose design</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- R(E)-Waste Project -->
-        <div class="project-card">
-          <div class="project-header">
-            <div class="project-association">The Cooper Union</div>
-            <h3 class="project-title">R(E)-Waste: Network-Attached Storage File Server</h3>
-            <p class="project-duration">September 2022 - December 2022</p>
-          </div>
-          <div class="project-content">
-            <p class="project-description">
-              Repurposed e-waste components from around East Village to create a sustainable, cost-free network-attached storage solution. 
-              Built an 8TB capacity server with scalable architecture, demonstrating innovative approaches to electronic waste reduction.
-            </p>
-            
-            <div class="tech-stack">
-              <span class="tech-tag">Hardware Assembly</span>
-              <span class="tech-tag">OnShape CAD</span>
-              <span class="tech-tag">ATX Motherboard</span>
-              <span class="tech-tag">SATA Integration</span>
-              <span class="tech-tag">Sustainability</span>
-            </div>
-            
-            <ul class="project-highlights">
-              <li>Transformed discarded cassette player and computer parts into functional server hardware</li>
-              <li>Designed scalable storage solution with 8TB capacity and additional SATA ports for expansion</li>
-              <li>Presented findings to e-waste industry professionals highlighting sustainable reduction methods</li>
-              <li>Collaborated with local e-waste programs to educate community on collection opportunities</li>
-              <li>Created comprehensive CAD documentation for reproducible design methodology</li>
-            </ul>
-            
-            <div class="project-links">
-              <a href="https://cad.onshape.com/documents/ea29662ba5af1ad1e22b4a43/w/36643fafb593d6f50a03263c/e/735eaee15a7460bb27558c1b?renderMode=0&leftPanel=false&uiState=662d4372526e1c1c9c9966e6" class="project-link" target="_blank">
-                <i class="fas fa-cube"></i> View CAD Design
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Experience Section -->
-  <section id="experience" class="experience-section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Professional Experience</h2>
-        <p class="section-subtitle">
-          Practical applications of engineering knowledge
-        </p>
-      </div>
-      
-      <div class="experience-timeline">
-        <div class="experience-item">
-          <div class="experience-header">
-            <div>
-              <h3 class="job-title">Digital Agriculture Hardware Developer</h3>
-              <p class="company">Engineers Without Borders, Cornell University</p>
-            </div>
-            <span class="experience-duration">January 2025 - Present</span>
-          </div>
-          <ul class="experience-description">
-            <li>Design and implement hardware solutions for digital agriculture projects</li>
-            <li>Develop embedded systems for environmental monitoring and data collection</li>
-            <li>Collaborate with team members to integrate hardware with software applications</li>
-            <li>Conduct field testing and iterate on designs based on performance data</li>
-          </ul>
         </div>
         
-        <div class="experience-item">
-          <div class="experience-header">
-            <div>
-              <h3 class="job-title">Teaching Assistant</h3>
-              <p class="company">Cornell University, ECE Department</p>
+        <h3>Circuit Implementation</h3>
+        <div class="diagram-container">
+            <iframe src="https://drive.google.com/file/d/1nXagdMgyYwe7BKZioC4WUuTYo7xBmQa5/preview" allowfullscreen></iframe>
+        </div>
+        
+        <h3>Assembly Process</h3>
+        <div class="diagram-container">
+            <iframe src="https://drive.google.com/file/d/1T0qnLg4qKQGk8JZTNSfdBw6wwczZrTkE/preview" allowfullscreen></iframe>
+        </div>
+        
+        <h3>Final Setup</h3>
+        <div class="diagram-container">
+            <iframe src="https://drive.google.com/file/d/1W06Vmte9UukinsX4BY7eWaIZe00g4g5m/preview" allowfullscreen></iframe>
+        </div>
+    </div>
+    
+    <div class="content-block">
+        <h2>Development Process</h2>
+        
+        <h3>Testing Methodology</h3>
+        <p>We employed an incremental testing strategy to ensure system stability:</p>
+        
+        <ol>
+            <li><strong>Breakbeam Sensor:</strong> Calibrated ADC thresholds through physical testing (700/1023 threshold)</li>
+            <li><strong>Audio Feedback:</strong> Iteratively refined buzzer tones for distinct game events</li>
+            <li><strong>Display System:</strong> Verified LCD digit conversion and segment positioning</li>
+            <li><strong>Game Logic:</strong> Simulated timer and scoring behavior before hardware integration</li>
+        </ol>
+        
+        <div class="highlight">
+            <p><strong>Key Insight:</strong> The blocking buzzer implementation serendipitously solved a scoring edge case by creating a natural debounce period, preventing multiple score registrations from a single basket.</p>
+        </div>
+        
+        <h3>Challenges & Solutions</h3>
+        <ul>
+            <li><strong>Mechanical Stability:</strong> Secured components with hot glue to prevent vibration-induced false triggers</li>
+            <li><strong>Net Interference:</strong> Taped net aside to prevent false beam breaks</li>
+            <li><strong>Power Distribution:</strong> Utilized J9 pins for additional 3.3V supply when main pins were occupied</li>
+            <li><strong>Scoring Accuracy:</strong> Implemented blocking delay to prevent multiple counts per shot</li>
+        </ul>
+    </div>
+    
+    <div class="content-block">
+        <h2>Team Collaboration</h2>
+        
+        <div class="team-section">
+            <div class="team-member">
+                <h3>Hardware Specialist</h3>
+                <ul>
+                    <li>Designed and implemented circuit architecture</li>
+                    <li>Developed photoresistor break-beam sensor system</li>
+                    <li>Engineered buzzer audio feedback</li>
+                    <li>Calibrated ADC thresholds for reliable scoring</li>
+                </ul>
             </div>
-            <span class="experience-duration">September 2024 - Present</span>
-          </div>
-          <ul class="experience-description">
-            <li>Assist students in Digital Logic and Computer Organization course</li>
-            <li>Conduct weekly office hours to clarify complex concepts</li>
-            <li>Grade assignments and provide constructive feedback</li>
-            <li>Develop supplemental instructional materials</li>
-          </ul>
+            
+            <div class="team-member">
+                <h3>Software Specialist</h3>
+                <ul>
+                    <li>Implemented finite-state machine logic</li>
+                    <li>Developed countdown timer and display system</li>
+                    <li>Programmed game mechanics and user interface</li>
+                    <li>Composed audio feedback sequences</li>
+                </ul>
+            </div>
         </div>
-      </div>
+        
+        <p>Regular synchronization meetings ensured seamless integration between hardware and software components. This division of responsibilities based on individual strengths contributed significantly to the project's success.</p>
     </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="contact-section">
-    <div class="container">
-      <div class="contact-grid">
-        <div class="contact-text">
-          <h2>Get In Touch</h2>
-          <p>
-            I'm currently looking for internship opportunities in embedded systems and hardware engineering. 
-            If you have any questions or would like to discuss potential collaborations, please don't hesitate 
-            to reach out.
-          </p>
-        </div>
-        <div class="contact-methods">
-          <div class="contact-method">
-            <i class="fas fa-envelope"></i>
-            <a href="mailto:md04shad@gmail.com">md04shad@gmail.com</a>
-          </div>
-          <div class="contact-method">
-            <i class="fas fa-phone"></i>
-            <a href="tel:9292250452">(929) 225-0452</a>
-          </div>
-          <div class="contact-method">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>New York, NY</span>
-          </div>
-        </div>
-      </div>
+    
+    <div class="content-block">
+        <h2>References & Resources</h2>
+        
+        <ul>
+            <li>FRDM-KL46Z datasheet for pin configuration and hardware interfacing</li>
+            <li>AI-assisted learning for ADC implementation and audio synthesis</li>
+            <li>Provided demo code for LCD and switch integration</li>
+            <li>Commercial systems (Huupe) for design inspiration</li>
+        </ul>
     </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="social-links">
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-github"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-        </div>
-        <p class="copyright">© 2025 Md S. Shad. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Navbar scroll effect
-    window.addEventListener('scroll', function() {
-      const navbar = document.getElementById('navbar');
-      if (window.scrollY > 10) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    });
-  </script>
 </body>
 </html>
