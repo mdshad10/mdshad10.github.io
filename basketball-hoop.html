@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Smart Basketball-Hoop Scoring Tracker project by Md S. Shad">
+  <title>Smart Basketball-Hoop | Md S. Shad</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --primary-dark: #2563eb;
+      --secondary: #1e293b;
+      --text: #2c3e50;
+      --text-light: #64748b;
+      --text-lighter: #94a3b8;
+      --bg-light: #f8fafc;
+      --border: #e2e8f0;
+      --white: #ffffff;
+      --success: #10b981;
+    }
+    
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6; 
+      color: var(--text); 
+      background: var(--white);
+      scroll-behavior: smooth;
+    }
+    
+    .container { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 0 2rem; 
+    }
+
+    /* Navigation */
+    nav {
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(10px);
+      position: fixed; 
+      top: 0; 
+      width: 100%; 
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    
+    nav.scrolled { 
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+    }
+    
+    .nav-container {
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center;
+      padding: 1.5rem 0;
+    }
+    
+    .logo { 
+      font-size: 1.5rem; 
+      font-weight: 700; 
+      color: var(--secondary); 
+    }
+    
+    .nav-links {
+      display: flex; 
+      list-style: none; 
+      gap: 2rem;
+    }
+    
+    .nav-links a {
+      color: var(--text-light); 
+      text-decoration: none; 
+      font-weight: 500;
+      font-size: 0.95rem; 
+      position: relative; 
+      transition: all 0.2s ease;
+    }
+    
+    .nav-links a::after {
+      content: ''; 
+      position: absolute; 
+      bottom: -4px; 
+      left: 0;
+      width: 0; 
+      height: 2px; 
+      background: var(--primary); 
+      transition: width 0.2s ease;
+    }
+    
+    .nav-links a:hover { 
+      color: var(--primary); 
+    }
+    
+    .nav-links a:hover::after { 
+      width: 100%; 
+    }
+
+    /* Project Header */
+    .project-header {
+      padding: 8rem 0 3rem;
+      text-align: center;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    }
+    
+    .project-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--secondary);
+      margin-bottom: 1rem;
+    }
+    
+    .project-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Project Content */
+    .project-content {
+      padding: 4rem 0;
+    }
+    
+    .content-block {
+      background-color: var(--bg-light);
+      border-radius: 8px;
+      padding: 2rem;
+      margin: 2rem 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    h2 {
+      color: var(--secondary);
+      margin-top: 3rem;
+      font-size: 1.8rem;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+    
+    h3 {
+      color: var(--primary);
+      margin-top: 2rem;
+      font-size: 1.4rem;
+    }
+    
+    .video-container, .diagram-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      margin: 2rem 0;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .video-container iframe, 
+    .diagram-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    
+    ul, ol {
+      margin-left: 1.5rem;
+      padding-left: 1rem;
+    }
+    
+    li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .team-section {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+    }
+    
+    .team-member {
+      flex: 1;
+      min-width: 250px;
+      margin: 1rem;
+      padding: 1.5rem;
+      background-color: #eaf2f8;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    
+    .highlight {
+      background-color: #e3f2fd;
+      padding: 1.5rem;
+      border-left: 4px solid var(--primary);
+      margin: 2rem 0;
+      border-radius: 0 4px 4px 0;
+    }
+    
+    .back-button {
+      display: inline-block;
+      margin: 2rem 0;
+      padding: 0.8rem 1.5rem;
+      background-color: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    
+    .back-button:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--secondary);
+      color: var(--white);
+      padding: 2rem 0;
+      text-align: center;
+      margin-top: 4rem;
+    }
+    
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .social-links a {
+      color: var(--white);
+      font-size: 1.2rem;
+      transition: color 0.2s ease;
+    }
+    
+    .social-links a:hover {
+      color: var(--primary);
+    }
+    
+    .copyright {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+      .project-header {
+        padding: 6rem 0 2rem;
+      }
+      
+      .project-title {
+        font-size: 2rem;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+      
+      .team-section {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-container">
+        <div class="logo">Md S. Shad</div>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#education">Education</a></li>
+          <li><a href="index.html#skills">Skills</a></li>
+          <li><a href="index.html#projects">Projects</a></li>
+          <li><a href="index.html#experience">Experience</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Project Header -->
+  <header class="project-header">
+    <div class="container">
+      <h1 class="project-title">Smart Basketball-Hoop Scoring Tracker</h1>
+      <p class="project-subtitle">An embedded system that tracks basketball shot accuracy with real-time feedback</p>
+    </div>
+  </header>
+
+  <!-- Project Content -->
+  <main class="project-content container">
+    <div class="content-block">
+      <h2>Overview</h2>
+      <p>Our final project is an intelligent basketball scoring system that tracks successful shots within a customizable time period. The system utilizes an infrared break-beam sensor mounted beneath the hoop rim to detect successful baskets. When a ball passes through the hoop, interrupting the laser beam, the microcontroller:</p>
+      
+      <ul>
+        <li>Increments an internal score counter</li>
+        <li>Activates visual feedback (LED illumination)</li>
+        <li>Generates audio confirmation ("Cha-Ching!" sound)</li>
+        <li>Updates the LCD display with the current score</li>
+      </ul>
+      
+      <p>The game duration is fully customizable by the player. Switch 1 adjusts the round length in 5-second increments (up to 60 seconds), with a long press resetting to a 30-second default. Switch 3 initiates gameplay, triggering a 3-second countdown followed by an audible start signal. Throughout gameplay, the LCD continuously displays both the remaining time and current score.</p>
+      
+      <p>This project was inspired by commercial smart basketball systems like those from Huupe, which combine shot tracking with real-time feedback to enhance player experience. Our implementation demonstrates core embedded systems concepts including interrupt handling, real-time timing, and hardware control using the FRDM-KL46Z microcontroller.</p>
+    </div>
+    
+    <h2>Project Demonstration</h2>
+    <div class="video-container">
+      <iframe src="https://drive.google.com/file/d/19WirKPllfCPig7lkLNfI8Ul6PIVjNu1b/preview" allowfullscreen></iframe>
+    </div>
+    
+    <div class="content-block">
+      <h2>System Architecture</h2>
+      <div class="diagram-container">
+        <iframe src="https://drive.google.com/file/d/1VFXiUNhIHJkyfCTLeu_h4EKW3pZBmH1o/preview" allowfullscreen></iframe>
+      </div>
+      
+      <h3>Technical Implementation</h3>
+      <p>The system operates as a finite-state machine (FSM) with four distinct states:</p>
+      <ol>
+        <li><strong>IDLE:</strong> Waiting for player input to configure game duration</li>
+        <li><strong>PREP:</strong> 3-second countdown before gameplay begins</li>
+        <li><strong>RUN:</strong> Active gameplay with real-time scoring</li>
+        <li><strong>END:</strong> Game completion with final score display</li>
+      </ol>
+      
+      <div class="highlight">
+        <p><strong>Key Technical Features:</strong></p>
+        <ul>
+          <li><strong>Precise Timing:</strong> SysTick provides millisecond-accurate system clock for debouncing and countdown</li>
+          <li><strong>Interrupt-Driven Input:</strong> PORTC interrupts handle button presses without polling</li>
+          <li><strong>Accurate Scoring:</strong> ADC-driven break-beam detection with >900 count threshold</li>
+          <li><strong>Multi-Sensory Feedback:</strong> Integrated LED, buzzer, and LCD responses</li>
+          <li><strong>Power Efficiency:</strong> All peripherals operate on 3.3V rail without level shifting</li>
+        </ul>
+      </div>
+      
+      <h3>Circuit Implementation</h3>
+      <div class="diagram-container">
+        <iframe src="https://drive.google.com/file/d/1nXagdMgyYwe7BKZioC4WUuTYo7xBmQa5/preview" allowfullscreen></iframe>
+      </div>
+      
+      <h3>Assembly Process</h3>
+      <div class="diagram-container">
+        <iframe src="https://drive.google.com/file/d/1T0qnLg4qKQGk8JZTNSfdBw6wwczZrTkE/preview" allowfullscreen></iframe>
+      </div>
+      
+      <h3>Final Setup</h3>
+      <div class="diagram-container">
+        <iframe src="https://drive.google.com/file/d/1W06Vmte9UukinsX4BY7eWaIZe00g4g5m/preview" allowfullscreen></iframe>
+      </div>
+    </div>
+    
+    <div class="content-block">
+      <h2>Development Process</h2>
+      
+      <h3>Testing Methodology</h3>
+      <p>We employed an incremental testing strategy to ensure system stability:</p>
+      
+      <ol>
+        <li><strong>Breakbeam Sensor:</strong> Calibrated ADC thresholds through physical testing (700/1023 threshold)</li>
+        <li><strong>Audio Feedback:</strong> Iteratively refined buzzer tones for distinct game events</li>
+        <li><strong>Display System:</strong> Verified LCD digit conversion and segment positioning</li>
+        <li><strong>Game Logic:</strong> Simulated timer and scoring behavior before hardware integration</li>
+      </ol>
+      
+      <div class="highlight">
+        <p><strong>Key Insight:</strong> The blocking buzzer implementation serendipitously solved a scoring edge case by creating a natural debounce period, preventing multiple score registrations from a single basket.</p>
+      </div>
+      
+      <h3>Challenges & Solutions</h3>
+      <ul>
+        <li><strong>Mechanical Stability:</strong> Secured components with hot glue to prevent vibration-induced false triggers</li>
+        <li><strong>Net Interference:</strong> Taped net aside to prevent false beam breaks</li>
+        <li><strong>Power Distribution:</strong> Utilized J9 pins for additional 3.3V supply when main pins were occupied</li>
+        <li><strong>Scoring Accuracy:</strong> Implemented blocking delay to prevent multiple counts per shot</li>
+      </ul>
+    </div>
+    
+    <div class="content-block">
+      <h2>Team Collaboration</h2>
+      
+      <div class="team-section">
+        <div class="team-member">
+          <h3>Hardware Specialist</h3>
+          <ul>
+            <li>Designed and implemented circuit architecture</li>
+            <li>Developed photoresistor break-beam sensor system</li>
+            <li>Engineered buzzer audio feedback</li>
+            <li>Calibrated ADC thresholds for reliable scoring</li>
+          </ul>
+        </div>
+        
+        <div class="team-member">
+          <h3>Software Specialist</h3>
+          <ul>
+            <li>Implemented finite-state machine logic</li>
+            <li>Developed countdown timer and display system</li>
+            <li>Programmed game mechanics and user interface</li>
+            <li>Composed audio feedback sequences</li>
+          </ul>
+        </div>
+      </div>
+      
+      <p>Regular synchronization meetings ensured seamless integration between hardware and software components. This division of responsibilities based on individual strengths contributed significantly to the project's success.</p>
+    </div>
+    
+    <div class="content-block">
+      <h2>References & Resources</h2>
+      
+      <ul>
+        <li>FRDM-KL46Z datasheet for pin configuration and hardware interfacing</li>
+        <li>AI-assisted learning for ADC implementation and audio synthesis</li>
+        <li>Provided demo code for LCD and switch integration</li>
+        <li>Commercial systems (Huupe) for design inspiration</li>
+      </ul>
+    </div>
+
+    <a href="index.html#projects" class="back-button">
+      <i class="fas fa-arrow-left"></i> Back to Projects
+    </a>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="social-links">
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p class="copyright">© 2025 Md S. Shad. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 10) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>
