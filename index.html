@@ -1040,154 +1040,111 @@
         <div class="project-card">
           <div class="project-header">
             <div>
-              <h3 class="project-title">RISC-V Processor Design</h3>
-              <p class="project-duration">September - December 2024</p>
-              <span class="project-association">Cornell University - ECE 4750</span>
+              <h3 class="project-title">Smart Basketball Hoop Scoring Tracker</h3>
+              <p class="project-duration">April - May 2025</p>
+              <span class="project-association">Cornell University</span>
             </div>
           </div>
           <div class="project-content">
             <p class="project-description">
-              Designed and implemented a complete RISC-V processor supporting the RV32I instruction set architecture. 
-              The project involved creating a pipelined microarchitecture with hazard detection and forwarding mechanisms 
-              to optimize performance while maintaining correctness.
+              Developed an embedded system that tracks basketball shot accuracy in real-time using a KL46Z microcontroller. 
+              Leveraged a low-power infrared break-beam sensor (laser + photodiode) mounted under the hoop to detect made shots 
+              by measuring analog signal drops via ADC.
             </p>
             <div class="tech-stack">
-              <span class="tech-tag">Verilog</span>
-              <span class="tech-tag">RISC-V ISA</span>
-              <span class="tech-tag">Digital Design</span>
-              <span class="tech-tag">Vivado</span>
-              <span class="tech-tag">ModelSim</span>
+              <span class="tech-tag">C Programming</span>
+              <span class="tech-tag">KL46Z Microcontroller</span>
+              <span class="tech-tag">ADC</span>
+              <span class="tech-tag">PWM</span>
+              <span class="tech-tag">LCD</span>
+              <span class="tech-tag">Interrupts</span>
+              <span class="tech-tag">Sensors</span>
+              <span class="tech-tag">Soldering</span>
             </div>
             <ul class="project-highlights">
-              <li>Implemented 5-stage pipelined processor with forwarding and stall logic</li>
-              <li>Achieved 90% performance efficiency compared to ideal pipeline</li>
-              <li>Designed comprehensive test suite for verification and validation</li>
-              <li>Synthesized design for FPGA implementation and timing analysis</li>
+              <li>Architected interrupt-driven finite-state machine with four game states (IDLE, PREP, RUN, END)</li>
+              <li>Implemented real-time feedback: green LED flash, "Cha-Ching!" buzzer sound via PWM, and score updates on four-digit LCD</li>
+              <li>Built robust logic with countdown timers, false positive prevention, and seamless gameplay transitions</li>
+              <li>Successfully deployed and tested on physical hoop with minimal interference</li>
             </ul>
+            <div class="project-links">
+              <a href="https://github.com/mdshad10/Smart-Basketball-Hoop-Embedded-Systems" target="_blank" class="project-link">
+                <i class="fab fa-github"></i> View on GitHub
+              </a>
+            </div>
           </div>
         </div>
 
         <div class="project-card">
           <div class="project-header">
             <div>
-              <h3 class="project-title">Real-Time Embedded Weather Station</h3>
-              <p class="project-duration">March - May 2024</p>
-              <span class="project-association">Cornell University - ECE 4760</span>
+              <h3 class="project-title">TinyRV1 Processor & Accelerator Design</h3>
+              <p class="project-duration">November - December 2024</p>
+              <span class="project-association">Cornell University</span>
             </div>
           </div>
           <div class="project-content">
             <p class="project-description">
-              Developed a comprehensive weather monitoring system using embedded microcontrollers. The system 
-              collects environmental data from multiple sensors, processes the information in real-time, and 
-              provides both local display and wireless data transmission capabilities.
+              Implemented a 32-bit single-cycle processor implementing the TinyRV1 RISC-V instruction set architecture using SystemVerilog. 
+              Developed the processor datapath and control unit with structural RTL design principles, incorporating multiplexers, adders, 
+              comparators, register files, and immediate generators.
             </p>
             <div class="tech-stack">
-              <span class="tech-tag">C</span>
-              <span class="tech-tag">ARM Cortex-M</span>
-              <span class="tech-tag">I2C/SPI</span>
-              <span class="tech-tag">Real-Time OS</span>
-              <span class="tech-tag">Wireless Communication</span>
-            </div>
-            <ul class="project-highlights">
-              <li>Integrated temperature, humidity, pressure, and wind speed sensors</li>
-              <li>Implemented real-time data processing with 1-second sampling rate</li>
-              <li>Designed custom PCB for sensor integration and power management</li>
-              <li>Created wireless data logging system with mobile app interface</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-header">
-            <div>
-              <h3 class="project-title">Digital Agriculture Monitoring System</h3>
-              <p class="project-duration">January - Ongoing 2024</p>
-              <span class="project-association">Engineers Without Borders</span>
-            </div>
-          </div>
-          <div class="project-content">
-            <p class="project-description">
-              Leading the development of an IoT-based agricultural monitoring system for sustainable farming 
-              initiatives. The project focuses on providing cost-effective solutions for monitoring soil 
-              conditions, irrigation needs, and crop health in resource-limited environments.
-            </p>
-            <div class="tech-stack">
-              <span class="tech-tag">Python</span>
-              <span class="tech-tag">Raspberry Pi</span>
-              <span class="tech-tag">IoT Sensors</span>
-              <span class="tech-tag">Data Analytics</span>
-              <span class="tech-tag">Solar Power</span>
-            </div>
-            <ul class="project-highlights">
-              <li>Designed low-power sensor network for remote agricultural areas</li>
-              <li>Implemented solar-powered system with battery backup for reliability</li>
-              <li>Created data analytics platform for crop optimization recommendations</li>
-              <li>Collaborated with international partners for field deployment</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-header">
-            <div>
-              <h3 class="project-title">Custom FPGA-Based Digital Filter</h3>
-              <p class="project-duration">October - November 2024</p>
-              <span class="project-association">Independent Project</span>
-            </div>
-          </div>
-          <div class="project-content">
-            <p class="project-description">
-              Implemented a high-performance digital signal processing filter on FPGA hardware. The project 
-              involved designing custom hardware accelerators for real-time audio processing applications 
-              with emphasis on low latency and high throughput.
-            </p>
-            <div class="tech-stack">
-              <span class="tech-tag">Verilog</span>
+              <span class="tech-tag">SystemVerilog</span>
+              <span class="tech-tag">RISC-V</span>
               <span class="tech-tag">FPGA</span>
-              <span class="tech-tag">DSP</span>
-              <span class="tech-tag">Vivado</span>
-              <span class="tech-tag">Audio Processing</span>
+              <span class="tech-tag">RTL Design</span>
+              <span class="tech-tag">Digital Logic</span>
+              <span class="tech-tag">Intel Quartus Prime</span>
             </div>
             <ul class="project-highlights">
-              <li>Designed parallel FIR filter architecture for real-time processing</li>
-              <li>Achieved sub-microsecond latency for audio applications</li>
-              <li>Implemented configurable filter coefficients via software interface</li>
-              <li>Optimized resource utilization for cost-effective deployment</li>
+              <li>Prototyped processor on Intel Cyclone V FPGA to run TinyRV1 assembly programs</li>
+              <li>Designed custom accumulate accelerator that outperformed general-purpose processor in cycle count and area efficiency</li>
+              <li>Conducted detailed hardware analysis including critical path identification and timing closure</li>
+              <li>Verified functional correctness through directed tests and trace-based simulations</li>
             </ul>
+            <div class="project-links">
+              <a href="https://github.com/mdshad10/TinyRV1Processor" target="_blank" class="project-link">
+                <i class="fab fa-github"></i> View on GitHub
+              </a>
+            </div>
           </div>
         </div>
 
         <div class="project-card">
           <div class="project-header">
             <div>
-              <h3 class="project-title">Smart Home Automation Hub</h3>
-              <p class="project-duration">August - September 2024</p>
-              <span class="project-association">Personal Project</span>
+              <h3 class="project-title">R(E)-Waste: Network-Attached Storage File Server</h3>
+              <p class="project-duration">September - December 2022</p>
+              <span class="project-association">The Cooper Union for the Advancement of Science and Art</span>
             </div>
           </div>
           <div class="project-content">
             <p class="project-description">
-              Developed a comprehensive home automation system integrating multiple IoT devices and sensors. 
-              The system provides centralized control, automated scheduling, and intelligent decision-making 
-              based on environmental conditions and user preferences.
+              Repurposed a cassette player and computer parts found in e-waste bins around the East Village to assemble a 
+              computer server. Implemented a cost-free and upgradable storage solution focusing on sustainability and 
+              electronic waste reduction.
             </p>
             <div class="tech-stack">
-              <span class="tech-tag">Python</span>
-              <span class="tech-tag">Raspberry Pi</span>
-              <span class="tech-tag">MQTT</span>
-              <span class="tech-tag">Web Interface</span>
-              <span class="tech-tag">Machine Learning</span>
+              <span class="tech-tag">Hardware Assembly</span>
+              <span class="tech-tag">Network Storage</span>
+              <span class="tech-tag">Sustainability</span>
+              <span class="tech-tag">CAD Design</span>
+              <span class="tech-tag">E-waste Recycling</span>
             </div>
             <ul class="project-highlights">
-              <li>Integrated lighting, temperature, and security systems</li>
-              <li>Implemented machine learning for predictive automation</li>
-              <li>Created responsive web interface for remote control</li>
-              <li>Designed modular architecture for easy system expansion</li>
+              <li>Created 8TB capacity server with additional SATA ports and ATX motherboard for scalability</li>
+              <li>Gathered and separated valuable metals from e-waste components, measuring their mass to determine value</li>
+              <li>Presented to e-waste industry professionals highlighting sustainable electronic waste reduction methods</li>
+              <li>Collaborated with local e-waste programs to inform community on collection opportunities</li>
             </ul>
+            <div class="project-links">
+              <a href="https://cad.onshape.com/documents/ea29662ba5af1ad1e22b4a43/w/36643fafb593d6f50a03263c/e/735eaee15a7460bb27558c1b" target="_blank" class="project-link">
+                <i class="fas fa-cube"></i> View CAD Design
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
   </section>
 
   <!-- Experience Section -->
