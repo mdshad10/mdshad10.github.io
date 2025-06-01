@@ -298,142 +298,113 @@
   </nav>
 
   <!-- Project Header -->
-  <header class="project-header">
-    <div class="container">
-      <h1 class="project-title">Smart Basketball-Hoop Scoring Tracker</h1>
-      <p class="project-subtitle">An embedded system that tracks basketball shot accuracy with real-time feedback</p>
-    </div>
-  </header>
+          <div class="project-header">
+            <div>
+              <h3 class="project-title">Smart Basketball Hoop Scoring Tracker</h3>
+              <p class="project-duration">April - May 2025</p>
+              <span class="project-association">Cornell University</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <p class="project-description">
+              Developed an embedded system that tracks basketball shot accuracy in real-time using a KL46Z microcontroller. 
+              Leveraged a low-power infrared break-beam sensor (laser + photodiode) mounted under the hoop to detect made shots 
+              by measuring analog signal drops via ADC.
+            </p>
+            <div class="tech-stack">
+              <span class="tech-tag">C Programming</span>
+              <span class="tech-tag">KL46Z Microcontroller</span>
+              <span class="tech-tag">ADC</span>
+              <span class="tech-tag">PWM</span>
+              <span class="tech-tag">LCD</span>
+              <span class="tech-tag">Interrupts</span>
+              <span class="tech-tag">Sensors</span>
+              <span class="tech-tag">Soldering</span>
+            </div>
+            <ul class="project-highlights">
+              <li>Architected interrupt-driven finite-state machine with four game states (IDLE, PREP, RUN, END)</li>
+              <li>Implemented real-time feedback: green LED flash, "Cha-Ching!" buzzer sound via PWM, and score updates on four-digit LCD</li>
+              <li>Built robust logic with countdown timers, false positive prevention, and seamless gameplay transitions</li>
+              <li>Successfully deployed and tested on physical hoop with minimal interference</li>
+            </ul>
+            <div class="project-links">
+              <a href="https://github.com/mdshad10/Smart-Basketball-Hoop-Embedded-Systems" target="_blank" class="project-link">
+                <i class="fab fa-github"></i> View on GitHub
+              </a>
+            </div>
+          </div>
+        </div>
 
-  <!-- Project Content -->
-  <main class="project-content container">
-    <div class="content-block">
-      <h2>Overview</h2>
-      <p>Our final project is an intelligent basketball scoring system that tracks successful shots within a customizable time period. The system utilizes an infrared break-beam sensor mounted beneath the hoop rim to detect successful baskets. When a ball passes through the hoop, interrupting the laser beam, the microcontroller:</p>
-      
-      <ul>
-        <li>Increments an internal score counter</li>
-        <li>Activates visual feedback (LED illumination)</li>
-        <li>Generates audio confirmation ("Cha-Ching!" sound)</li>
-        <li>Updates the LCD display with the current score</li>
-      </ul>
-      
-      <p>The game duration is fully customizable by the player. Switch 1 adjusts the round length in 5-second increments (up to 60 seconds), with a long press resetting to a 30-second default. Switch 3 initiates gameplay, triggering a 3-second countdown followed by an audible start signal. Throughout gameplay, the LCD continuously displays both the remaining time and current score.</p>
-      
-      <p>This project was inspired by commercial smart basketball systems like those from Huupe, which combine shot tracking with real-time feedback to enhance player experience. Our implementation demonstrates core embedded systems concepts including interrupt handling, real-time timing, and hardware control using the FRDM-KL46Z microcontroller.</p>
-    </div>
-    
-    <h2>Project Demonstration</h2>
-    <div class="video-container">
-      <iframe src="https://drive.google.com/file/d/19WirKPllfCPig7lkLNfI8Ul6PIVjNu1b/preview" allowfullscreen></iframe>
-    </div>
-    
-    <div class="content-block">
-      <h2>System Architecture</h2>
-      <div class="diagram-container">
-        <iframe src="https://drive.google.com/file/d/1VFXiUNhIHJkyfCTLeu_h4EKW3pZBmH1o/preview" allowfullscreen></iframe>
-      </div>
-      
-      <h3>Technical Implementation</h3>
-      <p>The system operates as a finite-state machine (FSM) with four distinct states:</p>
-      <ol>
-        <li><strong>IDLE:</strong> Waiting for player input to configure game duration</li>
-        <li><strong>PREP:</strong> 3-second countdown before gameplay begins</li>
-        <li><strong>RUN:</strong> Active gameplay with real-time scoring</li>
-        <li><strong>END:</strong> Game completion with final score display</li>
-      </ol>
-      
-      <div class="highlight">
-        <p><strong>Key Technical Features:</strong></p>
-        <ul>
-          <li><strong>Precise Timing:</strong> SysTick provides millisecond-accurate system clock for debouncing and countdown</li>
-          <li><strong>Interrupt-Driven Input:</strong> PORTC interrupts handle button presses without polling</li>
-          <li><strong>Accurate Scoring:</strong> ADC-driven break-beam detection with >900 count threshold</li>
-          <li><strong>Multi-Sensory Feedback:</strong> Integrated LED, buzzer, and LCD responses</li>
-          <li><strong>Power Efficiency:</strong> All peripherals operate on 3.3V rail without level shifting</li>
-        </ul>
-      </div>
-      
-      <h3>Circuit Implementation</h3>
-      <div class="diagram-container">
-        <iframe src="https://drive.google.com/file/d/1nXagdMgyYwe7BKZioC4WUuTYo7xBmQa5/preview" allowfullscreen></iframe>
-      </div>
-      
-      <h3>Assembly Process</h3>
-      <div class="diagram-container">
-        <iframe src="https://drive.google.com/file/d/1T0qnLg4qKQGk8JZTNSfdBw6wwczZrTkE/preview" allowfullscreen></iframe>
-      </div>
-      
-      <h3>Final Setup</h3>
-      <div class="diagram-container">
-        <iframe src="https://drive.google.com/file/d/1W06Vmte9UukinsX4BY7eWaIZe00g4g5m/preview" allowfullscreen></iframe>
-      </div>
-    </div>
-    
-    <div class="content-block">
-      <h2>Development Process</h2>
-      
-      <h3>Testing Methodology</h3>
-      <p>We employed an incremental testing strategy to ensure system stability:</p>
-      
-      <ol>
-        <li><strong>Breakbeam Sensor:</strong> Calibrated ADC thresholds through physical testing (700/1023 threshold)</li>
-        <li><strong>Audio Feedback:</strong> Iteratively refined buzzer tones for distinct game events</li>
-        <li><strong>Display System:</strong> Verified LCD digit conversion and segment positioning</li>
-        <li><strong>Game Logic:</strong> Simulated timer and scoring behavior before hardware integration</li>
-      </ol>
-      
-      <div class="highlight">
-        <p><strong>Key Insight:</strong> The blocking buzzer implementation serendipitously solved a scoring edge case by creating a natural debounce period, preventing multiple score registrations from a single basket.</p>
-      </div>
-      
-      <h3>Challenges & Solutions</h3>
-      <ul>
-        <li><strong>Mechanical Stability:</strong> Secured components with hot glue to prevent vibration-induced false triggers</li>
-        <li><strong>Net Interference:</strong> Taped net aside to prevent false beam breaks</li>
-        <li><strong>Power Distribution:</strong> Utilized J9 pins for additional 3.3V supply when main pins were occupied</li>
-        <li><strong>Scoring Accuracy:</strong> Implemented blocking delay to prevent multiple counts per shot</li>
-      </ul>
-    </div>
-    
-    <div class="content-block">
-      <h2>Team Collaboration</h2>
-      
-      <div class="team-section">
-        <div class="team-member">
-          <h3>Hardware Specialist</h3>
-          <ul>
-            <li>Designed and implemented circuit architecture</li>
-            <li>Developed photoresistor break-beam sensor system</li>
-            <li>Engineered buzzer audio feedback</li>
-            <li>Calibrated ADC thresholds for reliable scoring</li>
-          </ul>
+        <div class="project-card">
+          <div class="project-header">
+            <div>
+              <h3 class="project-title">TinyRV1 Processor & Accelerator Design</h3>
+              <p class="project-duration">November - December 2024</p>
+              <span class="project-association">Cornell University</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <p class="project-description">
+              Implemented a 32-bit single-cycle processor implementing the TinyRV1 RISC-V instruction set architecture using SystemVerilog. 
+              Developed the processor datapath and control unit with structural RTL design principles, incorporating multiplexers, adders, 
+              comparators, register files, and immediate generators.
+            </p>
+            <div class="tech-stack">
+              <span class="tech-tag">SystemVerilog</span>
+              <span class="tech-tag">RISC-V</span>
+              <span class="tech-tag">FPGA</span>
+              <span class="tech-tag">RTL Design</span>
+              <span class="tech-tag">Digital Logic</span>
+              <span class="tech-tag">Intel Quartus Prime</span>
+            </div>
+            <ul class="project-highlights">
+              <li>Prototyped processor on Intel Cyclone V FPGA to run TinyRV1 assembly programs</li>
+              <li>Designed custom accumulate accelerator that outperformed general-purpose processor in cycle count and area efficiency</li>
+              <li>Conducted detailed hardware analysis including critical path identification and timing closure</li>
+              <li>Verified functional correctness through directed tests and trace-based simulations</li>
+            </ul>
+            <div class="project-links">
+              <a href="https://github.com/mdshad10/TinyRV1Processor" target="_blank" class="project-link">
+                <i class="fab fa-github"></i> View on GitHub
+              </a>
+            </div>
+          </div>
         </div>
-        
-        <div class="team-member">
-          <h3>Software Specialist</h3>
-          <ul>
-            <li>Implemented finite-state machine logic</li>
-            <li>Developed countdown timer and display system</li>
-            <li>Programmed game mechanics and user interface</li>
-            <li>Composed audio feedback sequences</li>
-          </ul>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div>
+              <h3 class="project-title">R(E)-Waste: Network-Attached Storage File Server</h3>
+              <p class="project-duration">September - December 2022</p>
+              <span class="project-association">The Cooper Union for the Advancement of Science and Art</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <p class="project-description">
+              Repurposed a cassette player and computer parts found in e-waste bins around the East Village to assemble a 
+              computer server. Implemented a cost-free and upgradable storage solution focusing on sustainability and 
+              electronic waste reduction.
+            </p>
+            <div class="tech-stack">
+              <span class="tech-tag">Hardware Assembly</span>
+              <span class="tech-tag">Network Storage</span>
+              <span class="tech-tag">Sustainability</span>
+              <span class="tech-tag">CAD Design</span>
+              <span class="tech-tag">E-waste Recycling</span>
+            </div>
+            <ul class="project-highlights">
+              <li>Created 8TB capacity server with additional SATA ports and ATX motherboard for scalability</li>
+              <li>Gathered and separated valuable metals from e-waste components, measuring their mass to determine value</li>
+              <li>Presented to e-waste industry professionals highlighting sustainable electronic waste reduction methods</li>
+              <li>Collaborated with local e-waste programs to inform community on collection opportunities</li>
+            </ul>
+            <div class="project-links">
+              <a href="https://cad.onshape.com/documents/ea29662ba5af1ad1e22b4a43/w/36643fafb593d6f50a03263c/e/735eaee15a7460bb27558c1b" target="_blank" class="project-link">
+                <i class="fas fa-cube"></i> View CAD Design
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
-      
-      <p>Regular synchronization meetings ensured seamless integration between hardware and software components. This division of responsibilities based on individual strengths contributed significantly to the project's success.</p>
-    </div>
-    
-    <div class="content-block">
-      <h2>References & Resources</h2>
-      
-      <ul>
-        <li>FRDM-KL46Z datasheet for pin configuration and hardware interfacing</li>
-        <li>AI-assisted learning for ADC implementation and audio synthesis</li>
-        <li>Provided demo code for LCD and switch integration</li>
-        <li>Commercial systems (Huupe) for design inspiration</li>
-      </ul>
-    </div>
 
     <a href="index.html#projects" class="back-button">
       <i class="fas fa-arrow-left"></i> Back to Projects
