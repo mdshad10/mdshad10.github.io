@@ -726,49 +726,113 @@ section,
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/
-/* About Section Styling */
-.about-section {
-  background-color: var(--surface-color);
-  padding: 60px 0;
+/* Base Styles */
+.profile-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px;
+  font-family: var(--default-font);
+  color: var(--default-color);
 }
 
-.about-content {
+/* Top Section Layout */
+.top-section {
   display: flex;
-  gap: 50px;
-  align-items: flex-start;
+  gap: 30px;
+  margin-bottom: 40px;
 }
 
-.skills-column {
+.personal-info, .about-me {
   flex: 1;
-  min-width: 0;
-  background: var(--background-color);
+  background: var(--surface-color);
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.about-column {
-  flex: 1;
-  min-width: 0;
-  background: var(--background-color);
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.section-title {
-  font-size: 28px;
+/* Personal Info Styling */
+.profile-header h1 {
+  font-size: 32px;
   color: var(--heading-color);
-  margin-bottom: 30px;
-  padding-bottom: 15px;
-  border-bottom: 2px solid var(--accent-color);
-  font-weight: 700;
+  margin-bottom: 5px;
 }
 
-.skill-heading {
+.profile-header h2 {
   font-size: 18px;
   color: var(--accent-color);
-  margin: 25px 0 15px 0;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+}
+
+.contact-item i {
+  width: 20px;
+  color: var(--accent-color);
+}
+
+.contact-item a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.contact-item a:hover {
+  color: color-mix(in srgb, var(--accent-color), transparent 20%);
+}
+
+/* About Me Styling */
+.about-me h2 {
+  font-size: 24px;
+  color: var(--heading-color);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.bio-content p {
+  margin-bottom: 15px;
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+/* Technical Skills Styling */
+.technical-skills {
+  background: var(--surface-color);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.technical-skills h2 {
+  font-size: 24px;
+  color: var(--heading-color);
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.skill-category h3 {
+  font-size: 18px;
+  color: var(--accent-color);
+  margin-bottom: 15px;
   font-weight: 600;
 }
 
@@ -794,7 +858,6 @@ section,
 
 .skill-name {
   font-weight: 500;
-  color: var(--heading-color);
 }
 
 .skill-level {
@@ -803,27 +866,19 @@ section,
   margin-left: 5px;
 }
 
-.bio-content {
-  line-height: 1.7;
-}
-
-.bio-text {
-  margin-bottom: 20px;
-  font-size: 16px;
-  color: var(--default-color);
-}
-
+/* Responsive Design */
 @media (max-width: 768px) {
-  .about-content {
+  .top-section {
     flex-direction: column;
-    gap: 30px;
   }
   
-  .skills-column,
-  .about-column {
-    width: 100%;
+  .skills-grid {
+    grid-template-columns: 1fr;
   }
 }
+
+/* Font Awesome Icons (add this to your head if not already included) */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
 /*--------------------------------------------------------------
 # Resume Section
 --------------------------------------------------------------*/
