@@ -726,74 +726,101 @@ section,
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/
+/* About Section Styling */
+.about-section {
+  background-color: var(--surface-color);
+  padding: 60px 0;
+}
 
-
-
-.about-container {
+.about-content {
   display: flex;
-  gap: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
+  gap: 50px;
+  align-items: flex-start;
+}
+
+.skills-column {
+  flex: 1;
+  min-width: 0;
+  background: var(--background-color);
   padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.skills-section {
+.about-column {
   flex: 1;
   min-width: 0;
+  background: var(--background-color);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.about-me-section {
-  flex: 1;
-  min-width: 0;
-}
-
-h2 {
+.section-title {
   font-size: 28px;
   color: var(--heading-color);
-  margin-bottom: 25px;
-  padding-bottom: 10px;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
   border-bottom: 2px solid var(--accent-color);
+  font-weight: 700;
 }
 
-h3 {
-  font-size: 20px;
+.skill-heading {
+  font-size: 18px;
   color: var(--accent-color);
-  margin: 20px 0 10px 0;
+  margin: 25px 0 15px 0;
+  font-weight: 600;
 }
 
 .skill-list {
-  list-style-type: none;
-  padding-left: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .skill-list li {
-  position: relative;
-  padding-left: 20px;
-  margin-bottom: 8px;
-  line-height: 1.5;
+  padding: 8px 0;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
 }
 
 .skill-list li:before {
-  content: "•";
+  content: "▹";
   color: var(--accent-color);
-  font-size: 1.2rem;
-  position: absolute;
-  left: 0;
+  margin-right: 12px;
+  font-size: 14px;
 }
 
-.about-me-section p {
-  margin-bottom: 15px;
-  line-height: 1.6;
+.skill-name {
+  font-weight: 500;
+  color: var(--heading-color);
+}
+
+.skill-level {
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  font-size: 0.9em;
+  margin-left: 5px;
+}
+
+.bio-content {
+  line-height: 1.7;
+}
+
+.bio-text {
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: var(--default-color);
 }
 
 @media (max-width: 768px) {
-  .about-container {
+  .about-content {
     flex-direction: column;
     gap: 30px;
   }
   
-  .skills-section,
-  .about-me-section {
+  .skills-column,
+  .about-column {
     width: 100%;
   }
 }
