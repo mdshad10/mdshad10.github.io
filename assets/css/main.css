@@ -877,9 +877,9 @@ section,
   }
 }
 
-/* Font Awesome Icons (add this to your head if not already included) */
+/* Font Awesome Icons (add this to your head if not already included) */ 
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
-/*--------------------------------------------------------------
+/*-------------------------------------------------------------- 
 # Resume Section
 --------------------------------------------------------------*/
 .resume .resume-title {
