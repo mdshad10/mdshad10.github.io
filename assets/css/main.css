@@ -729,118 +729,72 @@ section,
 
 
 
-.about .container {
-  background-color: var(--surface-color);
-  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  border-radius: 8px;
-}
-
-.about .section-title {
-  padding-bottom: 30px;
-}
-
-.about .content {
+.about-container {
   display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px;
 }
 
-.about .about-me {
+.skills-section {
   flex: 1;
-  min-width: 300px;
+  min-width: 0;
 }
 
-.about .skills-content {
+.about-me-section {
   flex: 1;
-  min-width: 300px;
-  margin-top: 0;
+  min-width: 0;
 }
 
-.about .about-me h3 {
+h2 {
   font-size: 28px;
-  position: relative;
-  padding-bottom: 10px;
-  margin-bottom: 30px;
-  font-weight: 700;
-}
-
-.about .about-me h3:after {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 64px;
-  height: 3px;
-  background: var(--accent-color);
-  left: 0;
-  bottom: 0;
-}
-
-.about .about-me p {
-  font-size: 16px;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.about .skills-content h4 {
-  font-size: 22px;
-  font-weight: 700;
+  color: var(--heading-color);
   margin-bottom: 25px;
-  position: relative;
   padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent-color);
 }
 
-.about .skills-content h4:after {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 50px;
-  height: 3px;
-  background: var(--accent-color);
-  left: 0;
-  bottom: 0;
-}
-
-.about .skill-category {
-  margin-bottom: 25px;
-}
-
-.about .skill-category h5 {
-  font-weight: 600;
+h3 {
+  font-size: 20px;
   color: var(--accent-color);
-  margin-bottom: 12px;
-  font-size: 1.05rem;
+  margin: 20px 0 10px 0;
 }
 
-.about .skill-list {
-  list-style: none;
+.skill-list {
+  list-style-type: none;
   padding-left: 0;
 }
 
-.about .skill-list li {
+.skill-list li {
   position: relative;
   padding-left: 20px;
   margin-bottom: 8px;
   line-height: 1.5;
 }
 
-.about .skill-list li:before {
+.skill-list li:before {
   content: "•";
   color: var(--accent-color);
   font-size: 1.2rem;
   position: absolute;
   left: 0;
-  top: -2px;
+}
+
+.about-me-section p {
+  margin-bottom: 15px;
+  line-height: 1.6;
 }
 
 @media (max-width: 768px) {
-  .about .content {
+  .about-container {
     flex-direction: column;
+    gap: 30px;
   }
   
-  .about .about-me,
-  .about .skills-content {
-    min-width: 100%;
+  .skills-section,
+  .about-me-section {
+    width: 100%;
   }
 }
 /*--------------------------------------------------------------
