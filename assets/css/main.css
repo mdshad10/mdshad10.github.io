@@ -732,45 +732,59 @@ section,
   padding: 30px;
 }
 
+.about .skills-content {
+  margin-top: 30px;
+}
+
 .about .skills-content h5 {
   font-size: 18px;
   font-weight: 700;
-  margin: 30px 0 15px 0;
+  margin-bottom: 20px;
+  color: var(--heading-color);
+  position: relative;
+  padding-bottom: 10px;
 }
 
-.about .progress {
-  height: 36px;
+.about .skills-content h5:after {
+  content: "";
+  position: absolute;
   display: block;
-  background: none;
-  border-radius: 0;
-  margin-top: 15px;
+  width: 50px;
+  height: 3px;
+  background: var(--accent-color);
+  left: 0;
+  bottom: 0;
 }
 
-.about .progress .skill {
-  color: var(--default-color);
-  padding: 0;
-  margin: 0 0 6px 0;
-  text-transform: uppercase;
-  display: block;
+.about .skill-category {
+  margin-bottom: 25px;
+}
+
+.about .skill-category h6 {
   font-weight: 600;
-  font-family: var(--heading-font);
+  color: var(--accent-color);
+  margin-bottom: 12px;
+  font-size: 1.05rem;
 }
 
-.about .progress .skill .val {
-  float: right;
-  font-style: normal;
+.about .skill-list {
+  list-style: none;
+  padding-left: 0;
 }
 
-.about .progress-bar-wrap {
-  background: color-mix(in srgb, var(--default-color), transparent 90%);
-  height: 10px;
+.about .skill-list li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
 }
 
-.about .progress-bar {
-  width: 1px;
-  height: 10px;
-  transition: 0.9s;
-  background-color: var(--accent-color);
+.about .skill-list li:before {
+  content: "•";
+  color: var(--accent-color);
+  font-size: 1.2rem;
+  position: absolute;
+  left: 0;
+  top: -2px;
 }
 
 .about .about-me h4 {
