@@ -726,48 +726,99 @@ section,
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/
-/* Base Styles */
+/* Profile Container */
 .profile-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: flex-start;
   max-width: 1200px;
   margin: 0 auto;
   padding: 30px;
-  font-family: var(--default-font);
-  color: var(--default-color);
 }
 
-/* Top Section Layout */
-.top-section {
-  display: flex;
-  gap: 30px;
-  margin-bottom: 40px;
-}
-
-.personal-info, .about-me {
+/* Left Column - Contact Info */
+.contact-info {
   flex: 1;
-  background: var(--surface-color);
-  padding: 30px;
+  min-width: 300px;
+  background: #f8f9fa;
+  padding: 25px;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-/* Personal Info Styling */
-.profile-header h1 {
-  font-size: 32px;
-  color: var(--heading-color);
-  margin-bottom: 5px;
+.contact-info h1 {
+  font-size: 2.2rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
 }
 
-.profile-header h2 {
-  font-size: 18px;
-  color: var(--accent-color);
-  margin-bottom: 25px;
+.contact-info h2 {
+  font-size: 1.3rem;
+  color: #3498db;
+  margin-bottom: 20px;
   font-weight: 500;
 }
 
-.contact-info {
+.contact-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-details li {
+  margin-bottom: 12px;
   display: flex;
-  flex-direction: column;
-  gap: 15px;
+  align-items: center;
+  gap: 10px;
+  color: #34495e;
+}
+
+.contact-details i {
+  color: #7f8c8d;
+  min-width: 20px;
+}
+
+/* Right Column - About Me */
+.about-me {
+  flex: 2;
+  min-width: 300px;
+  padding: 25px;
+}
+
+.about-me h3 {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.about-me h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 50px;
+  height: 3px;
+  background: #3498db;
+}
+
+.about-me p {
+  color: #34495e;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .contact-info, .about-me {
+    width: 100%;
+  }
 }
 
 .contact-item {
