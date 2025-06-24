@@ -1586,17 +1586,18 @@ document.addEventListener('DOMContentLoaded', function() {
             
             loading.style.display = 'none';
             
-            // If we get any response from Formspree (even with JSON), treat it as success
-            if (response.status === 200 || response.status === 201) {
-                sentMessage.style.display = 'block'; 
+            if (response.ok) {
+                // Success - show success message and reset form
+                sentMessage.style.display = 'block';
                 form.reset();
             } else {
-                // Only show error for actual HTTP errors (4xx, 5xx)
+                // Error response
+                const errorData = await response.text();
                 errorMessage.style.display = 'block';
                 errorMessage.textContent = 'There was an error sending your message. Please try again or contact me directly at md04shad@gmail.com';
             }
         } catch (error) {
-            // Only for network errors (no internet, server down, etc.)
+            // Network error
             loading.style.display = 'none';
             errorMessage.style.display = 'block';
             errorMessage.textContent = 'Network error. Please check your internet connection and try again.';
