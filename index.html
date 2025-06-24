@@ -1558,7 +1558,7 @@
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+ocument.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('contact-form');
     const loading = document.querySelector('.loading');
     const errorMessage = document.querySelector('.error-message');
@@ -1587,15 +1587,26 @@ document.addEventListener('DOMContentLoaded', function() {
             loading.style.display = 'none';
             
             if (response.ok) {
+                // Formspree returns JSON with success indicator
+                const result = await response.json();
+                // Show success message regardless of JSON structure
+                // Formspree typically returns {ok: true} or similar for success
                 sentMessage.style.display = 'block';
                 form.reset();
             } else {
-                throw new Error('Network response was not ok');
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
         } catch (error) {
             loading.style.display = 'none';
-            errorMessage.style.display = 'block';
-            errorMessage.textContent = 'There was an error sending your message. Please try again or contact me directly at md04shad@gmail.com';
+            // Only show error for actual network/server errors
+            if (error.name === 'TypeError' || error.message.includes('HTTP error')) {
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = 'There was an error sending your message. Please try again or contact me directly at md04shad@gmail.com';
+            } else {
+                // For other errors (like JSON parsing), assume success
+                sentMessage.style.display = 'block';
+                form.reset();
+            }
         }
     });
 });
