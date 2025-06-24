@@ -1588,7 +1588,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // If we get any response from Formspree (even with JSON), treat it as success
             if (response.status === 200 || response.status === 201) {
-                sentMessage.style.display = 'block';
+                sentMessage.style.display = 'block'; 
                 form.reset();
             } else {
                 // Only show error for actual HTTP errors (4xx, 5xx)
