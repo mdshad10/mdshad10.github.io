@@ -15,7 +15,7 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,6 +28,50 @@
   <link href="assets/css/main.css" rel="stylesheet">
 
   <style>
+    /* Header transparency on home page */
+    .header {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .header.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .header .sitename {
+      color: #ffffff;
+      transition: color 0.3s ease;
+    }
+
+    .header.scrolled .sitename {
+      color: #0f172a;
+    }
+
+    .navmenu ul li a {
+      color: rgba(255, 255, 255, 0.9);
+      transition: color 0.3s ease;
+    }
+
+    .header.scrolled .navmenu ul li a {
+      color: #374151;
+    }
+
+    .navmenu ul li a:hover,
+    .navmenu ul li a.active {
+      color: #ffffff !important;
+    }
+
+    .header.scrolled .navmenu ul li a:hover,
+    .header.scrolled .navmenu ul li a.active {
+      color: #3b82f6 !important;
+    }
+
     .skills-content .progress {
       margin-bottom: 20px;
     }
@@ -51,6 +95,412 @@
     }
     .hero .typed {
       color: #0078ff;
+    }
+
+    /* Resume Section Styles */
+    .resume.section {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      padding: 80px 0;
+    }
+
+    .section-title h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 600;
+      color: #0f172a;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .section-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.2rem;
+      color: #64748b;
+      text-align: center;
+      margin-bottom: 60px;
+      font-weight: 400;
+    }
+
+    .resume-download-section {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e2e8f0;
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .resume-download-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 15px;
+    }
+
+    .resume-download-description {
+      font-family: 'Inter', sans-serif;
+      color: #64748b;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+
+    .resume-download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      color: #ffffff;
+      padding: 16px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: none;
+      cursor: pointer;
+    }
+
+    .resume-download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+      color: #ffffff;
+    }
+
+    .resume-download-btn i {
+      font-size: 1.2rem;
+    }
+
+    .resume-section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 30px;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .resume-section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      border-radius: 2px;
+    }
+
+    .resume-item {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+      border: 1px solid #e2e8f0;
+      margin-bottom: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .resume-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .resume-header {
+      margin-bottom: 15px;
+    }
+
+    .institution {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    .resume-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .degree, .position {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      color: #374151;
+      font-size: 1.1rem;
+    }
+
+    .date {
+      font-family: 'Inter', sans-serif;
+      color: #3b82f6;
+      font-weight: 600;
+      background: #eff6ff;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+
+    .location {
+      font-family: 'Inter', sans-serif;
+      color: #64748b;
+      font-style: italic;
+      margin-bottom: 15px;
+    }
+
+    .location i {
+      color: #3b82f6;
+      margin-right: 5px;
+    }
+
+    .coursework h5, .skills-category h5 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    .course-list, .skills-list, .resume-duties {
+      font-family: 'Inter', sans-serif;
+      color: #4b5563;
+      line-height: 1.6;
+    }
+
+    .course-list li, .skills-list li, .resume-duties li {
+      margin-bottom: 5px;
+    }
+
+    .skills-item {
+      background: #f8fafc;
+    }
+
+    .skills-category {
+      margin-bottom: 20px;
+    }
+
+    .skills-category:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Projects Section Styles */
+    .portfolio.section {
+      background: #ffffff;
+      padding: 80px 0;
+    }
+
+    .project-card-enhanced {
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e2e8f0;
+      padding: 40px;
+      margin-bottom: 40px;
+      transition: all 0.3s ease;
+    }
+
+    .project-card-enhanced:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .project-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #0f172a;
+      margin: 0;
+      flex: 1;
+    }
+
+    .project-links-enhanced {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .project-link-large, .project-link-text {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .project-link-large {
+      background: #0f172a;
+      color: #ffffff;
+    }
+
+    .project-link-large:hover {
+      background: #1e293b;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .project-link-text {
+      background: #3b82f6;
+      color: #ffffff;
+    }
+
+    .project-link-text:hover {
+      background: #2563eb;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .project-description {
+      font-family: 'Inter', sans-serif;
+      color: #374151;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 25px;
+      text-align: justify;
+    }
+
+    .skills-section {
+      margin-bottom: 25px;
+    }
+
+    .skills-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+
+    .skills-grid-detailed {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .skill-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .skill-category {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      color: #3b82f6;
+      min-width: 120px;
+      font-size: 0.95rem;
+    }
+
+    .skill-items {
+      font-family: 'Inter', sans-serif;
+      color: #4b5563;
+      flex: 1;
+      font-size: 0.95rem;
+    }
+
+    .project-meta-enhanced {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .project-date, .project-location {
+      font-family: 'Inter', sans-serif;
+      color: #64748b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .project-visual {
+      text-align: center;
+      padding: 30px;
+    }
+
+    .project-icon-large {
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      width: 100px;
+      height: 100px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px;
+    }
+
+    .project-icon-large i {
+      font-size: 3rem;
+      color: #ffffff;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .tech-badge {
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .tech-badge.primary {
+      background: #3b82f6;
+      color: #ffffff;
+    }
+
+    .tech-badge.secondary {
+      background: #10b981;
+      color: #ffffff;
+    }
+
+    .tech-badge.tertiary {
+      background: #f59e0b;
+      color: #ffffff;
+    }
+
+    @media (max-width: 768px) {
+      .resume-meta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .project-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .skill-group {
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .skill-category {
+        min-width: auto;
+      }
     }
   </style>
 </head>
@@ -333,24 +783,21 @@
         position: relative;
         border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 4px;
     }
 
     .profile-image-wrapper:hover {
         transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 35px 70px rgba(0, 0, 0, 0.18);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
     }
 
     .profile-image {
-        width: 280px;
-        height: 320px;
+        width: 320px;
+        height: 380px;
         object-fit: cover;
         display: block;
-        border-radius: 16px;
-        background: #ffffff;
+        border-radius: 20px;
     }
 
     .profile-header {
@@ -421,55 +868,61 @@
         background: #f8fafc;
         border-radius: 16px;
         border: 1px solid #e2e8f0;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+transition: all 0.3s ease;
     }
 
     .contact-item:hover {
         background: #f1f5f9;
         transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
     }
 
     .contact-item i {
-        font-size: 24px;
+        font-size: 1.5rem;
         color: #3b82f6;
-        width: 40px;
-        margin-right: 20px;
-        flex-shrink: 0;
+        margin-right: 16px;
+        min-width: 24px;
     }
 
     .contact-details {
         display: flex;
         flex-direction: column;
+        gap: 4px;
     }
 
     .contact-label {
         font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
         font-weight: 600;
         color: #374151;
-        font-size: 0.9rem;
-        letter-spacing: -0.01em;
-        margin-bottom: 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
     }
 
     .contact-value {
         font-family: 'Inter', sans-serif;
-        color: #1f2937;
-        font-weight: 400;
-        font-size: 1rem;
-        letter-spacing: -0.01em;
+        font-size: 1.125rem;
+        color: #0f172a;
+        font-weight: 500;
     }
 
     .contact-link {
         color: #3b82f6;
         text-decoration: none;
-        transition: all 0.2s ease;
-        font-weight: 500;
+        transition: color 0.3s ease;
     }
 
     .contact-link:hover {
         color: #2563eb;
-        text-decoration: underline;
+    }
+
+    /* About Description Styles */
+    .about-description {
+        background: #ffffff;
+        padding: 50px;
+        border-radius: 24px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        border: 1px solid #e2e8f0;
+        margin-bottom: 50px;
     }
 
     .section-title {
@@ -478,14 +931,14 @@
         font-weight: 600;
         color: #0f172a;
         margin-bottom: 40px;
-        position: relative;
         letter-spacing: -0.02em;
+        position: relative;
     }
 
     .section-title::after {
         content: '';
         position: absolute;
-        bottom: -12px;
+        bottom: -15px;
         left: 50%;
         transform: translateX(-50%);
         width: 80px;
@@ -494,27 +947,13 @@
         border-radius: 2px;
     }
 
-    .about-description {
-        margin-bottom: 70px;
-    }
-
-    .description-content {
-        background: #ffffff;
-        padding: 50px;
-        border-radius: 24px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-        border: 1px solid #e2e8f0;
-        backdrop-filter: blur(10px);
-    }
-
     .description-content p {
         font-family: 'Inter', sans-serif;
-        color: #374151;
         font-size: 1.125rem;
+        color: #374151;
         line-height: 1.8;
-        margin-bottom: 28px;
+        margin-bottom: 24px;
         text-align: justify;
-        font-weight: 400;
         letter-spacing: -0.01em;
     }
 
@@ -522,79 +961,77 @@
         margin-bottom: 0;
     }
 
+    /* Technical Expertise Styles */
     .technical-expertise {
         background: #ffffff;
-        padding: 60px;
+        padding: 50px;
         border-radius: 24px;
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
         border: 1px solid #e2e8f0;
-        backdrop-filter: blur(10px);
     }
 
-    /* Updated Grid for 3 columns */
     .expertise-grid-three {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 32px;
-        margin-top: 50px;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
     }
 
     .expertise-category {
         background: #f8fafc;
-        padding: 36px;
+        padding: 30px;
         border-radius: 20px;
         border: 1px solid #e2e8f0;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.3s ease;
     }
 
     .expertise-category:hover {
         transform: translateY(-4px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-        border-color: #cbd5e0;
-        background: #f1f5f9;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        background: #ffffff;
     }
 
     .category-header {
         display: flex;
         align-items: center;
-        margin-bottom: 24px;
-        padding-bottom: 20px;
-        border-bottom: 2px solid #e2e8f0;
+        margin-bottom: 20px;
+        gap: 12px;
     }
 
     .category-header i {
-        font-size: 24px;
+        font-size: 1.5rem;
         color: #3b82f6;
-        margin-right: 16px;
+        padding: 8px;
+        background: #eff6ff;
+        border-radius: 8px;
     }
 
     .category-header h4 {
         font-family: 'Inter', sans-serif;
         font-size: 1.25rem;
         font-weight: 600;
-        color: #1f2937;
+        color: #0f172a;
         margin: 0;
-        letter-spacing: -0.02em;
+        letter-spacing: -0.01em;
     }
 
     .skills-list {
         display: flex;
         flex-wrap: wrap;
-        gap: 12px;
+        gap: 8px;
     }
 
     .skill-tag {
-        background: #ffffff;
-        color: #374151;
-        padding: 12px 20px;
-        border-radius: 12px;
-        font-size: 0.9rem;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
         font-weight: 500;
-        border: 1px solid #e2e8f0;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        cursor: default;
-        font-family: 'JetBrains Mono', 'Consolas', monospace;
-        letter-spacing: -0.01em;
+        color: #374151;
+        background: #ffffff;
+        padding: 8px 16px;
+        border-radius: 20px;
+        border: 1px solid #d1d5db;
+        transition: all 0.3s ease;
+        white-space: nowrap;
     }
 
     .skill-tag:hover {
@@ -602,20 +1039,36 @@
         color: #ffffff;
         border-color: #3b82f6;
         transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
     }
 
-    /* Responsive Design */
-    @media (max-width: 1200px) {
+    /* Mobile Responsiveness */
+    @media (max-width: 1024px) {
+        .profile-name {
+            font-size: 3rem;
+        }
+        
         .expertise-grid-three {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
     }
 
     @media (max-width: 768px) {
         .about.section {
             padding: 60px 0;
+        }
+
+        .profile-left-section,
+        .contact-info-right,
+        .about-description,
+        .technical-expertise {
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .profile-image {
+            width: 280px;
+            height: 340px;
         }
 
         .profile-name {
@@ -630,218 +1083,45 @@
             font-size: 2rem;
         }
 
-        .contact-info-right {
-            padding: 30px;
-            margin-top: 30px;
+        .expertise-grid-three {
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
 
-        .contact-section-title {
-            font-size: 1.5rem;
-        }
-
-        .description-content {
-            padding: 35px;
+        .expertise-category {
+            padding: 25px;
         }
 
         .description-content p {
             font-size: 1rem;
-        }
-
-        .technical-expertise {
-            padding: 40px;
-        }
-
-        .expertise-grid-three {
-            grid-template-columns: 1fr;
-            gap: 24px;
-        }
-
-        .expertise-category {
-            padding: 28px;
-        }
-
-        .profile-image {
-            width: 240px;
-            height: 280px;
-        }
-
-        .profile-left-section {
-            padding: 25px;
+            text-align: left;
         }
     }
 
     @media (max-width: 480px) {
         .container {
-            padding: 0 16px;
+            padding: 0 15px;
+        }
+
+        .profile-image {
+            width: 240px;
+            height: 300px;
         }
 
         .profile-name {
             font-size: 2rem;
         }
 
-        .contact-info-right {
-            padding: 24px;
-        }
-
-        .description-content {
-            padding: 28px;
-        }
-
-        .technical-expertise {
-            padding: 28px;
-        }
-
-        .expertise-category {
-            padding: 24px;
-        }
-
         .contact-item {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 12px;
-            text-align: left;
+            padding: 16px;
         }
 
-        .contact-item i {
-            margin-right: 0;
-        }
-
-        .profile-image {
-            width: 200px;
-            height: 240px;
+        .skill-tag {
+            font-size: 0.8rem;
+            padding: 6px 12px;
         }
     }
 </style>
-   <!-- Resume Section -->
-<section id="resume" class="resume section">
-
-  <!-- Section Title -->
-  <div class="container section-title" data-aos="fade-up">
-    <h2>Resume</h2>
-    <p class="section-subtitle">My educational background and professional experience in electrical and computer engineering</p>
-  </div><!-- End Section Title -->
-
-  <div class="container">
-
-    <div class="row">
-
-      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-        <h3 class="resume-section-title">Education</h3>
-
-        <div class="resume-item">
-          <div class="resume-header">
-            <h4 class="institution">Cornell University</h4>
-            <div class="resume-meta">
-              <span class="degree">Bachelor of Science, Electrical and Computer Engineering</span>
-              <span class="date">Expected May 2027</span>
-            </div>
-          </div>
-          <div class="resume-content">
-            <p class="location"><i class="bi bi-geo-alt"></i> College of Engineering, Ithaca, NY</p>
-            <div class="coursework">
-              <h5>Relevant Coursework:</h5>
-              <ul class="course-list">
-                <li>Embedded Systems</li>
-                <li>Microelectronics</li>
-                <li>Digital Logic and Computer Organization</li>
-                <li>Computer Architecture</li>
-                <li>Object Oriented Programming and Data Structures</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="resume-item">
-          <div class="resume-header">
-            <h4 class="institution">Stuyvesant High School</h4>
-            <div class="resume-meta">
-              <span class="degree">Advanced Regents Diploma with Honors</span>
-              <span class="date">June 2022</span>
-            </div>
-          </div>
-          <p class="location"><i class="bi bi-geo-alt"></i> New York, NY</p>
-        </div>
-
-        <h3 class="resume-section-title">Technical Skills</h3>
-        <div class="resume-item skills-item">
-          <div class="skills-category">
-            <h5>Tools & Platforms</h5>
-            <ul class="skills-list">
-              <li>AutoCAD, OnShape, Revit</li>
-              <li>LTspice, Intel Quartus Prime</li>
-              <li>Raspberry Pi, Magellan</li>
-            </ul>
-          </div>
-          <div class="skills-category">
-            <h5>Programming</h5>
-            <ul class="skills-list">
-              <li>Python, Java, C</li>
-              <li>Verilog, MATLAB</li>
-              <li>SystemVerilog</li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-        <h3 class="resume-section-title">Professional Experience</h3>
-        
-        <div class="resume-item">
-          <div class="resume-header">
-            <h4 class="institution">Charter Communications - Spectrum</h4>
-            <div class="resume-meta">
-              <span class="position">Field Engineer (Electrical) Intern</span>
-              <span class="date">May 2025 - Present</span>
-            </div>
-          </div>
-          <p class="location"><i class="bi bi-geo-alt"></i> New York, NY</p>
-          <ul class="resume-duties">
-            <li>Update firmware and replace transponders in power supplies to prevent overheating and enable remote monitoring</li>
-            <li>Analyze CAD diagrams on Magellan to design and replace power distribution systems for 400+ fiber network sites</li>
-            <li>Collect field data using Excel to identify load trends and support infrastructure improvement decisions</li>
-          </ul>
-        </div>
-
-        <div class="resume-item">
-          <div class="resume-header">
-            <h4 class="institution">Cornell University</h4>
-            <div class="resume-meta">
-              <span class="position">Teaching Assistant</span>
-              <span class="date">Jan 2025 - Present</span>
-            </div>
-          </div>
-          <p class="location"><i class="bi bi-geo-alt"></i> Digital Logic and Computer Organization</p>
-          <ul class="resume-duties">
-            <li>Guide students in FPGA architecture, VHDL synthesis, and Verilog debugging</li>
-            <li>Coordinate lab sessions using Intel Quartus Prime for timing and area analysis</li>
-            <li>Develop grading rubrics and provide feedback to 90+ students</li>
-          </ul>
-        </div>
-
-        <div class="resume-item">
-          <div class="resume-header">
-            <h4 class="institution">Engineers Without Borders</h4>
-            <div class="resume-meta">
-              <span class="position">Hardware Engineer</span>
-              <span class="date">Jan 2025 - Present</span>
-            </div>
-          </div>
-          <p class="location"><i class="bi bi-geo-alt"></i> Cornell University Project Team</p>
-          <ul class="resume-duties">
-            <li>Install wiring for motors, encoders, and servos using JST, Dupont, and Molex connectors</li>
-            <li>Assemble and test PCB boards with voltage regulators, capacitors, and LED arrays</li>
-            <li>Configure RoboClaw motor controllers with proper addressing and encoder feedback</li>
-          </ul>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section><!-- /Resume Section -->
 
 <!-- Projects Section -->
 <section id="projects" class="portfolio section">
