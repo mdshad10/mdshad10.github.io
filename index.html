@@ -1,1656 +1,300 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Md Shad - Electrical and Computer Engineer</title>
-  <meta name="description" content="Portfolio of Md Shad - Electrical and Computer Engineering Student at Cornell University">
-  <meta name="keywords" content="electrical engineering, computer engineering, embedded systems, hardware design">
-
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Md Shad — Electrical & Computer Engineer</title>
+  <meta name="description" content="Portfolio of Md Shad — Electrical & Computer Engineering student at Cornell University. Embedded systems, hardware design, FPGA, PCB." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    .skills-content .progress {
-      margin-bottom: 20px;
+    :root{
+      --bg:#0f1724; /* deep navy */
+      --card:#0b1220;
+      --muted:#98a0b3;
+      --accent:#3b82f6; /* blue */
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+      color-scheme: dark;
     }
-    .skills-content .skill {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 6px;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;padding:0;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:linear-gradient(180deg, #071026 0%, #061022 60%);
+      color:#e6eef8; -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale; line-height:1.5;
     }
-    .skills-content .progress-bar-wrap {
-      background: rgba(255, 255, 255, 0.2);
-      height: 10px;
-      border-radius: 5px;
-      overflow: hidden;
+    .container{max-width:1100px;margin:0 auto;padding:32px}
+
+    header{
+      position:sticky;top:0;backdrop-filter:blur(6px);background:linear-gradient(180deg, rgba(5,10,20,0.5), rgba(5,10,20,0.35));
+      border-bottom:1px solid rgba(255,255,255,0.03);z-index:30;
     }
-    .skills-content .progress-bar {
-      width: 0;
-      height: 10px;
-      background: linear-gradient(90deg, #0078ff, #00d4ff);
-      border-radius: 5px;
-      transition: width 2s ease-in-out;
-    }
-    .hero .typed {
-      color: #0078ff;
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#00d4ff);display:inline-grid;place-items:center;font-weight:700;color:var(--bg)}
+    .sitename{font-weight:700;font-size:18px}
+    nav ul{list-style:none;margin:0;padding:0;display:flex;gap:18px}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px}
+    nav a:hover{color:var(--accent)}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:48px 0}
+    .hero-left h1{font-size:34px;margin:0 0 10px}
+    .hero-left p{color:var(--muted);margin:0 0 18px}
+    .cta{display:flex;gap:12px}
+    .btn{background:var(--accent);color:white;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600}
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+    .card{background:var(--card);border-radius:var(--radius);padding:22px;border:1px solid rgba(255,255,255,0.03)}
+    .profile{display:flex;gap:16px;align-items:center}
+    .avatar{width:84px;height:84px;border-radius:12px;flex:0 0 84px;background:linear-gradient(135deg,#0b1220,#071026);display:inline-grid;place-items:center;font-weight:700;font-size:22px;color:var(--muted)}
+    .meta p{margin:0;color:var(--muted);font-size:14px}
+
+    /* sections */
+    section{margin-top:36px}
+    h2.section-title{margin:0 0 12px;font-size:20px}
+
+    /* two-column layout */
+    .grid-2{display:grid;grid-template-columns:1fr 380px;gap:24px}
+
+    /* skills */
+    .skill{display:flex;justify-content:space-between;font-weight:600;color:#dbeafe}
+    .progress{height:10px;background:var(--glass);border-radius:999px;margin-top:8px;overflow:hidden}
+    .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#00d4ff)}
+
+    /* projects */
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .project{padding:16px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02)}
+    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .tag{font-size:12px;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.03);color:var(--muted)}
+
+    /* resume list */
+    .list{list-style:none;padding:0;margin:0}
+    .list li{padding:10px 0;border-bottom:1px dashed rgba(255,255,255,0.03)}
+
+    /* contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    button[type=submit]{padding:10px 14px;border-radius:8px;border:none;background:var(--accent);color:#041127;font-weight:700}
+
+    footer{margin:40px 0 20px;color:var(--muted);font-size:13px;text-align:center}
+
+    /* responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      .grid-2{grid-template-columns:1fr}
+      .projects{grid-template-columns:1fr}
+      nav ul{display:none}
     }
   </style>
 </head>
-
-<body class="index-page">
-
-  <header id="header" class="header d-flex align-items-center sticky-top">
-    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-
-      <a href="index.html" class="logo d-flex align-items-center">
-        <h1 class="sitename">Md Shad</h1>
-      </a>
-
-      <nav id="navmenu" class="navmenu">
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">MS</div>
+        <div>
+          <div class="sitename">Md Shad</div>
+          <div style="font-size:12px;color:var(--muted)">Electrical & Computer Engineer — Cornell University</div>
+        </div>
+      </div>
+      <nav>
         <ul>
-          <li><a href="#hero" class="active">Home</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#resume">Resume</a></li>
+          <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
+          <li><a href="#resume">Resume</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
-
     </div>
   </header>
 
-  <main class="main">
-
-    <!-- Hero Section -->
-    <section id="hero" class="hero section dark-background">
-
-      <img src="assets/img/IMG_0005.jpg" alt="" data-aos="fade-in">
-
-      <div class="container d-flex flex-column align-items-center justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
-        <h2>Md Shad</h2>
-        <p><span class="typed" data-typed-items="Electrical and Computer Engineer,Embedded Systems Developer,Hardware Designer"></span></p>
+  <main class="container">
+    <section class="hero">
+      <div class="hero-left">
+        <h1>Hello — I'm <strong>Md Shad</strong></h1>
+        <p>Electrical & Computer Engineering student at Cornell University (B.S. expected May 2027). I build embedded systems, design hardware, and prototype reliable, maintainable electronics for real-world use.</p>
+        <div class="cta">
+          <a class="btn" href="#contact">Get in touch</a>
+          <a class="btn secondary" href="https://github.com/mdshad10" target="_blank">View GitHub</a>
+        </div>
+        <div style="margin-top:18px;color:var(--muted);font-size:14px">Based in New York, NY • Available for internships & engineering collaborations</div>
       </div>
 
-    </section><!-- /Hero Section -->
-
-<!-- About Section -->
-<section id="about" class="about section">
-    <div class="container">
-        <!-- Profile Header Row -->
-        <div class="row align-items-center mb-5">
-            <!-- Left Side - Profile Image, Name, Major -->
-            <div class="col-lg-6">
-                <div class="profile-left-section">
-                    <div class="profile-image-container">
-                        <div class="profile-image-wrapper">
-                            <img src="assets/img/profilepic.png" class="profile-image" alt="Md Shad">
-                        </div>
-                    </div>
-                    <div class="profile-header">
-                        <h1 class="profile-name">Md Shad</h1>
-                        <h2 class="profile-title">Electrical & Computer Engineering Student</h2>
-                        <p class="profile-subtitle">Cornell University • Expected Graduation: May 2027</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Side - Contact Information -->
-            <div class="col-lg-6">
-                <div class="contact-info-right">
-                    <h3 class="contact-section-title">Contact Information</h3>
-                    <div class="contact-grid-vertical">
-                        <div class="contact-item">
-                            <i class="bi bi-envelope"></i>
-                            <div class="contact-details">
-                                <span class="contact-label">Email</span>
-                                <span class="contact-value">md04shad@gmail.com</span>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="bi bi-telephone"></i>
-                            <div class="contact-details">
-                                <span class="contact-label">Phone</span>
-                                <span class="contact-value">(929) 225-0452</span>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="bi bi-geo-alt"></i>
-                            <div class="contact-details">
-                                <span class="contact-label">Location</span>
-                                <span class="contact-value">New York, NY</span>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="bi bi-github"></i>
-                            <div class="contact-details">
-                                <span class="contact-label">GitHub</span>
-                                <a href="https://github.com/mdshad10" target="_blank" class="contact-value contact-link">github.com/mdshad10</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- About Me Description -->
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-12">
-                <div class="about-description">
-                    <h3 class="section-title text-center">About Me</h3>
-                    <div class="description-content">
-                        <p>
-                            I am a dedicated Electrical and Computer Engineering student at Cornell University, driven by a passion for 
-                            embedded systems, hardware design, and cutting-edge technology solutions. My academic journey is complemented 
-                            by hands-on experience in both industry and research settings, where I've developed expertise in microelectronics, 
-                            digital logic design, and embedded systems programming.
-                        </p>
-                        <p>
-                            My professional experience spans from field engineering at Charter Communications - Spectrum, where I work with 
-                            power distribution systems and network infrastructure, to hardware development with Engineers Without Borders, 
-                            where I contribute to meaningful projects that create real-world impact. As a Teaching Assistant for Digital 
-                            Logic and Computer Organization, I guide students through complex concepts in FPGA architecture and hardware design.
-                        </p>
-                        <p>
-                            I thrive on solving complex technical challenges, from architecting RISC-V processors to developing intelligent 
-                            embedded systems. My goal is to advance research in hardware-software co-design and contribute to the development 
-                            of energy-efficient computing architectures that will shape the future of technology.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Technical Expertise -->
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <div class="technical-expertise">
-                    <h3 class="section-title text-center">Technical Expertise</h3>
-                    
-                    <div class="expertise-grid-three">
-                        <!-- Programming Languages -->
-                        <div class="expertise-category">
-                            <div class="category-header">
-                                <i class="bi bi-code-slash"></i>
-                                <h4>Programming Languages</h4>
-                            </div>
-                            <div class="skills-list">
-                                <span class="skill-tag">Python</span>
-                                <span class="skill-tag">C/C++</span>
-                                <span class="skill-tag">Verilog</span>
-                                <span class="skill-tag">SystemVerilog</span>
-                                <span class="skill-tag">MATLAB</span>
-                                <span class="skill-tag">Java</span>
-                            </div>
-                        </div>
-
-                        <!-- Hardware Design -->
-                        <div class="expertise-category">
-                            <div class="category-header">
-                                <i class="bi bi-cpu"></i>
-                                <h4>Hardware Design</h4>
-                            </div>
-                            <div class="skills-list">
-                                <span class="skill-tag">FPGA Design</span>
-                                <span class="skill-tag">PCB Design</span>
-                                <span class="skill-tag">Microcontroller Programming</span>
-                                <span class="skill-tag">Digital Logic Design</span>
-                                <span class="skill-tag">Circuit Analysis</span>
-                            </div>
-                        </div>
-
-                        <!-- Development Tools -->
-                        <div class="expertise-category">
-                            <div class="category-header">
-                                <i class="bi bi-tools"></i>
-                                <h4>Development Tools</h4>
-                            </div>
-                            <div class="skills-list">
-                                <span class="skill-tag">Intel Quartus Prime</span>
-                                <span class="skill-tag">LTspice</span>
-                                <span class="skill-tag">AutoCAD</span>
-                                <span class="skill-tag">OnShape</span>
-                                <span class="skill-tag">Revit</span>
-                                <span class="skill-tag">Magellan</span>
-                            </div>
-                        </div>
-
-                        <!-- Platforms & Systems -->
-                        <div class="expertise-category">
-                            <div class="category-header">
-                                <i class="bi bi-motherboard"></i>
-                                <h4>Platforms & Systems</h4>
-                            </div>
-                            <div class="skills-list">
-                                <span class="skill-tag">Raspberry Pi</span>
-                                <span class="skill-tag">FRDM-KL46Z</span>
-                                <span class="skill-tag">Embedded Systems</span>
-                                <span class="skill-tag">RISC-V Architecture</span>
-                                <span class="skill-tag">Network Infrastructure</span>
-                            </div>
-                        </div>
-
-                        <!-- Core Competencies -->
-                        <div class="expertise-category">
-                            <div class="category-header">
-                                <i class="bi bi-gear"></i>
-                                <h4>Core Competencies</h4>
-                            </div>
-                            <div class="skills-list">
-                                <span class="skill-tag">Computer Architecture</span>
-                                <span class="skill-tag">Real-time Systems</span>
-                                <span class="skill-tag">Hardware-Software Co-design</span>
-                                <span class="skill-tag">Power Systems</span>
-                                <span class="skill-tag">Signal Processing</span>
-                            </div>
-                        </div>
-
-                        <!-- Industry Applications -->
-                        <div class="expertise-category">
-                            <div class="category-header">
-                                <i class="bi bi-briefcase"></i>
-                                <h4>Industry Applications</h4>
-                            </div>
-                            <div class="skills-list">
-                                <span class="skill-tag">Telecommunications</span>
-                                <span class="skill-tag">Network Engineering</span>
-                                <span class="skill-tag">Sustainable Technology</span>
-                                <span class="skill-tag">Educational Technology</span>
-                                <span class="skill-tag">Research & Development</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        line-height: 1.6;
-        color: #1a202c;
-        background-color: #ffffff;
-        font-weight: 400;
-        letter-spacing: -0.01em;
-    }
-
-    .container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
-
-    .about.section {
-        padding: 100px 0;
-        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-        min-height: 100vh;
-    }
-
-    /* Left Section Styles */
-    .profile-left-section {
-        text-align: center;
-        padding: 30px;
-        background: #ffffff;
-        border-radius: 24px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-        border: 1px solid #e2e8f0;
-    }
-
-    .profile-image-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 30px;
-    }
-
-    .profile-image-wrapper {
-        position: relative;
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 4px;
-    }
-
-    .profile-image-wrapper:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 35px 70px rgba(0, 0, 0, 0.18);
-    }
-
-    .profile-image {
-        width: 280px;
-        height: 320px;
-        object-fit: cover;
-        display: block;
-        border-radius: 16px;
-        background: #ffffff;
-    }
-
-    .profile-header {
-        text-align: center;
-    }
-
-    .profile-name {
-        font-family: 'Playfair Display', Georgia, serif;
-        font-size: 3.5rem;
-        font-weight: 700;
-        color: #0f172a;
-        margin-bottom: 16px;
-        letter-spacing: -0.03em;
-        line-height: 1.1;
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .profile-title {
-        font-family: 'Inter', sans-serif;
-        font-size: 1.4rem;
-        font-weight: 500;
-        color: #475569;
-        margin-bottom: 12px;
-        letter-spacing: -0.02em;
-    }
-
-    .profile-subtitle {
-        font-family: 'Inter', sans-serif;
-        font-size: 1.125rem;
-        color: #64748b;
-        font-weight: 400;
-        letter-spacing: -0.01em;
-    }
-
-    /* Right Section Styles */
-    .contact-info-right {
-        background: #ffffff;
-        padding: 40px;
-        border-radius: 24px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-        border: 1px solid #e2e8f0;
-        height: 100%;
-    }
-
-    .contact-section-title {
-        font-family: 'Playfair Display', Georgia, serif;
-        font-size: 2rem;
-        font-weight: 600;
-        color: #0f172a;
-        margin-bottom: 30px;
-        text-align: center;
-        letter-spacing: -0.02em;
-    }
-
-    .contact-grid-vertical {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-    }
-
-    .contact-item {
-        display: flex;
-        align-items: center;
-        padding: 20px;
-        background: #f8fafc;
-        border-radius: 16px;
-        border: 1px solid #e2e8f0;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .contact-item:hover {
-        background: #f1f5f9;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
-    }
-
-    .contact-item i {
-        font-size: 24px;
-        color: #3b82f6;
-        width: 40px;
-        margin-right: 20px;
-        flex-shrink: 0;
-    }
-
-    .contact-details {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .contact-label {
-        font-family: 'Inter', sans-serif;
-        font-weight: 600;
-        color: #374151;
-        font-size: 0.9rem;
-        letter-spacing: -0.01em;
-        margin-bottom: 4px;
-    }
-
-    .contact-value {
-        font-family: 'Inter', sans-serif;
-        color: #1f2937;
-        font-weight: 400;
-        font-size: 1rem;
-        letter-spacing: -0.01em;
-    }
-
-    .contact-link {
-        color: #3b82f6;
-        text-decoration: none;
-        transition: all 0.2s ease;
-        font-weight: 500;
-    }
-
-    .contact-link:hover {
-        color: #2563eb;
-        text-decoration: underline;
-    }
-
-    .section-title {
-        font-family: 'Playfair Display', Georgia, serif;
-        font-size: 2.5rem;
-        font-weight: 600;
-        color: #0f172a;
-        margin-bottom: 40px;
-        position: relative;
-        letter-spacing: -0.02em;
-    }
-
-    .section-title::after {
-        content: '';
-        position: absolute;
-        bottom: -12px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 4px;
-        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-        border-radius: 2px;
-    }
-
-    .about-description {
-        margin-bottom: 70px;
-    }
-
-    .description-content {
-        background: #ffffff;
-        padding: 50px;
-        border-radius: 24px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-        border: 1px solid #e2e8f0;
-        backdrop-filter: blur(10px);
-    }
-
-    .description-content p {
-        font-family: 'Inter', sans-serif;
-        color: #374151;
-        font-size: 1.125rem;
-        line-height: 1.8;
-        margin-bottom: 28px;
-        text-align: justify;
-        font-weight: 400;
-        letter-spacing: -0.01em;
-    }
-
-    .description-content p:last-child {
-        margin-bottom: 0;
-    }
-
-    .technical-expertise {
-        background: #ffffff;
-        padding: 60px;
-        border-radius: 24px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-        border: 1px solid #e2e8f0;
-        backdrop-filter: blur(10px);
-    }
-
-    /* Updated Grid for 3 columns */
-    .expertise-grid-three {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 32px;
-        margin-top: 50px;
-    }
-
-    .expertise-category {
-        background: #f8fafc;
-        padding: 36px;
-        border-radius: 20px;
-        border: 1px solid #e2e8f0;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .expertise-category:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-        border-color: #cbd5e0;
-        background: #f1f5f9;
-    }
-
-    .category-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 24px;
-        padding-bottom: 20px;
-        border-bottom: 2px solid #e2e8f0;
-    }
-
-    .category-header i {
-        font-size: 24px;
-        color: #3b82f6;
-        margin-right: 16px;
-    }
-
-    .category-header h4 {
-        font-family: 'Inter', sans-serif;
-        font-size: 1.25rem;
-        font-weight: 600;
-        color: #1f2937;
-        margin: 0;
-        letter-spacing: -0.02em;
-    }
-
-    .skills-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-    }
-
-    .skill-tag {
-        background: #ffffff;
-        color: #374151;
-        padding: 12px 20px;
-        border-radius: 12px;
-        font-size: 0.9rem;
-        font-weight: 500;
-        border: 1px solid #e2e8f0;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        cursor: default;
-        font-family: 'JetBrains Mono', 'Consolas', monospace;
-        letter-spacing: -0.01em;
-    }
-
-    .skill-tag:hover {
-        background: #3b82f6;
-        color: #ffffff;
-        border-color: #3b82f6;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
-    }
-
-    /* Responsive Design */
-    @media (max-width: 1200px) {
-        .expertise-grid-three {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .about.section {
-            padding: 60px 0;
-        }
-
-        .profile-name {
-            font-size: 2.5rem;
-        }
-
-        .profile-title {
-            font-size: 1.25rem;
-        }
-
-        .section-title {
-            font-size: 2rem;
-        }
-
-        .contact-info-right {
-            padding: 30px;
-            margin-top: 30px;
-        }
-
-        .contact-section-title {
-            font-size: 1.5rem;
-        }
-
-        .description-content {
-            padding: 35px;
-        }
-
-        .description-content p {
-            font-size: 1rem;
-        }
-
-        .technical-expertise {
-            padding: 40px;
-        }
-
-        .expertise-grid-three {
-            grid-template-columns: 1fr;
-            gap: 24px;
-        }
-
-        .expertise-category {
-            padding: 28px;
-        }
-
-        .profile-image {
-            width: 240px;
-            height: 280px;
-        }
-
-        .profile-left-section {
-            padding: 25px;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .container {
-            padding: 0 16px;
-        }
-
-        .profile-name {
-            font-size: 2rem;
-        }
-
-        .contact-info-right {
-            padding: 24px;
-        }
-
-        .description-content {
-            padding: 28px;
-        }
-
-        .technical-expertise {
-            padding: 28px;
-        }
-
-        .expertise-category {
-            padding: 24px;
-        }
-
-        .contact-item {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 12px;
-            text-align: left;
-        }
-
-        .contact-item i {
-            margin-right: 0;
-        }
-
-        .profile-image {
-            width: 200px;
-            height: 240px;
-        }
-    }
-</style>
-   <!-- Resume Section -->
-<section id="resume" class="resume section">
-
-  <!-- Section Title -->
-  <div class="container section-title" data-aos="fade-up">
-    <h2>Resume</h2>
-    <p class="section-subtitle">My educational background and professional experience in electrical and computer engineering</p>
-  </div><!-- End Section Title -->
-
-  <div class="container">
-
-    <div class="row">
-
-      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-        <h3 class="resume-section-title">Education</h3>
-
-        <div class="resume-item">
-          <div class="resume-header">
-            <h4 class="institution">Cornell University</h4>
-            <div class="resume-meta">
-              <span class="degree">Bachelor of Science, Electrical and Computer Engineering</span>
-              <span class="date">Expected May 2027</span>
-            </div>
+      <aside class="card">
+        <div class="profile">
+          <div class="avatar">MS</div>
+          <div class="meta">
+            <div style="font-weight:700">Md Shad</div>
+            <p>Electrical & Computer Engineering Student — Cornell University</p>
+            <p style="margin-top:8px"><strong>Email:</strong> <a href="mailto:md04shad@gmail.com" style="color:var(--accent)">md04shad@gmail.com</a></p>
+            <p><strong>Phone:</strong> <a href="tel:+19292250452" style="color:var(--accent)">(929) 225-0452</a></p>
+            <p style="margin-top:6px"><a href="https://github.com/mdshad10" target="_blank" style="color:var(--muted)">github.com/mdshad10</a></p>
           </div>
-          <div class="resume-content">
-            <p class="location"><i class="bi bi-geo-alt"></i> College of Engineering, Ithaca, NY</p>
-            <div class="coursework">
-              <h5>Relevant Coursework:</h5>
-              <ul class="course-list">
-                <li>Embedded Systems</li>
-                <li>Microelectronics</li>
-                <li>Digital Logic and Computer Organization</li>
-                <li>Computer Architecture</li>
-                <li>Object Oriented Programming and Data Structures</li>
-              </ul>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about">
+      <h2 class="section-title">About</h2>
+      <div class="card">
+        <div style="color:var(--muted);font-size:15px">
+          I'm an Electrical and Computer Engineering student at Cornell University with a strong interest in embedded systems, microelectronics, and hardware design. I enjoy turning circuit and firmware concepts into robust prototypes and clear documentation that other engineers can build on.
+        </div>
+        <div style="margin-top:12px;color:var(--muted)">
+          Outside class and labs I mentor students, work with Engineers Without Borders on hardware assembly projects, and gain practical field experience as a Field Engineer intern at Charter Communications — all of which shape my practical approach to engineering challenges.
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="grid-2">
+      <div>
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="card">
+          <div style="display:flex;gap:16px;flex-direction:column">
+            <div>
+              <div class="skill">Python <span>90%</span></div>
+              <div class="progress"><i style="width:90%"></i></div>
+            </div>
+            <div>
+              <div class="skill">C / C++ <span>85%</span></div>
+              <div class="progress"><i style="width:85%"></i></div>
+            </div>
+            <div>
+              <div class="skill">Verilog / SystemVerilog <span>80%</span></div>
+              <div class="progress"><i style="width:80%"></i></div>
+            </div>
+            <div>
+              <div class="skill">FPGA & Quartus <span>80%</span></div>
+              <div class="progress"><i style="width:80%"></i></div>
+            </div>
+            <div>
+              <div class="skill">PCB Design & Assembly <span>70%</span></div>
+              <div class="progress"><i style="width:70%"></i></div>
+            </div>
+            <div>
+              <div class="skill">MATLAB <span>75%</span></div>
+              <div class="progress"><i style="width:75%"></i></div>
             </div>
           </div>
         </div>
-
-        <div class="resume-item">
-          <div class="resume-header">
-            <h4 class="institution">Stuyvesant High School</h4>
-            <div class="resume-meta">
-              <span class="degree">Advanced Regents Diploma with Honors</span>
-              <span class="date">June 2022</span>
-            </div>
-          </div>
-          <p class="location"><i class="bi bi-geo-alt"></i> New York, NY</p>
-        </div>
-
       </div>
 
-      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-        <h3 class="resume-section-title">Professional Experience</h3>
-        
-        <div class="resume-item">
-          <div class="resume-header">
-            <h4 class="institution">Charter Communications - Spectrum</h4>
-            <div class="resume-meta">
-              <span class="position">Field Engineer (Electrical) Intern</span>
-              <span class="date">May 2025 - Present</span>
-            </div>
-          </div>
-          <p class="location"><i class="bi bi-geo-alt"></i> New York, NY</p>
-          <ul class="resume-duties">
-            <li>Update firmware and replace transponders in power supplies to prevent overheating and enable remote monitoring</li>
-            <li>Analyze CAD diagrams on Magellan to design and replace power distribution systems for 400+ fiber network sites</li>
-            <li>Collect field data using Excel to identify load trends and support infrastructure improvement decisions</li>
+      <aside>
+        <h2 class="section-title">Education & Tools</h2>
+        <div class="card">
+          <div style="font-weight:700">Cornell University — B.S. Electrical & Computer Engineering</div>
+          <div style="color:var(--muted);margin-top:6px">Expected May 2027</div>
+          <ul class="list" style="margin-top:12px">
+            <li><strong>Relevant coursework:</strong> Embedded Systems, Microelectronics, Computer Architecture, Digital Logic, Data Structures</li>
+            <li><strong>Tools:</strong> Quartus Prime, LTspice, OnShape, AutoCAD, Oscilloscope, Raspberry Pi</li>
+            <li><strong>Languages:</strong> English (fluent), Bangla (fluent), Spanish (intermediate)</li>
           </ul>
         </div>
+      </aside>
+    </section>
 
-        <div class="resume-item">
-          <div class="resume-header">
-            <h4 class="institution">Cornell University</h4>
-            <div class="resume-meta">
-              <span class="position">Teaching Assistant</span>
-              <span class="date">Jan 2025 - Present</span>
-            </div>
+    <section id="projects">
+      <h2 class="section-title">Selected Projects</h2>
+      <div class="projects">
+        <div class="project">
+          <h3>Smart Basketball Hoop Scoring Tracker</h3>
+          <div style="color:var(--muted);font-size:14px">Embedded C on the FRDM-KL46Z, IR break-beam sensors, interrupt-driven FSM, debouncing, SysTick timers, buzzer/LED feedback, and LCD display for scorekeeping.</div>
+          <div class="tags">
+            <span class="tag">FRDM-KL46Z</span>
+            <span class="tag">Embedded C</span>
+            <span class="tag">GPIO</span>
+            <span class="tag">Interrupts</span>
           </div>
-          <p class="location"><i class="bi bi-geo-alt"></i> Digital Logic and Computer Organization</p>
-          <ul class="resume-duties">
-            <li>Guide students in FPGA architecture, VHDL synthesis, and Verilog debugging</li>
-            <li>Coordinate lab sessions using Intel Quartus Prime for timing and area analysis</li>
-            <li>Develop grading rubrics and provide feedback to 90+ students</li>
-          </ul>
+          <div style="margin-top:10px;color:var(--muted);font-size:13px">Apr — May 2025 • Cornell University • <a href="https://github.com/mdshad10/Smart-Basketball-Hoop-Embedded-Systems" target="_blank" style="color:var(--accent)">Repo</a></div>
         </div>
 
-        <div class="resume-item">
-          <div class="resume-header">
-            <h4 class="institution">Engineers Without Borders</h4>
-            <div class="resume-meta">
-              <span class="position">Hardware Engineer</span>
-              <span class="date">Jan 2025 - Present</span>
-            </div>
+        <div class="project">
+          <h3>R(E)-Waste: Repurposed Network Attached Storage</h3>
+          <div style="color:var(--muted);font-size:14px">Built a sustainable NAS by repurposing e-waste components achieving 8TB usable capacity and documenting assembly, thermal considerations, and SATA integration.</div>
+          <div class="tags">
+            <span class="tag">Hardware Assembly</span>
+            <span class="tag">SATA</span>
+            <span class="tag">Sustainability</span>
           </div>
-          <p class="location"><i class="bi bi-geo-alt"></i> Cornell University Project Team</p>
-          <ul class="resume-duties">
-            <li>Install wiring for motors, encoders, and servos using JST, Dupont, and Molex connectors</li>
-            <li>Assemble and test PCB boards with voltage regulators, capacitors, and LED arrays</li>
-            <li>Configure RoboClaw motor controllers with proper addressing and encoder feedback</li>
-          </ul>
+          <div style="margin-top:10px;color:var(--muted);font-size:13px">Sept — Dec 2022 • The Cooper Union</div>
         </div>
 
-      </div>
-
-    </div>
-
-  </div>
-
-</section><!-- /Resume Section -->
-
-<!-- Projects Section -->
-<section id="projects" class="portfolio section">
-
-  <!-- Section Title -->
-  <div class="container section-title" data-aos="fade-up">
-    <h2>Projects</h2>
-    <p>Featured engineering projects showcasing embedded systems, hardware design, and computer architecture</p>
-  </div><!-- End Section Title -->
-
-  <div class="container">
-
-    <div class="row gy-5" data-aos="fade-up" data-aos-delay="200">
-
-      <!-- Smart Basketball Hoop Project -->
-      <div class="col-lg-12">
-        <div class="project-card-enhanced">
-          <div class="row align-items-center">
-            <div class="col-lg-8">
-              <div class="project-content-detailed">
-                <div class="project-header">
-                  <h3 class="project-title">Smart Basketball Hoop Scoring Tracker</h3>
-                  <div class="project-links-enhanced">
-                    <a href="https://github.com/mdshad10/Smart-Basketball-Hoop-Embedded-Systems" target="_blank" class="project-link-large">
-                      <i class="bi bi-github"></i>
-                    </a>
-                    <a href="https://pages.github.coecis.cornell.edu/ece3140-sp2025/kab472-mss464/" target="_blank" class="project-link-text">
-                      Website
-                    </a>
-                  </div>
-                </div>
-                
-                <p class="project-description">
-                  Designed and implemented a comprehensive real-time basketball scoring system utilizing infrared sensors for shot detection. 
-                  The system features an interrupt-driven finite state machine (FSM) for reliable game flow management, integrated with 
-                  multi-modal user feedback through buzzer alerts, LED indicators, and LCD display. Implemented advanced debouncing 
-                  algorithms and SysTick timer precision for accurate score tracking and game timing.
-                </p>
-                
-                <div class="skills-section">
-                  <h5 class="skills-title">Technical Skills Applied:</h5>
-                  <div class="skills-grid-detailed">
-                    <div class="skill-group">
-                      <span class="skill-category">Hardware:</span>
-                      <span class="skill-items">FRDM-KL46Z, ADC Configuration, GPIO Programming, Infrared Sensors</span>
-                    </div>
-                    <div class="skill-group">
-                      <span class="skill-category">Software:</span>
-                      <span class="skill-items">Embedded C, Interrupt Service Routines, State Machine Design</span>
-                    </div>
-                    <div class="skill-group">
-                      <span class="skill-category">Concepts:</span>
-                      <span class="skill-items">Real-time Systems, Debouncing, Timer Management, I/O Interfacing</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="project-meta-enhanced">
-                  <span class="project-date"><i class="bi bi-calendar3"></i> April - May 2025</span>
-                  <span class="project-location"><i class="bi bi-geo-alt"></i> Cornell University</span>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="project-visual">
-                <div class="project-icon-large">
-                  <i class="bi bi-cpu-fill"></i>
-                </div>
-                <div class="tech-stack">
-                  <span class="tech-badge primary">FRDM-KL46Z</span>
-                  <span class="tech-badge secondary">Embedded C</span>
-                  <span class="tech-badge tertiary">Real-time Systems</span>
-                </div>
-              </div>
-            </div>
+        <div class="project">
+          <h3>Engineers Without Borders — Motor Control & PCB Assembly</h3>
+          <div style="color:var(--muted);font-size:14px">Worked on wiring motors, encoders, and servos; assembled PCBs with voltage regulators and LED arrays; configured motor controllers and validated encoder feedback loops.</div>
+          <div class="tags">
+            <span class="tag">PCB</span>
+            <span class="tag">Motor Control</span>
+            <span class="tag">Testing</span>
           </div>
+          <div style="margin-top:10px;color:var(--muted);font-size:13px">Jan 2025 — Present • Cornell University</div>
+        </div>
+
+        <div class="project">
+          <h3>Field Engineering — Network Power & Reliability</h3>
+          <div style="color:var(--muted);font-size:14px">Internship work updating transponder firmware, analyzing CAD for power distribution improvements across hundreds of network sites, and collecting load data to inform infrastructure decisions.</div>
+          <div class="tags">
+            <span class="tag">Charter / Spectrum</span>
+            <span class="tag">Field Work</span>
+            <span class="tag">Data Analysis</span>
+          </div>
+          <div style="margin-top:10px;color:var(--muted);font-size:13px">May 2025 — Present • New York, NY</div>
         </div>
       </div>
+    </section>
 
-      <!-- TinyRV1 Processor Project -->
-      <div class="col-lg-12">
-        <div class="project-card-enhanced">
-          <div class="row align-items-center">
-            <div class="col-lg-8">
-              <div class="project-content-detailed">
-                <div class="project-header">
-                  <h3 class="project-title">TinyRV1 Processor & Accumulate Accelerator</h3>
-                  <div class="project-links-enhanced">
-                    <a href="https://github.com/mdshad10/TinyRV1Processor" target="_blank" class="project-link-large">
-                      <i class="bi bi-github"></i>
-                    </a>
-                  </div>
-                </div>
-                
-                <p class="project-description">
-                  Architected and implemented a complete 32-bit single-cycle RISC-V processor using structural RTL design methodology. 
-                  Developed a custom accumulation accelerator to demonstrate hardware-software co-design principles, achieving 
-                  significant performance improvements through cycle count reduction and optimized area utilization. Conducted 
-                  comprehensive timing analysis and area optimization using Intel Quartus Prime synthesis tools.
-                </p>
-                
-                <div class="skills-section">
-                  <h5 class="skills-title">Technical Skills Applied:</h5>
-                  <div class="skills-grid-detailed">
-                    <div class="skill-group">
-                      <span class="skill-category">Hardware Design:</span>
-                      <span class="skill-items">SystemVerilog, RTL Design, FPGA Implementation, Structural Design</span>
-                    </div>
-                    <div class="skill-group">
-                      <span class="skill-category">Architecture:</span>
-                      <span class="skill-items">RISC-V ISA, Processor Design, Custom Accelerators, Pipeline Optimization</span>
-                    </div>
-                    <div class="skill-group">
-                      <span class="skill-category">Tools:</span>
-                      <span class="skill-items">Intel Quartus Prime, Timing Analysis, Area Optimization, Synthesis</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="project-meta-enhanced">
-                  <span class="project-date"><i class="bi bi-calendar3"></i> November - December 2024</span>
-                  <span class="project-location"><i class="bi bi-geo-alt"></i> Cornell University</span>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="project-visual">
-                <div class="project-icon-large">
-                  <i class="bi bi-motherboard-fill"></i>
-                </div>
-                <div class="tech-stack">
-                  <span class="tech-badge primary">SystemVerilog</span>
-                  <span class="tech-badge secondary">RISC-V</span>
-                  <span class="tech-badge tertiary">FPGA Design</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <section id="resume">
+      <h2 class="section-title">Resume (Highlights)</h2>
+      <div class="card">
+        <ul class="list">
+          <li>
+            <div style="font-weight:700">Field Engineer (Electrical) Intern — Charter Communications (Spectrum)</div>
+            <div style="color:var(--muted);font-size:13px">May 2025 — Present • Updated firmware on transponders, diagnosed power issues, and supported design changes across 400+ network sites.</div>
+          </li>
+          <li>
+            <div style="font-weight:700">Hardware Engineer — Engineers Without Borders</div>
+            <div style="color:var(--muted);font-size:13px">Jan 2025 — Present • Wiring, PCB assembly, motor controller setup, and testing for field-ready systems.</div>
+          </li>
+          <li>
+            <div style="font-weight:700">Teaching Assistant — Digital Logic & Computer Organization</div>
+            <div style="color:var(--muted);font-size:13px">Jan 2025 — Present • Lab instruction, Verilog debugging, and feedback for ~90 students.</div>
+          </li>
+        </ul>
       </div>
+    </section>
 
-      <!-- NAS Server Project -->
-      <div class="col-lg-12">
-        <div class="project-card-enhanced">
-          <div class="row align-items-center">
-            <div class="col-lg-8">
-              <div class="project-content-detailed">
-                <div class="project-header">
-                  <h3 class="project-title">R(E)-Waste: Network Attached Storage Server</h3>
-                  <div class="project-links-enhanced">
-                    <a href="https://cad.onshape.com/documents/ea29662ba5af1ad1e22b4a43/w/36643fafb593d6f50a03263c/e/735eaee15a7460bb27558c1b?renderMode=0&leftPanel=false&uiState=662d4372526e1c1c9c9966e6" target="_blank" class="project-link-text">
-                      CAD Model
-                    </a>
-                  </div>
-                </div>
-                
-                <p class="project-description">
-                  Engineered a sustainable computing solution by repurposing electronic waste components to construct a fully 
-                  functional Network Attached Storage (NAS) server with 8TB capacity. Demonstrated circular economy principles 
-                  in technology by integrating salvaged cassette player mechanics, computer chassis, and storage drives into 
-                  a cohesive system. The project showcased both technical engineering skills and environmental consciousness 
-                  in hardware development.
-                </p>
-                
-                <div class="skills-section">
-                  <h5 class="skills-title">Technical Skills Applied:</h5>
-                  <div class="skills-grid-detailed">
-                    <div class="skill-group">
-                      <span class="skill-category">Hardware Assembly:</span>
-                      <span class="skill-items">ATX Power Systems, SATA Interface, Component Integration, Mechanical Design</span>
-                    </div>
-                    <div class="skill-group">
-                      <span class="skill-category">Systems:</span>
-                      <span class="skill-items">Network Storage Configuration, File Server Setup, Data Management</span>
-                    </div>
-                    <div class="skill-group">
-                      <span class="skill-category">Sustainability:</span>
-                      <span class="skill-items">E-waste Repurposing, Circular Design, Resource Optimization</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="project-meta-enhanced">
-                  <span class="project-date"><i class="bi bi-calendar3"></i> September - December 2022</span>
-                  <span class="project-location"><i class="bi bi-geo-alt"></i> The Cooper Union</span>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="project-visual">
-                <div class="project-icon-large">
-                  <i class="bi bi-hdd-network-fill"></i>
-                </div>
-                <div class="tech-stack">
-                  <span class="tech-badge primary">Hardware Assembly</span>
-                  <span class="tech-badge secondary">Network Storage</span>
-                  <span class="tech-badge tertiary">Sustainable Design</span>
-                </div>
-              </div>
-            </div>
-          </div>
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="grid-2">
+        <div class="card">
+          <div style="font-weight:700">Let's collaborate.</div>
+          <div style="color:var(--muted);margin-top:8px">Email <a href="mailto:md04shad@gmail.com" style="color:var(--accent)">md04shad@gmail.com</a> or call <a href="tel:+19292250452" style="color:var(--accent)">(929) 225-0452</a>.</div>
+          <div style="margin-top:12px;color:var(--muted)">Links</div>
+          <div style="margin-top:8px"><a href="https://github.com/mdshad10" target="_blank" style="color:var(--accent)">GitHub</a> • <a href="https://mdshad10.github.io" target="_blank" style="color:var(--accent)">Portfolio page</a></div>
         </div>
+
+        <aside class="card">
+          <form action="" onsubmit="event.preventDefault(); alert('Thanks — I\'ll open your default email client.'); window.location.href='mailto:md04shad@gmail.com?subject=' + encodeURIComponent(document.getElementById('subject').value) + '&body=' + encodeURIComponent(document.getElementById('message').value);
+          ">
+            <label style="font-weight:700">Subject</label>
+            <input id="subject" placeholder="Short subject" required>
+            <label style="font-weight:700;margin-top:8px">Message</label>
+            <textarea id="message" rows="6" placeholder="Write a brief message" required></textarea>
+            <div style="margin-top:12px;text-align:right"><button type="submit">Email Me</button></div>
+          </form>
+        </aside>
       </div>
-
-    </div>
-
-  </div>
-
-</section><!-- /Projects Section -->
-
-<style>
-  .project-card-enhanced {
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    padding: 40px;
-    margin-bottom: 30px;
-    transition: all 0.3s ease;
-    border-left: 5px solid #0078ff;
-  }
-
-  .project-card-enhanced:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-  }
-
-  .project-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-  }
-
-  .project-title {
-    color: #2c3e50;
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin: 0;
-    flex: 1;
-    min-width: 300px;
-  }
-
-  .project-links-enhanced {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-top: 10px;
-  }
-
-  .project-link-large {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    background: #0078ff;
-    color: white;
-    border-radius: 12px;
-    text-decoration: none;
-    font-size: 24px;
-    transition: all 0.3s ease;
-  }
-
-  .project-link-large:hover {
-    background: #0056b3;
-    transform: scale(1.1);
-    color: white;
-  }
-
-  .project-link-text {
-    background: #f8f9fa;
-    color: #0078ff;
-    padding: 12px 24px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    border: 2px solid #e9ecef;
-    transition: all 0.3s ease;
-  }
-
-  .project-link-text:hover {
-    background: #0078ff;
-    color: white;
-    border-color: #0078ff;
-  }
-
-  .project-description {
-    color: #555;
-    font-size: 16px;
-    line-height: 1.7;
-    margin-bottom: 25px;
-    text-align: justify;
-  }
-
-  .skills-section {
-    background: #f8f9fa;
-    padding: 25px;
-    border-radius: 10px;
-    margin-bottom: 25px;
-    border-left: 4px solid #0078ff;
-  }
-
-  .skills-title {
-    color: #2c3e50;
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 15px;
-  }
-
-  .skills-grid-detailed {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .skill-group {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .skill-category {
-    font-weight: 700;
-    color: #0078ff;
-    min-width: 120px;
-    font-size: 14px;
-  }
-
-  .skill-items {
-    color: #555;
-    font-size: 14px;
-    line-height: 1.5;
-    flex: 1;
-  }
-
-  .project-meta-enhanced {
-    display: flex;
-    gap: 30px;
-    color: #7f8c8d;
-    font-size: 14px;
-    font-weight: 500;
-  }
-
-  .project-meta-enhanced i {
-    margin-right: 8px;
-    color: #0078ff;
-  }
-
-  .project-visual {
-    text-align: center;
-    padding: 20px;
-  }
-
-  .project-icon-large {
-    width: 120px;
-    height: 120px;
-    background: linear-gradient(135deg, #0078ff, #00d4ff);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 25px;
-    box-shadow: 0 10px 25px rgba(0, 120, 255, 0.3);
-  }
-
-  .project-icon-large i {
-    font-size: 60px;
-    color: white;
-  }
-
-  .tech-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-  }
-
-  .tech-badge {
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-    text-align: center;
-    min-width: 120px;
-  }
-
-  .tech-badge.primary {
-    background: #0078ff;
-    color: white;
-  }
-
-  .tech-badge.secondary {
-    background: #00d4ff;
-    color: white;
-  }
-
-  .tech-badge.tertiary {
-    background: #e7f3ff;
-    color: #0078ff;
-    border: 1px solid #0078ff;
-  }
-
-  @media (max-width: 768px) {
-    .project-card-enhanced {
-      padding: 25px;
-    }
-    
-    .project-header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    
-    .project-title {
-      font-size: 1.5rem;
-      min-width: auto;
-      margin-bottom: 15px;
-    }
-    
-    .project-links-enhanced {
-      margin-top: 0;
-    }
-    
-    .skills-grid-detailed {
-      gap: 15px;
-    }
-    
-    .skill-group {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    
-    .skill-category {
-      min-width: auto;
-      margin-bottom: 5px;
-    }
-    
-    .project-meta-enhanced {
-      flex-direction: column;
-      gap: 10px;
-    }
-    
-    .project-icon-large {
-      width: 100px;
-      height: 100px;
-    }
-    
-    .project-icon-large i {
-      font-size: 50px;
-    }
-  }
-</style>
-    <!-- Stats Section -->
-    <section id="stats" class="stats section accent-background">
-
-      <img src="assets/img/stats-bg.jpg" alt="" data-aos="fade-in">
-
-      <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-3 col-md-6">
-            <div class="stats-item text-center w-100 h-100">
-              <span data-purecounter-start="0" data-purecounter-end="3" data-purecounter-duration="0" class="purecounter">3</span>
-              <p>Major Projects</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6">
-            <div class="stats-item text-center w-100 h-100">
-              <span data-purecounter-start="0" data-purecounter-end="90" data-purecounter-duration="0" class="purecounter">90</span>
-              <p>Students Mentored</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6">
-            <div class="stats-item text-center w-100 h-100">
-              <span data-purecounter-start="0" data-purecounter-end="400" data-purecounter-duration="0" class="purecounter">400</span>
-              <p>Network Sites Analyzed</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6">
-            <div class="stats-item text-center w-100 h-100">
-              <span data-purecounter-start="0" data-purecounter-end="5" data-purecounter-duration="0" class="purecounter">5</span>
-              <p>Programming Languages</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section><!-- /Stats Section -->
-
-   <!-- Contact Section -->
-<section id="contact" class="contact section">
-
-  <!-- Section Title -->
-  <div class="container section-title" data-aos="fade-up">
-    <h2>Contact</h2>
-    <p>Get in touch for collaboration opportunities, internships, or engineering discussions</p>
-  </div><!-- End Section Title -->
-
-  <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-    <div class="info-wrap" data-aos="fade-up" data-aos-delay="200">
-      <div class="row gy-5">
-
-        <div class="col-lg-4">
-          <div class="info-item d-flex align-items-center">
-            <i class="bi bi-geo-alt flex-shrink-0"></i>
-            <div>
-              <h3>Location</h3>
-              <p>New York, NY</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4">
-          <div class="info-item d-flex align-items-center">
-            <i class="bi bi-telephone flex-shrink-0"></i>
-            <div>
-              <h3>Call Me</h3>
-              <p>(929) 225-0452</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4">
-          <div class="info-item d-flex align-items-center">
-            <i class="bi bi-envelope flex-shrink-0"></i>
-            <div>
-              <h3>Email Me</h3>
-              <p>md04shad@gmail.com</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="row gy-4 mt-4">
-      <div class="col-lg-6">
-        <div class="info-item d-flex align-items-center">
-          <i class="bi bi-github flex-shrink-0"></i>
-          <div>
-            <h3>GitHub</h3>
-            <p><a href="https://github.com/mdshad10" target="_blank">github.com/mdshad10</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="info-item d-flex align-items-center">
-          <i class="bi bi-globe flex-shrink-0"></i>
-          <div>
-            <h3>Portfolio</h3>
-            <p><a href="https://mdshad10.github.io" target="_blank">mdshad10.github.io</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Updated Contact Form using Formspree -->
-    <form action="https://formspree.io/f/mvgrwlkq" method="POST" class="php-email-form" data-aos="fade-up" data-aos-delay="300" id="contact-form">
-      <div class="row gy-4">
-
-        <div class="col-md-6">
-          <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
-        </div>
-
-        <div class="col-md-6 ">
-          <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
-        </div>
-
-        <div class="col-md-12">
-          <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-        </div>
-
-        <div class="col-md-12">
-          <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
-        </div>
-
-        <div class="col-md-12 text-center">
-          <div class="loading" style="display: none;">Loading</div>
-          <div class="error-message" style="display: none;"></div>
-          <div class="sent-message" style="display: none;">Your message has been sent. Thank you!</div>
-
-          <button type="submit">Send Message</button>
-        </div>
-
-      </div>
-    </form>
-
-  </div>
-
-</section><!-- /Contact Section -->
-
-<style>
-.contact .info-wrap {
-  background: #f8f9fa;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
-}
-
-.contact .info-item {
-  background: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-}
-
-.contact .info-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-.contact .info-item i {
-  font-size: 24px;
-  color: #0078ff;
-  margin-right: 20px;
-  flex-shrink: 0;
-}
-
-.contact .info-item h3 {
-  color: #2c3e50;
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 5px;
-}
-
-.contact .info-item p {
-  color: #555;
-  margin: 0;
-}
-
-.contact .info-item a {
-  color: #0078ff;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.contact .info-item a:hover {
-  color: #0056b3;
-}
-
-.contact .php-email-form {
-  background: #fff;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
-  margin-top: 40px;
-}
-
-.contact .php-email-form .form-control {
-  border: 1px solid #e9ecef;
-  border-radius: 8px;
-  padding: 15px;
-  font-size: 14px;
-  transition: border-color 0.3s;
-}
-
-.contact .php-email-form .form-control:focus {
-  border-color: #0078ff;
-  box-shadow: 0 0 0 0.2rem rgba(0, 120, 255, 0.25);
-}
-
-.contact .php-email-form button {
-  background: #0078ff;
-  border: 0;
-  padding: 15px 40px;
-  color: #fff;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 0.3s;
-  cursor: pointer;
-}
-
-.contact .php-email-form button:hover {
-  background: #0056b3;
-  transform: translateY(-2px);
-}
-
-.contact .loading,
-.contact .error-message,
-.contact .sent-message {
-  margin: 15px 0;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-.contact .loading {
-  background: #f0f8ff;
-  color: #0078ff;
-  border: 1px solid #b3d9ff;
-}
-
-.contact .error-message {
-  background: #ffe6e6;
-  color: #dc3545;
-  border: 1px solid #ffb3b3;
-}
-
-.contact .sent-message {
-  background: #e6ffe6;
-  color: #28a745;
-  border: 1px solid #b3ffb3;
-}
-</style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('contact-form');
-    const loading = document.querySelector('.loading');
-    const errorMessage = document.querySelector('.error-message');
-    const sentMessage = document.querySelector('.sent-message');
-
-    form.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        // Show loading state
-        loading.style.display = 'block';
-        errorMessage.style.display = 'none';
-        sentMessage.style.display = 'none';
-        
-        // Get form data
-        const formData = new FormData(form);
-        
-        try {
-            const response = await fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-            
-            loading.style.display = 'none';
-            
-            if (response.ok) {
-                // Success - show success message and reset form
-                sentMessage.style.display = 'block';
-                form.reset();
-            } else {
-                // Error response
-                const errorData = await response.text();
-                errorMessage.style.display = 'block';
-                errorMessage.textContent = 'There was an error sending your message. Please try again or contact me directly at md04shad@gmail.com';
-            }
-        } catch (error) {
-            // Network error
-            loading.style.display = 'none';
-            errorMessage.style.display = 'block';   
-            errorMessage.textContent = 'Network error. Please check your internet connection and try again.';
-        }
-    });
-});
-</script>
+    </section>
+
+    <footer>
+      <div style="opacity:0.8">© <strong>Md Shad</strong> — Electrical & Computer Engineering • Cornell University • All rights reserved</div>
+    </footer>
   </main>
 
-  <footer id="footer" class="footer accent-background">
-
-    <div class="container">
-      <div class="copyright text-center ">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">Md Shad</strong> <span>All Rights Reserved</span></p>
-      </div>
-      <div class="social-links d-flex justify-content-center">
-        <a href="https://github.com/mdshad10" target="_blank"><i class="bi bi-github"></i></a>
-        <a href="https://mdshad10.github.io" target="_blank"><i class="bi bi-globe"></i></a>
-      </div>
-      <div class="credits">
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
-    </div>
-
-  </footer>
-
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Preloader -->
-  <div id="preloader"></div>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/typed.js/typed.umd.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
-
-  <script>
-    // Animate progress bars when they come into view
-    document.addEventListener('DOMContentLoaded', function() {
-      const progressBars = document.querySelectorAll('.progress-bar');
-      
-      const observerOptions = {
-        threshold: 0.5,
-        rootMargin: '0px 0px -100px 0px'
-      };
-      
-      const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            const progressBar = entry.target;
-            const percentage = progressBar.getAttribute('aria-valuenow');
-            progressBar.style.width = percentage + '%';
-          }
-        });
-      }, observerOptions);
-      
-      progressBars.forEach(function(progressBar) {
-        observer.observe(progressBar);
-      });
-    });
-  </script>
-
 </body>
-
 </html>
