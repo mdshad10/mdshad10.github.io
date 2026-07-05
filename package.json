@@ -1,0 +1,20 @@
+{
+  "name": "md-shad-portfolio",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build && node scripts/sync-build.mjs",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.4.1",
+    "framer-motion": "^12.23.24",
+    "gsap": "^3.13.0",
+    "lucide-react": "^0.468.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "vite": "^6.1.0"
+  }
+}
