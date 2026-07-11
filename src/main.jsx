@@ -10,139 +10,193 @@ import {
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
-  ArrowDown,
+  ArrowDownRight,
   ArrowUpRight,
-  Binary,
+  BookOpen,
   BrainCircuit,
   CircuitBoard,
   Cpu,
   Github,
+  GraduationCap,
   Mail,
+  MapPin,
   Menu,
   Radio,
-  X,
-  Zap
+  Sparkles,
+  X
 } from "lucide-react";
 import "./styles.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const navLinks = [
+  { label: "work", href: "#projects" },
+  { label: "resume", href: "#resume" },
+  { label: "about", href: "#about" },
+  { label: "contact", href: "#contact" }
+];
+
+const quickFacts = [
+  { value: "Cornell", label: "Electrical & Computer Engineering" },
+  { value: "FPGA", label: "AI accelerators and custom hardware" },
+  { value: "RTL", label: "SystemVerilog, VHDL, computer architecture" },
+  { value: "Embedded", label: "real-time firmware, sensors, DSP" }
+];
+
+const focusAreas = [
+  "Computer Architecture",
+  "Embedded Systems",
+  "FPGA Design",
+  "AI Accelerators",
+  "VLSI and Circuits",
+  "Hardware/Software Interfaces"
+];
+
+const metrics = [
+  { value: 100, suffix: "+", label: "students mentored in digital design" },
+  { value: 400, suffix: "+", label: "fiber sites analyzed in industry work" },
+  { value: 5, suffix: "", label: "stage RISC-V pipeline implemented" },
+  { value: 16, suffix: "", label: "processing elements in TPU array" }
+];
+
 const projects = [
   {
     number: "01",
-    eyebrow: "RESEARCH · FPGA · AI",
+    type: "Research / FPGA / AI",
     title: "Systolic TPU Accelerator",
-    description:
-      "A 4×4 systolic-array accelerator with a custom ISA for neural-network forward and backward passes. The architecture integrates multiply-accumulate, bias, and Leaky ReLU units with double-buffered weight loading.",
-    tags: ["SystemVerilog", "FPGA", "Custom ISA"],
-    metric: "4 × 4",
-    metricLabel: "systolic array",
-    visual: "systolic"
+    summary:
+      "Designed a 4x4 systolic-array accelerator and custom ISA for neural-network forward and backward passes.",
+    details: [
+      "Integrated MAC, bias, and Leaky ReLU units into a clean compute pipeline.",
+      "Built double-buffered weight loading to reduce stalls and clarify data movement.",
+      "Focused the architecture around measurable throughput and FPGA feasibility."
+    ],
+    tools: ["SystemVerilog", "FPGA", "Python", "Custom ISA"],
+    signal: "4x4 array",
+    icon: BrainCircuit
   },
   {
     number: "02",
-    eyebrow: "COMPUTER ARCHITECTURE",
+    type: "Computer Architecture",
     title: "TinyRV2 Pipelined Processor",
-    description:
-      "A 32-bit, five-stage RISC-V processor with structural datapath, control logic, and full bypassing from execute, memory, and writeback stages to reduce stalls and improve CPI.",
-    tags: ["RISC-V", "SystemVerilog", "Pipelining"],
-    metric: "5",
-    metricLabel: "pipeline stages",
-    visual: "pipeline"
+    summary:
+      "Implemented a 32-bit, five-stage RISC-V processor with bypassing and stall control.",
+    details: [
+      "Built structural datapath and control logic across IF, ID, EX, MEM, and WB stages.",
+      "Added forwarding from execute, memory, and writeback to improve CPI.",
+      "Validated pipeline behavior through targeted tests and timing-aware debugging."
+    ],
+    tools: ["RISC-V", "SystemVerilog", "Pipelining", "RTL"],
+    signal: "5 stages",
+    icon: Cpu
   },
   {
     number: "03",
-    eyebrow: "EMBEDDED AUDIO",
+    type: "Embedded Audio",
     title: "Birdsong Synthesizer",
-    description:
-      "Real-time Northern Cardinal call synthesis on the RP2040 using direct digital synthesis, ADSR envelope shaping, fixed-point arithmetic, timer interrupts, and an SPI-driven DAC.",
-    tags: ["RP2040", "Embedded C", "DSP"],
-    metric: "RT",
-    metricLabel: "audio synthesis",
-    visual: "wave"
+    summary:
+      "Created a real-time Northern Cardinal call synthesizer on the RP2040 microcontroller.",
+    details: [
+      "Used direct digital synthesis, ADSR envelopes, and fixed-point arithmetic.",
+      "Drove audio through timer interrupts and an SPI-connected DAC.",
+      "Balanced signal quality, memory use, and predictable interrupt timing."
+    ],
+    tools: ["RP2040", "Embedded C", "DSP", "SPI"],
+    signal: "real time",
+    icon: Radio
   },
   {
     number: "04",
-    eyebrow: "REAL-TIME SYSTEMS",
-    title: "Smart Scoring System",
-    description:
-      "An infrared-sensor basketball scoring system driven by an interrupt-based finite state machine, with debouncing, precise timing, and multimodal feedback across LCD, LEDs, and audio.",
-    tags: ["FRDM-KL46Z", "C", "Sensors"],
-    metric: "ISR",
-    metricLabel: "event driven",
-    visual: "radar",
-    href: "https://github.com/mdshad10/Smart-Basketball-Hoop-Embedded-Systems"
+    type: "Real-Time Systems",
+    title: "Smart Basketball Scoring System",
+    summary:
+      "Built an infrared-sensor scoring system using an interrupt-driven finite-state machine.",
+    details: [
+      "Implemented debouncing, timing windows, and multimodal LCD, LED, and audio feedback.",
+      "Designed for reliable event detection instead of brittle polling behavior.",
+      "Packaged the project with clear firmware structure and hardware assumptions."
+    ],
+    tools: ["FRDM-KL46Z", "C", "Sensors", "FSM"],
+    signal: "event driven",
+    href: "https://github.com/mdshad10/Smart-Basketball-Hoop-Embedded-Systems",
+    icon: CircuitBoard
   }
 ];
 
-const experience = [
+const resumeBlocks = [
   {
-    date: "AUG 2025 — PRESENT",
-    role: "Research Assistant",
-    company: "Zhang Research Group · Cornell",
-    detail:
-      "Designing an FPGA-based TPU architecture, its compute pipeline, buffering strategy, and hardware/software interface."
+    label: "Education",
+    icon: GraduationCap,
+    title: "Cornell University",
+    subtitle: "B.S. Electrical & Computer Engineering",
+    meta: "Ithaca, NY",
+    bullets: [
+      "Coursework and project work across digital design, computer architecture, embedded systems, circuits, and machine learning.",
+      "Strong interest in AI hardware, VLSI, processor design, and production-quality firmware."
+    ]
   },
   {
-    date: "JAN 2025 — PRESENT",
-    role: "Teaching Assistant",
-    company: "Cornell ECE",
-    detail:
-      "Mentoring 100+ students in RTL design, computer organization, FPGA prototyping, VHDL synthesis, timing, and area analysis."
-  },
-  {
-    date: "MAY 2025 — AUG 2025",
-    role: "Electrical Engineering Intern",
-    company: "Charter Communications · Spectrum",
-    detail:
-      "Improved monitoring and reliability across 400+ fiber sites and built an XGBoost-based fraud detection concept."
-  },
-  {
-    date: "JAN 2025 — PRESENT",
-    role: "Hardware Engineer",
-    company: "Engineers Without Borders",
-    detail:
-      "Building and testing motor-control electronics, wiring harnesses, PCB assemblies, encoders, servos, and LED systems."
-  }
-];
-
-const capabilities = [
-  {
-    icon: Cpu,
-    title: "Computer Architecture",
-    copy: "RISC-V processors, pipelined datapaths, hazard resolution, custom accelerators, and memory hierarchies.",
-    tools: "SystemVerilog · VHDL · Quartus"
-  },
-  {
-    icon: CircuitBoard,
-    title: "Embedded Systems",
-    copy: "Interrupt-driven firmware, real-time state machines, sensor interfaces, fixed-point DSP, and hardware bring-up.",
-    tools: "C/C++ · RP2040 · STM32"
-  },
-  {
+    label: "Research",
     icon: BrainCircuit,
-    title: "AI Hardware",
-    copy: "Systolic arrays, MAC pipelines, FPGA prototyping, on-chip buffering, and efficient data movement.",
-    tools: "RTL · FPGA · Python"
+    title: "Zhang Research Group",
+    subtitle: "Research Assistant",
+    meta: "Aug 2025 - Present",
+    bullets: [
+      "Designing an FPGA-based TPU architecture, compute pipeline, buffering strategy, and host interface.",
+      "Exploring hardware/software tradeoffs for efficient neural-network execution."
+    ]
   },
   {
-    icon: Zap,
-    title: "VLSI & Circuits",
-    copy: "Digital logic, transistor-level analysis, current mirrors, amplifier design, timing, and area optimization.",
-    tools: "Cadence · SPICE · MATLAB"
+    label: "Teaching",
+    icon: BookOpen,
+    title: "Cornell ECE",
+    subtitle: "Teaching Assistant",
+    meta: "Jan 2025 - Present",
+    bullets: [
+      "Mentoring 100+ students in RTL design, FPGA prototyping, VHDL synthesis, timing, and area analysis.",
+      "Helping students debug the gap between intended logic and synthesized hardware."
+    ]
+  },
+  {
+    label: "Industry",
+    icon: Sparkles,
+    title: "Charter Communications / Spectrum",
+    subtitle: "Electrical Engineering Intern",
+    meta: "May 2025 - Aug 2025",
+    bullets: [
+      "Improved network monitoring and reliability workflows across 400+ fiber sites.",
+      "Built an XGBoost-based fraud-detection concept and analyzed power telemetry."
+    ]
+  }
+];
+
+const skills = [
+  {
+    title: "Hardware",
+    items: ["SystemVerilog", "VHDL", "FPGA", "RISC-V", "VLSI", "SPICE"]
+  },
+  {
+    title: "Firmware",
+    items: ["C/C++", "RP2040", "STM32", "Interrupts", "SPI/I2C", "DSP"]
+  },
+  {
+    title: "Software",
+    items: ["Python", "React", "MATLAB", "Git", "Testing", "Data analysis"]
   }
 ];
 
 function MagneticLink({ children, className = "", ...props }) {
+  const reduceMotion = useReducedMotion();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 260, damping: 18 });
-  const springY = useSpring(y, { stiffness: 260, damping: 18 });
+  const springX = useSpring(x, { stiffness: 240, damping: 18 });
+  const springY = useSpring(y, { stiffness: 240, damping: 18 });
 
   const handleMove = (event) => {
+    if (reduceMotion) return;
     const bounds = event.currentTarget.getBoundingClientRect();
-    x.set((event.clientX - bounds.left - bounds.width / 2) * 0.18);
-    y.set((event.clientY - bounds.top - bounds.height / 2) * 0.18);
+    x.set((event.clientX - bounds.left - bounds.width / 2) * 0.14);
+    y.set((event.clientY - bounds.top - bounds.height / 2) * 0.14);
   };
 
   return (
@@ -162,6 +216,8 @@ function MagneticLink({ children, className = "", ...props }) {
 }
 
 function Loader({ visible }) {
+  const letters = ["M", "D", "S", "H", "A", "D"];
+
   return (
     <AnimatePresence>
       {visible && (
@@ -170,30 +226,20 @@ function Loader({ visible }) {
           initial={{ y: 0 }}
           exit={{
             y: "-100%",
-            transition: { duration: 0.85, ease: [0.76, 0, 0.24, 1] }
+            transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] }
           }}
         >
-          <div className="loader-mark">
-            <motion.span
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              MD
-            </motion.span>
-            <motion.div
-              className="loader-line"
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 1.05, ease: "easeInOut" }}
-            />
-            <motion.small
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.35 }}
-            >
-              ENGINEERING INTELLIGENCE
-            </motion.small>
+          <div className="loader-letters" aria-label="MD Shad">
+            {letters.map((letter, index) => (
+              <motion.span
+                key={`${letter}-${index}`}
+                initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ delay: index * 0.07, duration: 0.65 }}
+              >
+                {letter}
+              </motion.span>
+            ))}
           </div>
         </motion.div>
       )}
@@ -203,24 +249,22 @@ function Loader({ visible }) {
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const links = ["About", "Projects", "Experience", "Contact"];
 
   return (
     <>
       <motion.header
         className="site-header"
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 1.55, duration: 0.65 }}
+        initial={{ opacity: 0, y: -22 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.15, duration: 0.65, ease: "easeOut" }}
       >
-        <a className="brand" href="#top" aria-label="MD Shad home">
-          <span className="brand-symbol">M/</span>
-          <span className="brand-name">MD SHAD</span>
+        <a className="wordmark" href="#top" aria-label="MD Shad home">
+          md shad
         </a>
         <nav className="desktop-nav" aria-label="Primary navigation">
-          {links.map((link) => (
-            <a key={link} href={`#${link.toLowerCase()}`}>
-              {link}
+          {navLinks.map((link) => (
+            <a key={link.href} href={link.href}>
+              {link.label}
             </a>
           ))}
         </nav>
@@ -234,27 +278,28 @@ function Header() {
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </motion.header>
+
       <AnimatePresence>
         {menuOpen && (
           <motion.nav
             className="mobile-nav"
             aria-label="Mobile navigation"
-            initial={{ opacity: 0, clipPath: "circle(0% at 92% 6%)" }}
-            animate={{ opacity: 1, clipPath: "circle(145% at 92% 6%)" }}
-            exit={{ opacity: 0, clipPath: "circle(0% at 92% 6%)" }}
+            initial={{ opacity: 0, y: "-100%" }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: "-100%" }}
             transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
           >
-            {links.map((link, index) => (
+            {navLinks.map((link, index) => (
               <motion.a
-                key={link}
-                href={`#${link.toLowerCase()}`}
+                key={link.href}
+                href={link.href}
                 onClick={() => setMenuOpen(false)}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 22 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.12 + index * 0.06 }}
+                transition={{ delay: index * 0.07 }}
               >
                 <span>0{index + 1}</span>
-                {link}
+                {link.label}
               </motion.a>
             ))}
           </motion.nav>
@@ -264,149 +309,148 @@ function Header() {
   );
 }
 
-function HeroVisual() {
-  const floatTransition = {
-    duration: 4.6,
-    repeat: Infinity,
-    repeatType: "mirror",
-    ease: "easeInOut"
-  };
-
-  return (
-    <motion.div
-      className="hero-visual"
-      initial={{ opacity: 0, scale: 0.92, rotate: 2 }}
-      animate={{ opacity: 1, scale: 1, rotate: 0 }}
-      transition={{ delay: 1.65, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-    >
-      <div className="portrait-shell" data-parallax="0.09">
-        <div className="portrait-grid" aria-hidden="true" />
-        <img
-          src="/assets/img/profilepic.png"
-          alt="MD Shad, Electrical and Computer Engineering student"
-        />
-        <div className="portrait-scan" aria-hidden="true" />
-        <div className="portrait-label">
-          <span>MD SHAD</span>
-          <span>ITHACA, NY · 42.443° N</span>
-        </div>
-      </div>
-      <motion.div
-        className="orbit orbit-one"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-      />
-      <motion.div
-        className="orbit orbit-two"
-        animate={{ rotate: -360 }}
-        transition={{ duration: 17, repeat: Infinity, ease: "linear" }}
-      />
-      <motion.div
-        className="float-chip chip-one"
-        animate={{ y: [-7, 8], rotate: [-2, 2] }}
-        transition={floatTransition}
-      >
-        <Cpu size={18} />
-        <span>FPGA</span>
-      </motion.div>
-      <motion.div
-        className="float-chip chip-two"
-        animate={{ y: [8, -8], rotate: [2, -2] }}
-        transition={{ ...floatTransition, delay: 0.7 }}
-      >
-        <Binary size={18} />
-        <span>RTL</span>
-      </motion.div>
-      <motion.div
-        className="float-chip chip-three"
-        animate={{ y: [-5, 10], rotate: [-1, 3] }}
-        transition={{ ...floatTransition, delay: 1.2 }}
-      >
-        <BrainCircuit size={18} />
-        <span>AI</span>
-      </motion.div>
-    </motion.div>
-  );
-}
-
 function Hero() {
-  const title = ["Building", "Intelligent", "Hardware &", "Software Systems."];
-
   return (
-    <section className="hero" id="top">
-      <div className="hero-grid-lines" aria-hidden="true" />
-      <motion.div
-        className="aurora aurora-one"
-        animate={{
-          x: ["-8%", "8%", "-8%"],
-          y: ["0%", "9%", "0%"],
-          scale: [1, 1.12, 1]
-        }}
-        transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="aurora aurora-two"
-        animate={{
-          x: ["7%", "-6%", "7%"],
-          y: ["5%", "-8%", "5%"],
-          scale: [1.1, 0.94, 1.1]
-        }}
-        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-      />
+    <section className="hero section-shell" id="top">
+      <div className="hello-word" aria-hidden="true">
+        {["H", "E", "L", "L", "O"].map((letter, index) => (
+          <motion.span
+            key={letter + index}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2 + index * 0.06 }}
+          >
+            {letter}
+          </motion.span>
+        ))}
+      </div>
 
-      <div className="hero-copy">
-        <motion.div
-          className="hero-kicker"
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.62 }}
+      <motion.p
+        className="hero-kicker"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.35, duration: 0.55 }}
+      >
+        Welcome to the resume portfolio of
+      </motion.p>
+
+      <div className="hero-layout">
+        <motion.aside
+          className="hero-identity"
+          initial={{ opacity: 0, x: -22 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1.55, duration: 0.6 }}
         >
-          <span className="status-dot" />
-          AVAILABLE FOR 2026 OPPORTUNITIES
-        </motion.div>
-        <h1>
-          {title.map((line, lineIndex) => (
-            <span className="title-line" key={line}>
-              <motion.span
-                initial={{ y: "115%" }}
-                animate={{ y: 0 }}
+          <span>MD</span>
+          <span>SHAD</span>
+        </motion.aside>
+
+        <div className="hero-main">
+          <h1>
+            {[
+              <span key="line-1">
+                Engineer <em>of</em>
+              </span>,
+              <span key="line-2">intelligent hardware</span>,
+              <span key="line-3">& software systems</span>
+            ].map((line, index) => (
+              <span className="title-line" key={index}>
+                <motion.span
+                  initial={{ y: "116%" }}
+                  animate={{ y: 0 }}
+                  transition={{
+                    delay: 1.42 + index * 0.1,
+                    duration: 0.78,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                >
+                  {line}
+                </motion.span>
+              </span>
+            ))}
+          </h1>
+
+          <motion.p
+            className="hero-summary"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.95, duration: 0.62 }}
+          >
+            Electrical & Computer Engineering student at Cornell University
+            focused on embedded systems, computer architecture, FPGA design, AI
+            accelerators, and VLSI.
+          </motion.p>
+
+          <motion.div
+            className="hero-actions"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.06, duration: 0.62 }}
+          >
+            <MagneticLink className="button button-dark" href="#projects">
+              View projects <ArrowDownRight size={17} />
+            </MagneticLink>
+            <MagneticLink className="button button-light" href="#contact">
+              Contact me <ArrowUpRight size={17} />
+            </MagneticLink>
+          </motion.div>
+        </div>
+
+        <motion.aside
+          className="hero-meta"
+          initial={{ opacity: 0, x: 22 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1.62, duration: 0.6 }}
+        >
+          <span>Selected engineering work</span>
+          <span>2024-2026</span>
+        </motion.aside>
+      </div>
+
+      <div className="hero-media">
+        <motion.figure
+          className="media-card portrait-card"
+          data-parallax="0.06"
+          initial={{ opacity: 0, y: 44, rotate: -1 }}
+          animate={{ opacity: 1, y: 0, rotate: -1 }}
+          transition={{ delay: 2.16, duration: 0.8, ease: "easeOut" }}
+        >
+          <img
+            src="/assets/img/profilepic.png"
+            alt="MD Shad, Electrical and Computer Engineering student"
+          />
+          <figcaption>
+            <span>MD Shad</span>
+            <span>Electrical & Computer Engineering</span>
+          </figcaption>
+        </motion.figure>
+
+        <motion.div
+          className="media-card systems-card"
+          data-parallax="-0.04"
+          initial={{ opacity: 0, y: 44, rotate: 1.2 }}
+          animate={{ opacity: 1, y: 0, rotate: 1.2 }}
+          transition={{ delay: 2.26, duration: 0.82, ease: "easeOut" }}
+        >
+          <div className="systems-grid" aria-hidden="true">
+            {Array.from({ length: 24 }).map((_, index) => (
+              <motion.i
+                key={index}
+                animate={{ opacity: [0.25, 1, 0.25] }}
                 transition={{
-                  delay: 1.56 + lineIndex * 0.1,
-                  duration: 0.78,
-                  ease: [0.22, 1, 0.36, 1]
+                  duration: 2.4,
+                  delay: index * 0.05,
+                  repeat: Infinity,
+                  ease: "easeInOut"
                 }}
-                className={lineIndex === 1 ? "accent-word" : ""}
-              >
-                {line}
-              </motion.span>
-            </span>
-          ))}
-        </h1>
-        <motion.p
-          className="hero-subtitle"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.02, duration: 0.65 }}
-        >
-          Electrical &amp; Computer Engineering student at Cornell University
-          focused on embedded systems, computer architecture, FPGA design, AI
-          accelerators, and VLSI.
-        </motion.p>
-        <motion.div
-          className="hero-actions"
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.14, duration: 0.6 }}
-        >
-          <MagneticLink className="button button-primary" href="#projects">
-            View projects <ArrowDown size={17} />
-          </MagneticLink>
-          <MagneticLink className="button button-ghost" href="#contact">
-            Contact me <ArrowUpRight size={17} />
-          </MagneticLink>
+              />
+            ))}
+          </div>
+          <span className="systems-tag">FPGA / RTL / Embedded C</span>
+          <strong>Hardware that is readable, testable, and fast.</strong>
         </motion.div>
       </div>
-      <HeroVisual />
+
       <motion.a
         className="scroll-cue"
         href="#about"
@@ -414,152 +458,272 @@ function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 2.45 }}
       >
-        <span>SCROLL TO EXPLORE</span>
-        <motion.i
-          animate={{ scaleY: [0.3, 1, 0.3], y: [-5, 6, -5] }}
-          transition={{ duration: 1.8, repeat: Infinity }}
-        />
+        Scroll
+        <span />
       </motion.a>
-      <div className="hero-index" aria-hidden="true">
-        <span>PORTFOLIO / 2026</span>
-        <span>ECE · CORNELL</span>
+    </section>
+  );
+}
+
+function About() {
+  return (
+    <section className="focus-section" id="about">
+      <div className="section-shell focus-grid">
+        <div className="section-index reveal">
+          <span>01 / About</span>
+          <span>Systems from transistors to software</span>
+        </div>
+
+        <div className="focus-copy reveal">
+          <p className="small-label">My focus</p>
+          <h2>
+            Building thoughtful engineering systems rooted in architecture,
+            measurement, and clear tradeoffs.
+          </h2>
+          <p>
+            I like work where hardware constraints matter: timing paths, memory
+            movement, interrupt latency, datapath shape, analog behavior, and
+            the software interfaces that make those systems usable.
+          </p>
+        </div>
+
+        <div className="focus-list reveal">
+          <p className="small-label">What I work across</p>
+          <ul>
+            {focusAreas.map((area) => (
+              <li key={area}>{area}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );
 }
 
-function ProjectVisual({ type }) {
-  if (type === "systolic") {
-    return (
-      <div className="visual-stage systolic-visual" aria-hidden="true">
-        <div className="node-matrix">
-          {Array.from({ length: 16 }).map((_, index) => (
-            <motion.i
-              key={index}
-              animate={{ opacity: [0.28, 1, 0.28] }}
-              transition={{
-                duration: 2.2,
-                delay: index * 0.08,
-                repeat: Infinity
-              }}
-            />
-          ))}
-        </div>
-        <span className="visual-code">MAC_ARRAY[3:0][3:0]</span>
-      </div>
-    );
-  }
-
-  if (type === "pipeline") {
-    return (
-      <div className="visual-stage pipeline-visual" aria-hidden="true">
-        <div className="pipeline-track">
-          {["IF", "ID", "EX", "MEM", "WB"].map((stage, index) => (
-            <div key={stage}>
-              <motion.span
-                animate={{ opacity: [0.25, 1, 0.25] }}
-                transition={{
-                  duration: 2.5,
-                  delay: index * 0.24,
-                  repeat: Infinity
-                }}
-              >
-                {stage}
-              </motion.span>
-            </div>
-          ))}
-        </div>
-        <svg viewBox="0 0 560 140" preserveAspectRatio="none">
-          <motion.path
-            d="M10 100 C120 100, 110 24, 220 24 S330 100, 430 42 S500 78, 550 20"
-            fill="none"
-            initial={{ pathLength: 0 }}
-            whileInView={{ pathLength: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.8 }}
-          />
-        </svg>
-      </div>
-    );
-  }
-
-  if (type === "wave") {
-    return (
-      <div className="visual-stage wave-visual" aria-hidden="true">
-        <svg viewBox="0 0 600 180" preserveAspectRatio="none">
-          {[0, 1, 2].map((item) => (
-            <motion.path
-              key={item}
-              d="M0 90 C50 20, 100 160, 150 90 S250 20, 300 90 S400 160, 450 90 S550 20, 600 90"
-              fill="none"
-              initial={{ pathLength: 0, opacity: 0 }}
-              whileInView={{ pathLength: 1, opacity: 1 - item * 0.25 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.6, delay: item * 0.18 }}
-              style={{ transform: `translateY(${item * 18 - 18}px)` }}
-            />
-          ))}
-        </svg>
-        <span className="visual-code">DDS / ADSR / 44.1kHz</span>
-      </div>
-    );
-  }
-
+function QuickFacts() {
   return (
-    <div className="visual-stage radar-visual" aria-hidden="true">
-      <div className="radar-ring ring-a" />
-      <div className="radar-ring ring-b" />
-      <div className="radar-ring ring-c" />
-      <motion.div
-        className="radar-sweep"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 3.2, repeat: Infinity, ease: "linear" }}
-      />
-      <motion.i
-        animate={{ scale: [0.7, 1.5, 0.7], opacity: [0.4, 1, 0.4] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      />
-    </div>
+    <section className="facts-strip" aria-label="Quick facts">
+      {quickFacts.map((fact) => (
+        <article className="fact-card reveal" key={fact.value}>
+          <strong>{fact.value}</strong>
+          <span>{fact.label}</span>
+        </article>
+      ))}
+    </section>
   );
 }
 
-function ProjectCard({ project }) {
+function Metrics() {
   return (
-    <article className="project-card reveal-section">
-      <div className="project-topline">
-        <span>{project.number}</span>
-        <span>{project.eyebrow}</span>
+    <section className="metrics section-shell" aria-label="Portfolio metrics">
+      {metrics.map((metric) => (
+        <article className="metric reveal" key={metric.label}>
+          <strong>
+            <span className="counter-value" data-count={metric.value}>
+              0
+            </span>
+            {metric.suffix}
+          </strong>
+          <p>{metric.label}</p>
+        </article>
+      ))}
+    </section>
+  );
+}
+
+function ProjectRow({ project }) {
+  const Icon = project.icon;
+
+  return (
+    <article className="project-row reveal">
+      <div className="project-number">{project.number}</div>
+      <div className="project-visual" aria-hidden="true">
+        <Icon size={46} strokeWidth={1.3} />
+        <span>{project.signal}</span>
       </div>
-      <ProjectVisual type={project.visual} />
-      <div className="project-content">
-        <div>
-          <h3>{project.title}</h3>
-          <p>{project.description}</p>
-        </div>
-        <div className="project-aside">
-          <div className="project-metric">
-            <strong>{project.metric}</strong>
-            <span>{project.metricLabel}</span>
-          </div>
-          {project.href && (
-            <a
-              className="project-link"
-              href={project.href}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={`View ${project.title} on GitHub`}
-            >
-              <Github size={17} /> Source <ArrowUpRight size={15} />
-            </a>
-          )}
-        </div>
+      <div className="project-body">
+        <div className="project-type">{project.type}</div>
+        <h3>{project.title}</h3>
+        <p>{project.summary}</p>
+        <ul>
+          {project.details.map((detail) => (
+            <li key={detail}>{detail}</li>
+          ))}
+        </ul>
       </div>
-      <div className="tag-row">
-        {project.tags.map((tag) => (
-          <span key={tag}>{tag}</span>
-        ))}
+      <div className="project-side">
+        <div className="tag-list">
+          {project.tools.map((tool) => (
+            <span key={tool}>{tool}</span>
+          ))}
+        </div>
+        {project.href && (
+          <a
+            href={project.href}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`View ${project.title} source`}
+          >
+            Source <ArrowUpRight size={15} />
+          </a>
+        )}
       </div>
     </article>
+  );
+}
+
+function Projects() {
+  return (
+    <section className="projects section-shell" id="projects">
+      <div className="section-index reveal">
+        <span>02 / Work</span>
+        <span>Selected projects</span>
+      </div>
+
+      <div className="projects-heading reveal">
+        <p className="small-label">Readable engineering portfolio</p>
+        <h2>
+          Selected work that shows the architecture, implementation, and result.
+        </h2>
+      </div>
+
+      <div className="project-list">
+        {projects.map((project) => (
+          <ProjectRow key={project.title} project={project} />
+        ))}
+      </div>
+
+      <div className="more-work reveal">
+        <p>
+          Additional work includes analog FET amplifiers, an 8TB e-waste NAS,
+          network power monitoring, and an XGBoost fraud-detection concept.
+        </p>
+        <MagneticLink
+          href="https://github.com/mdshad10"
+          target="_blank"
+          rel="noreferrer"
+          className="text-link"
+        >
+          Explore GitHub <Github size={16} />
+        </MagneticLink>
+      </div>
+    </section>
+  );
+}
+
+function ResumeBlock({ block }) {
+  const Icon = block.icon;
+
+  return (
+    <article className="resume-block reveal">
+      <div className="resume-icon">
+        <Icon size={23} strokeWidth={1.5} />
+      </div>
+      <div>
+        <p className="resume-label">{block.label}</p>
+        <h3>{block.title}</h3>
+        <h4>{block.subtitle}</h4>
+      </div>
+      <span className="resume-meta">{block.meta}</span>
+      <ul>
+        {block.bullets.map((bullet) => (
+          <li key={bullet}>{bullet}</li>
+        ))}
+      </ul>
+    </article>
+  );
+}
+
+function Resume() {
+  return (
+    <section className="resume section-shell" id="resume">
+      <div className="section-index reveal">
+        <span>03 / Resume</span>
+        <span>Education, research, teaching, industry</span>
+      </div>
+
+      <div className="resume-heading reveal">
+        <h2>Resume snapshot</h2>
+        <p>
+          Structured for fast reading: where I study, what I am building, and
+          where I have applied the work.
+        </p>
+      </div>
+
+      <div className="resume-list">
+        {resumeBlocks.map((block) => (
+          <ResumeBlock key={`${block.label}-${block.title}`} block={block} />
+        ))}
+      </div>
+
+      <div className="skills-panel reveal">
+        <div>
+          <p className="small-label">Toolkit</p>
+          <h3>Comfortable moving between RTL, firmware, circuits, and software.</h3>
+        </div>
+        <div className="skills-grid">
+          {skills.map((group) => (
+            <div className="skill-group" key={group.title}>
+              <h4>{group.title}</h4>
+              <div>
+                {group.items.map((item) => (
+                  <span key={item}>{item}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Contact() {
+  return (
+    <section className="contact" id="contact">
+      <div className="section-shell contact-inner reveal">
+        <p className="small-label">See you</p>
+        <h2>Thank you</h2>
+        <p>
+          I am open to engineering internships, research collaborations, and
+          conversations about computer architecture, embedded systems, and AI
+          hardware.
+        </p>
+        <div className="contact-actions">
+          <MagneticLink className="button button-dark" href="mailto:md04shad@gmail.com">
+            <Mail size={18} /> Email me
+          </MagneticLink>
+          <MagneticLink
+            className="button button-light"
+            href="https://github.com/mdshad10"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Github size={18} /> GitHub
+          </MagneticLink>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer>
+      <div>
+        <strong>MD Shad</strong>
+        <span>Electrical & Computer Engineering</span>
+      </div>
+      <div>
+        <span>
+          <MapPin size={14} /> Ithaca, NY
+        </span>
+        <span>Portfolio / {new Date().getFullYear()}</span>
+      </div>
+      <a href="#top">
+        Back to top <ArrowUpRight size={15} />
+      </a>
+    </footer>
   );
 }
 
@@ -569,32 +733,32 @@ function App() {
   const reduceMotion = useReducedMotion();
   const mouseX = useMotionValue(-500);
   const mouseY = useMotionValue(-500);
-  const glowX = useSpring(mouseX, { stiffness: 75, damping: 24 });
-  const glowY = useSpring(mouseY, { stiffness: 75, damping: 24 });
+  const glowX = useSpring(mouseX, { stiffness: 70, damping: 26 });
+  const glowY = useSpring(mouseY, { stiffness: 70, damping: 26 });
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setLoading(false), 1350);
+    const timer = window.setTimeout(() => setLoading(false), 1050);
     return () => window.clearTimeout(timer);
   }, []);
 
   useEffect(() => {
-    const moveGlow = (event) => {
+    const updateGlow = (event) => {
       mouseX.set(event.clientX);
       mouseY.set(event.clientY);
     };
-    window.addEventListener("pointermove", moveGlow, { passive: true });
-    return () => window.removeEventListener("pointermove", moveGlow);
+    window.addEventListener("pointermove", updateGlow, { passive: true });
+    return () => window.removeEventListener("pointermove", updateGlow);
   }, [mouseX, mouseY]);
 
   useLayoutEffect(() => {
     if (reduceMotion) return undefined;
 
     const context = gsap.context(() => {
-      gsap.utils.toArray(".reveal-section").forEach((element) => {
+      gsap.utils.toArray(".reveal").forEach((element) => {
         gsap.from(element, {
-          y: 70,
+          y: 44,
           opacity: 0,
-          duration: 1.05,
+          duration: 0.9,
           ease: "power3.out",
           scrollTrigger: {
             trigger: element,
@@ -605,7 +769,7 @@ function App() {
       });
 
       gsap.utils.toArray("[data-parallax]").forEach((element) => {
-        const amount = Number(element.dataset.parallax || 0.08);
+        const amount = Number(element.dataset.parallax || 0.04);
         gsap.to(element, {
           yPercent: -100 * amount,
           ease: "none",
@@ -623,7 +787,7 @@ function App() {
         const value = { current: 0 };
         gsap.to(value, {
           current: target,
-          duration: 1.8,
+          duration: 1.5,
           ease: "power2.out",
           scrollTrigger: {
             trigger: element,
@@ -634,18 +798,6 @@ function App() {
             element.textContent = Math.round(value.current);
           }
         });
-      });
-
-      gsap.from(".experience-line", {
-        scaleY: 0,
-        transformOrigin: "top",
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".experience-list",
-          start: "top 75%",
-          end: "bottom 75%",
-          scrub: 0.5
-        }
       });
     }, rootRef);
 
@@ -663,200 +815,14 @@ function App() {
       <Header />
       <main>
         <Hero />
-
-        <section className="intro-section section-shell" id="about">
-          <div className="section-index reveal-section">
-            <span>01 / ABOUT</span>
-            <span>SYSTEMS, FROM TRANSISTORS TO SOFTWARE</span>
-          </div>
-          <div className="intro-statement reveal-section">
-            <p className="micro-label">ENGINEERING POINT OF VIEW</p>
-            <h2>
-              I build at the boundary where <em>hardware decisions</em> become
-              real-world capability.
-            </h2>
-          </div>
-          <div className="intro-grid">
-            <p className="reveal-section">
-              I’m MD Shad, an Electrical &amp; Computer Engineering student at
-              Cornell University. My work moves between RTL, firmware, circuits,
-              and machine learning—with a bias toward systems that can be
-              measured, tested, and deployed.
-            </p>
-            <p className="reveal-section">
-              From pipelined RISC-V processors to real-time embedded audio and
-              FPGA AI accelerators, I care about the architecture underneath the
-              interface: how data moves, where time goes, and what the hardware
-              makes possible.
-            </p>
-          </div>
-        </section>
-
-        <section className="metrics-band">
-          <div className="metric-item reveal-section">
-            <strong>
-              <span className="counter-value" data-count="100">0</span>+
-            </strong>
-            <p>Students mentored in digital design</p>
-          </div>
-          <div className="metric-item reveal-section">
-            <strong>
-              <span className="counter-value" data-count="400">0</span>+
-            </strong>
-            <p>Fiber network sites analyzed</p>
-          </div>
-          <div className="metric-item reveal-section">
-            <strong>
-              <span className="counter-value" data-count="5">0</span>
-            </strong>
-            <p>Stages in the TinyRV2 pipeline</p>
-          </div>
-          <div className="metric-item reveal-section">
-            <strong>
-              <span className="counter-value" data-count="16">0</span>
-            </strong>
-            <p>Processing elements in the TPU array</p>
-          </div>
-        </section>
-
-        <section className="projects-section section-shell" id="projects">
-          <div className="section-heading reveal-section">
-            <div>
-              <span className="micro-label">02 / SELECTED WORK</span>
-              <h2>Engineered to<br />move data.</h2>
-            </div>
-            <p>
-              Selected work across processor architecture, AI acceleration,
-              embedded systems, and real-time sensing.
-            </p>
-          </div>
-          <div className="projects-grid">
-            {projects.map((project) => (
-              <ProjectCard key={project.title} project={project} />
-            ))}
-          </div>
-          <div className="more-work reveal-section">
-            <p>
-              Also built: analog FET amplifiers, an 8TB e-waste NAS, an XGBoost
-              fraud-detection concept, and network power-monitoring systems.
-            </p>
-            <MagneticLink
-              href="https://github.com/mdshad10"
-              target="_blank"
-              rel="noreferrer"
-              className="text-link"
-            >
-              Explore GitHub <ArrowUpRight size={16} />
-            </MagneticLink>
-          </div>
-        </section>
-
-        <section className="capabilities-section section-shell">
-          <div className="section-index reveal-section">
-            <span>03 / CAPABILITIES</span>
-            <span>WHAT I WORK ACROSS</span>
-          </div>
-          <div className="capabilities-grid">
-            {capabilities.map(({ icon: Icon, title, copy, tools }, index) => (
-              <motion.article
-                className="capability-card reveal-section"
-                key={title}
-                whileHover={reduceMotion ? {} : { y: -8 }}
-                transition={{ type: "spring", stiffness: 260, damping: 20 }}
-              >
-                <div className="capability-card-top">
-                  <Icon size={25} strokeWidth={1.5} />
-                  <span>0{index + 1}</span>
-                </div>
-                <h3>{title}</h3>
-                <p>{copy}</p>
-                <small>{tools}</small>
-              </motion.article>
-            ))}
-          </div>
-        </section>
-
-        <section className="experience-section section-shell" id="experience">
-          <div className="experience-heading reveal-section">
-            <span className="micro-label">04 / EXPERIENCE</span>
-            <h2>Learning by<br />building.</h2>
-            <p>
-              Research, teaching, industry, and project-team work—all connected
-              by a curiosity for how complex systems behave.
-            </p>
-          </div>
-          <div className="experience-list">
-            <div className="experience-line" aria-hidden="true" />
-            {experience.map((item) => (
-              <article className="experience-item reveal-section" key={`${item.company}-${item.role}`}>
-                <i aria-hidden="true" />
-                <span className="experience-date">{item.date}</span>
-                <div>
-                  <h3>{item.role}</h3>
-                  <h4>{item.company}</h4>
-                </div>
-                <p>{item.detail}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="contact-section" id="contact">
-          <motion.div
-            className="contact-orb"
-            aria-hidden="true"
-            animate={{
-              scale: [0.9, 1.12, 0.9],
-              opacity: [0.35, 0.6, 0.35],
-              rotate: [0, 90, 0]
-            }}
-            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <div className="contact-inner section-shell reveal-section">
-            <span className="micro-label">05 / START A CONVERSATION</span>
-            <h2>Let’s build something<br /><em>that computes.</em></h2>
-            <p>
-              I’m open to engineering internships, research collaborations, and
-              conversations about hardware, architecture, and intelligent systems.
-            </p>
-            <MagneticLink
-              className="contact-button"
-              href="mailto:md04shad@gmail.com"
-            >
-              <Mail size={20} />
-              md04shad@gmail.com
-              <ArrowUpRight size={19} />
-            </MagneticLink>
-          </div>
-        </section>
+        <About />
+        <QuickFacts />
+        <Metrics />
+        <Projects />
+        <Resume />
+        <Contact />
       </main>
-
-      <footer>
-        <div className="footer-brand">
-          <strong>MD SHAD</strong>
-          <span>Electrical &amp; Computer Engineer</span>
-        </div>
-        <div className="footer-meta">
-          <span>ITHACA, NY</span>
-          <span>© {new Date().getFullYear()}</span>
-        </div>
-        <div className="footer-links">
-          <a href="mailto:md04shad@gmail.com" aria-label="Email MD Shad">
-            <Mail size={17} /> Email
-          </a>
-          <a
-            href="https://github.com/mdshad10"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="MD Shad on GitHub"
-          >
-            <Github size={17} /> GitHub
-          </a>
-          <a href="#top">
-            Back to top <ArrowUpRight size={16} />
-          </a>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
