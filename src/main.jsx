@@ -287,10 +287,32 @@ function Hero() {
     if (currentMedia.type !== "image") return undefined;
     const timer = window.setTimeout(
       () => setActiveMedia((activeMedia + 1) % heroMedia.length),
-      6500
+      7200
     );
     return () => window.clearTimeout(timer);
   }, [activeMedia, currentMedia.type]);
+
+  useEffect(() => {
+    const nextMedia = heroMedia[(activeMedia + 1) % heroMedia.length];
+
+    if (nextMedia.type === "image") {
+      const image = new Image();
+      image.src = nextMedia.src;
+      return undefined;
+    }
+
+    const video = document.createElement("video");
+    video.preload = "auto";
+    video.muted = true;
+    video.playsInline = true;
+    video.src = nextMedia.src;
+    video.load();
+
+    return () => {
+      video.removeAttribute("src");
+      video.load();
+    };
+  }, [activeMedia]);
 
   const advanceMedia = () => {
     setActiveMedia((index) => (index + 1) % heroMedia.length);
@@ -298,7 +320,7 @@ function Hero() {
 
   return (
     <section className="hero" id="top">
-      <AnimatePresence mode="sync">
+      <AnimatePresence mode="sync" initial={false}>
         {currentMedia.type === "video" ? (
           <motion.video
             className={`hero-background hero-media-${currentMedia.format}`}
@@ -307,12 +329,12 @@ function Hero() {
             autoPlay
             muted
             playsInline
-            preload="metadata"
+            preload="auto"
             onEnded={advanceMedia}
-            initial={{ opacity: 0, scale: 1.035 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, scale: 1.035, filter: "blur(10px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, scale: 1.015, filter: "blur(7px)" }}
+            transition={{ duration: 1.35, ease: [0.76, 0, 0.24, 1] }}
           />
         ) : (
           <motion.img
@@ -320,10 +342,10 @@ function Hero() {
             key={currentMedia.src}
             src={currentMedia.src}
             alt={activeMedia === 0 ? "MD Shad collaborating on a desktop computer hardware build" : "Embedded systems development board"}
-            initial={{ opacity: 0, scale: 1.055 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, scale: 1.045, filter: "blur(10px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, scale: 1.015, filter: "blur(7px)" }}
+            transition={{ duration: 1.35, ease: [0.76, 0, 0.24, 1] }}
           />
         )}
       </AnimatePresence>

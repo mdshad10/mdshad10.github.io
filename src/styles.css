@@ -2829,17 +2829,18 @@ video.hero-background {
 .hero-martin-content {
   position: relative;
   z-index: 2;
-  display: flex;
+  display: block;
   width: min(100%, var(--max-width));
   min-height: 100svh;
-  flex-direction: column;
-  justify-content: flex-end;
   margin-inline: auto;
-  padding: 150px var(--page-pad) clamp(38px, 5vw, 72px);
+  padding: 0 var(--page-pad);
 }
 
 .hero-hello {
-  margin: 0 0 clamp(20px, 2.5vw, 34px);
+  position: absolute;
+  top: clamp(165px, 17vh, 210px);
+  left: var(--page-pad);
+  margin: 0;
   color: rgba(255, 255, 255, 0.82);
   font-size: clamp(1.35rem, 2.8vw, 2.8rem);
   font-weight: 600;
@@ -2848,7 +2849,11 @@ video.hero-background {
 }
 
 .hero .hero-martin-content h1 {
-  width: 100%;
+  position: absolute;
+  top: clamp(215px, 22vh, 270px);
+  right: var(--page-pad);
+  left: var(--page-pad);
+  width: auto;
   margin: 0;
   color: #fff;
   font-size: clamp(6.8rem, 13.4vw, 13.2rem);
@@ -2868,11 +2873,15 @@ video.hero-background {
 }
 
 .hero-martin-meta {
+  position: absolute;
+  right: var(--page-pad);
+  bottom: clamp(38px, 5vw, 72px);
+  left: var(--page-pad);
   display: flex;
   justify-content: space-between;
   gap: 34px;
   align-items: end;
-  margin-top: clamp(20px, 3vw, 42px);
+  margin-top: 0;
 }
 
 .hero-martin-meta > div {
@@ -2977,15 +2986,20 @@ video.hero-background {
   }
 
   .hero-martin-content {
-    padding: 112px 18px 34px;
+    padding: 0 18px;
   }
 
   .hero-hello {
-    margin-bottom: 18px;
+    top: 128px;
+    left: 18px;
+    margin: 0;
     font-size: 1.25rem;
   }
 
   .hero .hero-martin-content h1 {
+    top: 166px;
+    right: 18px;
+    left: 18px;
     max-width: 360px;
     font-size: clamp(5rem, 28vw, 7.2rem);
     line-height: 0.75;
@@ -2996,8 +3010,11 @@ video.hero-background {
   }
 
   .hero-martin-meta {
+    right: 18px;
+    bottom: 34px;
+    left: 18px;
     align-items: end;
-    margin-top: 20px;
+    margin-top: 0;
   }
 
   .hero-martin-meta .hero-role {
