@@ -27,7 +27,11 @@ import {
   Zap
 } from "lucide-react";
 import heroImage from "../IMG_0005.JPG";
+import boardImage from "../unnamed.jpg";
 import profileImage from "../assets/img/profilepic.png";
+import fpgaDemo from "../assets/media/fpga-demo.mov";
+import robotDemo from "../assets/media/robot-demo.mov";
+import simulationDemo from "../assets/media/simulation-demo.mov";
 import "./styles.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -38,6 +42,14 @@ const navLinks = [
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" }
+];
+
+const heroMedia = [
+  { type: "image", src: heroImage, label: "Systems Lab", format: "landscape" },
+  { type: "video", src: simulationDemo, label: "Architecture Simulation", format: "landscape" },
+  { type: "image", src: boardImage, label: "Embedded Hardware", format: "portrait" },
+  { type: "video", src: fpgaDemo, label: "FPGA Prototype", format: "portrait" },
+  { type: "video", src: robotDemo, label: "Robotic System", format: "portrait" }
 ];
 
 const projects = [
@@ -213,31 +225,6 @@ function MagneticLink({ children, className = "", ...props }) {
   );
 }
 
-function Loader({ visible }) {
-  return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          className="loader"
-          initial={{ opacity: 1 }}
-          exit={{ y: "-100%", transition: { duration: 0.75, ease: [0.76, 0, 0.24, 1] } }}
-        >
-          <motion.div
-            className="loader-mark"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <span>MD.</span>
-            <i />
-            <small>Portfolio / 2026</small>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
-
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -293,16 +280,53 @@ function Header() {
 }
 
 function Hero() {
+  const [activeMedia, setActiveMedia] = useState(0);
+  const currentMedia = heroMedia[activeMedia];
+
+  useEffect(() => {
+    if (currentMedia.type !== "image") return undefined;
+    const timer = window.setTimeout(
+      () => setActiveMedia((activeMedia + 1) % heroMedia.length),
+      6500
+    );
+    return () => window.clearTimeout(timer);
+  }, [activeMedia, currentMedia.type]);
+
+  const advanceMedia = () => {
+    setActiveMedia((index) => (index + 1) % heroMedia.length);
+  };
+
   return (
     <section className="hero" id="top">
-      <motion.img
-        className="hero-background"
-        src={heroImage}
-        alt="MD Shad collaborating on a desktop computer hardware build"
-        initial={{ opacity: 0, scale: 1.08 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.45, duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-      />
+      <AnimatePresence mode="sync">
+        {currentMedia.type === "video" ? (
+          <motion.video
+            className={`hero-background hero-media-${currentMedia.format}`}
+            key={currentMedia.src}
+            src={currentMedia.src}
+            autoPlay
+            muted
+            playsInline
+            preload="metadata"
+            onEnded={advanceMedia}
+            initial={{ opacity: 0, scale: 1.035 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          />
+        ) : (
+          <motion.img
+            className={`hero-background hero-media-${currentMedia.format}`}
+            key={currentMedia.src}
+            src={currentMedia.src}
+            alt={activeMedia === 0 ? "MD Shad collaborating on a desktop computer hardware build" : "Embedded systems development board"}
+            initial={{ opacity: 0, scale: 1.055 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+          />
+        )}
+      </AnimatePresence>
       <div className="hero-image-overlay" aria-hidden="true" />
 
       <div className="hero-martin-content">
@@ -334,8 +358,7 @@ function Hero() {
           transition={{ delay: 1.55, duration: 0.65 }}
         >
           <div>
-            <span>Based in Ithaca</span>
-            <span>New York, USA</span>
+            <span>Based in New York, USA</span>
           </div>
           <div className="hero-role">
             <span>Electrical &amp;</span>
@@ -343,15 +366,28 @@ function Hero() {
           </div>
         </motion.div>
 
-        <motion.a
-          className="hero-scroll"
-          href="#about"
+        <motion.div
+          className="hero-media-controls"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.85, duration: 0.6 }}
         >
-          Scroll to explore <ArrowDown size={15} />
-        </motion.a>
+          <span>{currentMedia.label}</span>
+          <div>
+            {heroMedia.map((media, index) => (
+              <button
+                type="button"
+                className={activeMedia === index ? "active" : ""}
+                onClick={() => setActiveMedia(index)}
+                aria-label={`Show ${media.label}`}
+                aria-pressed={activeMedia === index}
+                key={media.label}
+              >
+                {String(index + 1).padStart(2, "0")}
+              </button>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -692,18 +728,12 @@ function Contact() {
 }
 
 function App() {
-  const [loading, setLoading] = useState(true);
   const rootRef = useRef(null);
   const reduceMotion = useReducedMotion();
   const cursorX = useMotionValue(-400);
   const cursorY = useMotionValue(-400);
   const smoothX = useSpring(cursorX, { stiffness: 90, damping: 26 });
   const smoothY = useSpring(cursorY, { stiffness: 90, damping: 26 });
-
-  useEffect(() => {
-    const timer = window.setTimeout(() => setLoading(false), 650);
-    return () => window.clearTimeout(timer);
-  }, []);
 
   useEffect(() => {
     const move = (event) => { cursorX.set(event.clientX); cursorY.set(event.clientY); };
@@ -740,7 +770,6 @@ function App() {
 
   return (
     <div ref={rootRef}>
-      <Loader visible={loading} />
       <motion.div className="cursor-glow" style={{ x: smoothX, y: smoothY }} aria-hidden="true" />
       <Header />
       <main>
