@@ -27,14 +27,16 @@ import {
   Zap
 } from "lucide-react";
 import heroImage from "../IMG_0005.JPG";
+import profileImage from "../assets/img/profilepic.png";
 import "./styles.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = [
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
-  { label: "Skills", href: "#skills" },
   { label: "Contact", href: "#contact" }
 ];
 
@@ -145,24 +147,39 @@ const experience = [
   }
 ];
 
-const skillGroups = [
+const skillCategories = [
   {
-    number: "01",
-    title: "Digital Hardware",
-    detail: "Architecture, RTL, and implementation",
-    skills: ["SystemVerilog", "VHDL", "FPGA", "RISC-V", "Pipelining", "Verification"]
+    label: "Hardware",
+    items: [
+      { name: "SystemVerilog", level: "Advanced", score: 92 },
+      { name: "VHDL", level: "Advanced", score: 88 },
+      { name: "FPGA Design", level: "Advanced", score: 90 },
+      { name: "RISC-V", level: "Advanced", score: 86 },
+      { name: "VLSI", level: "Proficient", score: 78 },
+      { name: "Verification", level: "Advanced", score: 84 }
+    ]
   },
   {
-    number: "02",
-    title: "Embedded Systems",
-    detail: "Firmware close to the metal",
-    skills: ["C / C++", "RP2040", "STM32", "Interrupts", "SPI / I²C", "Real-time DSP"]
+    label: "Firmware",
+    items: [
+      { name: "C / C++", level: "Advanced", score: 90 },
+      { name: "RP2040", level: "Advanced", score: 88 },
+      { name: "STM32", level: "Proficient", score: 78 },
+      { name: "Interrupts", level: "Advanced", score: 90 },
+      { name: "SPI / I²C", level: "Advanced", score: 86 },
+      { name: "Real-time DSP", level: "Proficient", score: 80 }
+    ]
   },
   {
-    number: "03",
-    title: "Circuits & Software",
-    detail: "Tools across the stack",
-    skills: ["VLSI", "SPICE", "Python", "MATLAB", "React", "Git"]
+    label: "Software",
+    items: [
+      { name: "Python", level: "Advanced", score: 90 },
+      { name: "MATLAB", level: "Advanced", score: 84 },
+      { name: "React", level: "Proficient", score: 76 },
+      { name: "Git", level: "Advanced", score: 88 },
+      { name: "Data Analysis", level: "Advanced", score: 84 },
+      { name: "Testing", level: "Proficient", score: 80 }
+    ]
   }
 ];
 
@@ -362,38 +379,60 @@ function Hero() {
 }
 
 function Intro() {
-  const metrics = [
-    ["100+", "Students mentored"],
-    ["400+", "Fiber sites analyzed"],
-    ["5", "Pipeline stages"],
-    ["16", "TPU processing elements"]
+  const profileFacts = [
+    ["01 · Education", "Cornell University ECE"],
+    ["02 · Focus", "Embedded systems + architecture"],
+    ["03 · Status", "Open to engineering roles"]
   ];
 
   return (
     <section className="intro section-shell" id="about">
-      <div className="section-top reveal">
-        <span className="eyebrow">01 / Profile</span>
-        <span className="eyebrow">Hardware × Software</span>
-      </div>
-      <div className="intro-grid">
-        <div className="intro-heading reveal">
-          <span className="rotating-mark"><Cpu size={28} /></span>
-          <h2>I engineer at the boundary between <em>architecture</em> and implementation.</h2>
+      <div className="about-layout">
+        <motion.figure className="about-photo reveal" whileHover={{ y: -6 }} transition={{ duration: 0.3 }}>
+          <div className="about-photo-status"><i /> On the grid</div>
+          <img src={profileImage} alt="Portrait of MD Shad" />
+          <figcaption>
+            <span>Electrical & Computer Engineer</span>
+            <strong>MD Shad</strong>
+          </figcaption>
+        </motion.figure>
+
+        <div className="about-content">
+          <div className="section-heading reveal">
+            <div className="section-kicker"><span>01</span><i /><span>About</span></div>
+            <h2>About <em>Me</em></h2>
+            <h3>Electrical &amp; Computer Engineering student and systems builder</h3>
+          </div>
+
+          <div className="about-facts">
+            {profileFacts.map(([label, value]) => (
+              <article className="about-fact reveal" key={label}>
+                <span>{label}</span>
+                <strong>{value}</strong>
+              </article>
+            ))}
+          </div>
+
+          <div className="about-copy reveal">
+            <p>
+              I build systems where hardware constraints matter: processor pipelines,
+              memory movement, interrupt latency, signal quality, and the software
+              interfaces that connect everything together.
+            </p>
+            <p>
+              At Cornell, my work spans FPGA-based AI acceleration, computer
+              architecture, embedded firmware, VLSI, research, and teaching. I value
+              clear tradeoffs, measurable performance, and implementations that other
+              engineers can understand and extend.
+            </p>
+          </div>
+
+          <div className="about-metrics reveal">
+            <div><strong>100+</strong><span>Students mentored</span></div>
+            <div><strong>400+</strong><span>Fiber sites analyzed</span></div>
+            <div><strong>16</strong><span>TPU processing elements</span></div>
+          </div>
         </div>
-        <div className="intro-copy reveal">
-          <p>
-            My work spans computer architecture, embedded systems, FPGA design, AI accelerators, and VLSI. I care about measurable performance, clear interfaces, and hardware that is as readable as it is fast.
-          </p>
-          <a className="text-link" href="#experience">Read my résumé <ArrowDown size={16} /></a>
-        </div>
-      </div>
-      <div className="metric-grid">
-        {metrics.map(([value, label]) => (
-          <article className="metric-card reveal" key={label}>
-            <strong>{value}</strong>
-            <span>{label}</span>
-          </article>
-        ))}
       </div>
     </section>
   );
@@ -468,11 +507,6 @@ function TiltCard({ project, index }) {
       transition={{ type: "spring", stiffness: 180, damping: 20 }}
     >
       <motion.div className="card-glow" style={{ left: glowX, top: glowY }} />
-      <div className="project-card-top">
-        <span>{project.number}</span>
-        <span>{project.category}</span>
-        <span>{project.period}</span>
-      </div>
       <motion.div
         className="project-graphic"
         animate={reduceMotion ? undefined : { y: [0, -7, 0], rotateZ: [0, index % 2 ? -0.7 : 0.7, 0] }}
@@ -480,26 +514,25 @@ function TiltCard({ project, index }) {
       >
         <ProjectGraphic type={project.visual} />
       </motion.div>
+      <div className="project-case-number">{project.number}</div>
+      <div className="project-case-label"><i /> Case · {project.category}</div>
       <div className="project-card-copy">
-        <div>
-          <h3>{project.title}</h3>
-          <p>{project.summary}</p>
-        </div>
-        <div className="project-impact">
-          <span className="eyebrow">Key result</span>
-          <strong>{project.impact}</strong>
-        </div>
+        <h3>{project.title}</h3>
+        <p>{project.summary}</p>
       </div>
-      <ul className="project-bullets">
-        {project.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
-      </ul>
+      <div className="project-result">
+        <span>Key result</span><strong>{project.impact}</strong>
+      </div>
+      <div className="tags project-tags">
+        {project.tools.slice(0, 3).map((tool) => <span key={tool}>{tool}</span>)}
+      </div>
       <div className="project-card-bottom">
-        <div className="tags">{project.tools.map((tool) => <span key={tool}>{tool}</span>)}</div>
+        <span>View case <ArrowUpRight size={14} /></span>
         {project.href ? (
           <a href={project.href} target="_blank" rel="noreferrer" aria-label={`Open ${project.title} on GitHub`}>
             <ArrowUpRight size={20} />
           </a>
-        ) : <span className="card-status">Selected work</span>}
+        ) : <Github size={19} aria-hidden="true" />}
       </div>
     </motion.article>
   );
@@ -509,15 +542,13 @@ function Projects() {
   return (
     <section className="projects" id="projects">
       <div className="section-shell">
-        <div className="section-top section-top-light reveal">
-          <span className="eyebrow">02 / Selected projects</span>
-          <span className="eyebrow">Move your cursor over the work</span>
-        </div>
-        <div className="projects-heading reveal">
-          <h2>Engineering work,<br /><em>in motion.</em></h2>
-          <p>
-            Four systems that show how I reason about datapaths, timing, firmware, signal processing, and the interfaces between them.
-          </p>
+        <div className="module-heading reveal">
+          <div className="section-kicker"><span>03</span><i /><span>Projects</span></div>
+          <h2>My <em>Projects</em></h2>
+          <p>Selected engineering work demonstrating practical systems and well-architected implementations.</p>
+          <div className="filter-pills" aria-label="Project categories">
+            <span className="active">All</span><span>Hardware</span><span>Embedded</span>
+          </div>
         </div>
         <div className="project-grid">
           {projects.map((project, index) => <TiltCard project={project} index={index} key={project.title} />)}
@@ -536,27 +567,29 @@ function Projects() {
 function Experience() {
   return (
     <section className="experience section-shell" id="experience">
-      <div className="section-top reveal">
-        <span className="eyebrow">03 / Experience</span>
-        <span className="eyebrow">Résumé snapshot</span>
+      <div className="module-heading reveal">
+        <div className="section-kicker"><span>04</span><i /><span>Experience</span></div>
+        <h2>Professional <em>Experience</em></h2>
+        <p>Research, teaching, and industry experience applying engineering theory to real systems.</p>
       </div>
-      <div className="experience-heading reveal">
-        <h2>Experience that connects theory with <em>real systems.</em></h2>
-        <p>Research, teaching, and industry work—organized for a fast, recruiter-friendly read.</p>
-      </div>
-      <div className="experience-list">
+      <div className="experience-timeline">
         {experience.map((item, index) => {
           const Icon = item.icon;
           return (
-            <article className="experience-row reveal" key={item.place}>
-              <span className="experience-number">0{index + 1}</span>
-              <div className="experience-type"><Icon size={20} /><span>{item.type}</span></div>
-              <div className="experience-position">
-                <h3>{item.place}</h3>
-                <p>{item.role}</p>
+            <article className="timeline-item reveal" key={item.place}>
+              <span className="timeline-dot" />
+              <div className="timeline-meta">
+                <span>0{index + 1}</span><span>{item.date}</span><span>{item.location}</span>
               </div>
-              <div className="experience-meta"><span>{item.date}</span><span>{item.location}</span></div>
-              <ul>{item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
+              <div className="timeline-card">
+                <div className="timeline-icon"><Icon size={22} /></div>
+                <div>
+                  <p>{item.type}</p>
+                  <h3>{item.role}</h3>
+                  <h4>@ {item.place}</h4>
+                  <ul>{item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
+                </div>
+              </div>
             </article>
           );
         })}
@@ -575,46 +608,100 @@ function Experience() {
 }
 
 function Skills() {
+  const [activeCategory, setActiveCategory] = useState(0);
+  const activeSkills = skillCategories[activeCategory].items;
+
   return (
     <section className="skills" id="skills">
       <div className="section-shell skills-inner">
-        <div className="section-top section-top-light reveal">
-          <span className="eyebrow">04 / Technical toolkit</span>
-          <span className="eyebrow">From RTL to application code</span>
+        <div className="module-heading reveal">
+          <div className="section-kicker"><span>02</span><i /><span>Skills</span></div>
+          <h2>Technical <em>Skills</em></h2>
+          <p>Technologies and tools I use to move from architecture to working systems.</p>
         </div>
-        <div className="skills-layout">
-          <div className="skills-title reveal">
-            <h2>What I build <em>with.</em></h2>
-            <div className="skills-orb" aria-hidden="true"><Cpu size={46} /></div>
-          </div>
-          <div className="skill-list">
-            {skillGroups.map((group) => (
-              <article className="skill-row reveal" key={group.title}>
-                <span>{group.number}</span>
-                <div><h3>{group.title}</h3><p>{group.detail}</p></div>
-                <div className="skill-tags">{group.skills.map((skill) => <span key={skill}>{skill}</span>)}</div>
+
+        <div className="skill-tabs reveal" role="tablist" aria-label="Skill categories">
+          {skillCategories.map((category, index) => (
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeCategory === index}
+              className={activeCategory === index ? "active" : ""}
+              onClick={() => setActiveCategory(index)}
+              key={category.label}
+            >
+              {category.label}
+            </button>
+          ))}
+        </div>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            className="skill-card-grid"
+            key={skillCategories[activeCategory].label}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
+            {activeSkills.map((skill, index) => (
+              <article className="skill-card" key={skill.name}>
+                <div className="skill-monogram">{skill.name.replace(/[^A-Za-z]/g, "").slice(0, 2).toUpperCase()}</div>
+                <div className="skill-card-body">
+                  <div><h3>{skill.name}</h3><span>0{index + 1}</span></div>
+                  <div className="skill-meter"><i style={{ width: `${skill.score}%` }} /></div>
+                  <p>{skill.level}</p>
+                </div>
               </article>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
 }
 
 function Contact() {
+  const contactCards = [
+    { label: "Email", value: "md04shad@gmail.com", icon: Mail, href: "mailto:md04shad@gmail.com" },
+    { label: "GitHub", value: "github.com/mdshad10", icon: Github, href: "https://github.com/mdshad10" },
+    { label: "Availability", value: "Open to engineering roles", icon: BriefcaseBusiness }
+  ];
+
   return (
     <section className="contact section-shell" id="contact">
-      <div className="contact-top reveal">
-        <span className="eyebrow">05 / Contact</span>
-        <div className="availability"><i /> Open to opportunities</div>
+      <div className="module-heading reveal">
+        <div className="section-kicker"><span>05</span><i /><span>Get in touch</span></div>
+        <h2>Get In <em>Touch</em></h2>
+        <p>Let’s talk about embedded systems, computer architecture, FPGA design, or your next engineering project.</p>
       </div>
-      <div className="contact-main reveal">
-        <p>Have an ambitious hardware problem?</p>
-        <h2>Let’s build<br /><em>something real.</em></h2>
-        <MagneticLink className="contact-button" href="mailto:md04shad@gmail.com" aria-label="Email MD Shad">
-          <Mail size={28} /><span>Start a conversation</span><ArrowUpRight size={22} />
-        </MagneticLink>
+
+      <div className="contact-layout">
+        <div className="contact-card-list">
+          {contactCards.map((card, index) => {
+            const Icon = card.icon;
+            const content = (
+              <article className="contact-info-card reveal">
+                <div className="contact-info-icon"><Icon size={22} /></div>
+                <span>0{index + 1}</span>
+                <p>{card.label}</p>
+                <strong>{card.value}</strong>
+              </article>
+            );
+            return card.href ? <a href={card.href} target={card.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" key={card.label}>{content}</a> : <div key={card.label}>{content}</div>;
+          })}
+        </div>
+
+        <div className="contact-message reveal">
+          <span className="eyebrow">A direct line</span>
+          <h3>Have an ambitious hardware problem?</h3>
+          <p>
+            I’m interested in engineering internships, research collaborations, and teams working on systems where hardware and software meet.
+          </p>
+          <MagneticLink className="contact-button" href="mailto:md04shad@gmail.com" aria-label="Email MD Shad">
+            <Mail size={24} /><span>Send me an email</span><ArrowUpRight size={20} />
+          </MagneticLink>
+        </div>
       </div>
       <footer>
         <div><strong>MD Shad</strong><span>Electrical & Computer Engineer</span></div>
@@ -680,9 +767,9 @@ function App() {
       <main>
         <Hero />
         <Intro />
+        <Skills />
         <Projects />
         <Experience />
-        <Skills />
         <Contact />
       </main>
     </div>
