@@ -252,12 +252,12 @@ function Header() {
         <a className="wordmark" href="#top" aria-label="MD Shad home">
           MD<span>·</span>SHAD
         </a>
-        <p className="header-role">Electrical & Computer Engineer</p>
-        <nav className="desktop-nav" aria-label="Primary navigation">
-          {navLinks.map((link) => (
-            <a href={link.href} key={link.href}>{link.label}</a>
-          ))}
-        </nav>
+        <p className="header-year">@2026</p>
+        <div className="header-focus" aria-label="Engineering focus areas">
+          <span>Embedded Systems</span>
+          <span>Computer Architecture</span>
+          <span>FPGA / VLSI</span>
+        </div>
         <button
           className="menu-toggle"
           type="button"
@@ -265,7 +265,8 @@ function Header() {
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           onClick={() => setMenuOpen((open) => !open)}
         >
-          {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          <span>{menuOpen ? "Close" : "Menu"}</span>
+          {menuOpen ? <X size={19} /> : <Menu size={19} />}
         </button>
       </motion.header>
 
@@ -293,87 +294,65 @@ function Header() {
 
 function Hero() {
   return (
-    <section className="hero section-shell" id="top">
-      <div className="hero-intro">
-        <motion.div
-          className="hero-section-label"
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.55 }}
-        >
-          <span>00</span><i /><span>Introduction</span>
-        </motion.div>
+    <section className="hero" id="top">
+      <motion.img
+        className="hero-background"
+        src={heroImage}
+        alt="MD Shad collaborating on a desktop computer hardware build"
+        initial={{ opacity: 0, scale: 1.08 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.45, duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+      />
+      <div className="hero-image-overlay" aria-hidden="true" />
 
-        <motion.div
-          className="availability-pill"
-          initial={{ opacity: 0, y: 12 }}
+      <div className="hero-martin-content">
+        <motion.p
+          className="hero-hello"
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.55 }}
+          transition={{ delay: 1, duration: 0.6 }}
         >
-          <i /> Available for engineering opportunities
-        </motion.div>
+          Hey there, I’m
+        </motion.p>
 
         <h1 aria-label="MD Shad">
           <span className="hero-name-line">
             <motion.span
-              initial={{ y: "110%" }}
+              initial={{ y: "112%" }}
               animate={{ y: 0 }}
-              transition={{ delay: 1.05, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: 1.05, duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
             >
               MD SHAD
             </motion.span>
           </span>
         </h1>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.35, duration: 0.65 }}
-        >
-          Electrical &amp; Computer Engineer
-        </motion.h2>
-
-        <motion.p
-          className="hero-summary"
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.48, duration: 0.65 }}
-        >
-          Cornell ECE student designing embedded systems, computer architectures,
-          FPGA accelerators, and the software that makes them useful.
-        </motion.p>
-
         <motion.div
-          className="hero-actions"
+          className="hero-martin-meta"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.6, duration: 0.65 }}
+          transition={{ delay: 1.55, duration: 0.65 }}
         >
-          <MagneticLink className="round-link round-link-accent" href="#experience">
-            View résumé <ArrowDown size={18} />
-          </MagneticLink>
-          <MagneticLink className="round-link round-link-outline" href="#projects">
-            View projects <ArrowDown size={18} />
-          </MagneticLink>
+          <div>
+            <span>Based in Ithaca</span>
+            <span>New York, USA</span>
+          </div>
+          <div className="hero-role">
+            <span>Electrical &amp;</span>
+            <span>Computer Engineer</span>
+          </div>
         </motion.div>
-      </div>
 
-      <motion.figure
-        className="hero-photo"
-        initial={{ opacity: 0, clipPath: "inset(20% 0 0 0)", y: 44 }}
-        animate={{ opacity: 1, clipPath: "inset(0% 0 0 0)", y: 0 }}
-        transition={{ delay: 1.45, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <img src={heroImage} alt="MD Shad collaborating on a desktop computer hardware build" />
-        <figcaption>
-          <span>Hands-on systems engineering</span>
-          <span>Cornell University · Ithaca, NY</span>
-        </figcaption>
-        <div className="hero-photo-note">
-          <CircuitBoard size={22} />
-          <span>Hardware is where architecture becomes real.</span>
-        </div>
-      </motion.figure>
+        <motion.a
+          className="hero-scroll"
+          href="#about"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.85, duration: 0.6 }}
+        >
+          Scroll to explore <ArrowDown size={15} />
+        </motion.a>
+      </div>
     </section>
   );
 }
