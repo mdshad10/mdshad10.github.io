@@ -98,6 +98,7 @@ ul {
 #projects,
 #experience,
 #skills,
+#coursework,
 #contact {
   scroll-margin-top: 96px;
 }
@@ -2113,30 +2114,6 @@ footer > a {
   font-size: 0.57rem;
 }
 
-.skill-meter {
-  height: 4px;
-  overflow: hidden;
-  margin-top: 13px;
-  border-radius: 99px;
-  background: #e7e8ed;
-}
-
-.skill-meter i {
-  display: block;
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, var(--accent), #8b71ed, var(--gold));
-}
-
-.skill-card p {
-  margin-top: 9px;
-  color: var(--muted);
-  font-family: "DM Mono", monospace;
-  font-size: 0.58rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 .projects {
   padding: clamp(110px, 12vw, 188px) 0;
   background: var(--paper);
@@ -2704,7 +2681,7 @@ footer > a {
   width: 100%;
   max-width: var(--max-width);
   min-height: 118px;
-  grid-template-columns: 0.68fr 0.42fr 0.8fr auto;
+  grid-template-columns: 0.68fr 0.42fr auto;
   gap: clamp(20px, 3vw, 48px);
   border: 0;
   border-radius: 0;
@@ -2731,15 +2708,6 @@ footer > a {
   font-weight: 750;
 }
 
-.header-focus {
-  display: grid;
-  justify-self: end;
-  gap: 7px;
-  font-size: 0.73rem;
-  font-weight: 700;
-  line-height: 1.15;
-}
-
 .site-header .menu-toggle {
   display: inline-flex;
   width: auto;
@@ -2747,6 +2715,7 @@ footer > a {
   gap: 9px;
   align-items: center;
   justify-content: flex-end;
+  justify-self: end;
   border: 0;
   border-radius: 0;
   padding: 8px 0 8px 14px;
@@ -2760,8 +2729,7 @@ footer > a {
   font-weight: 700;
 }
 
-body:has(.mobile-nav) .header-year,
-body:has(.mobile-nav) .header-focus {
+body:has(.mobile-nav) .header-year {
   opacity: 0;
 }
 
@@ -2865,11 +2833,16 @@ video.hero-background {
 }
 
 .hero .hero-name-line {
+  overflow: visible;
   padding-bottom: 0.15em;
 }
 
 .hero .hero-name-line > span {
   white-space: nowrap;
+}
+
+.hero-name-text {
+  will-change: opacity, transform, filter;
 }
 
 .hero-martin-meta {
@@ -2966,8 +2939,7 @@ video.hero-background {
     padding: 0 18px;
   }
 
-  .header-year,
-  .header-focus {
+  .header-year {
     display: none;
   }
 
@@ -3051,5 +3023,233 @@ video.hero-background {
 
   .hero-martin-meta .hero-role {
     font-size: 1.8rem;
+  }
+}
+
+/* Resume content refinements */
+
+.module-heading h2 em,
+.section-heading h2 em {
+  display: inline-block;
+  margin-left: 0.09em;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: inherit;
+}
+
+.about-layout {
+  align-items: start;
+}
+
+.about-photo {
+  position: sticky;
+  top: 28px;
+}
+
+.about-education {
+  margin-top: 36px;
+  border-top: 1px solid var(--line);
+  padding-top: 28px;
+}
+
+.about-education-heading {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  color: var(--accent);
+}
+
+.about-education-heading h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.05rem;
+  font-weight: 750;
+  letter-spacing: -0.025em;
+}
+
+.about-education-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.about-education-card {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 32px minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 12px 32px rgba(38, 44, 66, 0.045);
+}
+
+.about-education-card > span,
+.about-education-meta {
+  color: var(--muted-light);
+  font-family: "DM Mono", monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.055em;
+  line-height: 1.55;
+  text-transform: uppercase;
+}
+
+.about-education-card h4 {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: -0.025em;
+}
+
+.about-education-card p {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.about-education-meta {
+  display: grid;
+  gap: 4px;
+  text-align: right;
+}
+
+.skill-tabs {
+  display: grid;
+  width: min(100%, 1120px);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border-radius: 18px;
+}
+
+.skill-tabs button {
+  min-width: 0;
+  padding-inline: 12px;
+}
+
+.skill-card {
+  min-height: 104px;
+}
+
+.skill-card h3 {
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.coursework {
+  padding: clamp(110px, 12vw, 188px) 0;
+  border-top: 1px solid var(--line);
+  color: var(--ink);
+  background: var(--surface);
+}
+
+.coursework-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 58px;
+}
+
+.coursework-card {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  min-height: 170px;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  align-content: space-between;
+  border: 1px solid rgba(84, 88, 232, 0.15);
+  border-radius: 18px;
+  padding: 22px;
+  background: linear-gradient(145deg, #f6f7ff, #fff);
+  box-shadow: 0 14px 38px rgba(38, 44, 66, 0.05);
+  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+}
+
+.coursework-card:hover {
+  border-color: rgba(84, 88, 232, 0.34);
+  transform: translateY(-5px);
+  box-shadow: 0 22px 48px rgba(38, 44, 66, 0.1);
+}
+
+.coursework-card > span {
+  color: var(--muted-light);
+  font-family: "DM Mono", monospace;
+  font-size: 0.59rem;
+  letter-spacing: 0.07em;
+}
+
+.coursework-card svg {
+  color: var(--accent);
+}
+
+.coursework-card h3 {
+  grid-column: 1 / -1;
+  max-width: 260px;
+  font-size: clamp(1.1rem, 1.5vw, 1.45rem);
+  font-weight: 650;
+  letter-spacing: -0.045em;
+  line-height: 1.15;
+}
+
+@media (max-width: 1120px) {
+  .about-photo {
+    position: relative;
+    top: auto;
+  }
+
+  .skill-tabs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .coursework-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .skill-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .coursework-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .about-education-card {
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: 14px;
+    padding: 17px;
+  }
+
+  .about-education-meta {
+    grid-column: 2;
+    text-align: left;
+  }
+
+  .skill-tabs {
+    gap: 4px;
+    border-radius: 16px;
+  }
+
+  .skill-tabs button {
+    min-height: 48px;
+    line-height: 1.35;
+  }
+
+  .skill-tabs button:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 460px) {
+  .coursework-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .coursework-card {
+    min-height: 145px;
   }
 }
