@@ -30,7 +30,6 @@ import heroImage from "../IMG_0005.JPG";
 import boardImage from "../unnamed.jpg";
 import profileImage from "../assets/img/profilepic.png";
 import fpgaDemo from "../assets/media/fpga-demo.mov";
-import robotDemo from "../assets/media/robot-demo.mov";
 import simulationDemo from "../assets/media/simulation-demo.mov";
 import "./styles.css";
 
@@ -39,6 +38,7 @@ gsap.registerPlugin(ScrollTrigger);
 const navLinks = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
+  { label: "Coursework", href: "#coursework" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" }
@@ -48,8 +48,7 @@ const heroMedia = [
   { type: "image", src: heroImage, label: "Systems Lab", format: "landscape" },
   { type: "video", src: simulationDemo, label: "Architecture Simulation", format: "landscape" },
   { type: "image", src: boardImage, label: "Embedded Hardware", format: "portrait" },
-  { type: "video", src: fpgaDemo, label: "FPGA Prototype", format: "portrait" },
-  { type: "video", src: robotDemo, label: "Robotic System", format: "portrait" }
+  { type: "video", src: fpgaDemo, label: "FPGA Prototype", format: "portrait" }
 ];
 
 const projects = [
@@ -161,38 +160,78 @@ const experience = [
 
 const skillCategories = [
   {
-    label: "Hardware",
+    label: "Hardware & Lab",
     items: [
-      { name: "SystemVerilog", level: "Advanced", score: 92 },
-      { name: "VHDL", level: "Advanced", score: 88 },
-      { name: "FPGA Design", level: "Advanced", score: 90 },
-      { name: "RISC-V", level: "Advanced", score: 86 },
-      { name: "VLSI", level: "Proficient", score: 78 },
-      { name: "Verification", level: "Advanced", score: 84 }
+      "Oscilloscopes",
+      "Logic Analyzers",
+      "Multimeters",
+      "Signal & Function Generators",
+      "PCB Prototyping"
     ]
   },
   {
-    label: "Firmware",
+    label: "Digital Design & FPGA",
     items: [
-      { name: "C / C++", level: "Advanced", score: 90 },
-      { name: "RP2040", level: "Advanced", score: 88 },
-      { name: "STM32", level: "Proficient", score: 78 },
-      { name: "Interrupts", level: "Advanced", score: 90 },
-      { name: "SPI / I²C", level: "Advanced", score: 86 },
-      { name: "Real-time DSP", level: "Proficient", score: 80 }
+      "RTL Design",
+      "Clocking",
+      "BRAM",
+      "Pipelining",
+      "FSMs",
+      "Timing Closure",
+      "Synthesis"
     ]
   },
   {
-    label: "Software",
+    label: "EDA & CAD",
     items: [
-      { name: "Python", level: "Advanced", score: 90 },
-      { name: "MATLAB", level: "Advanced", score: 84 },
-      { name: "React", level: "Proficient", score: 76 },
-      { name: "Git", level: "Advanced", score: 88 },
-      { name: "Data Analysis", level: "Advanced", score: 84 },
-      { name: "Testing", level: "Proficient", score: 80 }
+      "Intel Quartus Prime",
+      "Xilinx Vivado",
+      "LTspice",
+      "Static Timing Analysis",
+      "Cyclone V FPGA",
+      "AutoCAD",
+      "Revit"
+    ]
+  },
+  {
+    label: "Programming & Scripting",
+    items: [
+      "C",
+      "C++",
+      "Python",
+      "Verilog",
+      "SystemVerilog",
+      "VHDL",
+      "MATLAB",
+      "Vitis HLS",
+      "Java"
+    ]
+  },
+  {
+    label: "Collaboration & Version Control",
+    items: [
+      "GitHub",
+      "Confluence",
+      "SharePoint",
+      "MS Office Suite (Word, Excel, PowerPoint)",
+      "Slack"
     ]
   }
+];
+
+const coursework = [
+  "Computer Architecture",
+  "VLSI",
+  "Digital Logic",
+  "Circuits",
+  "Microelectronics",
+  "Embedded Systems",
+  "MEMS",
+  "Hardware Acceleration via FPGA",
+  "Microcontrollers",
+  "Machine Learning",
+  "Data Science",
+  "Robotics"
 ];
 
 function MagneticLink({ children, className = "", ...props }) {
@@ -234,17 +273,12 @@ function Header() {
         className="site-header"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 0.6 }}
+        transition={{ delay: 0.25, duration: 0.6 }}
       >
         <a className="wordmark" href="#top" aria-label="MD Shad home">
           MD<span>·</span>SHAD
         </a>
         <p className="header-year">@2026</p>
-        <div className="header-focus" aria-label="Engineering focus areas">
-          <span>Embedded Systems</span>
-          <span>Computer Architecture</span>
-          <span>FPGA / VLSI</span>
-        </div>
         <button
           className="menu-toggle"
           type="button"
@@ -356,7 +390,7 @@ function Hero() {
           className="hero-hello"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.6 }}
+          transition={{ delay: 0.35, duration: 0.6 }}
         >
           Hey there, I’m
         </motion.p>
@@ -364,9 +398,10 @@ function Hero() {
         <h1 aria-label="MD Shad">
           <span className="hero-name-line">
             <motion.span
-              initial={{ y: "112%" }}
-              animate={{ y: 0 }}
-              transition={{ delay: 1.05, duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
+              className="hero-name-text"
+              initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ delay: 0.45, duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
             >
               MD SHAD
             </motion.span>
@@ -377,7 +412,7 @@ function Hero() {
           className="hero-martin-meta"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.55, duration: 0.65 }}
+          transition={{ delay: 0.85, duration: 0.65 }}
         >
           <div>
             <span>Based in New York, USA</span>
@@ -392,7 +427,7 @@ function Hero() {
           className="hero-media-controls"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.85, duration: 0.6 }}
+          transition={{ delay: 1, duration: 0.6 }}
         >
           <span>{currentMedia.label}</span>
           <div>
@@ -416,10 +451,19 @@ function Hero() {
 }
 
 function Intro() {
-  const profileFacts = [
-    ["01 · Education", "Cornell University ECE"],
-    ["02 · Focus", "Embedded systems + architecture"],
-    ["03 · Status", "Open to engineering roles"]
+  const education = [
+    {
+      school: "Cornell University",
+      credential: "B.S. in Electrical & Computer Engineering",
+      detail: "Expected May 2027",
+      location: "Ithaca, New York"
+    },
+    {
+      school: "Stuyvesant High School",
+      credential: "High School Diploma",
+      detail: "New York City",
+      location: "New York, New York"
+    }
   ];
 
   return (
@@ -441,15 +485,6 @@ function Intro() {
             <h3>Electrical &amp; Computer Engineering student and systems builder</h3>
           </div>
 
-          <div className="about-facts">
-            {profileFacts.map(([label, value]) => (
-              <article className="about-fact reveal" key={label}>
-                <span>{label}</span>
-                <strong>{value}</strong>
-              </article>
-            ))}
-          </div>
-
           <div className="about-copy reveal">
             <p>
               I build systems where hardware constraints matter: processor pipelines,
@@ -462,6 +497,28 @@ function Intro() {
               clear tradeoffs, measurable performance, and implementations that other
               engineers can understand and extend.
             </p>
+          </div>
+
+          <div className="about-education reveal">
+            <div className="about-education-heading">
+              <GraduationCap size={22} />
+              <h3>Education</h3>
+            </div>
+            <div className="about-education-list">
+              {education.map((item, index) => (
+                <article className="about-education-card" key={item.school}>
+                  <span>0{index + 1}</span>
+                  <div>
+                    <h4>{item.school}</h4>
+                    <p>{item.credential}</p>
+                  </div>
+                  <div className="about-education-meta">
+                    <span>{item.detail}</span>
+                    <span>{item.location}</span>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
 
           <div className="about-metrics reveal">
@@ -580,7 +637,7 @@ function Projects() {
     <section className="projects" id="projects">
       <div className="section-shell">
         <div className="module-heading reveal">
-          <div className="section-kicker"><span>03</span><i /><span>Projects</span></div>
+          <div className="section-kicker"><span>04</span><i /><span>Projects</span></div>
           <h2>My <em>Projects</em></h2>
           <p>Selected engineering work demonstrating practical systems and well-architected implementations.</p>
           <div className="filter-pills" aria-label="Project categories">
@@ -605,7 +662,7 @@ function Experience() {
   return (
     <section className="experience section-shell" id="experience">
       <div className="module-heading reveal">
-        <div className="section-kicker"><span>04</span><i /><span>Experience</span></div>
+        <div className="section-kicker"><span>05</span><i /><span>Experience</span></div>
         <h2>Professional <em>Experience</em></h2>
         <p>Research, teaching, and industry experience applying engineering theory to real systems.</p>
       </div>
@@ -630,15 +687,6 @@ function Experience() {
             </article>
           );
         })}
-      </div>
-      <div className="education-card reveal">
-        <div className="education-icon"><GraduationCap size={32} /></div>
-        <span className="eyebrow">Education</span>
-        <div>
-          <h3>Cornell University</h3>
-          <p>B.S. Electrical & Computer Engineering</p>
-        </div>
-        <div className="education-meta"><span>Ithaca, New York</span><span>Embedded systems · Architecture · VLSI</span></div>
       </div>
     </section>
   );
@@ -682,17 +730,39 @@ function Skills() {
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
             {activeSkills.map((skill, index) => (
-              <article className="skill-card" key={skill.name}>
-                <div className="skill-monogram">{skill.name.replace(/[^A-Za-z]/g, "").slice(0, 2).toUpperCase()}</div>
+              <article className="skill-card" key={skill}>
+                <div className="skill-monogram">{skill.replace(/[^A-Za-z]/g, "").slice(0, 2).toUpperCase()}</div>
                 <div className="skill-card-body">
-                  <div><h3>{skill.name}</h3><span>0{index + 1}</span></div>
-                  <div className="skill-meter"><i style={{ width: `${skill.score}%` }} /></div>
-                  <p>{skill.level}</p>
+                  <div><h3>{skill}</h3><span>{String(index + 1).padStart(2, "0")}</span></div>
                 </div>
               </article>
             ))}
           </motion.div>
         </AnimatePresence>
+      </div>
+    </section>
+  );
+}
+
+function Coursework() {
+  return (
+    <section className="coursework" id="coursework">
+      <div className="section-shell">
+        <div className="module-heading reveal">
+          <div className="section-kicker"><span>03</span><i /><span>Coursework</span></div>
+          <h2>Relevant <em>Coursework</em></h2>
+          <p>Selected Cornell ECE courses supporting my work across hardware, embedded systems, and intelligent computing.</p>
+        </div>
+
+        <div className="coursework-grid">
+          {coursework.map((course, index) => (
+            <article className="coursework-card reveal" key={course}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <BookOpen size={20} aria-hidden="true" />
+              <h3>{course}</h3>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -708,7 +778,7 @@ function Contact() {
   return (
     <section className="contact section-shell" id="contact">
       <div className="module-heading reveal">
-        <div className="section-kicker"><span>05</span><i /><span>Get in touch</span></div>
+        <div className="section-kicker"><span>06</span><i /><span>Get in touch</span></div>
         <h2>Get In <em>Touch</em></h2>
         <p>Let’s talk about embedded systems, computer architecture, FPGA design, or your next engineering project.</p>
       </div>
@@ -798,6 +868,7 @@ function App() {
         <Hero />
         <Intro />
         <Skills />
+        <Coursework />
         <Projects />
         <Experience />
         <Contact />
