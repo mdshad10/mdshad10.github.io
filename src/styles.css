@@ -3200,6 +3200,121 @@ video.hero-background {
   }
 }
 
+/* Recruiter-facing hierarchy and restrained project interactions. */
+.site-header .wordmark {
+  letter-spacing: -0.035em;
+  word-spacing: 0.2em;
+}
+
+.hero-name-text {
+  letter-spacing: -0.07em;
+  word-spacing: 0.18em;
+}
+
+.section-heading h2,
+.module-heading h2 {
+  margin-top: 0;
+}
+
+.about-education-card {
+  grid-template-columns: 76px minmax(0, 1fr) auto;
+}
+
+.about-education-card p {
+  color: var(--ink-soft);
+  font-size: clamp(1rem, 1.25vw, 1.14rem);
+  font-weight: 650;
+}
+
+.about-education-meta {
+  gap: 7px;
+  color: var(--ink-soft);
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(0.78rem, 0.95vw, 0.9rem);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  text-transform: none;
+}
+
+.filter-pills button {
+  min-width: 120px;
+  border: 0;
+  border-radius: 999px;
+  padding: 11px 18px;
+  color: var(--muted);
+  background: transparent;
+  font-family: "DM Mono", monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.filter-pills button:hover,
+.filter-pills button:focus-visible {
+  color: var(--ink);
+  outline: none;
+}
+
+.filter-pills button.active {
+  color: #fff;
+  background: var(--accent);
+  box-shadow: 0 8px 22px rgba(84, 88, 232, 0.24);
+}
+
+.projects .filter-pills button {
+  min-width: 112px;
+}
+
+.project-card {
+  transform-style: flat;
+  will-change: transform;
+}
+
+.project-graphic,
+.project-case-label,
+.project-card-copy,
+.project-result,
+.project-tags,
+.project-card-bottom {
+  transform: none;
+}
+
+@media (max-width: 1120px) {
+  .about-education-card {
+    grid-template-columns: 66px minmax(0, 1fr);
+  }
+
+  .about-education-meta {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 620px) {
+  .filter-pills {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-radius: 18px;
+  }
+
+  .filter-pills button,
+  .projects .filter-pills button {
+    min-width: 0;
+    padding: 11px 8px;
+    font-size: 0.55rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .about-education-card {
+    grid-template-columns: 54px minmax(0, 1fr);
+  }
+}
+
 .skill-group .skill-list {
   border-top: 0;
 }
@@ -3462,7 +3577,7 @@ video.hero-background {
 }
 
 .about-education-card {
-  grid-template-columns: 30px 76px minmax(0, 1fr) auto;
+  grid-template-columns: 76px minmax(0, 1fr) auto;
   gap: 22px;
   min-height: 150px;
   padding: clamp(22px, 2.5vw, 32px);
@@ -3480,7 +3595,20 @@ video.hero-background {
 
 .about-education-card p {
   margin-top: 8px;
-  font-size: clamp(0.88rem, 1.1vw, 1rem);
+  color: var(--ink-soft);
+  font-size: clamp(1rem, 1.25vw, 1.14rem);
+  font-weight: 650;
+}
+
+.about-education-meta {
+  gap: 7px;
+  color: var(--ink-soft);
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(0.78rem, 0.95vw, 0.9rem);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  text-transform: none;
 }
 
 .skill-groups {
@@ -3545,11 +3673,11 @@ video.hero-background {
   }
 
   .about-education-card {
-    grid-template-columns: 28px 66px minmax(0, 1fr);
+    grid-template-columns: 66px minmax(0, 1fr);
   }
 
   .about-education-meta {
-    grid-column: 3;
+    grid-column: 2;
     text-align: left;
   }
 

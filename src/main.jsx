@@ -5,8 +5,7 @@ import {
   motion,
   useMotionValue,
   useReducedMotion,
-  useSpring,
-  useTransform
+  useSpring
 } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -68,6 +67,7 @@ const projects = [
       "Integrated DMA-based HPS–FPGA communication, TCP streaming, and deterministic validation at 50 MHz."
     ],
     tools: ["SystemVerilog", "Cyclone V", "DMA", "Fixed-Point DSP"],
+    filters: ["FPGA & VLSI"],
     visual: "tpu",
     tone: "lime"
   },
@@ -84,6 +84,7 @@ const projects = [
       "Verified schematic, extracted, timing, power, RC-delay, and matchline behavior."
     ],
     tools: ["VLSI", "Custom Layout", "SPICE", "Timing Analysis"],
+    filters: ["FPGA & VLSI"],
     visual: "cpu",
     tone: "violet"
   },
@@ -100,10 +101,82 @@ const projects = [
       "Developed C microbenchmarks to evaluate throughput, latency, scalability, and synchronization overhead."
     ],
     tools: ["RISC-V", "SystemVerilog", "Caches", "C"],
+    filters: ["Architecture"],
     visual: "sensor",
     tone: "orange"
+  },
+  {
+    number: "04",
+    title: "Systolic TPU Accelerator",
+    category: "AI Hardware / FPGA",
+    period: "Research · 2025 — 2026",
+    summary:
+      "A scalable systolic-array accelerator and custom instruction interface for neural-network training and inference.",
+    impact: "8×8 RTL compute array",
+    bullets: [
+      "Integrated pipelined MAC datapaths, activation logic, and on-chip buffering.",
+      "Designed double-buffered weight loading across DRAM, BRAM, and local buffers."
+    ],
+    tools: ["SystemVerilog", "FPGA", "Python", "Custom ISA"],
+    filters: ["FPGA & VLSI"],
+    visual: "tpu",
+    tone: "blue"
+  },
+  {
+    number: "05",
+    title: "TinyRV2 Processor",
+    category: "Computer Architecture",
+    period: "Cornell ECE",
+    summary:
+      "A 32-bit, five-stage RISC-V processor with full bypassing, hazard detection, and stall control.",
+    impact: "Five-stage pipelined datapath",
+    bullets: [
+      "Built the datapath and control across fetch, decode, execute, memory, and writeback.",
+      "Validated forwarding, stalls, and hazards through targeted timing-aware tests."
+    ],
+    tools: ["RISC-V", "SystemVerilog", "RTL", "Verification"],
+    filters: ["Architecture"],
+    visual: "cpu",
+    tone: "violet"
+  },
+  {
+    number: "06",
+    title: "Birdsong Synthesizer",
+    category: "Embedded Audio / DSP",
+    period: "Real-Time Systems",
+    summary:
+      "A real-time Northern Cardinal call synthesizer running on an RP2040 microcontroller.",
+    impact: "Interrupt-driven audio synthesis",
+    bullets: [
+      "Combined direct digital synthesis, ADSR envelopes, and fixed-point arithmetic.",
+      "Drove an SPI DAC with deterministic timer interrupts."
+    ],
+    tools: ["RP2040", "Embedded C", "DSP", "SPI"],
+    filters: ["Embedded"],
+    visual: "audio",
+    tone: "orange"
+  },
+  {
+    number: "07",
+    title: "Smart Scoring System",
+    category: "Embedded Sensing",
+    period: "Hardware + Firmware",
+    summary:
+      "An infrared-sensor basketball scoring system built around an interrupt-driven finite-state machine.",
+    impact: "Reliable event detection",
+    bullets: [
+      "Implemented debouncing, timing windows, and LCD, LED, and audio feedback.",
+      "Designed deterministic sensor handling instead of polling."
+    ],
+    tools: ["FRDM-KL46Z", "C", "Sensors", "FSM"],
+    filters: ["Embedded"],
+    visual: "sensor",
+    tone: "blue",
+    href: "https://github.com/mdshad10/Smart-Basketball-Hoop-Embedded-Systems"
   }
 ];
+
+const projectFilters = ["All", "FPGA & VLSI", "Architecture", "Embedded"];
 
 const experience = [
   {
@@ -274,8 +347,8 @@ function Header() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.25, duration: 0.6 }}
       >
-        <a className="wordmark" href="#top" aria-label="MD Shad home">
-          MD<span>·</span>SHAD
+        <a className="wordmark" href="#top" aria-label="Md Shad home">
+          Md Shad
         </a>
         <p className="header-year">@2026</p>
         <button
@@ -300,9 +373,9 @@ function Header() {
             transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
           >
             <span className="eyebrow">Navigation</span>
-            {navLinks.map((link, index) => (
+            {navLinks.map((link) => (
               <a href={link.href} key={link.href} onClick={() => setMenuOpen(false)}>
-                <small>0{index + 1}</small>{link.label}
+                {link.label}
               </a>
             ))}
           </motion.nav>
@@ -374,7 +447,7 @@ function Hero() {
             className={`hero-background hero-media-${currentMedia.format}`}
             key={currentMedia.src}
             src={currentMedia.src}
-            alt={activeMedia === 0 ? "MD Shad collaborating on a desktop computer hardware build" : "Embedded systems development board"}
+            alt={activeMedia === 0 ? "Md Shad collaborating on a desktop computer hardware build" : "Embedded systems development board"}
             initial={{ opacity: 0, scale: 1.045, filter: "blur(10px)" }}
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             exit={{ opacity: 0, scale: 1.015, filter: "blur(7px)" }}
@@ -394,7 +467,7 @@ function Hero() {
           Hey there, I’m
         </motion.p>
 
-        <h1 aria-label="MD Shad">
+        <h1 aria-label="Md Shad">
           <span className="hero-name-line">
             <motion.span
               className="hero-name-text"
@@ -402,7 +475,7 @@ function Hero() {
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ delay: 0.45, duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
             >
-              MD SHAD
+              Md Shad
             </motion.span>
           </span>
         </h1>
@@ -471,16 +544,15 @@ function Intro() {
     <section className="intro section-shell" id="about">
       <div className="about-layout">
         <motion.figure className="about-photo reveal" whileHover={{ y: -6 }} transition={{ duration: 0.3 }}>
-          <img src={profileImage} alt="Portrait of MD Shad" />
+          <img src={profileImage} alt="Portrait of Md Shad" />
           <figcaption>
             <span>Electrical & Computer Engineer</span>
-            <strong>MD Shad</strong>
+            <strong>Md Shad</strong>
           </figcaption>
         </motion.figure>
 
         <div className="about-content">
           <div className="section-heading reveal">
-            <div className="section-kicker"><span>01</span><i /><span>About</span></div>
             <h2>About <em>Me</em></h2>
           </div>
 
@@ -490,9 +562,8 @@ function Intro() {
               <h3>Education</h3>
             </div>
             <div className="about-education-list">
-              {education.map((item, index) => (
+              {education.map((item) => (
                 <article className="about-education-card" key={item.school}>
-                  <span>0{index + 1}</span>
                   <img className="education-logo" src={item.logo} alt={`${item.school} logo`} />
                   <div>
                     <h4>{item.school}</h4>
@@ -553,41 +624,22 @@ function ProjectGraphic({ type }) {
   );
 }
 
-function TiltCard({ project, index }) {
+function ProjectCard({ project, index }) {
   const reduceMotion = useReducedMotion();
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [8, -8]), { stiffness: 150, damping: 20 });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-9, 9]), { stiffness: 150, damping: 20 });
-  const glowX = useTransform(x, [-0.5, 0.5], ["18%", "82%"]);
-  const glowY = useTransform(y, [-0.5, 0.5], ["18%", "82%"]);
-
-  const handleMove = (event) => {
-    if (reduceMotion) return;
-    const bounds = event.currentTarget.getBoundingClientRect();
-    x.set((event.clientX - bounds.left) / bounds.width - 0.5);
-    y.set((event.clientY - bounds.top) / bounds.height - 0.5);
-  };
-
-  const reset = () => { x.set(0); y.set(0); };
 
   return (
     <motion.article
-      className={`project-card project-card-${project.tone} project-card-${index + 1} reveal`}
-      style={{ rotateX: reduceMotion ? 0 : rotateX, rotateY: reduceMotion ? 0 : rotateY, transformPerspective: 1100 }}
-      onMouseMove={handleMove}
-      onMouseLeave={reset}
-      whileHover={reduceMotion ? undefined : { y: -12, scale: 1.012 }}
-      transition={{ type: "spring", stiffness: 180, damping: 20 }}
+      className={`project-card project-card-${project.tone} project-card-${index + 1}`}
+      layout
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 8 }}
+      whileHover={reduceMotion ? undefined : { y: -5 }}
+      transition={{ duration: 0.25, ease: "easeOut" }}
     >
-      <motion.div className="card-glow" style={{ left: glowX, top: glowY }} />
-      <motion.div
-        className="project-graphic"
-        animate={reduceMotion ? undefined : { y: [0, -7, 0], rotateZ: [0, index % 2 ? -0.7 : 0.7, 0] }}
-        transition={{ duration: 5 + index, repeat: Infinity, ease: "easeInOut" }}
-      >
+      <div className="project-graphic">
         <ProjectGraphic type={project.visual} />
-      </motion.div>
+      </div>
       <div className="project-case-number">{project.number}</div>
       <div className="project-case-label"><i /> Case · {project.category}</div>
       <div className="project-card-copy">
@@ -613,19 +665,37 @@ function TiltCard({ project, index }) {
 }
 
 function Projects() {
+  const [activeFilter, setActiveFilter] = useState("All");
+  const visibleProjects = activeFilter === "All"
+    ? projects
+    : projects.filter((project) => project.filters.includes(activeFilter));
+
   return (
     <section className="projects" id="projects">
       <div className="section-shell">
         <div className="module-heading reveal">
-          <div className="section-kicker"><span>04</span><i /><span>Projects</span></div>
           <h2>My <em>Projects</em></h2>
           <p>Selected engineering work demonstrating practical systems and well-architected implementations.</p>
-          <div className="filter-pills" aria-label="Project categories">
-            <span className="active">All</span><span>Hardware</span><span>Embedded</span>
+          <div className="filter-pills" aria-label="Filter projects">
+            {projectFilters.map((filter) => (
+              <button
+                type="button"
+                className={activeFilter === filter ? "active" : ""}
+                aria-pressed={activeFilter === filter}
+                onClick={() => setActiveFilter(filter)}
+                key={filter}
+              >
+                {filter}
+              </button>
+            ))}
           </div>
         </div>
         <div className="project-grid">
-          {projects.map((project, index) => <TiltCard project={project} index={index} key={project.title} />)}
+          <AnimatePresence mode="popLayout">
+            {visibleProjects.map((project) => (
+              <ProjectCard project={project} index={projects.indexOf(project)} key={project.title} />
+            ))}
+          </AnimatePresence>
         </div>
         <div className="github-row reveal">
           <p>More experiments, coursework, and embedded builds live on GitHub.</p>
@@ -642,7 +712,6 @@ function Experience() {
   return (
     <section className="experience section-shell" id="experience">
       <div className="module-heading reveal">
-        <div className="section-kicker"><span>05</span><i /><span>Experience</span></div>
         <h2>Professional <em>Experience</em></h2>
         <p>Research, teaching, and industry experience applying engineering theory to real systems.</p>
       </div>
@@ -677,7 +746,6 @@ function Skills() {
     <section className="skills" id="skills">
       <div className="section-shell skills-inner">
         <div className="module-heading reveal">
-          <div className="section-kicker"><span>02</span><i /><span>Skills</span></div>
           <h2>Technical <em>Skills</em></h2>
           <p>Technologies and tools I use to move from architecture to working systems.</p>
         </div>
@@ -705,7 +773,6 @@ function Coursework() {
     <section className="coursework" id="coursework">
       <div className="section-shell">
         <div className="module-heading reveal">
-          <div className="section-kicker"><span>03</span><i /><span>Coursework</span></div>
           <h2>Relevant <em>Coursework</em></h2>
           <p>Selected Cornell ECE courses supporting my work across hardware, embedded systems, and intelligent computing.</p>
         </div>
@@ -734,7 +801,6 @@ function Contact() {
   return (
     <section className="contact section-shell" id="contact">
       <div className="module-heading reveal">
-        <div className="section-kicker"><span>06</span><i /><span>Get in touch</span></div>
         <h2>Get In <em>Touch</em></h2>
         <p>Let’s talk about embedded systems, computer architecture, FPGA design, or your next engineering project.</p>
       </div>
@@ -761,13 +827,13 @@ function Contact() {
           <p>
             I’m interested in engineering internships, research collaborations, and teams working on systems where hardware and software meet.
           </p>
-          <MagneticLink className="contact-button" href="mailto:mss464@cornell.edu" aria-label="Email MD Shad">
+          <MagneticLink className="contact-button" href="mailto:mss464@cornell.edu" aria-label="Email Md Shad">
             <Mail size={24} /><span>Send me an email</span><ArrowUpRight size={20} />
           </MagneticLink>
         </div>
       </div>
       <footer>
-        <div><strong>MD Shad</strong><span>Electrical & Computer Engineer</span></div>
+        <div><strong>Md Shad</strong><span>Electrical & Computer Engineer</span></div>
         <div><span><MapPin size={14} /> Ithaca, NY</span><a href="https://github.com/mdshad10" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></a></div>
         <a href="#top">Back to top <ArrowUpRight size={14} /></a>
       </footer>
