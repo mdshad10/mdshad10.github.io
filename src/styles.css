@@ -3026,6 +3026,184 @@ video.hero-background {
   }
 }
 
+/* Education-forward about section */
+.about-layout {
+  grid-template-columns: minmax(260px, 0.52fr) minmax(0, 1.48fr);
+  gap: clamp(48px, 7vw, 104px);
+}
+
+.about-photo {
+  min-height: clamp(420px, 42vw, 540px);
+}
+
+.about-content .section-heading h2 {
+  font-size: clamp(2.6rem, 4.8vw, 5.1rem);
+}
+
+.about-education {
+  margin-top: clamp(34px, 5vw, 58px);
+  padding-top: 34px;
+}
+
+.about-education-heading {
+  gap: 14px;
+}
+
+.about-education-heading h3 {
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+}
+
+.about-education-list {
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.about-education-card {
+  grid-template-columns: 30px 76px minmax(0, 1fr) auto;
+  gap: 22px;
+  min-height: 150px;
+  padding: clamp(22px, 2.5vw, 32px);
+}
+
+.education-logo {
+  width: 76px;
+  height: 76px;
+  object-fit: contain;
+}
+
+.about-education-card h4 {
+  font-size: clamp(1.25rem, 1.8vw, 1.65rem);
+}
+
+.about-education-card p {
+  margin-top: 8px;
+  font-size: clamp(0.88rem, 1.1vw, 1rem);
+}
+
+.about-education-meta {
+  font-size: 0.64rem;
+}
+
+/* Every skill category stays visible at once. */
+.skill-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 54px;
+}
+
+.skill-group {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: clamp(22px, 2.6vw, 32px);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 14px 38px rgba(38, 44, 66, 0.055);
+}
+
+.skill-group:last-child {
+  grid-column: 1 / -1;
+}
+
+.skill-group-heading {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 18px;
+}
+
+.skill-group-heading span {
+  color: var(--accent);
+  font-family: "DM Mono", monospace;
+  font-size: 0.62rem;
+}
+
+.skill-group-heading h3 {
+  font-size: clamp(1.15rem, 1.7vw, 1.5rem);
+  letter-spacing: -0.035em;
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 20px;
+  border-top: 0;
+}
+
+.skill-list span {
+  border: 1px solid rgba(84, 88, 232, 0.16);
+  border-radius: 999px;
+  padding: 9px 12px;
+  color: var(--ink-soft);
+  background: var(--accent-soft);
+  font-size: 0.76rem;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+@media (max-width: 1120px) {
+  .about-layout {
+    grid-template-columns: minmax(260px, 0.46fr) minmax(0, 1fr);
+  }
+
+  .about-education-card {
+    grid-template-columns: 28px 66px minmax(0, 1fr);
+  }
+
+  .about-education-meta {
+    grid-column: 3;
+    text-align: left;
+  }
+
+  .education-logo {
+    width: 66px;
+    height: 66px;
+  }
+}
+
+@media (max-width: 760px) {
+  .about-layout,
+  .skill-groups {
+    grid-template-columns: 1fr;
+  }
+
+  .about-photo {
+    width: min(100%, 430px);
+    min-height: 430px;
+    margin-inline: auto;
+  }
+
+  .skill-group:last-child {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .about-education-card {
+    grid-template-columns: 54px minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .about-education-card > span {
+    display: none;
+  }
+
+  .education-logo {
+    width: 54px;
+    height: 54px;
+  }
+
+  .about-education-meta {
+    grid-column: 2;
+  }
+}
+
+.skill-group .skill-list {
+  border-top: 0;
+}
+
 /* Resume content refinements */
 
 .module-heading h2 em,
@@ -3249,7 +3427,171 @@ video.hero-background {
     grid-template-columns: 1fr;
   }
 
-  .coursework-card {
+.coursework-card {
     min-height: 145px;
+  }
+}
+
+/* Final responsive overrides for the education-forward about and visible skill groups. */
+.about-layout {
+  grid-template-columns: minmax(260px, 0.52fr) minmax(0, 1.48fr);
+  gap: clamp(48px, 7vw, 104px);
+  align-items: start;
+}
+
+.about-photo {
+  min-height: clamp(420px, 42vw, 540px);
+}
+
+.about-content .section-heading h2 {
+  font-size: clamp(2.6rem, 4.8vw, 5.1rem);
+}
+
+.about-education {
+  margin-top: clamp(34px, 5vw, 58px);
+  padding-top: 34px;
+}
+
+.about-education-heading h3 {
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+}
+
+.about-education-list {
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.about-education-card {
+  grid-template-columns: 30px 76px minmax(0, 1fr) auto;
+  gap: 22px;
+  min-height: 150px;
+  padding: clamp(22px, 2.5vw, 32px);
+}
+
+.education-logo {
+  width: 76px;
+  height: 76px;
+  object-fit: contain;
+}
+
+.about-education-card h4 {
+  font-size: clamp(1.25rem, 1.8vw, 1.65rem);
+}
+
+.about-education-card p {
+  margin-top: 8px;
+  font-size: clamp(0.88rem, 1.1vw, 1rem);
+}
+
+.skill-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 54px;
+}
+
+.skill-group {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: clamp(22px, 2.6vw, 32px);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 14px 38px rgba(38, 44, 66, 0.055);
+}
+
+.skill-group:last-child {
+  grid-column: 1 / -1;
+}
+
+.skill-group-heading {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 18px;
+}
+
+.skill-group-heading span {
+  color: var(--accent);
+  font-family: "DM Mono", monospace;
+  font-size: 0.62rem;
+}
+
+.skill-group-heading h3 {
+  font-size: clamp(1.15rem, 1.7vw, 1.5rem);
+  letter-spacing: -0.035em;
+}
+
+.skill-group .skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 20px;
+}
+
+.skill-list span {
+  border: 1px solid rgba(84, 88, 232, 0.16);
+  border-radius: 999px;
+  padding: 9px 12px;
+  color: var(--ink-soft);
+  background: var(--accent-soft);
+  font-size: 0.76rem;
+  font-weight: 650;
+}
+
+@media (max-width: 1120px) {
+  .about-layout {
+    grid-template-columns: minmax(260px, 0.46fr) minmax(0, 1fr);
+  }
+
+  .about-education-card {
+    grid-template-columns: 28px 66px minmax(0, 1fr);
+  }
+
+  .about-education-meta {
+    grid-column: 3;
+    text-align: left;
+  }
+
+  .education-logo {
+    width: 66px;
+    height: 66px;
+  }
+}
+
+@media (max-width: 760px) {
+  .about-layout,
+  .skill-groups {
+    grid-template-columns: 1fr;
+  }
+
+  .about-photo {
+    width: min(100%, 430px);
+    min-height: 430px;
+    margin-inline: auto;
+  }
+
+  .skill-group:last-child {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .about-education-card {
+    grid-template-columns: 54px minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .about-education-card > span {
+    display: none;
+  }
+
+  .education-logo {
+    width: 54px;
+    height: 54px;
+  }
+
+  .about-education-meta {
+    grid-column: 2;
   }
 }

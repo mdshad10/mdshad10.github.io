@@ -19,6 +19,7 @@ import {
   Cpu,
   Github,
   GraduationCap,
+  Linkedin,
   Mail,
   MapPin,
   Menu,
@@ -29,6 +30,8 @@ import {
 import heroImage from "../IMG_0005.JPG";
 import boardImage from "../unnamed.jpg";
 import profileImage from "../assets/img/profilepic.png";
+import cornellSeal from "../assets/img/cornell-seal.svg";
+import stuyvesantLogo from "../assets/img/stuyvesant-logo.svg";
 import fpgaDemo from "../assets/media/fpga-demo.mov";
 import simulationDemo from "../assets/media/simulation-demo.mov";
 import "./styles.css";
@@ -54,94 +57,89 @@ const heroMedia = [
 const projects = [
   {
     number: "01",
-    title: "Systolic TPU Accelerator",
-    category: "AI Hardware / FPGA",
-    period: "Research · 2025—Present",
+    title: "Shack–Hartmann Reconstruction Engine",
+    category: "Adaptive Optics / FPGA",
+    period: "Jan 2026 — May 2026",
     summary:
-      "A custom 4×4 systolic-array accelerator and ISA for neural-network forward and backward passes.",
-    impact: "16 parallel processing elements",
+      "An ultra-low-latency, fully streaming FPGA pipeline for real-time sensor-data reconstruction.",
+    impact: "120 ns end-to-end latency",
     bullets: [
-      "Integrated MAC, bias, and Leaky ReLU units into a pipelined compute fabric.",
-      "Designed double-buffered weight loading to reduce stalls and clarify data movement."
+      "Built fixed-point datapaths with pipelined DSP blocks, BRAM, FSMs, and parallel compute architectures.",
+      "Integrated DMA-based HPS–FPGA communication, TCP streaming, and deterministic validation at 50 MHz."
     ],
-    tools: ["SystemVerilog", "FPGA", "Python", "Custom ISA"],
+    tools: ["SystemVerilog", "Cyclone V", "DMA", "Fixed-Point DSP"],
     visual: "tpu",
     tone: "lime"
   },
   {
     number: "02",
-    title: "TinyRV2 Processor",
-    category: "Computer Architecture",
-    period: "Cornell ECE",
+    title: "32×32 TCAM",
+    category: "Full-Custom VLSI",
+    period: "Mar 2026 — May 2026",
     summary:
-      "A 32-bit, five-stage RISC-V processor with full bypassing, hazard detection, and stall control.",
-    impact: "5-stage pipelined datapath",
+      "A 32×32-bit ternary content-addressable memory with fully parallel search and hierarchical priority encoding.",
+    impact: "900 ps search latency",
     bullets: [
-      "Built structural datapath and control across IF, ID, EX, MEM, and WB.",
-      "Validated forwarding and hazards through targeted, timing-aware tests."
+      "Designed ternary bitcells, dynamic matchlines, precharge circuitry, write drivers, and a 32-to-5 priority encoder.",
+      "Verified schematic, extracted, timing, power, RC-delay, and matchline behavior."
     ],
-    tools: ["RISC-V", "SystemVerilog", "RTL", "Verification"],
+    tools: ["VLSI", "Custom Layout", "SPICE", "Timing Analysis"],
     visual: "cpu",
     tone: "violet"
   },
   {
     number: "03",
-    title: "Birdsong Synthesizer",
-    category: "Embedded Audio / DSP",
-    period: "Real-time systems",
+    title: "Multi-Core RISC-V System",
+    category: "Computer Architecture",
+    period: "Nov 2025 — Dec 2025",
     summary:
-      "A real-time Northern Cardinal call synthesizer running on an RP2040 microcontroller.",
-    impact: "Interrupt-driven audio synthesis",
+      "Single-core and four-core RISC-V systems with private L1 instruction caches and a shared banked L2 data cache.",
+    impact: "Up to 2.38× speedup",
     bullets: [
-      "Combined direct digital synthesis, ADSR envelopes, and fixed-point arithmetic.",
-      "Drove an SPI DAC with deterministic timer interrupts."
+      "Implemented shortest-path routing and round-robin arbitration on a ring interconnect.",
+      "Developed C microbenchmarks to evaluate throughput, latency, scalability, and synchronization overhead."
     ],
-    tools: ["RP2040", "Embedded C", "DSP", "SPI"],
-    visual: "audio",
-    tone: "orange"
-  },
-  {
-    number: "04",
-    title: "Smart Scoring System",
-    category: "Embedded Sensing",
-    period: "Hardware + firmware",
-    summary:
-      "An infrared-sensor basketball scoring system built around an interrupt-driven finite-state machine.",
-    impact: "Reliable event detection",
-    bullets: [
-      "Implemented debouncing, timing windows, and LCD, LED, and audio feedback.",
-      "Designed for deterministic sensor events instead of polling."
-    ],
-    tools: ["FRDM-KL46Z", "C", "Sensors", "FSM"],
+    tools: ["RISC-V", "SystemVerilog", "Caches", "C"],
     visual: "sensor",
-    tone: "blue",
-    href: "https://github.com/mdshad10/Smart-Basketball-Hoop-Embedded-Systems"
+    tone: "orange"
   }
 ];
 
 const experience = [
   {
+    type: "Industry",
+    icon: Cpu,
+    date: "May 2026 — Present",
+    place: "Advanced Micro Devices (AMD)",
+    role: "Systems Design Engineer Intern",
+    location: "San Jose, CA",
+    bullets: [
+      "Developing and debugging bare-metal validation software for pre-silicon and post-silicon SoC testing on ARM-based platforms.",
+      "Analyzing cache coherency, DMA transactions, memory subsystems, and peripheral interfaces while building automation for hardware bring-up."
+    ]
+  },
+  {
     type: "Research",
     icon: CircuitBoard,
-    date: "Aug 2025 — Present",
+    date: "Aug 2025 — May 2026",
     place: "Zhang Research Group",
     role: "Research Assistant",
     location: "Cornell University",
     bullets: [
-      "Designing an FPGA-based TPU architecture, including its compute pipeline, buffering strategy, custom ISA, and host interface.",
-      "Evaluating hardware/software tradeoffs for efficient neural-network training and inference."
+      "Architected a scalable 8×8 RTL systolic-array accelerator for neural-network training and inference.",
+      "Designed ASIC-oriented datapaths and double-buffered weight loading across DRAM, BRAM, and on-chip buffers."
     ]
   },
   {
     type: "Teaching",
     icon: BookOpen,
-    date: "Jan 2025 — Present",
-    place: "Cornell ECE",
+    date: "Jan 2025 — May 2026",
+    place: "Cornell ECE · Digital Logic & Embedded Systems",
     role: "Teaching Assistant",
     location: "Ithaca, NY",
     bullets: [
-      "Mentoring 100+ students in RTL design, FPGA prototyping, VHDL synthesis, timing, and area analysis.",
-      "Helping students debug the gap between intended logic and synthesized hardware."
+      "Led labs in Verilog debugging, timing performance, area analysis, and design complexity using Intel Quartus Prime.",
+      "Taught FSMs, memory-mapped I/O, peripheral control, and interrupt-driven embedded design."
     ]
   },
   {
@@ -221,17 +219,18 @@ const skillCategories = [
 
 const coursework = [
   "Computer Architecture",
-  "VLSI",
-  "Digital Logic",
-  "Circuits",
-  "Microelectronics",
+  "Intro to Digital (VLSI) Design",
+  "Digital Logic & Computer Organization",
+  "Introduction to Circuits for Electrical & Computer Engineers",
+  "Introduction to Microelectronics",
   "Embedded Systems",
-  "MEMS",
   "Hardware Acceleration via FPGA",
-  "Microcontrollers",
-  "Machine Learning",
-  "Data Science",
-  "Robotics"
+  "Digital Systems Design Using Microcontrollers",
+  "Data Science for Engineers",
+  "Foundations of Robotics",
+  "Probability and Inference",
+  "Linear Algebra for Engineers",
+  "Differential Equations for Engineers"
 ];
 
 function MagneticLink({ children, className = "", ...props }) {
@@ -456,13 +455,15 @@ function Intro() {
       school: "Cornell University",
       credential: "B.S. in Electrical & Computer Engineering",
       detail: "Expected May 2027",
-      location: "Ithaca, New York"
+      location: "Ithaca, New York",
+      logo: cornellSeal
     },
     {
       school: "Stuyvesant High School",
       credential: "High School Diploma",
       detail: "New York City",
-      location: "New York, New York"
+      location: "New York, New York",
+      logo: stuyvesantLogo
     }
   ];
 
@@ -470,7 +471,6 @@ function Intro() {
     <section className="intro section-shell" id="about">
       <div className="about-layout">
         <motion.figure className="about-photo reveal" whileHover={{ y: -6 }} transition={{ duration: 0.3 }}>
-          <div className="about-photo-status"><i /> On the grid</div>
           <img src={profileImage} alt="Portrait of MD Shad" />
           <figcaption>
             <span>Electrical & Computer Engineer</span>
@@ -482,21 +482,6 @@ function Intro() {
           <div className="section-heading reveal">
             <div className="section-kicker"><span>01</span><i /><span>About</span></div>
             <h2>About <em>Me</em></h2>
-            <h3>Electrical &amp; Computer Engineering student and systems builder</h3>
-          </div>
-
-          <div className="about-copy reveal">
-            <p>
-              I build systems where hardware constraints matter: processor pipelines,
-              memory movement, interrupt latency, signal quality, and the software
-              interfaces that connect everything together.
-            </p>
-            <p>
-              At Cornell, my work spans FPGA-based AI acceleration, computer
-              architecture, embedded firmware, VLSI, research, and teaching. I value
-              clear tradeoffs, measurable performance, and implementations that other
-              engineers can understand and extend.
-            </p>
           </div>
 
           <div className="about-education reveal">
@@ -508,6 +493,7 @@ function Intro() {
               {education.map((item, index) => (
                 <article className="about-education-card" key={item.school}>
                   <span>0{index + 1}</span>
+                  <img className="education-logo" src={item.logo} alt={`${item.school} logo`} />
                   <div>
                     <h4>{item.school}</h4>
                     <p>{item.credential}</p>
@@ -520,12 +506,6 @@ function Intro() {
               ))}
             </div>
           </div>
-
-          <div className="about-metrics reveal">
-            <div><strong>100+</strong><span>Students mentored</span></div>
-            <div><strong>400+</strong><span>Fiber sites analyzed</span></div>
-            <div><strong>16</strong><span>TPU processing elements</span></div>
-          </div>
         </div>
       </div>
     </section>
@@ -536,7 +516,7 @@ function ProjectGraphic({ type }) {
   if (type === "tpu") {
     return (
       <div className="tpu-graphic">
-        <div className="chip-label">SYSTOLIC / 4×4</div>
+        <div className="chip-label">STREAM / 50 MHZ</div>
         <div className="chip-grid">
           {Array.from({ length: 16 }).map((_, index) => <i key={index} />)}
         </div>
@@ -693,9 +673,6 @@ function Experience() {
 }
 
 function Skills() {
-  const [activeCategory, setActiveCategory] = useState(0);
-  const activeSkills = skillCategories[activeCategory].items;
-
   return (
     <section className="skills" id="skills">
       <div className="section-shell skills-inner">
@@ -705,40 +682,19 @@ function Skills() {
           <p>Technologies and tools I use to move from architecture to working systems.</p>
         </div>
 
-        <div className="skill-tabs reveal" role="tablist" aria-label="Skill categories">
+        <div className="skill-groups reveal">
           {skillCategories.map((category, index) => (
-            <button
-              type="button"
-              role="tab"
-              aria-selected={activeCategory === index}
-              className={activeCategory === index ? "active" : ""}
-              onClick={() => setActiveCategory(index)}
-              key={category.label}
-            >
-              {category.label}
-            </button>
+            <article className="skill-group" key={category.label}>
+              <div className="skill-group-heading">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{category.label}</h3>
+              </div>
+              <div className="skill-list">
+                {category.items.map((skill) => <span key={skill}>{skill}</span>)}
+              </div>
+            </article>
           ))}
         </div>
-
-        <AnimatePresence mode="wait">
-          <motion.div
-            className="skill-card-grid"
-            key={skillCategories[activeCategory].label}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-          >
-            {activeSkills.map((skill, index) => (
-              <article className="skill-card" key={skill}>
-                <div className="skill-monogram">{skill.replace(/[^A-Za-z]/g, "").slice(0, 2).toUpperCase()}</div>
-                <div className="skill-card-body">
-                  <div><h3>{skill}</h3><span>{String(index + 1).padStart(2, "0")}</span></div>
-                </div>
-              </article>
-            ))}
-          </motion.div>
-        </AnimatePresence>
       </div>
     </section>
   );
@@ -770,9 +726,9 @@ function Coursework() {
 
 function Contact() {
   const contactCards = [
-    { label: "Email", value: "md04shad@gmail.com", icon: Mail, href: "mailto:md04shad@gmail.com" },
+    { label: "Email", value: "mss464@cornell.edu", icon: Mail, href: "mailto:mss464@cornell.edu" },
     { label: "GitHub", value: "github.com/mdshad10", icon: Github, href: "https://github.com/mdshad10" },
-    { label: "Availability", value: "Open to engineering roles", icon: BriefcaseBusiness }
+    { label: "LinkedIn", value: "linkedin.com/in/mdshad4", icon: Linkedin, href: "https://linkedin.com/in/mdshad4" }
   ];
 
   return (
@@ -805,7 +761,7 @@ function Contact() {
           <p>
             I’m interested in engineering internships, research collaborations, and teams working on systems where hardware and software meet.
           </p>
-          <MagneticLink className="contact-button" href="mailto:md04shad@gmail.com" aria-label="Email MD Shad">
+          <MagneticLink className="contact-button" href="mailto:mss464@cornell.edu" aria-label="Email MD Shad">
             <Mail size={24} /><span>Send me an email</span><ArrowUpRight size={20} />
           </MagneticLink>
         </div>
