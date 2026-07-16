@@ -29,11 +29,11 @@ import boardImage from "../unnamed.jpg";
 import profileImage from "../assets/img/profilepic.png";
 import cornellSeal from "../assets/img/cornell-seal.svg";
 import stuyvesantLogo from "../assets/img/stuyvesant-logo.svg";
-import amdLogo from "../assets/img/amd-logo.svg";
-import spectrumLogo from "../assets/img/spectrum-logo.svg";
-import charterLogo from "../assets/img/charter-logo.svg";
-import zhangGroupLogo from "../assets/img/zhang-group-logo.svg";
-import ewbCornellLogo from "../assets/img/ewb-cornell-logo.svg";
+import amdLogo from "../assets/img/amd-logo.png";
+import spectrumLogo from "../assets/img/spectrum-logo.png";
+import charterLogo from "../assets/img/charter-logo.png";
+import experienceCornellLogo from "../assets/img/cornell-experience-logo.png";
+import ewbCornellLogo from "../assets/img/ewb-cornell-logo.png";
 import fpgaDemo from "../assets/media/fpga-demo.mov";
 import simulationDemo from "../assets/media/simulation-demo.mov";
 import "./styles.css";
@@ -261,7 +261,7 @@ const experience = [
     group: "At School",
     type: "Research",
     icon: CircuitBoard,
-    logos: [zhangGroupLogo],
+    logos: [experienceCornellLogo],
     date: "Aug 2025 — May 2026",
     place: "Zhang Research Group",
     role: "Research Assistant",
@@ -275,7 +275,7 @@ const experience = [
     group: "At School",
     type: "Teaching",
     icon: BookOpen,
-    logos: [cornellSeal],
+    logos: [experienceCornellLogo],
     date: "Jan 2025 — May 2026",
     place: "Cornell ECE · Digital Logic & Embedded Systems",
     role: "Teaching Assistant",
@@ -303,7 +303,7 @@ const experience = [
     group: "At School",
     type: "Campus Employment",
     icon: BriefcaseBusiness,
-    logos: [cornellSeal],
+    logos: [experienceCornellLogo],
     date: "Nov 2024 — Present",
     place: "Cornell University Athletics",
     role: "Event / Game-Day Staff",
@@ -318,6 +318,7 @@ const experience = [
     type: "Project Team",
     icon: CircuitBoard,
     logos: [ewbCornellLogo],
+    logoClass: "timeline-brand-ewb",
     date: "Jan 2025 — Aug 2025",
     place: "Engineers Without Borders Cornell University Project Team",
     role: "Hardware Engineer",
@@ -820,7 +821,7 @@ function Experience() {
                     <span className="timeline-dot" />
                     <div className="timeline-meta"><span>{item.date}</span><span>{item.location}</span></div>
                     <div className="timeline-card">
-                      <div className="timeline-brand">
+                      <div className={`timeline-brand ${item.logoClass || ""}`}>
                         {item.logos?.map((logo, logoIndex) => (
                           <img src={logo} alt="" aria-hidden="true" key={`${item.place}-${logoIndex}`} />
                         )) || <div className="timeline-icon"><Icon size={22} /></div>}
