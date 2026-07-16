@@ -21,9 +21,7 @@ import {
   Linkedin,
   Mail,
   MapPin,
-  Menu,
   Radio,
-  X,
   Zap
 } from "lucide-react";
 import heroImage from "../IMG_0005.JPG";
@@ -31,9 +29,15 @@ import boardImage from "../unnamed.jpg";
 import profileImage from "../assets/img/profilepic.png";
 import cornellSeal from "../assets/img/cornell-seal.svg";
 import stuyvesantLogo from "../assets/img/stuyvesant-logo.svg";
+import amdLogo from "../assets/img/amd-logo.svg";
+import spectrumLogo from "../assets/img/spectrum-logo.svg";
+import charterLogo from "../assets/img/charter-logo.svg";
+import zhangGroupLogo from "../assets/img/zhang-group-logo.svg";
+import ewbCornellLogo from "../assets/img/ewb-cornell-logo.svg";
 import fpgaDemo from "../assets/media/fpga-demo.mov";
 import simulationDemo from "../assets/media/simulation-demo.mov";
 import "./styles.css";
+import "./refinements.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -240,8 +244,10 @@ const projectFilters = ["All", "FPGA & VLSI", "Architecture", "Embedded"];
 
 const experience = [
   {
+    group: "Industry",
     type: "Industry",
     icon: Cpu,
+    logos: [amdLogo],
     date: "May 2026 — Present",
     place: "Advanced Micro Devices (AMD)",
     role: "Systems Design Engineer Intern",
@@ -252,8 +258,10 @@ const experience = [
     ]
   },
   {
+    group: "At School",
     type: "Research",
     icon: CircuitBoard,
+    logos: [zhangGroupLogo],
     date: "Aug 2025 — May 2026",
     place: "Zhang Research Group",
     role: "Research Assistant",
@@ -264,8 +272,10 @@ const experience = [
     ]
   },
   {
+    group: "At School",
     type: "Teaching",
     icon: BookOpen,
+    logos: [cornellSeal],
     date: "Jan 2025 — May 2026",
     place: "Cornell ECE · Digital Logic & Embedded Systems",
     role: "Teaching Assistant",
@@ -276,8 +286,10 @@ const experience = [
     ]
   },
   {
+    group: "Industry",
     type: "Industry",
     icon: BriefcaseBusiness,
+    logos: [spectrumLogo, charterLogo],
     date: "May 2025 — Aug 2025",
     place: "Charter Communications / Spectrum",
     role: "Electrical Engineering Intern",
@@ -285,6 +297,34 @@ const experience = [
     bullets: [
       "Improved network monitoring and reliability workflows across more than 400 fiber sites.",
       "Developed an XGBoost-based fraud-detection concept and analyzed power telemetry."
+    ]
+  },
+  {
+    group: "At School",
+    type: "Campus Employment",
+    icon: BriefcaseBusiness,
+    logos: [cornellSeal],
+    date: "Nov 2024 — Present",
+    place: "Cornell University Athletics",
+    role: "Event / Game-Day Staff",
+    location: "Ithaca, NY",
+    bullets: [
+      "Support event operations by ushering, managing ticketing, and coordinating parking logistics.",
+      "Help deliver efficient game-day operations and a positive attendee experience."
+    ]
+  },
+  {
+    group: "At School",
+    type: "Project Team",
+    icon: CircuitBoard,
+    logos: [ewbCornellLogo],
+    date: "Jan 2025 — Aug 2025",
+    place: "Engineers Without Borders Cornell University Project Team",
+    role: "Hardware Engineer",
+    location: "Ithaca, NY",
+    bullets: [
+      "Integrated wiring, assembled and tested PCBs, and configured motor controllers for drone and rover platforms.",
+      "Improved reliable, precise operation for northern leaf blight detection systems."
     ]
   }
 ];
@@ -397,51 +437,18 @@ function MagneticLink({ children, className = "", ...props }) {
 }
 
 function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
-
   return (
-    <>
-      <motion.header
-        className="site-header"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.25, duration: 0.6 }}
-      >
-        <a className="wordmark" href="#top" aria-label="Md Shad home">
-          Md Shad
-        </a>
-        <p className="header-year">@2026</p>
-        <button
-          className="menu-toggle"
-          type="button"
-          aria-expanded={menuOpen}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          <span>{menuOpen ? "Close" : "Menu"}</span>
-          {menuOpen ? <X size={19} /> : <Menu size={19} />}
-        </button>
-      </motion.header>
-
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.nav
-            className="mobile-nav"
-            initial={{ clipPath: "inset(0 0 100% 0)" }}
-            animate={{ clipPath: "inset(0 0 0% 0)" }}
-            exit={{ clipPath: "inset(0 0 100% 0)" }}
-            transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
-          >
-            <span className="eyebrow">Navigation</span>
-            {navLinks.map((link) => (
-              <a href={link.href} key={link.href} onClick={() => setMenuOpen(false)}>
-                {link.label}
-              </a>
-            ))}
-          </motion.nav>
-        )}
-      </AnimatePresence>
-    </>
+    <motion.header
+      className="site-header"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.25, duration: 0.6 }}
+    >
+      <a className="wordmark" href="#top" aria-label="Md Shad home">Md Shad</a>
+      <nav className="desktop-nav" aria-label="Primary navigation">
+        {navLinks.map((link) => <a href={link.href} key={link.href}>{link.label}</a>)}
+      </nav>
+    </motion.header>
   );
 }
 
@@ -594,7 +601,7 @@ function Intro() {
     {
       school: "Stuyvesant High School",
       credential: "High School Diploma",
-      detail: "New York City",
+      detail: null,
       location: "New York, New York",
       logo: stuyvesantLogo
     }
@@ -630,7 +637,7 @@ function Intro() {
                     <p>{item.credential}</p>
                   </div>
                   <div className="about-education-meta">
-                    <span>{item.detail}</span>
+                    {item.detail && <span>{item.detail}</span>}
                     <span>{item.location}</span>
                   </div>
                 </article>
@@ -793,33 +800,44 @@ function Projects() {
 }
 
 function Experience() {
+  const experienceGroups = ["Industry", "At School"];
+
   return (
     <section className="experience section-shell" id="experience">
       <div className="module-heading reveal">
         <h2>Professional <em>Experience</em></h2>
         <p>Research, teaching, and industry experience applying engineering theory to real systems.</p>
       </div>
-      <div className="experience-timeline">
-        {experience.map((item, index) => {
-          const Icon = item.icon;
-          return (
-            <article className="timeline-item reveal" key={item.place}>
-              <span className="timeline-dot" />
-              <div className="timeline-meta">
-                <span>0{index + 1}</span><span>{item.date}</span><span>{item.location}</span>
-              </div>
-              <div className="timeline-card">
-                <div className="timeline-icon"><Icon size={22} /></div>
-                <div>
-                  <p>{item.type}</p>
-                  <h3>{item.role}</h3>
-                  <h4>@ {item.place}</h4>
-                  <ul>{item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
-                </div>
-              </div>
-            </article>
-          );
-        })}
+      <div className="experience-groups">
+        {experienceGroups.map((group) => (
+          <section className="experience-group" key={group}>
+            <h3 className="experience-group-title reveal">{group}</h3>
+            <div className="experience-timeline">
+              {experience.filter((item) => item.group === group).map((item) => {
+                const Icon = item.icon;
+                return (
+                  <article className="timeline-item reveal" key={`${item.place}-${item.role}`}>
+                    <span className="timeline-dot" />
+                    <div className="timeline-meta"><span>{item.date}</span><span>{item.location}</span></div>
+                    <div className="timeline-card">
+                      <div className="timeline-brand">
+                        {item.logos?.map((logo, logoIndex) => (
+                          <img src={logo} alt="" aria-hidden="true" key={`${item.place}-${logoIndex}`} />
+                        )) || <div className="timeline-icon"><Icon size={22} /></div>}
+                      </div>
+                      <div>
+                        <p>{item.type}</p>
+                        <h3>{item.role}</h3>
+                        <h4>@ {item.place}</h4>
+                        <ul>{item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+        ))}
       </div>
     </section>
   );
