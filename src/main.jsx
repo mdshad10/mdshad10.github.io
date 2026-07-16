@@ -56,6 +56,66 @@ const heroMedia = [
 const projects = [
   {
     number: "01",
+    title: "Hardware ODE Solver",
+    category: "FPGA / Hardware–Software Co-Design",
+    period: "Jan 2026 — Feb 2026",
+    summary:
+      "A fixed-point FPGA solver for the Lorenz system with HPS control and real-time VGA visualization.",
+    impact: "Real-time chaotic-system integration",
+    bullets: [
+      "Implemented a synthesizable Euler-integration DDA core for three coupled differential equations.",
+      "Added memory-mapped HPS controls for parameters, initial conditions, speed, pause, reset, and display management."
+    ],
+    tools: ["Verilog", "Cyclone V", "HPS", "VGA"],
+    filters: ["FPGA & VLSI"],
+    image: "/assets/projects/hardware-ode-solver.jpg",
+    imageAlt: "Lorenz attractors rendered by the hardware ODE solver",
+    report: "/assets/reports/hardware-ode-solver.pdf",
+    visual: "tpu",
+    tone: "lime"
+  },
+  {
+    number: "02",
+    title: "Mandelbrot Set Visualizer",
+    category: "Parallel FPGA Rendering",
+    period: "Feb 2026 — Mar 2026",
+    summary:
+      "An interactive 640×480 Mandelbrot renderer using parallel fixed-point iterator pipelines and on-chip memory.",
+    impact: "43 parallel iterators · 20 ms frame",
+    bullets: [
+      "Mapped concurrent iterators across DSP blocks and dedicated M10K memories to reduce contention.",
+      "Built HPS-controlled pan and zoom with direct FPGA-to-VGA pixel output and performance monitoring."
+    ],
+    tools: ["Verilog", "Fixed-Point", "M10K", "VGA"],
+    filters: ["FPGA & VLSI"],
+    image: "/assets/projects/mandelbrot-visualizer.jpg",
+    imageAlt: "Mandelbrot set rendered on the FPGA-driven VGA display",
+    report: "/assets/reports/mandelbrot-set-visualizer.pdf",
+    visual: "cpu",
+    tone: "violet"
+  },
+  {
+    number: "03",
+    title: "Multiprocessor Drum Synthesis",
+    category: "FPGA Audio / Physical Modeling",
+    period: "Mar 2026",
+    summary:
+      "A hardware-accelerated physical-modeling synthesizer that solves a damped 2D wave equation in real time.",
+    impact: "12,800 nodes at 48 kHz",
+    bullets: [
+      "Parallelized column compute units using 1.17 fixed-point arithmetic, DSP blocks, and M10K memories.",
+      "Streamed center-node amplitude to the onboard audio DAC for continuous synthesized drum output."
+    ],
+    tools: ["Verilog", "FPGA Audio", "DSP Blocks", "M10K"],
+    filters: ["FPGA & VLSI", "Embedded"],
+    image: "/assets/projects/multiprocessor-drum-synthesis.jpg",
+    imageAlt: "Labeled DE1-SoC controls for the multiprocessor drum synthesizer",
+    report: "/assets/reports/multiprocessor-drum-synthesis.pdf",
+    visual: "audio",
+    tone: "orange"
+  },
+  {
+    number: "04",
     title: "Shack–Hartmann Reconstruction Engine",
     category: "Adaptive Optics / FPGA",
     period: "Jan 2026 — May 2026",
@@ -72,7 +132,7 @@ const projects = [
     tone: "lime"
   },
   {
-    number: "02",
+    number: "05",
     title: "32×32 TCAM",
     category: "Full-Custom VLSI",
     period: "Mar 2026 — May 2026",
@@ -89,7 +149,7 @@ const projects = [
     tone: "violet"
   },
   {
-    number: "03",
+    number: "06",
     title: "Multi-Core RISC-V System",
     category: "Computer Architecture",
     period: "Nov 2025 — Dec 2025",
@@ -106,7 +166,7 @@ const projects = [
     tone: "orange"
   },
   {
-    number: "04",
+    number: "07",
     title: "Systolic TPU Accelerator",
     category: "AI Hardware / FPGA",
     period: "Research · 2025 — 2026",
@@ -123,7 +183,7 @@ const projects = [
     tone: "blue"
   },
   {
-    number: "05",
+    number: "08",
     title: "TinyRV2 Processor",
     category: "Computer Architecture",
     period: "Cornell ECE",
@@ -140,7 +200,7 @@ const projects = [
     tone: "violet"
   },
   {
-    number: "06",
+    number: "09",
     title: "Birdsong Synthesizer",
     category: "Embedded Audio / DSP",
     period: "Real-Time Systems",
@@ -157,7 +217,7 @@ const projects = [
     tone: "orange"
   },
   {
-    number: "07",
+    number: "10",
     title: "Smart Scoring System",
     category: "Embedded Sensing",
     period: "Hardware + Firmware",
@@ -626,6 +686,7 @@ function ProjectGraphic({ type }) {
 
 function ProjectCard({ project, index }) {
   const reduceMotion = useReducedMotion();
+  const projectLink = project.report || project.href;
 
   return (
     <motion.article
@@ -637,8 +698,20 @@ function ProjectCard({ project, index }) {
       whileHover={reduceMotion ? undefined : { y: -5 }}
       transition={{ duration: 0.25, ease: "easeOut" }}
     >
-      <div className="project-graphic">
-        <ProjectGraphic type={project.visual} />
+      <div className={`project-graphic${project.image ? " project-graphic-image" : ""}`}>
+        {project.image ? (
+          <a
+            className="project-thumbnail-link"
+            href={project.report}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`Read the ${project.title} report`}
+          >
+            <img className="project-thumbnail" src={project.image} alt={project.imageAlt} />
+          </a>
+        ) : (
+          <ProjectGraphic type={project.visual} />
+        )}
       </div>
       <div className="project-case-number">{project.number}</div>
       <div className="project-case-label"><i /> Case · {project.category}</div>
@@ -653,10 +726,21 @@ function ProjectCard({ project, index }) {
         {project.tools.slice(0, 3).map((tool) => <span key={tool}>{tool}</span>)}
       </div>
       <div className="project-card-bottom">
-        <span>View case <ArrowUpRight size={14} /></span>
-        {project.href ? (
-          <a href={project.href} target="_blank" rel="noreferrer" aria-label={`Open ${project.title} on GitHub`}>
-            <ArrowUpRight size={20} />
+        {project.report ? (
+          <a className="project-report-link" href={project.report} target="_blank" rel="noreferrer">
+            Read report <ArrowUpRight size={14} />
+          </a>
+        ) : (
+          <span>View project <ArrowUpRight size={14} /></span>
+        )}
+        {projectLink ? (
+          <a
+            href={projectLink}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={project.report ? `Read the ${project.title} report` : `Open ${project.title} on GitHub`}
+          >
+            {project.report ? <BookOpen size={18} /> : <ArrowUpRight size={20} />}
           </a>
         ) : <Github size={19} aria-hidden="true" />}
       </div>

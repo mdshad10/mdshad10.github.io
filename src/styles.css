@@ -3283,6 +3283,44 @@ video.hero-background {
   transform: none;
 }
 
+.project-graphic-image {
+  background: #101217;
+}
+
+.project-thumbnail-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.project-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.project-card-bottom > .project-report-link {
+  display: inline-flex;
+  width: auto;
+  height: auto;
+  gap: 8px;
+  align-items: center;
+  border-radius: 0;
+  color: var(--ink);
+  background: transparent;
+  font-family: "DM Mono", monospace;
+  font-size: 0.59rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.project-card-bottom > .project-report-link:hover,
+.project-card-bottom > .project-report-link:focus-visible {
+  color: var(--card-accent);
+}
+
 @media (max-width: 1120px) {
   .about-education-card {
     grid-template-columns: 66px minmax(0, 1fr);
