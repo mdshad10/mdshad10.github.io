@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 72" role="img" aria-labelledby="title">
-  <title id="title">AMD</title>
-  <g fill="#111318">
-    <text x="4" y="55" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="800" letter-spacing="-4">AMD</text>
-    <path d="M174 7h38v38h-9V16h-29z"/>
-    <path d="M181 24h14v14h-14z"/>
-  </g>
-</svg>
