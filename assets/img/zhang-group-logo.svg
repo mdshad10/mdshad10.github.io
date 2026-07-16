@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="title">
+  <title id="title">Zhang Research Group</title>
+  <rect width="120" height="120" rx="22" fill="#f2f7ff"/>
+  <path d="M34 25h52L42 88h44" fill="none" stroke="#2679c9" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="88" cy="31" r="8" fill="#64aaf0"/>
+</svg>

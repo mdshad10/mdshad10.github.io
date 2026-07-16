@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 96" role="img" aria-labelledby="title">
+  <title id="title">Engineers Without Borders Cornell</title>
+  <g fill="none" stroke="#0877c9" stroke-width="3">
+    <circle cx="44" cy="43" r="31"/>
+    <path d="M13 43h62M44 12c-12 12-16 50 0 62M44 12c12 12 16 50 0 62M19 27c14 8 37 8 51 0M19 59c14-8 37-8 51 0"/>
+  </g>
+  <text x="88" y="42" fill="#0756a2" font-family="Georgia, serif" font-size="24" font-weight="700">ENGINEERS WITHOUT BORDERS</text>
+  <text x="89" y="68" fill="#0877c9" font-family="Georgia, serif" font-size="18">CORNELL UNIVERSITY</text>
+</svg>
