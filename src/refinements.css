@@ -13,9 +13,37 @@
 
 .site-header .desktop-nav a {
   color: rgba(255, 255, 255, 0.84);
-  font-size: clamp(0.61rem, 0.72vw, 0.76rem);
+  font-size: clamp(0.86rem, 1.05vw, 1rem);
+  font-weight: 800;
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.36);
   white-space: nowrap;
+}
+
+.hero-media-controls {
+  left: 43%;
+}
+
+.intro,
+.skills,
+.coursework,
+.projects,
+.experience,
+.contact {
+  padding-top: clamp(62px, 6vw, 88px);
+}
+
+.module-heading h2,
+.about-content .section-heading h2 {
+  font-weight: 650;
+  letter-spacing: -0.065em;
+}
+
+.module-heading h2 em,
+.section-heading h2 em {
+  font-family: "Bodoni Moda", Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: -0.035em;
 }
 
 .site-header .desktop-nav a:hover,
@@ -31,6 +59,10 @@
 
 .about-photo img {
   object-position: 50% 34%;
+}
+
+.about-photo::after {
+  display: none;
 }
 
 .about-education-meta {
@@ -62,10 +94,47 @@
   object-fit: contain;
 }
 
-.project-card-bottom > .project-report-link {
+.project-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 16px;
+  align-items: center;
+}
+
+.project-card-actions > a,
+.project-card-actions > span {
+  display: inline-flex;
+  width: auto;
+  height: auto;
+  gap: 7px;
+  align-items: center;
+  color: var(--ink);
+  background: transparent;
+  font-family: "DM Mono", monospace;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.project-card-actions > a:hover,
+.project-card-actions > a:focus-visible {
+  color: var(--card-accent);
+}
+
+.project-card-actions > .project-report-link {
   font-size: 0.84rem;
   font-weight: 800;
   letter-spacing: 0.065em;
+}
+
+.coursework-card {
+  will-change: transform;
+}
+
+.coursework-card:hover {
+  border-color: rgba(84, 88, 232, 0.38);
+  box-shadow: 0 24px 52px rgba(38, 44, 66, 0.12);
 }
 
 .experience-groups {
@@ -169,6 +238,16 @@
   }
 }
 
+@media (max-width: 760px) {
+  .hero-media-controls {
+    top: 104px;
+    right: 18px;
+    bottom: auto;
+    left: auto;
+    transform: none;
+  }
+}
+
 @media (max-width: 620px) {
   .site-header {
     min-height: 96px;
@@ -190,7 +269,7 @@
   }
 
   .site-header .desktop-nav a {
-    font-size: 0.53rem;
+    font-size: 0.58rem;
   }
 
   .timeline-card {
