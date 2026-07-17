@@ -57,9 +57,10 @@ const heroMedia = [
   { type: "video", src: fpgaDemo, label: "FPGA Prototype", format: "portrait" }
 ];
 
-const projects = [
+const projectCatalog = [
   {
     number: "01",
+    rank: 5,
     title: "Hardware ODE Solver",
     category: "FPGA / Hardware–Software Co-Design",
     period: "Jan 2026 — Feb 2026",
@@ -71,7 +72,7 @@ const projects = [
       "Added memory-mapped HPS controls for parameters, initial conditions, speed, pause, reset, and display management."
     ],
     tools: ["Verilog", "Cyclone V", "HPS", "VGA"],
-    filters: ["FPGA & VLSI"],
+    filters: ["FPGA"],
     image: "/assets/projects/hardware-ode-solver.jpg",
     imageAlt: "Lorenz attractors rendered by the hardware ODE solver",
     report: "/assets/reports/hardware-ode-solver.pdf",
@@ -80,6 +81,7 @@ const projects = [
   },
   {
     number: "02",
+    rank: 9,
     title: "Mandelbrot Set Visualizer",
     category: "Parallel FPGA Rendering",
     period: "Feb 2026 — Mar 2026",
@@ -91,7 +93,7 @@ const projects = [
       "Built HPS-controlled pan and zoom with direct FPGA-to-VGA pixel output and performance monitoring."
     ],
     tools: ["Verilog", "Fixed-Point", "M10K", "VGA"],
-    filters: ["FPGA & VLSI"],
+    filters: ["FPGA"],
     image: "/assets/projects/mandelbrot-visualizer.jpg",
     imageAlt: "Mandelbrot set rendered on the FPGA-driven VGA display",
     report: "/assets/reports/mandelbrot-set-visualizer.pdf",
@@ -100,6 +102,7 @@ const projects = [
   },
   {
     number: "03",
+    rank: 10,
     title: "Multiprocessor Drum Synthesis",
     category: "FPGA Audio / Physical Modeling",
     period: "Mar 2026",
@@ -111,7 +114,7 @@ const projects = [
       "Streamed center-node amplitude to the onboard audio DAC for continuous synthesized drum output."
     ],
     tools: ["Verilog", "FPGA Audio", "DSP Blocks", "M10K"],
-    filters: ["FPGA & VLSI", "Embedded"],
+    filters: ["FPGA"],
     image: "/assets/projects/multiprocessor-drum-synthesis.jpg",
     imageAlt: "Labeled DE1-SoC controls for the multiprocessor drum synthesizer",
     report: "/assets/reports/multiprocessor-drum-synthesis.pdf",
@@ -120,6 +123,7 @@ const projects = [
   },
   {
     number: "04",
+    rank: 1,
     title: "Ultra-Low-Latency Shack–Hartmann FPGA Reconstruction Engine",
     category: "Adaptive Optics / FPGA",
     period: "Jan 2026 — May 2026",
@@ -131,7 +135,7 @@ const projects = [
       "Integrated DMA-based HPS–FPGA communication, TCP streaming, and deterministic validation at 50 MHz."
     ],
     tools: ["SystemVerilog", "Cyclone V", "DMA", "Fixed-Point DSP"],
-    filters: ["FPGA & VLSI"],
+    filters: ["FPGA"],
     image: "/assets/projects/shack-hartmann-diagnostics.png",
     imageAlt: "HCIPy and FPGA wavefront reconstruction diagnostic plots",
     website: "https://people.ece.cornell.edu/land/courses/ece5760/FinalProjects/s2026/sjb336_mss464_mjg397/sjb336_mss464_mjg397/sjb336_mss464_mjg397/index.html",
@@ -140,7 +144,8 @@ const projects = [
   },
   {
     number: "05",
-    title: "32×32 TCAM",
+    rank: 3,
+    title: "32 × 32 Ternary Content Addressable Memory (TCAM)",
     category: "Full-Custom VLSI",
     period: "Mar 2026 — May 2026",
     summary:
@@ -151,7 +156,7 @@ const projects = [
       "Verified schematic, extracted, timing, power, RC-delay, and matchline behavior."
     ],
     tools: ["VLSI", "Custom Layout", "SPICE", "Timing Analysis"],
-    filters: ["FPGA & VLSI"],
+    filters: ["VLSI"],
     image: "/assets/projects/tcam-top-level.png",
     imageAlt: "Top-level schematic for the 32 by 32 ternary content-addressable memory",
     report: "/assets/reports/tcam-final-project.pdf",
@@ -160,6 +165,7 @@ const projects = [
   },
   {
     number: "06",
+    rank: 2,
     title: "Multi-Core RISC-V System",
     category: "Computer Architecture",
     period: "Nov 2025 — Dec 2025",
@@ -171,7 +177,7 @@ const projects = [
       "Developed C microbenchmarks to evaluate throughput, latency, scalability, and synchronization overhead."
     ],
     tools: ["RISC-V", "SystemVerilog", "Caches", "C"],
-    filters: ["Architecture"],
+    filters: ["Computer Architecture"],
     image: "/assets/projects/multicore-riscv-system.png",
     imageAlt: "Four-core RISC-V memory and cache network architecture",
     report: "/assets/reports/multicore-riscv-system.pdf",
@@ -180,7 +186,8 @@ const projects = [
   },
   {
     number: "07",
-    title: "Systolic TPU Accelerator",
+    rank: 4,
+    title: "8×8 Mini-TPU",
     category: "AI Hardware / FPGA",
     period: "Research · 2025 — 2026",
     summary:
@@ -191,12 +198,13 @@ const projects = [
       "Designed double-buffered weight loading across DRAM, BRAM, and local buffers."
     ],
     tools: ["SystemVerilog", "FPGA", "Python", "Custom ISA"],
-    filters: ["FPGA & VLSI"],
+    filters: ["FPGA"],
     visual: "tpu",
     tone: "blue"
   },
   {
     number: "08",
+    rank: 6,
     title: "TinyRV2 Processor",
     category: "Computer Architecture",
     period: "Cornell ECE",
@@ -208,7 +216,7 @@ const projects = [
       "Validated forwarding, stalls, and hazards through targeted timing-aware tests."
     ],
     tools: ["RISC-V", "SystemVerilog", "RTL", "Verification"],
-    filters: ["Architecture"],
+    filters: ["Computer Architecture"],
     image: "/assets/projects/tinyrv2-pipeline.png",
     imageAlt: "Five-stage TinyRV2 processor pipeline datapath with bypass paths",
     report: "/assets/reports/tinyrv2-pipelined-processor.pdf",
@@ -217,6 +225,7 @@ const projects = [
   },
   {
     number: "09",
+    rank: 15,
     title: "Birdsong Synthesizer",
     category: "Embedded Audio / DSP",
     period: "Real-Time Systems",
@@ -228,7 +237,7 @@ const projects = [
       "Drove an SPI DAC with deterministic timer interrupts."
     ],
     tools: ["RP2040", "Embedded C", "DSP", "SPI"],
-    filters: ["Embedded"],
+    filters: ["Embedded / Microcontrollers"],
     image: "/assets/projects/birdsong-synthesizer.png",
     imageAlt: "Spectrogram of a Northern Cardinal call used for the birdsong synthesizer",
     report: "/assets/reports/birdsong-synthesizer.pdf",
@@ -237,7 +246,8 @@ const projects = [
   },
   {
     number: "10",
-    title: "Smart Scoring System",
+    rank: 12,
+    title: "Smart Basketball Hoop Scoring Tracker",
     category: "Embedded Sensing",
     period: "Hardware + Firmware",
     summary:
@@ -248,7 +258,7 @@ const projects = [
       "Designed deterministic sensor handling instead of polling."
     ],
     tools: ["FRDM-KL46Z", "C", "Sensors", "FSM"],
-    filters: ["Embedded"],
+    filters: ["Embedded / Microcontrollers"],
     image: "/assets/projects/basketball-hardware.jpg",
     imageAlt: "FRDM-KL46Z basketball scoring tracker hardware and break-beam circuit",
     website: "https://pages.github.coecis.cornell.edu/ece3140-sp2025/kab472-mss464/",
@@ -258,6 +268,7 @@ const projects = [
   },
   {
     number: "11",
+    rank: 11,
     title: "Self-Balancing Robot",
     category: "Embedded Control / Robotics",
     period: "Fall 2025",
@@ -269,7 +280,7 @@ const projects = [
       "Hosted a Pico W web interface for live tuning and added wireless gesture control."
     ],
     tools: ["RP2040", "PID Control", "IMU", "Wi-Fi"],
-    filters: ["Embedded"],
+    filters: ["Embedded / Microcontrollers"],
     image: "/assets/projects/self-balancing-robot.png",
     imageAlt: "CAD assembly of the two-wheeled self-balancing robot",
     website: "https://ece4760.github.io/Projects/Fall2025/sjb336_jg244_mss464/index.html",
@@ -278,6 +289,7 @@ const projects = [
   },
   {
     number: "12",
+    rank: 8,
     title: "Variable-Latency Integer Multiplier",
     category: "Computer Architecture / RTL",
     period: "Cornell ECE",
@@ -289,7 +301,7 @@ const projects = [
       "Separated the datapath and FSM control while validating directed, random, and corner cases."
     ],
     tools: ["Verilog", "FSM", "RTL", "Verification"],
-    filters: ["Architecture"],
+    filters: ["Computer Architecture"],
     image: "/assets/projects/integer-multiplier.png",
     imageAlt: "Variable-latency iterative integer multiplier datapath",
     report: "/assets/reports/iterative-integer-multiplier.pdf",
@@ -298,6 +310,7 @@ const projects = [
   },
   {
     number: "13",
+    rank: 7,
     title: "Two-Way Blocking Cache",
     category: "Memory Systems",
     period: "Cornell ECE",
@@ -309,7 +322,7 @@ const projects = [
       "Compared miss rate and average memory access latency against a direct-mapped baseline."
     ],
     tools: ["SystemVerilog", "Caches", "LRU", "Memory"],
-    filters: ["Architecture"],
+    filters: ["Computer Architecture"],
     image: "/assets/projects/blocking-cache.png",
     imageAlt: "Two-way set-associative blocking cache datapath",
     report: "/assets/reports/blocking-cache.pdf",
@@ -318,6 +331,7 @@ const projects = [
   },
   {
     number: "14",
+    rank: 13,
     title: "Digital Galton Board",
     category: "Embedded Visualization / DMA",
     period: "Fall 2025",
@@ -329,13 +343,16 @@ const projects = [
       "Used DMA-driven SPI audio to generate collision sounds with minimal CPU overhead."
     ],
     tools: ["RP2040", "VGA", "DMA", "SPI DAC"],
-    filters: ["Embedded"],
+    filters: ["Embedded / Microcontrollers"],
+    image: "/assets/projects/galton-board.png",
+    imageAlt: "Real-time VGA Digital Galton Board simulation and distribution histogram",
     report: "/assets/reports/digital-galton-board.pdf",
     visual: "sensor",
     tone: "orange"
   },
   {
     number: "15",
+    rank: 14,
     title: "PID-Controlled 1D Helicopter",
     category: "Embedded Feedback Control",
     period: "Fall 2025",
@@ -347,14 +364,21 @@ const projects = [
       "Added isolated PWM motor drive, live VGA visualization, and serial gain tuning."
     ],
     tools: ["RP2040", "PID", "IMU", "PWM"],
-    filters: ["Embedded"],
+    filters: ["Embedded / Microcontrollers"],
     report: "/assets/reports/pid-helicopter.pdf",
     visual: "audio",
     tone: "blue"
   }
 ];
 
-const projectFilters = ["All", "FPGA & VLSI", "Architecture", "Embedded"];
+const projects = projectCatalog
+  .sort((a, b) => a.rank - b.rank)
+  .map((project, index) => ({
+    ...project,
+    number: String(index + 1).padStart(2, "0")
+  }));
+
+const projectFilters = ["All", "FPGA", "VLSI", "Computer Architecture", "Embedded / Microcontrollers"];
 
 const experience = [
   {
@@ -393,13 +417,27 @@ const experience = [
     type: "Teaching",
     icon: BookOpen,
     logos: [experienceCornellLogo],
-    date: "Jan 2025 — May 2026",
-    place: "Cornell ECE · Digital Logic & Embedded Systems",
+    date: "Jan 2025 — Present · 1 yr 7 mos",
+    place: "Cornell Engineering",
     role: "Teaching Assistant",
-    location: "Ithaca, NY",
-    bullets: [
-      "Led labs in Verilog debugging, timing performance, area analysis, and design complexity using Intel Quartus Prime.",
-      "Taught FSMs, memory-mapped I/O, peripheral control, and interrupt-driven embedded design."
+    location: "Ithaca, New York · On-site",
+    subroles: [
+      {
+        title: "ECE 3140 / CS 3420: Embedded Systems",
+        date: "Jan 2026 — Present",
+        leader: "Led by Professor Kirstin Petersen",
+        bullets: [
+          "Mentor students in low-level C programming, memory-mapped I/O, interrupts, timers, peripheral interfacing, and real-time scheduling."
+        ]
+      },
+      {
+        title: "ECE 2300: Digital Logic and Computer Organization",
+        date: "Jan 2025 — Dec 2025",
+        leader: "Led by Professors Zhiru Zhang and Christopher Batten",
+        bullets: [
+          "Guided discussions on digital logic, computer organization, and FPGA architecture while debugging and optimizing Verilog designs."
+        ]
+      }
     ]
   },
   {
@@ -411,7 +449,7 @@ const experience = [
     date: "May 2025 — Aug 2025",
     place: "Charter Communications / Spectrum",
     role: "Electrical Engineering Intern",
-    location: "United States",
+    location: "New York, New York",
     bullets: [
       "Improved network monitoring and reliability workflows across more than 400 fiber sites.",
       "Developed an XGBoost-based fraud-detection concept and analyzed power telemetry."
@@ -731,7 +769,7 @@ function Intro() {
   return (
     <section className="intro section-shell" id="about">
       <div className="about-layout">
-        <motion.figure className="about-photo reveal" whileHover={{ y: -6 }} transition={{ duration: 0.3 }}>
+        <motion.figure className="about-photo reveal" whileHover={{ y: -2 }} transition={{ duration: 0.22 }}>
           <img src={profileImage} alt="Portrait of Md Shad" />
         </motion.figure>
 
@@ -826,10 +864,10 @@ function ProjectCard({ project, index }) {
         {project.image ? (
           <a
             className="project-thumbnail-link"
-            href={project.report}
+            href={project.report || project.website || project.href}
             target="_blank"
             rel="noreferrer"
-            aria-label={`Read the ${project.title} report`}
+            aria-label={project.report ? `Read the ${project.title} report` : `Open the ${project.title} project page`}
           >
             <img className="project-thumbnail" src={project.image} alt={project.imageAlt} />
           </a>
@@ -954,10 +992,23 @@ function Experience() {
                         )) || <div className="timeline-icon"><Icon size={22} /></div>}
                       </div>
                       <div>
-                        <p>{item.type}</p>
+                        <p className="timeline-type">{item.type}</p>
                         <h3>{item.role}</h3>
-                        <h4>@ {item.place}</h4>
-                        <ul>{item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
+                        <h4 className="timeline-company">{item.place}</h4>
+                        {item.subroles ? (
+                          <div className="timeline-subroles">
+                            {item.subroles.map((subrole) => (
+                              <section className="timeline-subrole" key={subrole.title}>
+                                <h5>{subrole.title}</h5>
+                                <span>{subrole.date}</span>
+                                <p className="timeline-leader">{subrole.leader}</p>
+                                <ul>{subrole.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
+                              </section>
+                            ))}
+                          </div>
+                        ) : (
+                          <ul>{item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
+                        )}
                       </div>
                     </div>
                   </article>
