@@ -7,8 +7,6 @@ import {
   useReducedMotion,
   useSpring
 } from "framer-motion";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   ArrowDown,
   ArrowUpRight,
@@ -40,8 +38,6 @@ import simulationDemo from "../assets/media/simulation-demo.mp4";
 import "./styles.css";
 import "./refinements.css";
 
-gsap.registerPlugin(ScrollTrigger);
-
 const navLinks = [
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
@@ -54,7 +50,7 @@ const navLinks = [
 const heroMedia = [
   { type: "image", src: heroImage, label: "Systems Lab", format: "landscape", alt: "Md Shad collaborating on a desktop computer hardware build" },
   { type: "video", src: simulationDemo, label: "Architecture Simulation", format: "landscape" },
-  { type: "image", src: fraudPresentationImage, label: "AI Fraud Presentation", format: "presentation", alt: "Md Shad presenting an AI fraud-prevention system at Spectrum" },
+  { type: "image", src: fraudPresentationImage, label: "AI Fraud Presentation", format: "landscape", alt: "Md Shad presenting an AI fraud-prevention system at Spectrum" },
   { type: "video", src: fpgaDemo, label: "FPGA Prototype", format: "portrait" }
 ];
 
@@ -855,10 +851,6 @@ function ProjectCard({ project }) {
   return (
     <motion.article
       className={`project-card project-card-${project.tone}`}
-      layout
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 8 }}
       whileHover={reduceMotion ? undefined : { y: -3 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
     >
@@ -922,6 +914,7 @@ function ProjectCard({ project }) {
 
 function Projects() {
   const [activeFilter, setActiveFilter] = useState("All");
+  const reduceMotion = useReducedMotion();
   const visibleProjects = activeFilter === "All"
     ? projects
     : projects.filter((project) => project.filters.includes(activeFilter));
@@ -946,13 +939,23 @@ function Projects() {
             ))}
           </div>
         </div>
-        <div className="project-grid">
-          <AnimatePresence mode="popLayout">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            className="project-grid"
+            key={activeFilter}
+            role="region"
+            aria-live="polite"
+            aria-label={`${activeFilter} projects`}
+            initial={reduceMotion ? false : { opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={reduceMotion ? undefined : { opacity: 0, y: -4 }}
+            transition={{ duration: 0.14, ease: "easeOut" }}
+          >
             {visibleProjects.map((project) => (
               <ProjectCard project={project} key={project.title} />
             ))}
-          </AnimatePresence>
-        </div>
+          </motion.div>
+        </AnimatePresence>
         <div className="github-row reveal">
           <p>More experiments, coursework, and embedded builds live on GitHub.</p>
           <MagneticLink className="round-link round-link-light" href="https://github.com/mdshad10" target="_blank" rel="noreferrer">
@@ -1117,7 +1120,7 @@ function Contact() {
       </div>
       <footer>
         <div><strong>Md Shad</strong><span>Electrical & Computer Engineer</span></div>
-        <div><span><MapPin size={14} /> Ithaca, NY</span><a href="https://github.com/mdshad10" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></a></div>
+        <div><span><MapPin size={14} /> New York, NY</span><a href="https://github.com/mdshad10" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></a></div>
         <a href="#top">Back to top <ArrowUpRight size={14} /></a>
       </footer>
     </section>
@@ -1140,19 +1143,34 @@ function App() {
   }, [cursorX, cursorY, reduceMotion]);
 
   useLayoutEffect(() => {
-    if (reduceMotion) return undefined;
-    const context = gsap.context(() => {
-      gsap.utils.toArray(".reveal").forEach((element) => {
-        gsap.from(element, {
-          opacity: 0,
-          y: 24,
-          duration: 0.58,
-          ease: "power3.out",
-          scrollTrigger: { trigger: element, start: "top 92%", once: true }
-        });
+    const root = rootRef.current;
+    if (!root) return undefined;
+    const elements = [...root.querySelectorAll(".reveal")];
+
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      elements.forEach((element) => element.classList.add("is-visible"));
+      return undefined;
+    }
+
+    root.classList.add("reveal-enabled");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
       });
-    }, rootRef);
-    return () => context.revert();
+    }, { threshold: 0.04, rootMargin: "0px 0px -6% 0px" });
+
+    elements.forEach((element) => observer.observe(element));
+    const safetyTimer = window.setTimeout(() => {
+      elements.forEach((element) => element.classList.add("is-visible"));
+    }, 5000);
+
+    return () => {
+      window.clearTimeout(safetyTimer);
+      observer.disconnect();
+      root.classList.remove("reveal-enabled");
+    };
   }, [reduceMotion]);
 
   return (

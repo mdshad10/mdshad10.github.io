@@ -993,3 +993,37 @@ footer a:hover {
     transition: none;
   }
 }
+
+/* Stable reveal and filter transitions. */
+.module-heading h2 em,
+.section-heading h2 em,
+.about-content .section-heading h2 em {
+  font-size: 1.3em;
+  line-height: 0.72;
+  vertical-align: -0.04em;
+}
+
+.reveal-enabled .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.42s ease, transform 0.42s ease;
+}
+
+.reveal-enabled .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-enabled #skills .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-enabled .reveal,
+  .reveal-enabled .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
