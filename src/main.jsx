@@ -202,6 +202,8 @@ const projects = [
     ],
     tools: ["RISC-V", "SystemVerilog", "RTL", "Verification"],
     filters: ["Architecture"],
+    image: "/assets/projects/tinyrv2-pipeline.png",
+    imageAlt: "Five-stage TinyRV2 processor pipeline datapath with bypass paths",
     report: "/assets/reports/tinyrv2-pipelined-processor.pdf",
     visual: "cpu",
     tone: "violet"
@@ -220,6 +222,8 @@ const projects = [
     ],
     tools: ["RP2040", "Embedded C", "DSP", "SPI"],
     filters: ["Embedded"],
+    image: "/assets/projects/birdsong-synthesizer.png",
+    imageAlt: "Spectrogram of a Northern Cardinal call used for the birdsong synthesizer",
     report: "/assets/reports/birdsong-synthesizer.pdf",
     visual: "audio",
     tone: "orange"
@@ -274,6 +278,8 @@ const projects = [
     ],
     tools: ["Verilog", "FSM", "RTL", "Verification"],
     filters: ["Architecture"],
+    image: "/assets/projects/integer-multiplier.png",
+    imageAlt: "Variable-latency iterative integer multiplier datapath",
     report: "/assets/reports/iterative-integer-multiplier.pdf",
     visual: "cpu",
     tone: "violet"
@@ -292,6 +298,8 @@ const projects = [
     ],
     tools: ["SystemVerilog", "Caches", "LRU", "Memory"],
     filters: ["Architecture"],
+    image: "/assets/projects/blocking-cache.png",
+    imageAlt: "Two-way set-associative blocking cache datapath",
     report: "/assets/reports/blocking-cache.pdf",
     visual: "tpu",
     tone: "lime"
