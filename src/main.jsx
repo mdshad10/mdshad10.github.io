@@ -949,10 +949,27 @@ function Projects() {
             initial={reduceMotion ? false : { opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={reduceMotion ? undefined : { opacity: 0, y: -4 }}
-            transition={{ duration: 0.14, ease: "easeOut" }}
+            transition={{ duration: 0.1, ease: "easeOut" }}
           >
-            {visibleProjects.map((project) => (
-              <ProjectCard project={project} key={project.title} />
+            {visibleProjects.map((project, index) => (
+              <motion.div
+                className="project-shuffle-item"
+                key={project.title}
+                initial={reduceMotion ? false : {
+                  opacity: 0,
+                  x: index % 2 === 0 ? -5 : 5,
+                  y: 3,
+                  scale: 0.995
+                }}
+                animate={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+                transition={{
+                  duration: 0.16,
+                  delay: Math.min(index * 0.015, 0.06),
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+              >
+                <ProjectCard project={project} />
+              </motion.div>
             ))}
           </motion.div>
         </AnimatePresence>
