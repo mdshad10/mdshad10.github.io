@@ -25,7 +25,7 @@ import {
   Zap
 } from "lucide-react";
 import heroImage from "../IMG_0005.JPG";
-import boardImage from "../unnamed.jpg";
+import fraudPresentationImage from "../assets/media/ai-fraud-presentation.png";
 import profileImage from "../assets/img/profilepic.png";
 import cornellSeal from "../assets/img/cornell-seal.svg";
 import stuyvesantLogo from "../assets/img/stuyvesant-logo.svg";
@@ -35,7 +35,7 @@ import charterLogo from "../assets/img/charter-logo.png";
 import experienceCornellLogo from "../assets/img/cornell-experience-logo.png";
 import ewbCornellLogo from "../assets/img/ewb-cornell-logo.png";
 import fpgaDemo from "../assets/media/fpga-demo.mov";
-import simulationDemo from "../assets/media/simulation-demo.mov";
+import simulationDemo from "../assets/media/simulation-demo.mp4";
 import "./styles.css";
 import "./refinements.css";
 
@@ -43,17 +43,17 @@ gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = [
   { label: "About", href: "#about" },
+  { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
   { label: "Coursework", href: "#coursework" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" }
 ];
 
 const heroMedia = [
-  { type: "image", src: heroImage, label: "Systems Lab", format: "landscape" },
+  { type: "image", src: heroImage, label: "Systems Lab", format: "landscape", alt: "Md Shad collaborating on a desktop computer hardware build" },
   { type: "video", src: simulationDemo, label: "Architecture Simulation", format: "landscape" },
-  { type: "image", src: boardImage, label: "Embedded Hardware", format: "portrait" },
+  { type: "image", src: fraudPresentationImage, label: "AI Fraud Presentation", format: "landscape", alt: "Md Shad presenting an AI fraud-prevention system at Spectrum" },
   { type: "video", src: fpgaDemo, label: "FPGA Prototype", format: "portrait" }
 ];
 
@@ -237,7 +237,7 @@ const projectCatalog = [
       "Drove an SPI DAC with deterministic timer interrupts."
     ],
     tools: ["RP2040", "Embedded C", "DSP", "SPI"],
-    filters: ["Embedded / Microcontrollers"],
+    filters: ["Embedded Systems / Microcontrollers"],
     image: "/assets/projects/birdsong-synthesizer.png",
     imageAlt: "Spectrogram of a Northern Cardinal call used for the birdsong synthesizer",
     report: "/assets/reports/birdsong-synthesizer.pdf",
@@ -258,7 +258,7 @@ const projectCatalog = [
       "Designed deterministic sensor handling instead of polling."
     ],
     tools: ["FRDM-KL46Z", "C", "Sensors", "FSM"],
-    filters: ["Embedded / Microcontrollers"],
+    filters: ["Embedded Systems / Microcontrollers"],
     image: "/assets/projects/basketball-hardware.jpg",
     imageAlt: "FRDM-KL46Z basketball scoring tracker hardware and break-beam circuit",
     website: "https://pages.github.coecis.cornell.edu/ece3140-sp2025/kab472-mss464/",
@@ -280,7 +280,7 @@ const projectCatalog = [
       "Hosted a Pico W web interface for live tuning and added wireless gesture control."
     ],
     tools: ["RP2040", "PID Control", "IMU", "Wi-Fi"],
-    filters: ["Embedded / Microcontrollers"],
+    filters: ["Embedded Systems / Microcontrollers"],
     image: "/assets/projects/self-balancing-robot.png",
     imageAlt: "CAD assembly of the two-wheeled self-balancing robot",
     website: "https://ece4760.github.io/Projects/Fall2025/sjb336_jg244_mss464/index.html",
@@ -343,7 +343,7 @@ const projectCatalog = [
       "Used DMA-driven SPI audio to generate collision sounds with minimal CPU overhead."
     ],
     tools: ["RP2040", "VGA", "DMA", "SPI DAC"],
-    filters: ["Embedded / Microcontrollers"],
+    filters: ["Embedded Systems / Microcontrollers"],
     image: "/assets/projects/galton-board.png",
     imageAlt: "Real-time VGA Digital Galton Board simulation and distribution histogram",
     report: "/assets/reports/digital-galton-board.pdf",
@@ -364,7 +364,7 @@ const projectCatalog = [
       "Added isolated PWM motor drive, live VGA visualization, and serial gain tuning."
     ],
     tools: ["RP2040", "PID", "IMU", "PWM"],
-    filters: ["Embedded / Microcontrollers"],
+    filters: ["Embedded Systems / Microcontrollers"],
     report: "/assets/reports/pid-helicopter.pdf",
     visual: "audio",
     tone: "blue"
@@ -378,7 +378,7 @@ const projects = projectCatalog
     number: String(index + 1).padStart(2, "0")
   }));
 
-const projectFilters = ["All", "FPGA", "VLSI", "Computer Architecture", "Embedded / Microcontrollers"];
+const projectFilters = ["All", "FPGA", "VLSI", "Computer Architecture", "Embedded Systems / Microcontrollers"];
 
 const experience = [
   {
@@ -663,6 +663,7 @@ function Hero() {
             playsInline
             preload="auto"
             onEnded={advanceMedia}
+            onError={advanceMedia}
             initial={{ opacity: 0, scale: 1.02 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.01 }}
@@ -673,7 +674,7 @@ function Hero() {
             className={`hero-background hero-media-${currentMedia.format}`}
             key={currentMedia.src}
             src={currentMedia.src}
-            alt={activeMedia === 0 ? "Md Shad collaborating on a desktop computer hardware build" : "Embedded systems development board"}
+            alt={currentMedia.alt}
             initial={{ opacity: 0, scale: 1.02 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.01 }}
@@ -1092,12 +1093,11 @@ function Contact() {
 
       <div className="contact-layout">
         <div className="contact-card-list">
-          {contactCards.map((card, index) => {
+          {contactCards.map((card) => {
             const Icon = card.icon;
             const content = (
               <article className="contact-info-card reveal">
                 <div className="contact-info-icon"><Icon size={22} /></div>
-                <span>0{index + 1}</span>
                 <p>{card.label}</p>
                 <strong>{card.value}</strong>
               </article>
@@ -1171,10 +1171,10 @@ function App() {
       <main>
         <Hero />
         <Intro />
+        <Experience />
+        <Projects />
         <Skills />
         <Coursework />
-        <Projects />
-        <Experience />
         <Contact />
       </main>
     </div>
