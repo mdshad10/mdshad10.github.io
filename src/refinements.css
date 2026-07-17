@@ -55,6 +55,8 @@
   width: 100%;
   min-height: 0;
   aspect-ratio: 1 / 1.08;
+  position: relative;
+  top: auto;
 }
 
 .about-photo img {
@@ -68,6 +70,22 @@
 .about-education-meta {
   font-size: clamp(0.94rem, 1.12vw, 1.08rem);
   font-weight: 720;
+}
+
+.about-content .section-heading h2 em {
+  font-family: "Manrope", sans-serif;
+  font-style: normal;
+  font-weight: 760;
+  letter-spacing: -0.06em;
+}
+
+.about-education {
+  margin-top: 18px;
+  padding-top: 18px;
+}
+
+.about-education-list {
+  margin-top: 16px;
 }
 
 .skills,
@@ -92,6 +110,29 @@
 
 .project-thumbnail {
   object-fit: contain;
+}
+
+.projects .filter-pills {
+  display: grid;
+  width: min(100%, 1040px);
+  grid-template-columns: 0.65fr 0.75fr 0.7fr 1.35fr 1.65fr;
+}
+
+.projects .filter-pills button {
+  min-width: 0;
+}
+
+.project-card-copy p {
+  color: #4c5568;
+  font-size: clamp(0.94rem, 1vw, 1.02rem);
+  font-weight: 520;
+  line-height: 1.68;
+}
+
+.project-result strong {
+  color: #303849;
+  font-size: 0.82rem;
+  font-weight: 750;
 }
 
 .project-card-actions {
@@ -199,6 +240,90 @@
   object-fit: contain;
 }
 
+.experience .module-heading > p {
+  color: #50596b;
+  font-size: clamp(1rem, 1.18vw, 1.1rem);
+  font-weight: 520;
+}
+
+.timeline-meta {
+  color: #596174;
+  font-size: 0.7rem;
+  font-weight: 680;
+  line-height: 1.5;
+}
+
+.timeline-card .timeline-type {
+  color: #626b7d;
+  font-size: 0.65rem;
+  font-weight: 750;
+}
+
+.timeline-card h3 {
+  color: #171a22;
+  font-size: clamp(1.55rem, 2.2vw, 2.15rem);
+  font-weight: 760;
+  line-height: 1.06;
+}
+
+.timeline-card .timeline-company {
+  margin-top: 9px;
+  color: #303747;
+  font-size: clamp(1rem, 1.2vw, 1.14rem);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.timeline-card ul {
+  color: #4b5466;
+  font-size: clamp(0.92rem, 1vw, 1rem);
+  font-weight: 510;
+  line-height: 1.65;
+}
+
+.timeline-subroles {
+  display: grid;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.timeline-subrole {
+  border: 1px solid rgba(84, 88, 232, 0.14);
+  border-radius: 13px;
+  padding: 16px;
+  background: #f8f9ff;
+}
+
+.timeline-subrole h5 {
+  color: #191d27;
+  font-size: clamp(1rem, 1.12vw, 1.08rem);
+  font-weight: 780;
+  line-height: 1.35;
+}
+
+.timeline-subrole > span {
+  display: block;
+  margin-top: 6px;
+  color: #586174;
+  font-family: "DM Mono", monospace;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.timeline-card .timeline-subrole .timeline-leader {
+  margin-top: 10px;
+  color: #3f485a;
+  font-size: 0.84rem;
+  font-weight: 720;
+  line-height: 1.45;
+}
+
+.timeline-subrole ul {
+  margin-top: 12px;
+}
+
 @media (max-width: 980px) {
   .experience-groups {
     max-width: 760px;
@@ -250,11 +375,11 @@
 
 @media (max-width: 620px) {
   .site-header {
-    min-height: 96px;
+    min-height: 126px;
     grid-template-columns: 1fr;
-    gap: 8px;
-    align-content: center;
-    padding-inline: 16px;
+    gap: 12px;
+    align-content: start;
+    padding: 14px 16px;
   }
 
   .site-header .wordmark {
@@ -263,22 +388,131 @@
 
   .site-header .desktop-nav {
     width: 100%;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px 12px;
     overflow: visible;
-    justify-content: space-between;
   }
 
   .site-header .desktop-nav a {
-    font-size: 0.58rem;
+    font-size: 0.66rem;
+    text-align: left;
+  }
+
+  .hero-media-controls {
+    top: 144px;
+    right: 16px;
+    left: 16px;
+    width: auto;
+    align-items: center;
+  }
+
+  .hero-hello {
+    top: 188px;
+  }
+
+  .hero .hero-martin-content h1 {
+    top: 236px;
+  }
+
+  .hero-martin-meta {
+    right: 18px;
+    bottom: 28px;
+    left: 18px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    justify-items: start;
+  }
+
+  .hero-martin-meta .hero-role {
+    max-width: 340px;
+    justify-self: start;
+    font-size: 1.7rem;
+    text-align: left;
+  }
+
+  .intro,
+  .skills,
+  .coursework,
+  .projects,
+  .experience,
+  .contact {
+    padding-top: 52px;
+  }
+
+  .about-education {
+    margin-top: 12px;
+    padding-top: 14px;
+  }
+
+  .projects .filter-pills {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .projects .filter-pills button:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .projects .filter-pills button {
+    min-height: 46px;
+    font-size: 0.6rem;
+    line-height: 1.35;
+  }
+
+  .project-card {
+    min-height: 0;
+  }
+
+  .project-graphic {
+    min-height: 220px;
+    margin-bottom: 28px;
+  }
+
+  .project-card-copy h3 {
+    font-size: clamp(1.72rem, 8vw, 2.15rem);
+    line-height: 1.02;
+  }
+
+  .project-card-copy p {
+    font-size: 0.96rem;
+    line-height: 1.62;
+  }
+
+  .project-card-bottom {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .experience-groups {
+    gap: 52px;
+    margin-top: 44px;
+  }
+
+  .experience-group .experience-timeline {
+    padding-left: 22px;
+  }
+
+  .experience-group .timeline-dot {
+    left: -22px;
   }
 
   .timeline-card {
     grid-template-columns: 1fr;
+    padding: 18px;
   }
 
   .timeline-brand {
-    width: 132px;
+    width: 118px;
     min-height: 64px;
+  }
+
+  .timeline-meta {
+    font-size: 0.64rem;
+  }
+
+  .timeline-subrole {
+    padding: 14px;
   }
 }
 
