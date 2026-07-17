@@ -1019,6 +1019,15 @@ footer a:hover {
   transform: none;
 }
 
+.project-shuffle-item {
+  min-width: 0;
+  height: 100%;
+}
+
+.project-shuffle-item > .project-card {
+  height: 100%;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal-enabled .reveal,
   .reveal-enabled .reveal.is-visible {
