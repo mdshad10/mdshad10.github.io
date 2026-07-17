@@ -132,6 +132,7 @@ const projects = [
     ],
     tools: ["SystemVerilog", "Cyclone V", "DMA", "Fixed-Point DSP"],
     filters: ["FPGA & VLSI"],
+    website: "https://people.ece.cornell.edu/land/courses/ece5760/FinalProjects/s2026/sjb336_mss464_mjg397/sjb336_mss464_mjg397/sjb336_mss464_mjg397/index.html",
     visual: "tpu",
     tone: "lime"
   },
@@ -166,6 +167,7 @@ const projects = [
     ],
     tools: ["RISC-V", "SystemVerilog", "Caches", "C"],
     filters: ["Architecture"],
+    report: "/assets/reports/multicore-riscv-system.pdf",
     visual: "sensor",
     tone: "orange"
   },
@@ -200,6 +202,7 @@ const projects = [
     ],
     tools: ["RISC-V", "SystemVerilog", "RTL", "Verification"],
     filters: ["Architecture"],
+    report: "/assets/reports/tinyrv2-pipelined-processor.pdf",
     visual: "cpu",
     tone: "violet"
   },
@@ -217,6 +220,7 @@ const projects = [
     ],
     tools: ["RP2040", "Embedded C", "DSP", "SPI"],
     filters: ["Embedded"],
+    report: "/assets/reports/birdsong-synthesizer.pdf",
     visual: "audio",
     tone: "orange"
   },
@@ -237,6 +241,96 @@ const projects = [
     visual: "sensor",
     tone: "blue",
     href: "https://github.com/mdshad10/Smart-Basketball-Hoop-Embedded-Systems"
+  },
+  {
+    number: "11",
+    title: "Self-Balancing Robot",
+    category: "Embedded Control / Robotics",
+    period: "Fall 2025",
+    summary:
+      "A two-wheeled robot using real-time feedback control, wireless tuning, and gesture-based motion commands.",
+    impact: "Stable balancing for 15+ minutes",
+    bullets: [
+      "Ran a 1.2 kHz PID loop on the RP2040 with complementary-filter IMU sensor fusion.",
+      "Hosted a Pico W web interface for live tuning and added wireless gesture control."
+    ],
+    tools: ["RP2040", "PID Control", "IMU", "Wi-Fi"],
+    filters: ["Embedded"],
+    website: "https://ece4760.github.io/Projects/Fall2025/sjb336_jg244_mss464/index.html",
+    visual: "sensor",
+    tone: "blue"
+  },
+  {
+    number: "12",
+    title: "Variable-Latency Integer Multiplier",
+    category: "Computer Architecture / RTL",
+    period: "Cornell ECE",
+    summary:
+      "A streaming shift-and-add multiplier optimized to skip zero runs and terminate as soon as computation completes.",
+    impact: "Variable-latency early termination",
+    bullets: [
+      "Used a priority encoder to skip consecutive zero bits instead of wasting shift cycles.",
+      "Separated the datapath and FSM control while validating directed, random, and corner cases."
+    ],
+    tools: ["Verilog", "FSM", "RTL", "Verification"],
+    filters: ["Architecture"],
+    report: "/assets/reports/iterative-integer-multiplier.pdf",
+    visual: "cpu",
+    tone: "violet"
+  },
+  {
+    number: "13",
+    title: "Two-Way Blocking Cache",
+    category: "Memory Systems",
+    period: "Cornell ECE",
+    summary:
+      "A two-way set-associative, write-back cache with LRU replacement for the TinyRV2 processor.",
+    impact: "Up to 70% lower access latency",
+    bullets: [
+      "Built parallel tag/data paths, hit selection, dirty evictions, refills, and LRU tracking.",
+      "Compared miss rate and average memory access latency against a direct-mapped baseline."
+    ],
+    tools: ["SystemVerilog", "Caches", "LRU", "Memory"],
+    filters: ["Architecture"],
+    report: "/assets/reports/blocking-cache.pdf",
+    visual: "tpu",
+    tone: "lime"
+  },
+  {
+    number: "14",
+    title: "Digital Galton Board",
+    category: "Embedded Visualization / DMA",
+    period: "Fall 2025",
+    summary:
+      "A real-time RP2040 simulation visualizing the Gaussian distribution created by repeated Bernoulli trials.",
+    impact: "30 FPS VGA simulation",
+    bullets: [
+      "Rendered bouncing balls and a live histogram while exposing bounciness and ball-count controls.",
+      "Used DMA-driven SPI audio to generate collision sounds with minimal CPU overhead."
+    ],
+    tools: ["RP2040", "VGA", "DMA", "SPI DAC"],
+    filters: ["Embedded"],
+    report: "/assets/reports/digital-galton-board.pdf",
+    visual: "sensor",
+    tone: "orange"
+  },
+  {
+    number: "15",
+    title: "PID-Controlled 1D Helicopter",
+    category: "Embedded Feedback Control",
+    period: "Fall 2025",
+    summary:
+      "A one-degree-of-freedom helicopter platform using deterministic PID control and IMU sensor fusion.",
+    impact: "1 kHz closed-loop control",
+    bullets: [
+      "Fused accelerometer and gyroscope measurements with a complementary filter for stable angle estimates.",
+      "Added isolated PWM motor drive, live VGA visualization, and serial gain tuning."
+    ],
+    tools: ["RP2040", "PID", "IMU", "PWM"],
+    filters: ["Embedded"],
+    report: "/assets/reports/pid-helicopter.pdf",
+    visual: "audio",
+    tone: "blue"
   }
 ];
 
@@ -245,6 +339,7 @@ const projectFilters = ["All", "FPGA & VLSI", "Architecture", "Embedded"];
 const experience = [
   {
     group: "Industry",
+    order: 1,
     type: "Industry",
     icon: Cpu,
     logos: [amdLogo],
@@ -259,6 +354,7 @@ const experience = [
   },
   {
     group: "At School",
+    order: 1,
     type: "Research",
     icon: CircuitBoard,
     logos: [experienceCornellLogo],
@@ -273,6 +369,7 @@ const experience = [
   },
   {
     group: "At School",
+    order: 2,
     type: "Teaching",
     icon: BookOpen,
     logos: [experienceCornellLogo],
@@ -287,6 +384,7 @@ const experience = [
   },
   {
     group: "Industry",
+    order: 2,
     type: "Industry",
     icon: BriefcaseBusiness,
     logos: [spectrumLogo, charterLogo],
@@ -301,10 +399,11 @@ const experience = [
   },
   {
     group: "At School",
+    order: 4,
     type: "Campus Employment",
     icon: BriefcaseBusiness,
     logos: [experienceCornellLogo],
-    date: "Nov 2024 — Present",
+    date: "Nov 2024 — May 2026",
     place: "Cornell University Athletics",
     role: "Event / Game-Day Staff",
     location: "Ithaca, NY",
@@ -315,6 +414,7 @@ const experience = [
   },
   {
     group: "At School",
+    order: 3,
     type: "Project Team",
     icon: CircuitBoard,
     logos: [ewbCornellLogo],
@@ -505,10 +605,10 @@ function Hero() {
             playsInline
             preload="auto"
             onEnded={advanceMedia}
-            initial={{ opacity: 0, scale: 1.035, filter: "blur(10px)" }}
-            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-            exit={{ opacity: 0, scale: 1.015, filter: "blur(7px)" }}
-            transition={{ duration: 1.35, ease: [0.76, 0, 0.24, 1] }}
+            initial={{ opacity: 0, scale: 1.02 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.01 }}
+            transition={{ duration: 1.8, ease: [0.45, 0, 0.2, 1] }}
           />
         ) : (
           <motion.img
@@ -516,10 +616,10 @@ function Hero() {
             key={currentMedia.src}
             src={currentMedia.src}
             alt={activeMedia === 0 ? "Md Shad collaborating on a desktop computer hardware build" : "Embedded systems development board"}
-            initial={{ opacity: 0, scale: 1.045, filter: "blur(10px)" }}
-            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-            exit={{ opacity: 0, scale: 1.015, filter: "blur(7px)" }}
-            transition={{ duration: 1.35, ease: [0.76, 0, 0.24, 1] }}
+            initial={{ opacity: 0, scale: 1.02 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.01 }}
+            transition={{ duration: 1.8, ease: [0.45, 0, 0.2, 1] }}
           />
         )}
       </AnimatePresence>
@@ -613,10 +713,6 @@ function Intro() {
       <div className="about-layout">
         <motion.figure className="about-photo reveal" whileHover={{ y: -6 }} transition={{ duration: 0.3 }}>
           <img src={profileImage} alt="Portrait of Md Shad" />
-          <figcaption>
-            <span>Electrical & Computer Engineer</span>
-            <strong>Md Shad</strong>
-          </figcaption>
         </motion.figure>
 
         <div className="about-content">
@@ -694,7 +790,7 @@ function ProjectGraphic({ type }) {
 
 function ProjectCard({ project, index }) {
   const reduceMotion = useReducedMotion();
-  const projectLink = project.report || project.href;
+  const projectLink = project.website || project.report || project.href;
 
   return (
     <motion.article
@@ -734,21 +830,29 @@ function ProjectCard({ project, index }) {
         {project.tools.slice(0, 3).map((tool) => <span key={tool}>{tool}</span>)}
       </div>
       <div className="project-card-bottom">
-        {project.report ? (
-          <a className="project-report-link" href={project.report} target="_blank" rel="noreferrer">
-            Read report <ArrowUpRight size={14} />
-          </a>
-        ) : (
-          <span>View project <ArrowUpRight size={14} /></span>
-        )}
+        <div className="project-card-actions">
+          {project.report && (
+            <a className="project-report-link" href={project.report} target="_blank" rel="noreferrer">
+              Read report <ArrowUpRight size={14} />
+            </a>
+          )}
+          {project.website && (
+            <a className="project-website-link" href={project.website} target="_blank" rel="noreferrer">
+              Project page <ArrowUpRight size={14} />
+            </a>
+          )}
+          {!project.report && !project.website && (
+            <span>View project <ArrowUpRight size={14} /></span>
+          )}
+        </div>
         {projectLink ? (
           <a
             href={projectLink}
             target="_blank"
             rel="noreferrer"
-            aria-label={project.report ? `Read the ${project.title} report` : `Open ${project.title} on GitHub`}
+            aria-label={project.website ? `Open the ${project.title} project page` : project.report ? `Read the ${project.title} report` : `Open ${project.title} on GitHub`}
           >
-            {project.report ? <BookOpen size={18} /> : <ArrowUpRight size={20} />}
+            {project.website ? <ArrowUpRight size={20} /> : project.report ? <BookOpen size={18} /> : <ArrowUpRight size={20} />}
           </a>
         ) : <Github size={19} aria-hidden="true" />}
       </div>
@@ -814,7 +918,10 @@ function Experience() {
           <section className="experience-group" key={group}>
             <h3 className="experience-group-title reveal">{group}</h3>
             <div className="experience-timeline">
-              {experience.filter((item) => item.group === group).map((item) => {
+              {experience
+                .filter((item) => item.group === group)
+                .sort((a, b) => a.order - b.order)
+                .map((item) => {
                 const Icon = item.icon;
                 return (
                   <article className="timeline-item reveal" key={`${item.place}-${item.role}`}>
@@ -854,10 +961,9 @@ function Skills() {
         </div>
 
         <div className="skill-groups reveal">
-          {skillCategories.map((category, index) => (
+          {skillCategories.map((category) => (
             <article className="skill-group" key={category.label}>
               <div className="skill-group-heading">
-                <span>{String(index + 1).padStart(2, "0")}</span>
                 <h3>{category.label}</h3>
               </div>
               <div className="skill-list">
@@ -882,11 +988,16 @@ function Coursework() {
 
         <div className="coursework-grid">
           {coursework.map((course, index) => (
-            <article className="coursework-card reveal" key={course}>
+            <motion.article
+              className="coursework-card"
+              whileHover={{ y: -7 }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
+              key={course}
+            >
               <span>{String(index + 1).padStart(2, "0")}</span>
               <BookOpen size={20} aria-hidden="true" />
               <h3>{course}</h3>
-            </article>
+            </motion.article>
           ))}
         </div>
       </div>
@@ -925,11 +1036,8 @@ function Contact() {
         </div>
 
         <div className="contact-message reveal">
-          <span className="eyebrow">A direct line</span>
-          <h3>Have an ambitious hardware problem?</h3>
-          <p>
-            I’m interested in engineering internships, research collaborations, and teams working on systems where hardware and software meet.
-          </p>
+          <h3>Have any hardware openings or opportunities?</h3>
+          <p>Feel free to contact me.</p>
           <MagneticLink className="contact-button" href="mailto:mss464@cornell.edu" aria-label="Email Md Shad">
             <Mail size={24} /><span>Send me an email</span><ArrowUpRight size={20} />
           </MagneticLink>
