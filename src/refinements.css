@@ -673,3 +673,68 @@
     margin-bottom: 18px;
   }
 }
+
+/* University, filter, and section alignment refinements. */
+.experience.section-shell {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+}
+
+.module-heading h2 em,
+.section-heading h2 em,
+.about-content .section-heading h2 em {
+  font-family: "Lora", Georgia, serif;
+  font-style: italic;
+  font-weight: 800;
+}
+
+.site-header .desktop-nav a {
+  font-size: clamp(0.86rem, 1.05vw, 1rem);
+}
+
+.projects .filter-pills {
+  grid-template-columns: 0.55fr 0.62fr 0.62fr 0.8fr 1.35fr 1.9fr;
+}
+
+@media (min-width: 761px) {
+  .about-photo {
+    margin-top: clamp(110px, 8vw, 138px);
+  }
+}
+
+@media (max-width: 1120px) {
+  .site-header .desktop-nav a {
+    font-size: clamp(0.82rem, 1.25vw, 0.96rem);
+  }
+}
+
+@media (max-width: 620px) {
+  .site-header {
+    min-height: 126px;
+  }
+
+  .site-header .desktop-nav {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .site-header .desktop-nav a {
+    font-size: 0.7rem;
+  }
+
+  .hero-media-controls {
+    top: 144px;
+  }
+
+  .hero-hello {
+    top: 188px;
+  }
+
+  .hero .hero-martin-content h1 {
+    top: 236px;
+  }
+
+  .projects .filter-pills {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
