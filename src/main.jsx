@@ -25,7 +25,7 @@ import {
   Zap
 } from "lucide-react";
 import heroImage from "../IMG_0005.JPG";
-import fraudPresentationImage from "../assets/media/ai-fraud-presentation.png";
+import fraudPresentationImage from "../assets/media/ai-fraud-presentation.jpg";
 import profileImage from "../assets/img/profilepic.png";
 import cornellSeal from "../assets/img/cornell-seal.svg";
 import stuyvesantLogo from "../assets/img/stuyvesant-logo.svg";
@@ -35,7 +35,7 @@ import charterLogo from "../assets/img/charter-logo.png";
 import experienceCornellLogo from "../assets/img/cornell-experience-logo.png";
 import ewbCornellLogo from "../assets/img/ewb-cornell-logo.png";
 import cslLogo from "../assets/img/csl-logo.png";
-import fpgaDemo from "../assets/media/fpga-demo.mov";
+import fpgaDemo from "../assets/media/fpga-demo.mp4";
 import simulationDemo from "../assets/media/simulation-demo.mp4";
 import "./styles.css";
 import "./refinements.css";
@@ -54,7 +54,7 @@ const navLinks = [
 const heroMedia = [
   { type: "image", src: heroImage, label: "Systems Lab", format: "landscape", alt: "Md Shad collaborating on a desktop computer hardware build" },
   { type: "video", src: simulationDemo, label: "Architecture Simulation", format: "landscape" },
-  { type: "image", src: fraudPresentationImage, label: "AI Fraud Presentation", format: "landscape", alt: "Md Shad presenting an AI fraud-prevention system at Spectrum" },
+  { type: "image", src: fraudPresentationImage, label: "AI Fraud Presentation", format: "presentation", alt: "Md Shad presenting an AI fraud-prevention system at Spectrum" },
   { type: "video", src: fpgaDemo, label: "FPGA Prototype", format: "portrait" }
 ];
 
@@ -635,7 +635,7 @@ function Hero() {
     }
 
     const video = document.createElement("video");
-    video.preload = "auto";
+    video.preload = "metadata";
     video.muted = true;
     video.playsInline = true;
     video.src = nextMedia.src;
@@ -662,13 +662,13 @@ function Hero() {
             autoPlay
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
             onEnded={advanceMedia}
             onError={advanceMedia}
             initial={{ opacity: 0, scale: 1.02 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.01 }}
-            transition={{ duration: 1.8, ease: [0.45, 0, 0.2, 1] }}
+            transition={{ duration: 0.8, ease: [0.45, 0, 0.2, 1] }}
           />
         ) : (
           <motion.img
@@ -679,7 +679,7 @@ function Hero() {
             initial={{ opacity: 0, scale: 1.02 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.01 }}
-            transition={{ duration: 1.8, ease: [0.45, 0, 0.2, 1] }}
+            transition={{ duration: 0.8, ease: [0.45, 0, 0.2, 1] }}
           />
         )}
       </AnimatePresence>
@@ -859,8 +859,8 @@ function ProjectCard({ project }) {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 8 }}
-      whileHover={reduceMotion ? undefined : { y: -5 }}
-      transition={{ duration: 0.25, ease: "easeOut" }}
+      whileHover={reduceMotion ? undefined : { y: -3 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
     >
       <div className={`project-graphic${project.image ? " project-graphic-image" : ""}`}>
         {project.image ? (
@@ -1063,8 +1063,8 @@ function Coursework() {
           {coursework.map((course, index) => (
             <motion.article
               className="coursework-card"
-              whileHover={{ y: -7 }}
-              transition={{ duration: 0.22, ease: "easeOut" }}
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.18, ease: "easeOut" }}
               key={course}
             >
               <span>{String(index + 1).padStart(2, "0")}</span>
@@ -1133,10 +1133,11 @@ function App() {
   const smoothY = useSpring(cursorY, { stiffness: 90, damping: 26 });
 
   useEffect(() => {
+    if (reduceMotion || !window.matchMedia("(pointer: fine)").matches) return undefined;
     const move = (event) => { cursorX.set(event.clientX); cursorY.set(event.clientY); };
     window.addEventListener("pointermove", move, { passive: true });
     return () => window.removeEventListener("pointermove", move);
-  }, [cursorX, cursorY]);
+  }, [cursorX, cursorY, reduceMotion]);
 
   useLayoutEffect(() => {
     if (reduceMotion) return undefined;
@@ -1144,22 +1145,11 @@ function App() {
       gsap.utils.toArray(".reveal").forEach((element) => {
         gsap.from(element, {
           opacity: 0,
-          y: 54,
-          duration: 0.95,
+          y: 24,
+          duration: 0.58,
           ease: "power3.out",
-          scrollTrigger: { trigger: element, start: "top 88%", once: true }
+          scrollTrigger: { trigger: element, start: "top 92%", once: true }
         });
-      });
-      gsap.utils.toArray("[data-parallax]").forEach((element) => {
-        gsap.to(element, {
-          yPercent: -Number(element.dataset.parallax || 0.05) * 100,
-          ease: "none",
-          scrollTrigger: { trigger: element, start: "top bottom", end: "bottom top", scrub: 0.8 }
-        });
-      });
-      gsap.to(".rotating-mark", {
-        rotate: 180,
-        scrollTrigger: { trigger: ".intro", start: "top bottom", end: "bottom top", scrub: 1 }
       });
     }, rootRef);
     return () => context.revert();
@@ -1168,6 +1158,7 @@ function App() {
   return (
     <div ref={rootRef}>
       <motion.div className="cursor-glow" style={{ x: smoothX, y: smoothY }} aria-hidden="true" />
+      <a className="skip-link" href="#about">Skip to main content</a>
       <Header />
       <main>
         <Hero />
