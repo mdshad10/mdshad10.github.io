@@ -120,7 +120,7 @@ const projects = [
   },
   {
     number: "04",
-    title: "Shack–Hartmann Reconstruction Engine",
+    title: "Ultra-Low-Latency Shack–Hartmann FPGA Reconstruction Engine",
     category: "Adaptive Optics / FPGA",
     period: "Jan 2026 — May 2026",
     summary:
@@ -132,6 +132,8 @@ const projects = [
     ],
     tools: ["SystemVerilog", "Cyclone V", "DMA", "Fixed-Point DSP"],
     filters: ["FPGA & VLSI"],
+    image: "/assets/projects/shack-hartmann-diagnostics.png",
+    imageAlt: "HCIPy and FPGA wavefront reconstruction diagnostic plots",
     website: "https://people.ece.cornell.edu/land/courses/ece5760/FinalProjects/s2026/sjb336_mss464_mjg397/sjb336_mss464_mjg397/sjb336_mss464_mjg397/index.html",
     visual: "tpu",
     tone: "lime"
@@ -150,6 +152,9 @@ const projects = [
     ],
     tools: ["VLSI", "Custom Layout", "SPICE", "Timing Analysis"],
     filters: ["FPGA & VLSI"],
+    image: "/assets/projects/tcam-top-level.png",
+    imageAlt: "Top-level schematic for the 32 by 32 ternary content-addressable memory",
+    report: "/assets/reports/tcam-final-project.pdf",
     visual: "cpu",
     tone: "violet"
   },
@@ -167,6 +172,8 @@ const projects = [
     ],
     tools: ["RISC-V", "SystemVerilog", "Caches", "C"],
     filters: ["Architecture"],
+    image: "/assets/projects/multicore-riscv-system.png",
+    imageAlt: "Four-core RISC-V memory and cache network architecture",
     report: "/assets/reports/multicore-riscv-system.pdf",
     visual: "sensor",
     tone: "orange"
@@ -242,6 +249,9 @@ const projects = [
     ],
     tools: ["FRDM-KL46Z", "C", "Sensors", "FSM"],
     filters: ["Embedded"],
+    image: "/assets/projects/basketball-hardware.jpg",
+    imageAlt: "FRDM-KL46Z basketball scoring tracker hardware and break-beam circuit",
+    website: "https://pages.github.coecis.cornell.edu/ece3140-sp2025/kab472-mss464/",
     visual: "sensor",
     tone: "blue",
     href: "https://github.com/mdshad10/Smart-Basketball-Hoop-Embedded-Systems"
@@ -260,6 +270,8 @@ const projects = [
     ],
     tools: ["RP2040", "PID Control", "IMU", "Wi-Fi"],
     filters: ["Embedded"],
+    image: "/assets/projects/self-balancing-robot.png",
+    imageAlt: "CAD assembly of the two-wheeled self-balancing robot",
     website: "https://ece4760.github.io/Projects/Fall2025/sjb336_jg244_mss464/index.html",
     visual: "sensor",
     tone: "blue"
