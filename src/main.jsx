@@ -34,6 +34,7 @@ import spectrumLogo from "../assets/img/spectrum-logo.png";
 import charterLogo from "../assets/img/charter-logo.png";
 import experienceCornellLogo from "../assets/img/cornell-experience-logo.png";
 import ewbCornellLogo from "../assets/img/ewb-cornell-logo.png";
+import cslLogo from "../assets/img/csl-logo.png";
 import fpgaDemo from "../assets/media/fpga-demo.mov";
 import simulationDemo from "../assets/media/simulation-demo.mp4";
 import "./styles.css";
@@ -198,7 +199,7 @@ const projectCatalog = [
       "Designed double-buffered weight loading across DRAM, BRAM, and local buffers."
     ],
     tools: ["SystemVerilog", "FPGA", "Python", "Custom ISA"],
-    filters: ["FPGA"],
+    filters: ["FPGA", "Research"],
     visual: "tpu",
     tone: "blue"
   },
@@ -378,7 +379,7 @@ const projects = projectCatalog
     number: String(index + 1).padStart(2, "0")
   }));
 
-const projectFilters = ["All", "FPGA", "VLSI", "Computer Architecture", "Embedded Systems / Microcontrollers"];
+const projectFilters = ["All", "FPGA", "VLSI", "Research", "Computer Architecture", "Embedded Systems / Microcontrollers"];
 
 const experience = [
   {
@@ -397,11 +398,11 @@ const experience = [
     ]
   },
   {
-    group: "At School",
+    group: "University",
     order: 1,
     type: "Research",
     icon: CircuitBoard,
-    logos: [experienceCornellLogo],
+    logos: [cslLogo],
     date: "Aug 2025 — May 2026",
     place: "Zhang Research Group",
     role: "Research Assistant",
@@ -412,19 +413,19 @@ const experience = [
     ]
   },
   {
-    group: "At School",
+    group: "University",
     order: 2,
     type: "Teaching",
     icon: BookOpen,
     logos: [experienceCornellLogo],
-    date: "Jan 2025 — Present · 1 yr 7 mos",
+    date: "Jan 2025 — May 2026",
     place: "Cornell Engineering",
     role: "Teaching Assistant",
-    location: "Ithaca, New York · On-site",
+    location: "Ithaca, New York",
     subroles: [
       {
         title: "ECE 3140 / CS 3420: Embedded Systems",
-        date: "Jan 2026 — Present",
+        date: "Jan 2026 — May 2026",
         leader: "Led by Professor Kirstin Petersen",
         bullets: [
           "Mentor students in low-level C programming, memory-mapped I/O, interrupts, timers, peripheral interfacing, and real-time scheduling."
@@ -445,7 +446,7 @@ const experience = [
     order: 2,
     type: "Industry",
     icon: BriefcaseBusiness,
-    logos: [spectrumLogo, charterLogo],
+    logos: [charterLogo, spectrumLogo],
     date: "May 2025 — Aug 2025",
     place: "Charter Communications / Spectrum",
     role: "Electrical Engineering Intern",
@@ -456,7 +457,7 @@ const experience = [
     ]
   },
   {
-    group: "At School",
+    group: "University",
     order: 4,
     type: "Campus Employment",
     icon: BriefcaseBusiness,
@@ -471,7 +472,7 @@ const experience = [
     ]
   },
   {
-    group: "At School",
+    group: "University",
     order: 3,
     type: "Project Team",
     icon: CircuitBoard,
@@ -847,13 +848,13 @@ function ProjectGraphic({ type }) {
   );
 }
 
-function ProjectCard({ project, index }) {
+function ProjectCard({ project }) {
   const reduceMotion = useReducedMotion();
   const projectLink = project.website || project.report || project.href;
 
   return (
     <motion.article
-      className={`project-card project-card-${project.tone} project-card-${index + 1}`}
+      className={`project-card project-card-${project.tone}`}
       layout
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
@@ -948,7 +949,7 @@ function Projects() {
         <div className="project-grid">
           <AnimatePresence mode="popLayout">
             {visibleProjects.map((project) => (
-              <ProjectCard project={project} index={projects.indexOf(project)} key={project.title} />
+              <ProjectCard project={project} key={project.title} />
             ))}
           </AnimatePresence>
         </div>
@@ -964,7 +965,7 @@ function Projects() {
 }
 
 function Experience() {
-  const experienceGroups = ["Industry", "At School"];
+  const experienceGroups = ["Industry", "University"];
 
   return (
     <section className="experience section-shell" id="experience">
