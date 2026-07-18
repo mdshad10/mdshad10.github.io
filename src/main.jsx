@@ -662,7 +662,7 @@ function Hero() {
             onEnded={advanceMedia}
             onError={advanceMedia}
             initial={{ opacity: 0, scale: 1.02 }}
-            animate={{ opacity: 1, scale: 1 }}
+            animate={{ opacity: 0.88, scale: 1 }}
             exit={{ opacity: 0, scale: 1.01 }}
             transition={{ duration: 0.8, ease: [0.45, 0, 0.2, 1] }}
           />
@@ -673,7 +673,7 @@ function Hero() {
             src={currentMedia.src}
             alt={currentMedia.alt}
             initial={{ opacity: 0, scale: 1.02 }}
-            animate={{ opacity: 1, scale: 1 }}
+            animate={{ opacity: 0.88, scale: 1 }}
             exit={{ opacity: 0, scale: 1.01 }}
             transition={{ duration: 0.8, ease: [0.45, 0, 0.2, 1] }}
           />
@@ -767,9 +767,9 @@ function Intro() {
   return (
     <section className="intro section-shell" id="about">
       <div className="about-layout">
-        <motion.figure className="about-photo reveal" whileHover={{ y: -2 }} transition={{ duration: 0.22 }}>
+        <figure className="about-photo reveal">
           <img src={profileImage} alt="Portrait of Md Shad" />
-        </motion.figure>
+        </figure>
 
         <div className="about-content">
           <div className="section-heading reveal">
