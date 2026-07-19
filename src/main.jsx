@@ -607,7 +607,7 @@ function TypedHeroName({ ready }) {
   const name = "Md Shad";
   const reduceMotion = useReducedMotion();
   const [visibleName, setVisibleName] = useState(reduceMotion ? name : "");
-  const [typingPhase, setTypingPhase] = useState(reduceMotion ? "complete" : "waiting");
+  const [typingPhase, setTypingPhase] = useState(reduceMotion ? "complete" : "hidden");
 
   useEffect(() => {
     if (reduceMotion) {
@@ -622,7 +622,7 @@ function TypedHeroName({ ready }) {
     setTypingPhase("waiting");
     let characterIndex = 0;
     let typingTimer;
-    const typingDelays = [185, 230, 165, 245, 195, 220, 175];
+    const typingDelays = [145, 185, 130, 200, 155, 175, 140];
     const startTimer = window.setTimeout(() => {
       setTypingPhase("typing");
       const typeNextCharacter = () => {
@@ -638,7 +638,7 @@ function TypedHeroName({ ready }) {
         }
       };
       typeNextCharacter();
-    }, 850);
+    }, 1300);
 
     return () => {
       window.clearTimeout(startTimer);
