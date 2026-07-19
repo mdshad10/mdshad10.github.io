@@ -1146,6 +1146,23 @@ footer a:hover {
   white-space: nowrap;
 }
 
+.hero-martin-content {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.64s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.64s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-martin-content.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero .hero-martin-content h1 {
+  transform: translateY(clamp(18px, 2vw, 28px));
+}
+
 .hero-typed-reserve {
   visibility: hidden;
   white-space: nowrap;
@@ -1163,6 +1180,11 @@ footer a:hover {
   white-space: pre;
 }
 
+.hero-typed-character {
+  display: inline-block;
+  animation: hero-character-in 0.14s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 .hero-typing-cursor {
   display: inline-block;
   flex: 0 0 auto;
@@ -1170,8 +1192,8 @@ footer a:hover {
   height: 0.76em;
   margin-left: 0.045em;
   background: currentColor;
+  opacity: 0;
   transform: translateY(0.025em);
-  animation: hero-caret-blink 0.76s steps(1, end) infinite;
 }
 
 .hero-typing-cursor.is-typing {
@@ -1179,8 +1201,24 @@ footer a:hover {
   opacity: 1;
 }
 
-@keyframes hero-caret-blink {
-  50% { opacity: 0; }
+.hero-typing-cursor.is-complete {
+  animation: hero-caret-finish 0.62s steps(1, end) 2 forwards;
+}
+
+@keyframes hero-character-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.06em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-caret-finish {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
 }
 
 @media (max-width: 620px) {
@@ -1198,6 +1236,21 @@ footer a:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-martin-content,
+  .hero-martin-content.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero .hero-martin-content h1 {
+    transform: translateY(clamp(18px, 2vw, 28px));
+  }
+
+  .hero-typed-character {
+    animation: none;
+  }
+
   .reveal-enabled .reveal,
   .reveal-enabled .reveal.is-visible {
     opacity: 1;
