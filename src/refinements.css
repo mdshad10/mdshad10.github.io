@@ -1073,3 +1073,122 @@ footer a:hover {
     transition: none;
   }
 }
+
+/* Compact project rhythm and polished section transitions. */
+.projects .module-heading > p {
+  margin-top: 28px;
+}
+
+.project-card,
+.project-card-1,
+.project-card-2,
+.project-card-3,
+.project-card-4 {
+  min-height: 665px;
+}
+
+.project-graphic {
+  min-height: 235px;
+  flex-basis: 235px;
+}
+
+.project-case-number {
+  top: 239px;
+}
+
+.project-case-label {
+  margin-top: 23px;
+}
+
+.project-card-copy {
+  margin-top: 15px;
+}
+
+.project-card-copy p {
+  margin-top: 13px;
+  min-height: 5.7em;
+}
+
+.project-result,
+.project-tags {
+  margin-top: 15px;
+}
+
+.project-tags {
+  margin-bottom: 16px;
+}
+
+.project-card-bottom {
+  min-height: 56px;
+  padding-block: 14px;
+}
+
+.reveal-enabled .reveal {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateY(30px) scale(0.992);
+  transition:
+    opacity 0.66s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.66s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.66s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-enabled .reveal.is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0) scale(1);
+}
+
+.hero-name-typed {
+  display: inline-block;
+  min-width: 4.15em;
+}
+
+.hero-name-typed::after {
+  content: "";
+  display: inline-block;
+  width: 0.055em;
+  height: 0.78em;
+  margin-left: 0.07em;
+  background: currentColor;
+  opacity: 0;
+  vertical-align: 0.02em;
+}
+
+.hero-name-typed.is-typing::after {
+  opacity: 1;
+  animation: hero-caret-blink 0.72s steps(1, end) infinite;
+}
+
+@keyframes hero-caret-blink {
+  50% { opacity: 0; }
+}
+
+@media (max-width: 620px) {
+  .projects .module-heading > p {
+    margin-top: 24px;
+  }
+
+  .project-card,
+  .project-card-1,
+  .project-card-2,
+  .project-card-3,
+  .project-card-4 {
+    min-height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-enabled .reveal,
+  .reveal-enabled .reveal.is-visible {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+
+  .hero-name-typed::after {
+    display: none;
+    animation: none;
+  }
+}
