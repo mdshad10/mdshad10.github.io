@@ -18,8 +18,10 @@ import {
   GraduationCap,
   Linkedin,
   Mail,
+  Menu,
   MapPin,
   Radio,
+  X,
   Zap
 } from "lucide-react";
 import heroImage from "../IMG_0005.JPG";
@@ -593,13 +595,67 @@ function MagneticLink({ children, className = "", ...props }) {
 }
 
 function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    const handleResize = () => {
+      if (window.innerWidth > 900) setMenuOpen(false);
+    };
+    document.body.classList.add("mobile-menu-open");
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("resize", handleResize);
+    return () => {
+      document.body.classList.remove("mobile-menu-open");
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [menuOpen]);
+
   return (
-    <header className="site-header">
-      <a className="wordmark" href="#top" aria-label="Md Shad home">Md Shad</a>
-      <nav className="desktop-nav" aria-label="Primary navigation">
-        {navLinks.map((link) => <a href={link.href} key={link.href}>{link.label}</a>)}
-      </nav>
-    </header>
+    <>
+      <header className="site-header">
+        <a className="wordmark" href="#top" aria-label="Md Shad home">Md Shad</a>
+        <nav className="desktop-nav" aria-label="Primary navigation">
+          {navLinks.map((link) => <a href={link.href} key={link.href}>{link.label}</a>)}
+        </nav>
+        <button
+          type="button"
+          className="menu-toggle"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-navigation"
+          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span>{menuOpen ? "Close" : "Menu"}</span>
+          {menuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
+        </button>
+      </header>
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.nav
+            id="mobile-navigation"
+            className="mobile-nav"
+            aria-label="Mobile navigation"
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+          >
+            <span>Navigate</span>
+            {navLinks.map((link, index) => (
+              <a href={link.href} key={link.href} onClick={() => setMenuOpen(false)}>
+                <small>{String(index + 1).padStart(2, "0")}</small>
+                {link.label}
+              </a>
+            ))}
+          </motion.nav>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
