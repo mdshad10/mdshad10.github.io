@@ -630,13 +630,13 @@ function TypedHeroName() {
         characterIndex += 1;
         setVisibleName(name.slice(0, characterIndex));
         if (characterIndex < name.length) {
-          typingTimer = window.setTimeout(typeNextCharacter, 105);
+          typingTimer = window.setTimeout(typeNextCharacter, 155);
         } else {
           typingTimer = window.setTimeout(() => setIsTyping(false), 650);
         }
       };
       typeNextCharacter();
-    }, 900);
+    }, 1050);
 
     return () => {
       window.clearTimeout(startTimer);
@@ -744,7 +744,7 @@ function Hero() {
           className="hero-martin-meta"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.7, duration: 0.65 }}
+          transition={{ delay: 2.35, duration: 0.65 }}
         >
           <div>
             <span>Based in New York, USA</span>
@@ -759,7 +759,7 @@ function Hero() {
           className="hero-media-controls"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.85, duration: 0.6 }}
+          transition={{ delay: 2.5, duration: 0.6 }}
         >
           <span>{currentMedia.label}</span>
           <div>
