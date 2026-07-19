@@ -594,25 +594,20 @@ function MagneticLink({ children, className = "", ...props }) {
 
 function Header() {
   return (
-    <motion.header
-      className="site-header"
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.25, duration: 0.6 }}
-    >
+    <header className="site-header">
       <a className="wordmark" href="#top" aria-label="Md Shad home">Md Shad</a>
       <nav className="desktop-nav" aria-label="Primary navigation">
         {navLinks.map((link) => <a href={link.href} key={link.href}>{link.label}</a>)}
       </nav>
-    </motion.header>
+    </header>
   );
 }
 
-function TypedHeroName() {
+function TypedHeroName({ ready }) {
   const name = "Md Shad";
   const reduceMotion = useReducedMotion();
   const [visibleName, setVisibleName] = useState(reduceMotion ? name : "");
-  const [isTyping, setIsTyping] = useState(!reduceMotion);
+  const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
     if (reduceMotion) {
@@ -621,38 +616,49 @@ function TypedHeroName() {
       return undefined;
     }
 
+    if (!ready) return undefined;
+
     setVisibleName("");
     setIsTyping(true);
     let characterIndex = 0;
     let typingTimer;
+    const typingDelays = [145, 185, 125, 205, 155, 175, 135];
     const startTimer = window.setTimeout(() => {
       const typeNextCharacter = () => {
         characterIndex += 1;
         setVisibleName(name.slice(0, characterIndex));
         if (characterIndex < name.length) {
-          typingTimer = window.setTimeout(typeNextCharacter, 155);
+          typingTimer = window.setTimeout(
+            typeNextCharacter,
+            typingDelays[(characterIndex - 1) % typingDelays.length]
+          );
         } else {
-          typingTimer = window.setTimeout(() => setIsTyping(false), 650);
+          setIsTyping(false);
         }
       };
       typeNextCharacter();
-    }, 1050);
+    }, 420);
 
     return () => {
       window.clearTimeout(startTimer);
       window.clearTimeout(typingTimer);
     };
-  }, [reduceMotion]);
+  }, [ready, reduceMotion]);
 
   return (
-    <span className={`hero-name-text hero-name-typed${isTyping ? " is-typing" : ""}`} aria-hidden="true">
-      {visibleName || "\u00a0"}
+    <span className="hero-typed-slot" aria-hidden="true">
+      <span className="hero-typed-reserve">{name}</span>
+      <span className="hero-typed-live">
+        <span className="hero-name-text">{visibleName}</span>
+        <span className={`hero-typing-cursor${isTyping ? " is-typing" : ""}`} />
+      </span>
     </span>
   );
 }
 
 function Hero() {
   const [activeMedia, setActiveMedia] = useState(0);
+  const [heroReady, setHeroReady] = useState(false);
   const currentMedia = heroMedia[activeMedia];
 
   useEffect(() => {
@@ -702,6 +708,7 @@ function Hero() {
             muted
             playsInline
             preload="metadata"
+            onLoadedData={() => setHeroReady(true)}
             onEnded={advanceMedia}
             onError={advanceMedia}
             initial={{ opacity: 0, scale: 1.02 }}
@@ -715,6 +722,7 @@ function Hero() {
             key={currentMedia.src}
             src={currentMedia.src}
             alt={currentMedia.alt}
+            onLoad={() => setHeroReady(true)}
             initial={{ opacity: 0, scale: 1.02 }}
             animate={{ opacity: 0.88, scale: 1 }}
             exit={{ opacity: 0, scale: 1.01 }}
@@ -725,27 +733,12 @@ function Hero() {
       <div className="hero-image-overlay" aria-hidden="true" />
 
       <div className="hero-martin-content">
-        <motion.p
-          className="hero-hello"
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.35, duration: 0.6 }}
-        >
-          Hey there, I’m
-        </motion.p>
-
-        <h1 aria-label="Md Shad">
-          <span className="hero-name-line">
-            <TypedHeroName />
-          </span>
+        <h1 className="hero-introduction" aria-label="Hey there, I’m Md Shad">
+          <span className="hero-greeting">Hey there, I’m</span>
+          <TypedHeroName ready={heroReady} />
         </h1>
 
-        <motion.div
-          className="hero-martin-meta"
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.35, duration: 0.65 }}
-        >
+        <div className="hero-martin-meta">
           <div>
             <span>Based in New York, USA</span>
           </div>
@@ -753,14 +746,9 @@ function Hero() {
             <span>Electrical &amp;</span>
             <span>Computer Engineer</span>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="hero-media-controls"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.5, duration: 0.6 }}
-        >
+        <div className="hero-media-controls">
           <span>{currentMedia.label}</span>
           <div>
             {heroMedia.map((media, index) => (
@@ -776,7 +764,7 @@ function Hero() {
               </button>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

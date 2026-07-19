@@ -1139,29 +1139,68 @@ footer a:hover {
   transform: translateY(0) scale(1);
 }
 
-.hero-name-typed {
-  display: inline-block;
-  min-width: 4.15em;
+.hero .hero-martin-content .hero-introduction {
+  top: clamp(185px, 20vh, 245px);
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.18em;
+  align-items: baseline;
+  max-width: none;
+  font-size: clamp(5.8rem, 10.6vw, 10.8rem);
+  line-height: 0.82;
+  letter-spacing: -0.075em;
+  transform: none;
 }
 
-.hero .hero-martin-content h1 {
-  transform: translateY(clamp(12px, 1.4vw, 20px));
+.hero-greeting {
+  flex: 0 0 auto;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.27em;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  white-space: nowrap;
 }
 
-.hero-name-typed::after {
-  content: "";
+.hero-typed-slot {
+  position: relative;
   display: inline-block;
-  width: 0.055em;
-  height: 0.78em;
-  margin-left: 0.07em;
+  flex: 0 0 auto;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.hero-typed-reserve {
+  visibility: hidden;
+  white-space: nowrap;
+}
+
+.hero-typed-live {
+  position: absolute;
+  inset: 0 auto auto 0;
+  display: inline-flex;
+  align-items: baseline;
+  white-space: nowrap;
+}
+
+.hero-name-text {
+  white-space: pre;
+}
+
+.hero-typing-cursor {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 0.035em;
+  height: 0.76em;
+  margin-left: 0.045em;
   background: currentColor;
-  opacity: 0;
-  vertical-align: 0.02em;
+  transform: translateY(0.025em);
+  animation: hero-caret-blink 0.76s steps(1, end) infinite;
 }
 
-.hero-name-typed.is-typing::after {
+.hero-typing-cursor.is-typing {
+  animation: none;
   opacity: 1;
-  animation: hero-caret-blink 0.72s steps(1, end) infinite;
 }
 
 @keyframes hero-caret-blink {
@@ -1169,6 +1208,22 @@ footer a:hover {
 }
 
 @media (max-width: 620px) {
+  .hero .hero-martin-content .hero-introduction {
+    top: 205px;
+    flex-wrap: wrap;
+    gap: 0.14em 0;
+    font-size: clamp(4.7rem, 25vw, 6.8rem);
+  }
+
+  .hero-greeting {
+    flex-basis: 100%;
+    font-size: 0.25em;
+  }
+
+  .hero-typed-slot {
+    flex-basis: 100%;
+  }
+
   .projects .module-heading > p {
     margin-top: 24px;
   }
@@ -1191,7 +1246,7 @@ footer a:hover {
     transition: none;
   }
 
-  .hero-name-typed::after {
+  .hero-typing-cursor {
     display: none;
     animation: none;
   }
