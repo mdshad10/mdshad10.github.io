@@ -622,7 +622,7 @@ function TypedHeroName({ ready }) {
     setIsTyping(true);
     let characterIndex = 0;
     let typingTimer;
-    const typingDelays = [145, 185, 125, 205, 155, 175, 135];
+    const typingDelays = [165, 205, 145, 225, 175, 195, 155];
     const startTimer = window.setTimeout(() => {
       const typeNextCharacter = () => {
         characterIndex += 1;
@@ -733,9 +733,12 @@ function Hero() {
       <div className="hero-image-overlay" aria-hidden="true" />
 
       <div className="hero-martin-content">
-        <h1 className="hero-introduction" aria-label="Hey there, I’m Md Shad">
-          <span className="hero-greeting">Hey there, I’m</span>
-          <TypedHeroName ready={heroReady} />
+        <p className="hero-hello">Hey there, I’m</p>
+
+        <h1 aria-label="Md Shad">
+          <span className="hero-name-line">
+            <TypedHeroName ready={heroReady} />
+          </span>
         </h1>
 
         <div className="hero-martin-meta">
