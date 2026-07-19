@@ -1144,6 +1144,10 @@ footer a:hover {
   min-width: 4.15em;
 }
 
+.hero .hero-martin-content h1 {
+  transform: translateY(clamp(12px, 1.4vw, 20px));
+}
+
 .hero-name-typed::after {
   content: "";
   display: inline-block;
