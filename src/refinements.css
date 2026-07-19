@@ -1201,6 +1201,10 @@ footer a:hover {
   opacity: 1;
 }
 
+.hero-typing-cursor.is-waiting {
+  animation: hero-caret-finish 0.62s steps(1, end) 2 forwards;
+}
+
 .hero-typing-cursor.is-complete {
   animation: hero-caret-finish 0.62s steps(1, end) 2 forwards;
 }
