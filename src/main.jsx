@@ -608,6 +608,49 @@ function Header() {
   );
 }
 
+function TypedHeroName() {
+  const name = "Md Shad";
+  const reduceMotion = useReducedMotion();
+  const [visibleName, setVisibleName] = useState(reduceMotion ? name : "");
+  const [isTyping, setIsTyping] = useState(!reduceMotion);
+
+  useEffect(() => {
+    if (reduceMotion) {
+      setVisibleName(name);
+      setIsTyping(false);
+      return undefined;
+    }
+
+    setVisibleName("");
+    setIsTyping(true);
+    let characterIndex = 0;
+    let typingTimer;
+    const startTimer = window.setTimeout(() => {
+      const typeNextCharacter = () => {
+        characterIndex += 1;
+        setVisibleName(name.slice(0, characterIndex));
+        if (characterIndex < name.length) {
+          typingTimer = window.setTimeout(typeNextCharacter, 105);
+        } else {
+          typingTimer = window.setTimeout(() => setIsTyping(false), 650);
+        }
+      };
+      typeNextCharacter();
+    }, 900);
+
+    return () => {
+      window.clearTimeout(startTimer);
+      window.clearTimeout(typingTimer);
+    };
+  }, [reduceMotion]);
+
+  return (
+    <span className={`hero-name-text hero-name-typed${isTyping ? " is-typing" : ""}`} aria-hidden="true">
+      {visibleName || "\u00a0"}
+    </span>
+  );
+}
+
 function Hero() {
   const [activeMedia, setActiveMedia] = useState(0);
   const currentMedia = heroMedia[activeMedia];
@@ -693,14 +736,7 @@ function Hero() {
 
         <h1 aria-label="Md Shad">
           <span className="hero-name-line">
-            <motion.span
-              className="hero-name-text"
-              initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ delay: 0.45, duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            >
-              Md Shad
-            </motion.span>
+            <TypedHeroName />
           </span>
         </h1>
 
@@ -708,7 +744,7 @@ function Hero() {
           className="hero-martin-meta"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.85, duration: 0.65 }}
+          transition={{ delay: 1.7, duration: 0.65 }}
         >
           <div>
             <span>Based in New York, USA</span>
@@ -723,7 +759,7 @@ function Hero() {
           className="hero-media-controls"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.6 }}
+          transition={{ delay: 1.85, duration: 0.6 }}
         >
           <span>{currentMedia.label}</span>
           <div>
