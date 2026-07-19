@@ -607,23 +607,24 @@ function TypedHeroName({ ready }) {
   const name = "Md Shad";
   const reduceMotion = useReducedMotion();
   const [visibleName, setVisibleName] = useState(reduceMotion ? name : "");
-  const [isTyping, setIsTyping] = useState(false);
+  const [typingPhase, setTypingPhase] = useState(reduceMotion ? "complete" : "waiting");
 
   useEffect(() => {
     if (reduceMotion) {
       setVisibleName(name);
-      setIsTyping(false);
+      setTypingPhase("complete");
       return undefined;
     }
 
     if (!ready) return undefined;
 
     setVisibleName("");
-    setIsTyping(true);
+    setTypingPhase("waiting");
     let characterIndex = 0;
     let typingTimer;
-    const typingDelays = [165, 205, 145, 225, 175, 195, 155];
+    const typingDelays = [185, 230, 165, 245, 195, 220, 175];
     const startTimer = window.setTimeout(() => {
+      setTypingPhase("typing");
       const typeNextCharacter = () => {
         characterIndex += 1;
         setVisibleName(name.slice(0, characterIndex));
@@ -633,11 +634,11 @@ function TypedHeroName({ ready }) {
             typingDelays[(characterIndex - 1) % typingDelays.length]
           );
         } else {
-          setIsTyping(false);
+          setTypingPhase("complete");
         }
       };
       typeNextCharacter();
-    }, 420);
+    }, 850);
 
     return () => {
       window.clearTimeout(startTimer);
@@ -649,8 +650,14 @@ function TypedHeroName({ ready }) {
     <span className="hero-typed-slot" aria-hidden="true">
       <span className="hero-typed-reserve">{name}</span>
       <span className="hero-typed-live">
-        <span className="hero-name-text">{visibleName}</span>
-        <span className={`hero-typing-cursor${isTyping ? " is-typing" : ""}`} />
+        <span className="hero-name-text">
+          {visibleName.split("").map((character, index) => (
+            <span className="hero-typed-character" key={`${character}-${index}`}>
+              {character === " " ? "\u00a0" : character}
+            </span>
+          ))}
+        </span>
+        <span className={`hero-typing-cursor is-${typingPhase}`} />
       </span>
     </span>
   );
@@ -658,8 +665,15 @@ function TypedHeroName({ ready }) {
 
 function Hero() {
   const [activeMedia, setActiveMedia] = useState(0);
+  const [heroMediaLoaded, setHeroMediaLoaded] = useState(false);
   const [heroReady, setHeroReady] = useState(false);
   const currentMedia = heroMedia[activeMedia];
+
+  useEffect(() => {
+    if (!heroMediaLoaded || heroReady) return undefined;
+    const revealTimer = window.setTimeout(() => setHeroReady(true), 450);
+    return () => window.clearTimeout(revealTimer);
+  }, [heroMediaLoaded, heroReady]);
 
   useEffect(() => {
     if (currentMedia.type !== "image") return undefined;
@@ -708,7 +722,7 @@ function Hero() {
             muted
             playsInline
             preload="metadata"
-            onLoadedData={() => setHeroReady(true)}
+            onLoadedData={() => setHeroMediaLoaded(true)}
             onEnded={advanceMedia}
             onError={advanceMedia}
             initial={{ opacity: 0, scale: 1.02 }}
@@ -722,7 +736,7 @@ function Hero() {
             key={currentMedia.src}
             src={currentMedia.src}
             alt={currentMedia.alt}
-            onLoad={() => setHeroReady(true)}
+            onLoad={() => setHeroMediaLoaded(true)}
             initial={{ opacity: 0, scale: 1.02 }}
             animate={{ opacity: 0.88, scale: 1 }}
             exit={{ opacity: 0, scale: 1.01 }}
@@ -732,7 +746,7 @@ function Hero() {
       </AnimatePresence>
       <div className="hero-image-overlay" aria-hidden="true" />
 
-      <div className="hero-martin-content">
+      <div className={`hero-martin-content${heroReady ? " is-visible" : ""}`}>
         <p className="hero-hello">Hey there, I’m</p>
 
         <h1 aria-label="Md Shad">
