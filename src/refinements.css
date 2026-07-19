@@ -1139,33 +1139,9 @@ footer a:hover {
   transform: translateY(0) scale(1);
 }
 
-.hero .hero-martin-content .hero-introduction {
-  top: clamp(185px, 20vh, 245px);
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 0.18em;
-  align-items: baseline;
-  max-width: none;
-  font-size: clamp(5.8rem, 10.6vw, 10.8rem);
-  line-height: 0.82;
-  letter-spacing: -0.075em;
-  transform: none;
-}
-
-.hero-greeting {
-  flex: 0 0 auto;
-  color: rgba(255, 255, 255, 0.86);
-  font-size: 0.27em;
-  font-weight: 600;
-  letter-spacing: -0.045em;
-  line-height: 1;
-  white-space: nowrap;
-}
-
 .hero-typed-slot {
   position: relative;
   display: inline-block;
-  flex: 0 0 auto;
   min-width: 0;
   white-space: nowrap;
 }
@@ -1208,22 +1184,6 @@ footer a:hover {
 }
 
 @media (max-width: 620px) {
-  .hero .hero-martin-content .hero-introduction {
-    top: 205px;
-    flex-wrap: wrap;
-    gap: 0.14em 0;
-    font-size: clamp(4.7rem, 25vw, 6.8rem);
-  }
-
-  .hero-greeting {
-    flex-basis: 100%;
-    font-size: 0.25em;
-  }
-
-  .hero-typed-slot {
-    flex-basis: 100%;
-  }
-
   .projects .module-heading > p {
     margin-top: 24px;
   }
