@@ -74,7 +74,6 @@ const projectCatalog = [
     filters: ["FPGA"],
     image: "/assets/projects/hardware-ode-solver.jpg",
     imageAlt: "Lorenz attractors rendered by the hardware ODE solver",
-    report: "/assets/reports/hardware-ode-solver.pdf",
     visual: "tpu",
     tone: "lime"
   },
@@ -95,7 +94,6 @@ const projectCatalog = [
     filters: ["FPGA"],
     image: "/assets/projects/mandelbrot-visualizer.jpg",
     imageAlt: "Mandelbrot set rendered on the FPGA-driven VGA display",
-    report: "/assets/reports/mandelbrot-set-visualizer.pdf",
     visual: "cpu",
     tone: "violet"
   },
@@ -116,7 +114,6 @@ const projectCatalog = [
     filters: ["FPGA"],
     image: "/assets/projects/multiprocessor-drum-synthesis.jpg",
     imageAlt: "Labeled DE1-SoC controls for the multiprocessor drum synthesizer",
-    report: "/assets/reports/multiprocessor-drum-synthesis.pdf",
     visual: "audio",
     tone: "orange"
   },
@@ -179,7 +176,6 @@ const projectCatalog = [
     filters: ["Computer Architecture"],
     image: "/assets/projects/multicore-riscv-system.png",
     imageAlt: "Four-core RISC-V memory and cache network architecture",
-    report: "/assets/reports/multicore-riscv-system.pdf",
     visual: "sensor",
     tone: "orange"
   },
@@ -218,7 +214,6 @@ const projectCatalog = [
     filters: ["Computer Architecture"],
     image: "/assets/projects/tinyrv2-pipeline.png",
     imageAlt: "Five-stage TinyRV2 processor pipeline datapath with bypass paths",
-    report: "/assets/reports/tinyrv2-pipelined-processor.pdf",
     visual: "cpu",
     tone: "violet"
   },
@@ -239,7 +234,6 @@ const projectCatalog = [
     filters: ["Embedded Systems / Microcontrollers"],
     image: "/assets/projects/birdsong-synthesizer.png",
     imageAlt: "Spectrogram of a Northern Cardinal call used for the birdsong synthesizer",
-    report: "/assets/reports/birdsong-synthesizer.pdf",
     visual: "audio",
     tone: "orange"
   },
@@ -303,7 +297,6 @@ const projectCatalog = [
     filters: ["Computer Architecture"],
     image: "/assets/projects/integer-multiplier.png",
     imageAlt: "Variable-latency iterative integer multiplier datapath",
-    report: "/assets/reports/iterative-integer-multiplier.pdf",
     visual: "cpu",
     tone: "violet"
   },
@@ -324,7 +317,6 @@ const projectCatalog = [
     filters: ["Computer Architecture"],
     image: "/assets/projects/blocking-cache.png",
     imageAlt: "Two-way set-associative blocking cache datapath",
-    report: "/assets/reports/blocking-cache.pdf",
     visual: "tpu",
     tone: "lime"
   },
@@ -345,7 +337,6 @@ const projectCatalog = [
     filters: ["Embedded Systems / Microcontrollers"],
     image: "/assets/projects/galton-board.png",
     imageAlt: "Real-time VGA Digital Galton Board simulation and distribution histogram",
-    report: "/assets/reports/digital-galton-board.pdf",
     visual: "sensor",
     tone: "orange"
   },
@@ -364,7 +355,6 @@ const projectCatalog = [
     ],
     tools: ["RP2040", "PID", "IMU", "PWM"],
     filters: ["Embedded Systems / Microcontrollers"],
-    report: "/assets/reports/pid-helicopter.pdf",
     visual: "audio",
     tone: "blue"
   }
