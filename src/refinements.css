@@ -143,6 +143,7 @@
 }
 
 .project-card-actions > a,
+.project-card-actions > button,
 .project-card-actions > span {
   display: inline-flex;
   width: auto;
@@ -159,7 +160,9 @@
 }
 
 .project-card-actions > a:hover,
-.project-card-actions > a:focus-visible {
+.project-card-actions > a:focus-visible,
+.project-card-actions > button:hover,
+.project-card-actions > button:focus-visible {
   color: var(--card-accent);
 }
 

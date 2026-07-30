@@ -74,6 +74,8 @@ const projectCatalog = [
     filters: ["FPGA"],
     image: "/assets/projects/hardware-ode-solver.jpg",
     imageAlt: "Lorenz attractors rendered by the hardware ODE solver",
+    detail:
+      "We implemented a hardware-based ODE solver on the DE1-SoC FPGA to integrate the Lorenz system using a Digital Differential Analyzer and first-order Euler integration in fixed-point arithmetic. The DDA core ran entirely in synthesizable Verilog while the Hard Processor System provided high-level control, letting us configure parameters and initial conditions to explore the attractor's sensitivity to small perturbations. Solver outputs streamed to the HPS and rendered live on a VGA display, with a command-line interface for adjusting the Lorenz parameters, timestep, and animation speed during operation.",
     visual: "tpu",
     tone: "lime"
   },
@@ -94,6 +96,8 @@ const projectCatalog = [
     filters: ["FPGA"],
     image: "/assets/projects/mandelbrot-visualizer.jpg",
     imageAlt: "Mandelbrot set rendered on the FPGA-driven VGA display",
+    detail:
+      "We designed a Mandelbrot set visualizer on the DE1-SoC FPGA that computes and renders a high-resolution fractal in real time. For every pixel in a 640x480 display, the system evaluates the complex iteration z(n+1) = z(n)^2 + c to determine whether the sequence diverges, coloring each pixel by how many iterations it took. The core ran in synthesizable Verilog with fixed-point arithmetic across parallel iterator pipelines writing to dedicated on-chip memory, while the HPS handled panning and zooming by recomputing the fractal whenever the viewport changed.",
     visual: "cpu",
     tone: "violet"
   },
@@ -114,6 +118,8 @@ const projectCatalog = [
     filters: ["FPGA"],
     image: "/assets/projects/multiprocessor-drum-synthesis.jpg",
     imageAlt: "Labeled DE1-SoC controls for the multiprocessor drum synthesizer",
+    detail:
+      "We developed a hardware-accelerated drum synthesizer on the DE1-SoC by simulating a damped 2D wave equation across a mesh of discretized nodes representing a drum's surface. Each node's amplitude was updated from its four nearest neighbors plus a damping term for energy loss and a nonlinear tension term for the classic pitch-glide of a real drum, sampled at 48 kHz and streamed to an audio DAC. The computation ran entirely in Verilog using 1.17 fixed-point arithmetic, with a parallel column architecture that let us synthesize more than 87 columns at once.",
     visual: "audio",
     tone: "orange"
   },
@@ -176,6 +182,8 @@ const projectCatalog = [
     filters: ["Computer Architecture"],
     image: "/assets/projects/multicore-riscv-system.png",
     imageAlt: "Four-core RISC-V memory and cache network architecture",
+    detail:
+      "We combined microarchitectural components from earlier labs, a variable-latency multiplier, a five-stage pipelined TinyRV2 processor with bypassing, and a two-way set-associative cache, into complete single-core and four-core RISC-V systems. The four-core version gives each core a private instruction cache and shares a four-bank data cache over a custom ring network, and we wrote a multithreaded sorting benchmark using the bthread library to exercise it. Across five microbenchmarks the multicore system delivered up to a 2.38x speedup when parallel work dominated, though thread setup and shared-cache contention kept any benchmark from reaching the ideal 4x.",
     visual: "sensor",
     tone: "orange"
   },
@@ -214,6 +222,8 @@ const projectCatalog = [
     filters: ["Computer Architecture"],
     image: "/assets/projects/tinyrv2-pipeline.png",
     imageAlt: "Five-stage TinyRV2 processor pipeline datapath with bypass paths",
+    detail:
+      "We designed and evaluated two pipelined processor microarchitectures for the TinyRV2 ISA to work through instruction set architecture, hazard handling, and processor-memory interfacing. The baseline handled data hazards by stalling the pipeline whenever an instruction depended on a value that had not yet been computed, while the alternative added bypassing to forward results from later pipeline stages back to earlier ones. Both designs included squashing logic for control hazards, and the bypassing design cut CPI by roughly 20 percent on a convolution benchmark with minimal added hardware.",
     visual: "cpu",
     tone: "violet"
   },
@@ -234,6 +244,8 @@ const projectCatalog = [
     filters: ["Embedded Systems / Microcontrollers"],
     image: "/assets/projects/birdsong-synthesizer.png",
     imageAlt: "Spectrogram of a Northern Cardinal call used for the birdsong synthesizer",
+    detail:
+      "We built a birdsong synthesizer on the RP2040 to recreate the call of a Northern Cardinal, breaking the song into chirps, swoops, and silences generated with direct digital synthesis. A sine lookup table combined with fixed-point arithmetic produced smooth frequency sweeps, which were sent to a DAC over SPI with amplitude envelopes to keep the transitions natural. A keypad let us play or record sequences, with debouncing handled by a finite state machine and timer interrupts keeping the synthesis timing precise.",
     visual: "audio",
     tone: "orange"
   },
@@ -297,6 +309,8 @@ const projectCatalog = [
     filters: ["Computer Architecture"],
     image: "/assets/projects/integer-multiplier.png",
     imageAlt: "Variable-latency iterative integer multiplier datapath",
+    detail:
+      "We implemented two iterative integer multipliers in Verilog: a fixed-latency baseline and a variable-latency alternative, practicing datapath and control decomposition, FSMs, and streaming interfaces along the way. Both use a val/rdy stream interface and shift-and-add multiplication, but the alternative exploits runs of zeros in the multiplier operand to skip cycles. A priority encoder identifies those runs so the datapath can take variable-sized shifts and terminate as soon as the computation finishes, cutting the number of wasted cycles compared to the one-bit-per-cycle baseline.",
     visual: "cpu",
     tone: "violet"
   },
@@ -317,6 +331,8 @@ const projectCatalog = [
     filters: ["Computer Architecture"],
     image: "/assets/projects/blocking-cache.png",
     imageAlt: "Two-way set-associative blocking cache datapath",
+    detail:
+      "We designed and evaluated two cache microarchitectures for the TinyRV2 processor to get hands-on experience with memory hierarchies, cache design, and finite-state-machine control. The baseline was a direct-mapped, write-back cache that stalled the processor on a miss, while the alternative added two-way set associativity with LRU replacement to reduce conflict misses. Across our benchmark patterns the alternative consistently cut miss rates and average memory access latency for workloads with conflict or temporal reuse, most notably a 70 percent latency reduction on one loop, while simpler sequential workloads saw little change.",
     visual: "tpu",
     tone: "lime"
   },
@@ -337,6 +353,8 @@ const projectCatalog = [
     filters: ["Embedded Systems / Microcontrollers"],
     image: "/assets/projects/galton-board.png",
     imageAlt: "Real-time VGA Digital Galton Board simulation and distribution histogram",
+    detail:
+      "We built a digital Galton Board on the RP2040 to model the statistical behavior of balls falling through repeated binary interactions. Each collision was a Bernoulli trial that deflected a ball left or right with equal probability, and as more balls fell the distribution across the bottom bins approximated a Gaussian curve. A DMA channel streamed a collision sound to an SPI DAC for every hit, and the VGA display rendered the board alongside a live histogram, ball count, and bounciness coefficient, all adjustable through a potentiometer and pushbutton.",
     visual: "sensor",
     tone: "orange"
   },
@@ -355,6 +373,8 @@ const projectCatalog = [
     ],
     tools: ["RP2040", "PID", "IMU", "PWM"],
     filters: ["Embedded Systems / Microcontrollers"],
+    detail:
+      "We built a one-degree-of-freedom helicopter using the RP2040 to explore feedback control and real-time embedded programming. A ducted fan on a lever arm lifted against gravity as we varied thrust with PWM, while a complementary filter fused gyroscope and accelerometer data from an onboard IMU into a stable angle estimate. A PID controller running at a fixed 1 kilohertz update rate adjusted motor output to track a target angle, with the proportional, integral, and derivative terms tuned to give a fast, steady, oscillation-free response.",
     visual: "audio",
     tone: "blue"
   }
@@ -934,6 +954,7 @@ function ProjectGraphic({ type }) {
 function ProjectCard({ project }) {
   const reduceMotion = useReducedMotion();
   const projectLink = project.website || project.report || project.href;
+  const [flipped, setFlipped] = useState(false);
 
   return (
     <motion.article
@@ -941,59 +962,85 @@ function ProjectCard({ project }) {
       whileHover={reduceMotion ? undefined : { y: -3 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
     >
-      <div className={`project-graphic${project.image ? " project-graphic-image" : ""}`}>
-        {project.image ? (
-          <a
-            className="project-thumbnail-link"
-            href={project.report || project.website || project.href}
-            target="_blank"
-            rel="noreferrer"
-            aria-label={project.report ? `Read the ${project.title} report` : `Open the ${project.title} project page`}
-          >
-            <img className="project-thumbnail" src={project.image} alt={project.imageAlt} />
-          </a>
-        ) : (
-          <ProjectGraphic type={project.visual} />
-        )}
-      </div>
-      <div className="project-case-number">{project.number}</div>
-      <div className="project-case-label"><i /> Case · {project.category}</div>
-      <div className="project-card-copy">
-        <h3>{project.title}</h3>
-        <p>{project.summary}</p>
-      </div>
-      <div className="project-result">
-        <span>Key result</span><strong>{project.impact}</strong>
-      </div>
-      <div className="tags project-tags">
-        {project.tools.slice(0, 3).map((tool) => <span key={tool}>{tool}</span>)}
-      </div>
-      <div className="project-card-bottom">
-        <div className="project-card-actions">
-          {project.report && (
-            <a className="project-report-link" href={project.report} target="_blank" rel="noreferrer">
-              Read report <ArrowUpRight size={14} />
-            </a>
-          )}
-          {project.website && (
-            <a className="project-website-link" href={project.website} target="_blank" rel="noreferrer">
-              Project page <ArrowUpRight size={14} />
-            </a>
-          )}
-          {!project.report && !project.website && (
-            <span>View project <ArrowUpRight size={14} /></span>
-          )}
+      <div className={`project-card-flip${flipped ? " is-flipped" : ""}`}>
+        <div className="project-card-face project-card-front">
+          <div className={`project-graphic${project.image ? " project-graphic-image" : ""}`}>
+            {project.image ? (
+              <a
+                className="project-thumbnail-link"
+                href={project.report || project.website || project.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={project.report ? `Read the ${project.title} report` : `Open the ${project.title} project page`}
+              >
+                <img className="project-thumbnail" src={project.image} alt={project.imageAlt} />
+              </a>
+            ) : (
+              <ProjectGraphic type={project.visual} />
+            )}
+          </div>
+          <div className="project-case-number">{project.number}</div>
+          <div className="project-case-label"><i /> Case · {project.category}</div>
+          <div className="project-card-copy">
+            <h3>{project.title}</h3>
+            <p>{project.summary}</p>
+          </div>
+          <div className="project-result">
+            <span>Key result</span><strong>{project.impact}</strong>
+          </div>
+          <div className="tags project-tags">
+            {project.tools.slice(0, 3).map((tool) => <span key={tool}>{tool}</span>)}
+          </div>
+          <div className="project-card-bottom">
+            <div className="project-card-actions">
+              {project.report && (
+                <a className="project-report-link" href={project.report} target="_blank" rel="noreferrer">
+                  Read report <ArrowUpRight size={14} />
+                </a>
+              )}
+              {project.website && (
+                <a className="project-website-link" href={project.website} target="_blank" rel="noreferrer">
+                  Project page <ArrowUpRight size={14} />
+                </a>
+              )}
+              {!project.report && !project.website && project.detail && (
+                <button type="button" className="project-learn-more" onClick={() => setFlipped(true)}>
+                  Learn more <ArrowUpRight size={14} />
+                </button>
+              )}
+              {!project.report && !project.website && !project.detail && (
+                <span>View project <ArrowUpRight size={14} /></span>
+              )}
+            </div>
+            {projectLink ? (
+              <a
+                href={projectLink}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={project.website ? `Open the ${project.title} project page` : project.report ? `Read the ${project.title} report` : `Open ${project.title} on GitHub`}
+              >
+                {project.website ? <ArrowUpRight size={20} /> : project.report ? <BookOpen size={18} /> : <ArrowUpRight size={20} />}
+              </a>
+            ) : <Github size={19} aria-hidden="true" />}
+          </div>
         </div>
-        {projectLink ? (
-          <a
-            href={projectLink}
-            target="_blank"
-            rel="noreferrer"
-            aria-label={project.website ? `Open the ${project.title} project page` : project.report ? `Read the ${project.title} report` : `Open ${project.title} on GitHub`}
-          >
-            {project.website ? <ArrowUpRight size={20} /> : project.report ? <BookOpen size={18} /> : <ArrowUpRight size={20} />}
-          </a>
-        ) : <Github size={19} aria-hidden="true" />}
+        {project.detail && (
+          <div className="project-card-face project-card-back">
+            <div className="project-case-number">{project.number}</div>
+            <div className="project-card-back-copy">
+              <h3>{project.title}</h3>
+              <p>{project.detail}</p>
+            </div>
+            <button
+              type="button"
+              className="project-flip-back"
+              onClick={() => setFlipped(false)}
+              aria-label={`Close ${project.title} summary`}
+            >
+              <X size={14} /> Back
+            </button>
+          </div>
+        )}
       </div>
     </motion.article>
   );
