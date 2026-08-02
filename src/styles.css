@@ -1018,6 +1018,15 @@ footer,
   place-items: center;
 }
 
+.project-card-flippable {
+  cursor: pointer;
+}
+
+.project-card-flippable:focus-visible {
+  outline: 2px solid var(--card-accent);
+  outline-offset: 4px;
+}
+
 .project-card-flip {
   position: relative;
   z-index: 2;

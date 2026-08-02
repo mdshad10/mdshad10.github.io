@@ -955,12 +955,27 @@ function ProjectCard({ project }) {
   const reduceMotion = useReducedMotion();
   const projectLink = project.website || project.report || project.href;
   const [flipped, setFlipped] = useState(false);
+  const canFlip = Boolean(project.detail);
+
+  const toggleFlip = () => setFlipped((current) => !current);
+  const handleCardKeyDown = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      toggleFlip();
+    }
+  };
+  const stopFlipPropagation = (event) => event.stopPropagation();
 
   return (
     <motion.article
-      className={`project-card project-card-${project.tone}`}
+      className={`project-card project-card-${project.tone}${canFlip ? " project-card-flippable" : ""}`}
       whileHover={reduceMotion ? undefined : { y: -3 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
+      onClick={canFlip ? toggleFlip : undefined}
+      onKeyDown={canFlip ? handleCardKeyDown : undefined}
+      role={canFlip ? "button" : undefined}
+      tabIndex={canFlip ? 0 : undefined}
+      aria-pressed={canFlip ? flipped : undefined}
     >
       <div className={`project-card-flip${flipped ? " is-flipped" : ""}`}>
         <div className="project-card-face project-card-front">
@@ -971,6 +986,7 @@ function ProjectCard({ project }) {
                 href={project.report || project.website || project.href}
                 target="_blank"
                 rel="noreferrer"
+                onClick={stopFlipPropagation}
                 aria-label={project.report ? `Read the ${project.title} report` : `Open the ${project.title} project page`}
               >
                 <img className="project-thumbnail" src={project.image} alt={project.imageAlt} />
@@ -994,19 +1010,17 @@ function ProjectCard({ project }) {
           <div className="project-card-bottom">
             <div className="project-card-actions">
               {project.report && (
-                <a className="project-report-link" href={project.report} target="_blank" rel="noreferrer">
+                <a className="project-report-link" href={project.report} target="_blank" rel="noreferrer" onClick={stopFlipPropagation}>
                   Read report <ArrowUpRight size={14} />
                 </a>
               )}
               {project.website && (
-                <a className="project-website-link" href={project.website} target="_blank" rel="noreferrer">
+                <a className="project-website-link" href={project.website} target="_blank" rel="noreferrer" onClick={stopFlipPropagation}>
                   Project page <ArrowUpRight size={14} />
                 </a>
               )}
               {!project.report && !project.website && project.detail && (
-                <button type="button" className="project-learn-more" onClick={() => setFlipped(true)}>
-                  Learn more <ArrowUpRight size={14} />
-                </button>
+                <span className="project-learn-more">Tap for details <ArrowUpRight size={14} /></span>
               )}
               {!project.report && !project.website && !project.detail && (
                 <span>View project <ArrowUpRight size={14} /></span>
@@ -1017,6 +1031,7 @@ function ProjectCard({ project }) {
                 href={projectLink}
                 target="_blank"
                 rel="noreferrer"
+                onClick={stopFlipPropagation}
                 aria-label={project.website ? `Open the ${project.title} project page` : project.report ? `Read the ${project.title} report` : `Open ${project.title} on GitHub`}
               >
                 {project.website ? <ArrowUpRight size={20} /> : project.report ? <BookOpen size={18} /> : <ArrowUpRight size={20} />}
@@ -1034,7 +1049,10 @@ function ProjectCard({ project }) {
             <button
               type="button"
               className="project-flip-back"
-              onClick={() => setFlipped(false)}
+              onClick={(event) => {
+                event.stopPropagation();
+                setFlipped(false);
+              }}
               aria-label={`Close ${project.title} summary`}
             >
               <X size={14} /> Back
