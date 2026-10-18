@@ -951,17 +951,24 @@ function ProjectGraphic({ type }) {
   );
 }
 
-function ProjectCard({ project }) {
+function ProjectCard({ project, compactLayout }) {
   const reduceMotion = useReducedMotion();
   const projectLink = project.website || project.report || project.href;
   const [flipped, setFlipped] = useState(false);
+  const [detailsOpen, setDetailsOpen] = useState(false);
   const canFlip = Boolean(project.detail);
   const detailId = useId();
   const learnMoreRef = useRef(null);
   const backRef = useRef(null);
+  const dialogRef = useRef(null);
   const shouldFocus = useRef(false);
 
   const toggleFlip = () => {
+    if (compactLayout) {
+      dialogRef.current?.showModal();
+      setDetailsOpen(true);
+      return;
+    }
     shouldFocus.current = true;
     setFlipped((current) => !current);
   };
@@ -973,12 +980,17 @@ function ProjectCard({ project }) {
     }
   }, [flipped]);
 
+  useEffect(() => {
+    dialogRef.current?.close();
+    setFlipped(false);
+  }, [compactLayout]);
+
   return (
     <motion.article
       className={`project-card project-card-${project.tone}${canFlip ? " project-card-flippable" : ""}`}
       whileHover={reduceMotion ? undefined : { y: -3 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
-      onClick={canFlip && !flipped ? toggleFlip : undefined}
+      onClick={canFlip && !flipped && !detailsOpen ? toggleFlip : undefined}
       onKeyDown={(event) => {
         if (flipped && event.key === "Escape") {
           event.preventDefault();
@@ -1033,8 +1045,9 @@ function ProjectCard({ project }) {
                   type="button"
                   className="project-learn-more"
                   ref={learnMoreRef}
-                  aria-expanded={flipped}
-                  aria-controls={detailId}
+                  aria-expanded={compactLayout ? detailsOpen : flipped}
+                  aria-controls={compactLayout ? `${detailId}-mobile` : detailId}
+                  aria-haspopup={compactLayout ? "dialog" : undefined}
                   onClick={(event) => {
                     event.stopPropagation();
                     toggleFlip();
@@ -1082,13 +1095,50 @@ function ProjectCard({ project }) {
           </div>
         )}
       </div>
+      {project.detail && (
+        <dialog
+          className="project-details-dialog"
+          id={`${detailId}-mobile`}
+          ref={dialogRef}
+          aria-labelledby={`${detailId}-title`}
+          onClose={() => setDetailsOpen(false)}
+          onClick={(event) => {
+            event.stopPropagation();
+            const bounds = event.currentTarget.getBoundingClientRect();
+            if (event.clientX < bounds.left || event.clientX > bounds.right ||
+                event.clientY < bounds.top || event.clientY > bounds.bottom) {
+              dialogRef.current.close();
+            }
+          }}
+        >
+          <button
+            type="button"
+            className="project-flip-back"
+            onClick={() => dialogRef.current.close()}
+            aria-label={`Close ${project.title} details`}
+          >
+            <X size={16} /> Close
+          </button>
+          <div className="project-card-back-copy">
+            <h3 id={`${detailId}-title`}>{project.title}</h3>
+            <p>{project.detail}</p>
+          </div>
+        </dialog>
+      )}
     </motion.article>
   );
 }
 
 function Projects() {
   const [activeFilter, setActiveFilter] = useState("All");
+  const [compactLayout, setCompactLayout] = useState(() => window.matchMedia("(max-width: 900px)").matches);
   const reduceMotion = useReducedMotion();
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 900px)");
+    const updateLayout = () => setCompactLayout(query.matches);
+    query.addEventListener("change", updateLayout);
+    return () => query.removeEventListener("change", updateLayout);
+  }, []);
   const visibleProjects = activeFilter === "All"
     ? projects
     : projects.filter((project) => project.filters.includes(activeFilter));
@@ -1142,7 +1192,7 @@ function Projects() {
                   ease: [0.22, 1, 0.36, 1]
                 }}
               >
-                <ProjectCard project={project} />
+                <ProjectCard project={project} compactLayout={compactLayout} />
               </motion.div>
             ))}
           </motion.div>
