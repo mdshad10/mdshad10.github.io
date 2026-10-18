@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
   AnimatePresence,
@@ -956,29 +956,38 @@ function ProjectCard({ project }) {
   const projectLink = project.website || project.report || project.href;
   const [flipped, setFlipped] = useState(false);
   const canFlip = Boolean(project.detail);
+  const detailId = useId();
+  const learnMoreRef = useRef(null);
+  const backRef = useRef(null);
+  const shouldFocus = useRef(false);
 
-  const toggleFlip = () => setFlipped((current) => !current);
-  const handleCardKeyDown = (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      toggleFlip();
-    }
+  const toggleFlip = () => {
+    shouldFocus.current = true;
+    setFlipped((current) => !current);
   };
   const stopFlipPropagation = (event) => event.stopPropagation();
+
+  useEffect(() => {
+    if (shouldFocus.current) {
+      (flipped ? backRef : learnMoreRef).current?.focus({ preventScroll: true });
+    }
+  }, [flipped]);
 
   return (
     <motion.article
       className={`project-card project-card-${project.tone}${canFlip ? " project-card-flippable" : ""}`}
       whileHover={reduceMotion ? undefined : { y: -3 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
-      onClick={canFlip ? toggleFlip : undefined}
-      onKeyDown={canFlip ? handleCardKeyDown : undefined}
-      role={canFlip ? "button" : undefined}
-      tabIndex={canFlip ? 0 : undefined}
-      aria-pressed={canFlip ? flipped : undefined}
+      onClick={canFlip && !flipped ? toggleFlip : undefined}
+      onKeyDown={(event) => {
+        if (flipped && event.key === "Escape") {
+          event.preventDefault();
+          toggleFlip();
+        }
+      }}
     >
       <div className={`project-card-flip${flipped ? " is-flipped" : ""}`}>
-        <div className="project-card-face project-card-front">
+        <div className="project-card-face project-card-front" inert={flipped} aria-hidden={flipped}>
           <div className={`project-graphic${project.image ? " project-graphic-image" : ""}`}>
             {project.image ? (
               <a
@@ -1020,7 +1029,19 @@ function ProjectCard({ project }) {
                 </a>
               )}
               {!project.report && !project.website && project.detail && (
-                <span className="project-learn-more">Tap for details <ArrowUpRight size={14} /></span>
+                <button
+                  type="button"
+                  className="project-learn-more"
+                  ref={learnMoreRef}
+                  aria-expanded={flipped}
+                  aria-controls={detailId}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    toggleFlip();
+                  }}
+                >
+                  Learn more <ArrowUpRight size={14} />
+                </button>
               )}
               {!project.report && !project.website && !project.detail && (
                 <span>View project <ArrowUpRight size={14} /></span>
@@ -1040,7 +1061,7 @@ function ProjectCard({ project }) {
           </div>
         </div>
         {project.detail && (
-          <div className="project-card-face project-card-back">
+          <div className="project-card-face project-card-back" id={detailId} inert={!flipped} aria-hidden={!flipped}>
             <div className="project-case-number">{project.number}</div>
             <div className="project-card-back-copy">
               <h3>{project.title}</h3>
@@ -1049,9 +1070,10 @@ function ProjectCard({ project }) {
             <button
               type="button"
               className="project-flip-back"
+              ref={backRef}
               onClick={(event) => {
                 event.stopPropagation();
-                setFlipped(false);
+                toggleFlip();
               }}
               aria-label={`Close ${project.title} summary`}
             >

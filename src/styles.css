@@ -1020,6 +1020,9 @@ footer,
 
 .project-card-flippable {
   cursor: pointer;
+  overflow: visible;
+  perspective: 1200px;
+  background: transparent;
 }
 
 .project-card-flippable:focus-visible {
@@ -1032,9 +1035,11 @@ footer,
   z-index: 2;
   flex: 1 1 auto;
   display: grid;
+  min-width: 0;
+  border-radius: inherit;
   grid-template-rows: minmax(max-content, 1fr);
   transform-style: preserve-3d;
-  transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .project-card-flip.is-flipped {
@@ -1047,11 +1052,15 @@ footer,
   display: flex;
   flex-direction: column;
   min-width: 0;
+  border-radius: inherit;
+  background: #fff;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
 
 .project-card-front {
+  overflow: hidden;
+  transform: rotateY(0deg);
   pointer-events: auto;
 }
 
@@ -1062,7 +1071,15 @@ footer,
 .project-card-back {
   transform: rotateY(180deg);
   justify-content: space-between;
-  gap: 20px;
+  gap: 24px;
+  padding: clamp(24px, 2.5vw, 32px);
+  cursor: auto;
+  pointer-events: none;
+}
+
+.project-card-back .project-case-number {
+  top: 18px;
+  right: 24px;
   pointer-events: none;
 }
 
@@ -1071,12 +1088,13 @@ footer,
 }
 
 .project-card-back-copy {
+  position: relative;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  justify-content: center;
-  gap: 14px;
-  margin: 24px 0;
+  justify-content: flex-start;
+  gap: 20px;
+  min-width: 0;
 }
 
 .project-card-back-copy h3 {
@@ -1084,14 +1102,29 @@ footer,
   color: var(--ink);
   font-size: clamp(1.3rem, 1.8vw, 1.6rem);
   letter-spacing: -0.02em;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
 }
 
 .project-card-back-copy p {
   margin: 0;
-  color: var(--muted);
-  font-size: clamp(0.92rem, 1vw, 1rem);
-  font-weight: 520;
-  line-height: 1.68;
+  color: #4a5365;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+
+.project-learn-more:focus-visible,
+.project-flip-back:focus-visible {
+  outline: 2px solid var(--card-accent);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card-flip {
+    transition: none;
+  }
 }
 
 .project-learn-more {
