@@ -1,28 +1,19 @@
-import React, { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
   AnimatePresence,
   motion,
-  useMotionValue,
-  useReducedMotion,
-  useSpring
+  useReducedMotion
 } from "framer-motion";
 import {
-  ArrowDown,
   ArrowUpRight,
   BookOpen,
   BriefcaseBusiness,
   CircuitBoard,
   Cpu,
   Github,
-  GraduationCap,
-  Linkedin,
-  Mail,
   Menu,
-  MapPin,
-  Radio,
   X,
-  Zap
 } from "lucide-react";
 import heroImage from "../IMG_0005.JPG";
 import fraudPresentationImage from "../assets/media/ai-fraud-presentation.jpg";
@@ -62,7 +53,7 @@ const projectCatalog = [
     rank: 5,
     title: "Hardware ODE Solver",
     category: "FPGA / Hardware–Software Co-Design",
-    period: "Jan 2026 — Feb 2026",
+    period: "Jan 2026 to Feb 2026",
     summary:
       "A fixed-point FPGA solver for the Lorenz system with HPS control and real-time VGA visualization.",
     impact: "Real-time chaotic-system integration",
@@ -84,7 +75,7 @@ const projectCatalog = [
     rank: 9,
     title: "Mandelbrot Set Visualizer",
     category: "Parallel FPGA Rendering",
-    period: "Feb 2026 — Mar 2026",
+    period: "Feb 2026 to Mar 2026",
     summary:
       "An interactive 640×480 Mandelbrot renderer using parallel fixed-point iterator pipelines and on-chip memory.",
     impact: "43 parallel iterators · 20 ms frame",
@@ -128,7 +119,7 @@ const projectCatalog = [
     rank: 1,
     title: "Ultra-Low-Latency Shack–Hartmann FPGA Reconstruction Engine",
     category: "Adaptive Optics / FPGA",
-    period: "Jan 2026 — May 2026",
+    period: "Jan 2026 to May 2026",
     summary:
       "An ultra-low-latency, fully streaming FPGA pipeline for real-time sensor-data reconstruction.",
     impact: "120 ns end-to-end latency",
@@ -149,7 +140,7 @@ const projectCatalog = [
     rank: 3,
     title: "32 × 32 Ternary Content Addressable Memory (TCAM)",
     category: "Full-Custom VLSI",
-    period: "Mar 2026 — May 2026",
+    period: "Mar 2026 to May 2026",
     summary:
       "A 32×32-bit ternary content-addressable memory with fully parallel search and hierarchical priority encoding.",
     impact: "900 ps search latency",
@@ -170,7 +161,7 @@ const projectCatalog = [
     rank: 2,
     title: "Multi-Core RISC-V System",
     category: "Computer Architecture",
-    period: "Nov 2025 — Dec 2025",
+    period: "Nov 2025 to Dec 2025",
     summary:
       "Single-core and four-core RISC-V systems with private L1 instruction caches and a shared banked L2 data cache.",
     impact: "Up to 2.38× speedup",
@@ -192,7 +183,7 @@ const projectCatalog = [
     rank: 4,
     title: "8×8 Mini-TPU",
     category: "AI Hardware / FPGA",
-    period: "Research · 2025 — 2026",
+    period: "Research · 2025 to 2026",
     summary:
       "A scalable systolic-array accelerator and custom instruction interface for neural-network training and inference.",
     impact: "8×8 RTL compute array",
@@ -396,7 +387,7 @@ const experience = [
     type: "Industry",
     icon: Cpu,
     logos: [amdLogo],
-    date: "May 2026 — Present",
+    date: "May 2026 to Present",
     place: "Advanced Micro Devices (AMD)",
     role: "Systems Design Engineer Intern",
     location: "San Jose, CA",
@@ -411,7 +402,7 @@ const experience = [
     type: "Research",
     icon: CircuitBoard,
     logos: [cslLogo],
-    date: "Aug 2025 — May 2026",
+    date: "Aug 2025 to May 2026",
     place: "Zhang Research Group",
     role: "Research Assistant",
     location: "Cornell University",
@@ -426,14 +417,14 @@ const experience = [
     type: "Teaching",
     icon: BookOpen,
     logos: [experienceCornellLogo],
-    date: "Jan 2025 — May 2026",
+    date: "Jan 2025 to May 2026",
     place: "Cornell Engineering",
     role: "Teaching Assistant",
     location: "Ithaca, New York",
     subroles: [
       {
         title: "ECE 3140 / CS 3420: Embedded Systems",
-        date: "Jan 2026 — May 2026",
+        date: "Jan 2026 to May 2026",
         leader: "Led by Professor Kirstin Petersen",
         bullets: [
           "Mentor students in low-level C programming, memory-mapped I/O, interrupts, timers, peripheral interfacing, and real-time scheduling."
@@ -441,7 +432,7 @@ const experience = [
       },
       {
         title: "ECE 2300: Digital Logic and Computer Organization",
-        date: "Jan 2025 — Dec 2025",
+        date: "Jan 2025 to Dec 2025",
         leader: "Led by Professors Zhiru Zhang and Christopher Batten",
         bullets: [
           "Guided discussions on digital logic, computer organization, and FPGA architecture while debugging and optimizing Verilog designs."
@@ -455,7 +446,7 @@ const experience = [
     type: "Industry",
     icon: BriefcaseBusiness,
     logos: [charterLogo, spectrumLogo],
-    date: "May 2025 — Aug 2025",
+    date: "May 2025 to Aug 2025",
     place: "Charter Communications / Spectrum",
     role: "Electrical Engineering Intern",
     location: "New York, New York",
@@ -470,7 +461,7 @@ const experience = [
     type: "Campus Employment",
     icon: BriefcaseBusiness,
     logos: [experienceCornellLogo],
-    date: "Nov 2024 — May 2026",
+    date: "Nov 2024 to May 2026",
     place: "Cornell University Athletics",
     role: "Event / Game-Day Staff",
     location: "Ithaca, NY",
@@ -486,7 +477,7 @@ const experience = [
     icon: CircuitBoard,
     logos: [ewbCornellLogo],
     logoClass: "timeline-brand-ewb",
-    date: "Jan 2025 — Aug 2025",
+    date: "Jan 2025 to Aug 2025",
     place: "Engineers Without Borders Cornell University Project Team",
     role: "Hardware Engineer",
     location: "Ithaca, NY",
@@ -574,34 +565,8 @@ const coursework = [
   "Differential Equations for Engineers"
 ];
 
-function MagneticLink({ children, className = "", ...props }) {
-  const reduceMotion = useReducedMotion();
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 250, damping: 18 });
-  const springY = useSpring(y, { stiffness: 250, damping: 18 });
-
-  const handleMove = (event) => {
-    if (reduceMotion) return;
-    const bounds = event.currentTarget.getBoundingClientRect();
-    x.set((event.clientX - bounds.left - bounds.width / 2) * 0.16);
-    y.set((event.clientY - bounds.top - bounds.height / 2) * 0.16);
-  };
-
-  return (
-    <motion.a
-      className={`magnetic-link ${className}`}
-      style={{ x: springX, y: springY }}
-      onMouseMove={handleMove}
-      onMouseLeave={() => {
-        x.set(0);
-        y.set(0);
-      }}
-      {...props}
-    >
-      {children}
-    </motion.a>
-  );
+function ActionLink({ children, className = "", ...props }) {
+  return <a className={className} {...props}>{children}</a>;
 }
 
 function Header() {
@@ -874,18 +839,17 @@ function Intro() {
   return (
     <section className="intro section-shell" id="about">
       <div className="about-layout">
-        <figure className="about-photo reveal">
+        <figure className="about-photo">
           <img src={profileImage} alt="Portrait of Md Shad" />
         </figure>
 
         <div className="about-content">
-          <div className="section-heading reveal">
+          <div className="section-heading">
             <h2>About <em>Me</em></h2>
           </div>
 
-          <div className="about-education reveal">
+          <div className="about-education">
             <div className="about-education-heading">
-              <GraduationCap size={22} />
               <h3>Education</h3>
             </div>
             <div className="about-education-list">
@@ -934,7 +898,7 @@ function ProjectGraphic({ type }) {
   if (type === "audio") {
     return (
       <div className="audio-graphic">
-        <Radio size={26} />
+
         <div className="wave-bars">
           {Array.from({ length: 28 }).map((_, index) => <i key={index} style={{ "--bar": index }} />)}
         </div>
@@ -946,7 +910,7 @@ function ProjectGraphic({ type }) {
     <div className="sensor-graphic">
       <div className="sensor-ring"><span /></div>
       <i className="sensor-beam sensor-beam-a" /><i className="sensor-beam sensor-beam-b" />
-      <div className="sensor-label"><Zap size={18} /> EVENT DETECTED</div>
+      <div className="sensor-label">EVENT DETECTED</div>
     </div>
   );
 }
@@ -1056,9 +1020,6 @@ function ProjectCard({ project, compactLayout }) {
                   Learn more <ArrowUpRight size={14} />
                 </button>
               )}
-              {!project.report && !project.website && !project.detail && (
-                <span>View project <ArrowUpRight size={14} /></span>
-              )}
             </div>
             {projectLink ? (
               <a
@@ -1070,7 +1031,7 @@ function ProjectCard({ project, compactLayout }) {
               >
                 {project.website ? <ArrowUpRight size={20} /> : project.report ? <BookOpen size={18} /> : <ArrowUpRight size={20} />}
               </a>
-            ) : <Github size={19} aria-hidden="true" />}
+            ) : null}
           </div>
         </div>
         {project.detail && (
@@ -1132,7 +1093,6 @@ function ProjectCard({ project, compactLayout }) {
 function Projects() {
   const [activeFilter, setActiveFilter] = useState("All");
   const [compactLayout, setCompactLayout] = useState(() => window.matchMedia("(max-width: 900px)").matches);
-  const reduceMotion = useReducedMotion();
   useEffect(() => {
     const query = window.matchMedia("(max-width: 900px)");
     const updateLayout = () => setCompactLayout(query.matches);
@@ -1146,9 +1106,9 @@ function Projects() {
   return (
     <section className="projects" id="projects">
       <div className="section-shell">
-        <div className="module-heading reveal">
+        <div className="module-heading">
           <h2>My <em>Projects</em></h2>
-          <p>Selected engineering work demonstrating practical systems and well-architected implementations.</p>
+          <p>FPGA accelerators, RISC-V processors, and embedded systems, with implementation details and measured results.</p>
           <div className="filter-pills" aria-label="Filter projects">
             {projectFilters.map((filter) => (
               <button
@@ -1163,45 +1123,18 @@ function Projects() {
             ))}
           </div>
         </div>
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            className="project-grid"
-            key={activeFilter}
-            role="region"
-            aria-live="polite"
-            aria-label={`${activeFilter} projects`}
-            initial={reduceMotion ? false : { opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={reduceMotion ? undefined : { opacity: 0, y: -4 }}
-            transition={{ duration: 0.1, ease: "easeOut" }}
-          >
-            {visibleProjects.map((project, index) => (
-              <motion.div
-                className="project-shuffle-item"
-                key={project.title}
-                initial={reduceMotion ? false : {
-                  opacity: 0,
-                  x: index % 2 === 0 ? -5 : 5,
-                  y: 3,
-                  scale: 0.995
-                }}
-                animate={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-                transition={{
-                  duration: 0.16,
-                  delay: Math.min(index * 0.015, 0.06),
-                  ease: [0.22, 1, 0.36, 1]
-                }}
-              >
-                <ProjectCard project={project} compactLayout={compactLayout} />
-              </motion.div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
-        <div className="github-row reveal">
-          <p>More experiments, coursework, and embedded builds live on GitHub.</p>
-          <MagneticLink className="round-link round-link-light" href="https://github.com/mdshad10" target="_blank" rel="noreferrer">
+        <div className="project-grid" role="region" aria-live="polite" aria-label={`${activeFilter} projects`}>
+          {visibleProjects.map((project) => (
+            <div className="project-shuffle-item" key={project.title}>
+              <ProjectCard project={project} compactLayout={compactLayout} />
+            </div>
+          ))}
+        </div>
+        <div className="github-row">
+          <p>See source code and additional coursework on GitHub.</p>
+          <ActionLink className="round-link round-link-light" href="https://github.com/mdshad10" target="_blank" rel="noreferrer">
             Explore GitHub <Github size={18} />
-          </MagneticLink>
+          </ActionLink>
         </div>
       </div>
     </section>
@@ -1213,14 +1146,14 @@ function Experience() {
 
   return (
     <section className="experience section-shell" id="experience">
-      <div className="module-heading reveal">
+      <div className="module-heading">
         <h2>Professional <em>Experience</em></h2>
         <p>Research, teaching, and industry experience applying engineering theory to real systems.</p>
       </div>
       <div className="experience-groups">
         {experienceGroups.map((group) => (
           <section className="experience-group" key={group}>
-            <h3 className="experience-group-title reveal">{group}</h3>
+            <h3 className="experience-group-title">{group}</h3>
             <div className="experience-timeline">
               {experience
                 .filter((item) => item.group === group)
@@ -1228,7 +1161,7 @@ function Experience() {
                 .map((item) => {
                 const Icon = item.icon;
                 return (
-                  <article className="timeline-item reveal" key={`${item.place}-${item.role}`}>
+                  <article className="timeline-item" key={`${item.place}-${item.role}`}>
                     <span className="timeline-dot" />
                     <div className="timeline-meta"><span>{item.date}</span><span>{item.location}</span></div>
                     <div className="timeline-card">
@@ -1272,12 +1205,12 @@ function Skills() {
   return (
     <section className="skills" id="skills">
       <div className="section-shell skills-inner">
-        <div className="module-heading reveal">
+        <div className="module-heading">
           <h2>Technical <em>Skills</em></h2>
-          <p>Technologies and tools I use to move from architecture to working systems.</p>
+          <p>Tools I use for RTL design, hardware verification, firmware, and lab testing.</p>
         </div>
 
-        <div className="skill-groups reveal">
+        <div className="skill-groups">
           {skillCategories.map((category) => (
             <article className="skill-group" key={category.label}>
               <div className="skill-group-heading">
@@ -1298,21 +1231,18 @@ function Coursework() {
   return (
     <section className="coursework" id="coursework">
       <div className="section-shell">
-        <div className="module-heading reveal">
+        <div className="module-heading">
           <h2>Relevant <em>Coursework</em></h2>
-          <p>Selected Cornell ECE courses supporting my work across hardware, embedded systems, and intelligent computing.</p>
+          <p>Cornell courses in computer architecture, digital design, embedded systems, and mathematics.</p>
         </div>
 
         <div className="coursework-grid">
           {coursework.map((course, index) => (
             <motion.article
               className="coursework-card"
-              whileHover={{ y: -4 }}
-              transition={{ duration: 0.18, ease: "easeOut" }}
               key={course}
             >
               <span>{String(index + 1).padStart(2, "0")}</span>
-              <BookOpen size={20} aria-hidden="true" />
               <h3>{course}</h3>
             </motion.article>
           ))}
@@ -1324,14 +1254,14 @@ function Coursework() {
 
 function Contact() {
   const contactCards = [
-    { label: "Email", value: "mss464@cornell.edu", icon: Mail, href: "mailto:mss464@cornell.edu" },
-    { label: "GitHub", value: "github.com/mdshad10", icon: Github, href: "https://github.com/mdshad10" },
-    { label: "LinkedIn", value: "linkedin.com/in/mdshad4", icon: Linkedin, href: "https://linkedin.com/in/mdshad4" }
+    { label: "Email", value: "mss464@cornell.edu", href: "mailto:mss464@cornell.edu" },
+    { label: "GitHub", value: "github.com/mdshad10", href: "https://github.com/mdshad10" },
+    { label: "LinkedIn", value: "linkedin.com/in/mdshad4", href: "https://linkedin.com/in/mdshad4" }
   ];
 
   return (
     <section className="contact section-shell" id="contact">
-      <div className="module-heading reveal">
+      <div className="module-heading">
         <h2>Get In <em>Touch</em></h2>
         <p>Let’s talk about embedded systems, computer architecture, FPGA design, or your next engineering project.</p>
       </div>
@@ -1339,10 +1269,8 @@ function Contact() {
       <div className="contact-layout">
         <div className="contact-card-list">
           {contactCards.map((card) => {
-            const Icon = card.icon;
             const content = (
-              <article className="contact-info-card reveal">
-                <div className="contact-info-icon"><Icon size={22} /></div>
+              <article className="contact-info-card">
                 <p>{card.label}</p>
                 <strong>{card.value}</strong>
               </article>
@@ -1351,17 +1279,17 @@ function Contact() {
           })}
         </div>
 
-        <div className="contact-message reveal">
-          <h3>Have any hardware openings or opportunities?</h3>
-          <p>Feel free to contact me.</p>
-          <MagneticLink className="contact-button" href="mailto:mss464@cornell.edu" aria-label="Email Md Shad">
-            <Mail size={24} /><span>Send me an email</span><ArrowUpRight size={20} />
-          </MagneticLink>
+        <div className="contact-message">
+          <h3>Discuss a hardware opportunity</h3>
+          <p>Email me about FPGA design, embedded systems, or computer architecture roles.</p>
+          <ActionLink className="contact-button" href="mailto:mss464@cornell.edu" aria-label="Email Md Shad">
+            <span>Send me an email</span><ArrowUpRight size={20} />
+          </ActionLink>
         </div>
       </div>
       <footer>
         <div><strong>Md Shad</strong><span>Electrical & Computer Engineer</span></div>
-        <div><span><MapPin size={14} /> New York, NY</span><a href="https://github.com/mdshad10" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></a></div>
+        <div><span>New York, NY</span><a href="https://github.com/mdshad10" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></a></div>
         <a href="#top">Back to top <ArrowUpRight size={14} /></a>
       </footer>
     </section>
@@ -1369,54 +1297,8 @@ function Contact() {
 }
 
 function App() {
-  const rootRef = useRef(null);
-  const reduceMotion = useReducedMotion();
-  const cursorX = useMotionValue(-400);
-  const cursorY = useMotionValue(-400);
-  const smoothX = useSpring(cursorX, { stiffness: 90, damping: 26 });
-  const smoothY = useSpring(cursorY, { stiffness: 90, damping: 26 });
-
-  useEffect(() => {
-    if (reduceMotion || !window.matchMedia("(pointer: fine)").matches) return undefined;
-    const move = (event) => { cursorX.set(event.clientX); cursorY.set(event.clientY); };
-    window.addEventListener("pointermove", move, { passive: true });
-    return () => window.removeEventListener("pointermove", move);
-  }, [cursorX, cursorY, reduceMotion]);
-
-  useLayoutEffect(() => {
-    const root = rootRef.current;
-    if (!root) return undefined;
-    const elements = [...root.querySelectorAll(".reveal")];
-
-    if (reduceMotion || !("IntersectionObserver" in window)) {
-      elements.forEach((element) => element.classList.add("is-visible"));
-      return undefined;
-    }
-
-    root.classList.add("reveal-enabled");
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      });
-    }, { threshold: 0.04, rootMargin: "0px 0px -6% 0px" });
-
-    elements.forEach((element) => observer.observe(element));
-    const safetyTimer = window.setTimeout(() => {
-      elements.forEach((element) => element.classList.add("is-visible"));
-    }, 5000);
-
-    return () => {
-      window.clearTimeout(safetyTimer);
-      observer.disconnect();
-      root.classList.remove("reveal-enabled");
-    };
-  }, [reduceMotion]);
-
   return (
-    <div ref={rootRef}>
-      <motion.div className="cursor-glow" style={{ x: smoothX, y: smoothY }} aria-hidden="true" />
+    <div>
       <a className="skip-link" href="#about">Skip to main content</a>
       <Header />
       <main>
