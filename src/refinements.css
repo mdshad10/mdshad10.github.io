@@ -41,7 +41,7 @@
 .module-heading h2 em,
 .section-heading h2 em {
   font-family: "Bodoni Moda", Georgia, serif;
-  font-style: italic;
+  font-style: normal;
   font-weight: 600;
   letter-spacing: -0.035em;
 }
@@ -547,7 +547,7 @@
 .about-content .section-heading h2 em {
   color: var(--accent);
   font-family: "Bodoni Moda", Georgia, serif;
-  font-style: italic;
+  font-style: normal;
   font-weight: 800;
   letter-spacing: -0.035em;
 }
@@ -688,7 +688,7 @@
 .section-heading h2 em,
 .about-content .section-heading h2 em {
   font-family: "Lora", Georgia, serif;
-  font-style: italic;
+  font-style: normal;
   font-weight: 800;
 }
 
@@ -817,7 +817,7 @@ body {
 .section-heading h2 em,
 .about-content .section-heading h2 em {
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-style: italic;
+  font-style: normal;
   font-weight: 700;
   letter-spacing: -0.045em;
 }
