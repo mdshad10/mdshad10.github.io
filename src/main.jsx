@@ -397,7 +397,7 @@ const experience = [
     ]
   },
   {
-    group: "University",
+    group: "Academic",
     order: 1,
     type: "Research",
     icon: CircuitBoard,
@@ -412,7 +412,7 @@ const experience = [
     ]
   },
   {
-    group: "University",
+    group: "Academic",
     order: 2,
     type: "Teaching",
     icon: BookOpen,
@@ -456,7 +456,7 @@ const experience = [
     ]
   },
   {
-    group: "University",
+    group: "Academic",
     order: 4,
     type: "Campus Employment",
     icon: BriefcaseBusiness,
@@ -471,7 +471,7 @@ const experience = [
     ]
   },
   {
-    group: "University",
+    group: "Academic",
     order: 3,
     type: "Project Team",
     icon: CircuitBoard,
@@ -1142,7 +1142,7 @@ function Projects() {
 }
 
 function Experience() {
-  const experienceGroups = ["Industry", "University"];
+  const experienceGroups = ["Industry", "Academic"];
 
   return (
     <section className="experience section-shell" id="experience">
