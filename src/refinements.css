@@ -1987,3 +1987,35 @@ a:focus-visible {
   border: 1px solid rgba(23, 29, 43, 0.12);
   box-shadow: 0 14px 38px rgba(31, 38, 57, 0.065);
 }
+
+/* Improve readability of experience dates and measured project results. */
+.timeline-meta > span:first-child,
+.timeline-subrole > span {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.project-result {
+  flex-wrap: wrap;
+  gap: 4px 12px;
+}
+
+.project-result span {
+  font-size: 0.625rem;
+}
+
+.project-result strong {
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .timeline-meta > span:first-child,
+  .timeline-subrole > span {
+    font-size: 0.75rem;
+  }
+
+  .project-result strong {
+    font-size: 0.8125rem;
+  }
+}
