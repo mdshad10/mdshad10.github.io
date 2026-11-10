@@ -1974,3 +1974,16 @@ a:focus-visible {
 .contact-message {
   box-shadow: 0 14px 38px rgba(31, 38, 57, 0.065);
 }
+
+/* The wrapper supplies perspective; only the rotating faces paint the card. */
+.project-card.project-card-flippable {
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.project-card-flippable .project-card-face {
+  border: 1px solid rgba(23, 29, 43, 0.12);
+  box-shadow: 0 14px 38px rgba(31, 38, 57, 0.065);
+}
