@@ -1,19 +1,19 @@
 :root {
-  --paper: #fbfbf9;
-  --paper-warm: #f4f3ee;
-  --surface: #ffffff;
-  --surface-blue: #f2f5ff;
-  --ink: #101114;
-  --ink-soft: #24262b;
-  --muted: #6d7078;
-  --muted-light: #989ca5;
-  --accent: #5458e8;
-  --accent-soft: #e9eaff;
-  --gold: #e6ab35;
-  --green: #1d9b62;
-  --violet: #7c62dc;
-  --orange: #dc7847;
-  --blue: #367dc4;
+  --paper: oklch(98.7532% 0.00264 106.448);
+  --paper-warm: oklch(96.3535% 0.00672 97.352);
+  --surface: oklch(100.0000% 0.00000 89.876);
+  --surface-blue: oklch(97.0757% 0.01373 272.694);
+  --ink: oklch(17.7869% 0.00637 271.042);
+  --ink-soft: oklch(26.8631% 0.00972 268.313);
+  --muted: oklch(54.5272% 0.01292 269.443);
+  --muted-light: oklch(69.2327% 0.01391 266.658);
+  --accent: oklch(54.4648% 0.21265 275.534);
+  --accent-soft: oklch(94.2541% 0.02826 283.667);
+  --gold: oklch(77.7223% 0.14414 80.255);
+  --green: oklch(61.0516% 0.13601 157.440);
+  --violet: oklch(58.2968% 0.17880 289.481);
+  --orange: oklch(67.5788% 0.13992 45.512);
+  --blue: oklch(57.8920% 0.13049 251.124);
   --line: rgba(16, 17, 20, 0.14);
   --line-strong: rgba(16, 17, 20, 0.24);
   --shadow: 0 28px 80px rgba(33, 38, 52, 0.1);
@@ -2873,7 +2873,7 @@ body:has(.mobile-nav) .header-year {
 .hero {
   position: relative;
   width: 100%;
-  min-height: 100svh;
+  min-height: 100dvh;
   max-width: none;
   overflow: hidden;
   padding: 0;
@@ -2908,8 +2908,8 @@ video.hero-background {
   z-index: 1;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(8, 10, 14, 0.6) 0%, rgba(8, 10, 14, 0.4) 35%, rgba(8, 10, 14, 0.4) 55%, rgba(8, 10, 14, 0.82) 100%),
-    linear-gradient(90deg, rgba(8, 10, 14, 0.28), transparent 52%, rgba(8, 10, 14, 0.12));
+    linear-gradient(180deg in oklch, rgba(8, 10, 14, 0.6) 0%, rgba(8, 10, 14, 0.4) 35%, rgba(8, 10, 14, 0.4) 55%, rgba(8, 10, 14, 0.82) 100%),
+    linear-gradient(90deg in oklch, rgba(8, 10, 14, 0.28), transparent 52%, rgba(8, 10, 14, 0.12));
 }
 
 .hero-martin-content {
@@ -2917,7 +2917,7 @@ video.hero-background {
   z-index: 2;
   display: block;
   width: min(100%, var(--max-width));
-  min-height: 100svh;
+  min-height: 100dvh;
   margin-inline: auto;
   padding: 0 var(--page-pad);
 }

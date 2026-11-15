@@ -606,7 +606,7 @@ function Header() {
           onClick={() => setMenuOpen((open) => !open)}
         >
           <span>{menuOpen ? "Close" : "Menu"}</span>
-          {menuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
+          {menuOpen ? <X key="close" size={22} aria-hidden="true" /> : <Menu key="open" size={22} aria-hidden="true" />}
         </button>
       </header>
       <AnimatePresence>

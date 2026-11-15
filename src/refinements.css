@@ -1860,7 +1860,7 @@ body:has(.project-details-dialog[open]) {
 
 @media (max-width: 620px) {
   .site-header { min-height: 60px; }
-  .hero, .hero-martin-content { min-height: max(400px, 65svh); }
+  .hero, .hero-martin-content { min-height: max(400px, 65dvh); }
   .hero-media-controls { top: 70px; bottom: auto; }
   .hero-hello { top: 145px; font-size: 1.05rem; }
   .hero .hero-martin-content h1 { top: 183px; font-size: clamp(3.6rem, 18vw, 5.6rem); }
@@ -2018,4 +2018,66 @@ a:focus-visible {
   .project-result strong {
     font-size: 0.8125rem;
   }
+}
+
+/* Precision polish without changing the portfolio's visual system. */
+.about-education-card,
+.timeline-card,
+.project-card-face,
+.skill-group,
+.coursework-card,
+.contact-info-card,
+.contact-message {
+  background-clip: padding-box;
+}
+
+.project-graphic-image {
+  --image-inset: 10px;
+  --image-outer-radius: 18px;
+  padding: var(--image-inset);
+}
+
+.project-graphic-image .project-thumbnail {
+  /* The rotating card face also contributes a 1px border. */
+  border-radius: max(0px, calc(var(--image-outer-radius) - var(--image-inset) - 1px));
+}
+
+.project-card-actions svg,
+.contact-button svg,
+.round-link svg,
+.project-flip-back svg,
+.menu-toggle svg {
+  stroke-width: 2.5;
+}
+
+.menu-toggle svg {
+  animation: menu-icon-in 140ms ease-out both;
+}
+
+@keyframes menu-icon-in {
+  from { opacity: 0; filter: blur(2px); transform: scale(0.92); }
+  to { opacity: 1; filter: blur(0); transform: scale(1); }
+}
+
+/* White-backed brand artwork only; technical images retain their true colors. */
+.timeline-brand {
+  isolation: isolate;
+}
+
+.timeline-brand img {
+  mix-blend-mode: multiply;
+}
+
+.hero-media-controls > div {
+  background: oklch(24% 0.015 265);
+  border-color: rgb(255 255 255 / 24%);
+  box-shadow: none;
+}
+
+@media (max-width: 900px) {
+  .project-graphic-image { --image-outer-radius: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-toggle svg { animation: none; }
 }
