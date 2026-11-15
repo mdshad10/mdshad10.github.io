@@ -38,7 +38,7 @@ body {
   overflow-x: hidden;
   color: var(--ink);
   background: var(--paper);
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-system);
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
 }
@@ -137,7 +137,7 @@ footer,
 .hero-photo figcaption,
 .hero-section-label,
 .availability-pill {
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -178,7 +178,7 @@ footer,
 
 .header-role {
   color: var(--muted);
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.6rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -267,7 +267,7 @@ footer,
 
 .mobile-nav small {
   color: var(--accent);
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.62rem;
   letter-spacing: 0.08em;
 }
@@ -388,11 +388,11 @@ footer,
 .round-link-accent {
   color: #fff;
   background: var(--accent);
-  box-shadow: 0 12px 28px rgba(84, 88, 232, 0.22);
+  box-shadow: 0 12px 28px rgba(0, 113, 227, 0.22);
 }
 
 .round-link-accent:hover {
-  box-shadow: 0 18px 40px rgba(84, 88, 232, 0.3);
+  box-shadow: 0 18px 40px rgba(0, 113, 227, 0.3);
 }
 
 .round-link-outline {
@@ -530,7 +530,7 @@ footer,
 .skills-title h2 em,
 .contact-main h2 em {
   color: var(--accent);
-  font-family: "Bodoni Moda", Georgia, serif;
+  font-family: var(--font-system);
   font-weight: 500;
 }
 
@@ -546,7 +546,7 @@ footer,
   color: #fff;
   background: var(--accent);
   place-items: center;
-  box-shadow: 0 14px 30px rgba(84, 88, 232, 0.2);
+  box-shadow: 0 14px 30px rgba(0, 113, 227, 0.2);
 }
 
 .intro-copy p {
@@ -588,7 +588,7 @@ footer,
 
 .metric-card span {
   color: var(--muted);
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.66rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -742,7 +742,7 @@ footer,
 .pipeline-graphic > span,
 .audio-graphic > span,
 .sensor-label {
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.58rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -809,7 +809,7 @@ footer,
   border-radius: 7px;
   color: var(--card-accent);
   background: rgba(255, 255, 255, 0.55);
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: clamp(0.48rem, 0.8vw, 0.66rem);
   font-style: normal;
   place-items: center;
@@ -1128,7 +1128,7 @@ footer,
   padding: 10px 16px;
   color: var(--ink);
   background: transparent;
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.76rem;
   font-weight: 800;
   letter-spacing: 0.06em;
@@ -1208,7 +1208,7 @@ footer,
 .experience-row:hover {
   padding-right: 18px;
   padding-left: 18px;
-  background: rgba(84, 88, 232, 0.035);
+  background: rgba(0, 113, 227, 0.035);
 }
 
 .experience-number,
@@ -1277,12 +1277,12 @@ footer,
   gap: clamp(20px, 3vw, 44px);
   align-items: center;
   margin-top: 48px;
-  border: 1px solid rgba(84, 88, 232, 0.15);
+  border: 1px solid rgba(0, 113, 227, 0.15);
   border-radius: var(--radius);
   padding: clamp(26px, 3.5vw, 48px);
   color: var(--ink);
   background: var(--surface);
-  box-shadow: 0 24px 60px rgba(84, 88, 232, 0.09);
+  box-shadow: 0 24px 60px rgba(0, 113, 227, 0.09);
 }
 
 .education-icon {
@@ -1315,7 +1315,7 @@ footer,
   display: grid;
   gap: 9px;
   color: var(--muted);
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.63rem;
   letter-spacing: 0.05em;
   line-height: 1.5;
@@ -1354,13 +1354,13 @@ footer,
   width: 142px;
   aspect-ratio: 1;
   margin-top: 50px;
-  border: 1px solid rgba(84, 88, 232, 0.18);
+  border: 1px solid rgba(0, 113, 227, 0.18);
   border-radius: 50%;
   color: #fff;
   background:
     var(--surface);
   place-items: center;
-  box-shadow: 0 24px 56px rgba(84, 88, 232, 0.2);
+  box-shadow: 0 24px 56px rgba(0, 113, 227, 0.2);
 }
 
 .skill-list {
@@ -1378,7 +1378,7 @@ footer,
 
 .skill-row > span {
   color: var(--accent);
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.64rem;
 }
 
@@ -1449,7 +1449,7 @@ footer,
 .contact-main > p {
   margin-bottom: 27px;
   color: var(--muted);
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.7rem;
   letter-spacing: 0.07em;
   text-transform: uppercase;
@@ -1471,7 +1471,7 @@ footer,
   padding: 0 29px;
   color: #fff;
   background: var(--accent);
-  box-shadow: 0 20px 48px rgba(84, 88, 232, 0.24);
+  box-shadow: 0 20px 48px rgba(0, 113, 227, 0.24);
 }
 
 .contact-button span {
@@ -1496,7 +1496,7 @@ footer > div:first-child {
 
 footer strong {
   color: var(--ink);
-  font-family: "Manrope", sans-serif;
+  font-family: var(--font-system);
   font-size: 1rem;
   letter-spacing: -0.04em;
   text-transform: none;
@@ -1891,7 +1891,7 @@ footer > a {
   gap: 12px;
   align-items: center;
   color: var(--muted);
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.68rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1925,7 +1925,7 @@ footer > a {
 
 .module-heading h2 em {
   color: var(--accent);
-  font-family: "Bodoni Moda", Georgia, serif;
+  font-family: var(--font-system);
   font-weight: 500;
 }
 
@@ -1967,7 +1967,7 @@ footer > a {
   right: -24px;
   bottom: -24px;
   left: 24px;
-  border: 2px solid rgba(84, 88, 232, 0.36);
+  border: 2px solid rgba(0, 113, 227, 0.36);
   border-radius: inherit;
   content: "";
 }
@@ -2001,7 +2001,7 @@ footer > a {
   padding: 8px 12px;
   color: #fff;
   background: rgba(19, 24, 34, 0.62);
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.6rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
@@ -2027,7 +2027,7 @@ footer > a {
 }
 
 .about-photo figcaption span {
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.61rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -2052,7 +2052,7 @@ footer > a {
 
 .section-heading h2 em {
   color: var(--accent);
-  font-family: "Bodoni Moda", Georgia, serif;
+  font-family: var(--font-system);
   font-weight: 500;
 }
 
@@ -2084,7 +2084,7 @@ footer > a {
 .about-fact span {
   display: block;
   color: var(--muted-light);
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.57rem;
   letter-spacing: 0.07em;
   text-transform: uppercase;
@@ -2162,7 +2162,7 @@ footer > a {
   padding: 11px 18px;
   color: var(--muted);
   background: transparent;
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.64rem;
   letter-spacing: 0.06em;
   text-align: center;
@@ -2175,7 +2175,7 @@ footer > a {
 .filter-pills span.active {
   color: #fff;
   background: var(--accent);
-  box-shadow: 0 8px 22px rgba(84, 88, 232, 0.24);
+  box-shadow: 0 8px 22px rgba(0, 113, 227, 0.24);
 }
 
 .skill-card-grid {
@@ -2208,7 +2208,7 @@ footer > a {
   display: grid;
   width: 58px;
   height: 58px;
-  border: 1px solid rgba(84, 88, 232, 0.16);
+  border: 1px solid rgba(0, 113, 227, 0.16);
   border-radius: 12px;
   color: var(--accent);
   background: var(--accent-soft);
@@ -2229,7 +2229,7 @@ footer > a {
 
 .skill-card-body > div:first-child span {
   color: var(--muted-light);
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.57rem;
 }
 
@@ -2304,7 +2304,7 @@ footer > a {
   align-items: center;
   margin: 27px 24px 0;
   color: var(--muted);
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.57rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -2352,7 +2352,7 @@ footer > a {
 
 .project-result span {
   color: var(--card-accent);
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.56rem;
   letter-spacing: 0.07em;
   text-transform: uppercase;
@@ -2385,7 +2385,7 @@ footer > a {
   gap: 8px;
   align-items: center;
   color: var(--ink);
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.59rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -2444,7 +2444,7 @@ footer > a {
   border: 3px solid var(--surface-blue);
   border-radius: 50%;
   background: var(--accent);
-  box-shadow: 0 0 0 2px rgba(84, 88, 232, 0.25);
+  box-shadow: 0 0 0 2px rgba(0, 113, 227, 0.25);
 }
 
 .timeline-meta {
@@ -2454,7 +2454,7 @@ footer > a {
   align-items: center;
   margin-bottom: 13px;
   color: var(--muted);
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.6rem;
   letter-spacing: 0.07em;
   text-transform: uppercase;
@@ -2490,7 +2490,7 @@ footer > a {
 
 .timeline-card p {
   color: var(--accent);
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.59rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -2575,7 +2575,7 @@ footer > a {
   top: 16px;
   right: 16px;
   color: var(--muted-light);
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.56rem;
 }
 
@@ -2592,7 +2592,7 @@ footer > a {
 .contact-info-card p {
   margin-top: 14px;
   color: var(--muted);
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.58rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -2609,11 +2609,11 @@ footer > a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid rgba(84, 88, 232, 0.18);
+  border: 1px solid rgba(0, 113, 227, 0.18);
   border-radius: 20px;
   padding: clamp(28px, 5vw, 62px);
   background: var(--paper);
-  box-shadow: 0 20px 54px rgba(84, 88, 232, 0.08);
+  box-shadow: 0 20px 54px rgba(0, 113, 227, 0.08);
 }
 
 .contact-message > .eyebrow {
@@ -2978,7 +2978,7 @@ video.hero-background {
 .hero-martin-meta > div {
   display: grid;
   gap: 5px;
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.66rem;
   letter-spacing: 0.08em;
   line-height: 1.35;
@@ -2988,7 +2988,7 @@ video.hero-background {
 .hero-martin-meta .hero-role {
   gap: 0;
   color: #fff;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--font-system);
   font-size: clamp(2.5rem, 4.7vw, 5.2rem);
   font-weight: 600;
   letter-spacing: -0.06em;
@@ -3006,7 +3006,7 @@ video.hero-background {
   gap: 10px;
   align-items: center;
   color: rgba(255, 255, 255, 0.76);
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.59rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -3038,7 +3038,7 @@ video.hero-background {
   border-radius: 999px;
   color: rgba(255, 255, 255, 0.56);
   background: transparent;
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.56rem;
   place-items: center;
   cursor: pointer;
@@ -3233,7 +3233,7 @@ video.hero-background {
 
 .skill-group-heading span {
   color: var(--accent);
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.62rem;
 }
 
@@ -3251,7 +3251,7 @@ video.hero-background {
 }
 
 .skill-list span {
-  border: 1px solid rgba(84, 88, 232, 0.16);
+  border: 1px solid rgba(0, 113, 227, 0.16);
   border-radius: 999px;
   padding: 9px 12px;
   color: var(--ink-soft);
@@ -3347,7 +3347,7 @@ video.hero-background {
 .about-education-meta {
   gap: 7px;
   color: var(--ink-soft);
-  font-family: "Manrope", sans-serif;
+  font-family: var(--font-system);
   font-size: clamp(0.78rem, 0.95vw, 0.9rem);
   font-weight: 650;
   letter-spacing: -0.01em;
@@ -3362,7 +3362,7 @@ video.hero-background {
   padding: 11px 18px;
   color: var(--muted);
   background: transparent;
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.64rem;
   letter-spacing: 0.06em;
   text-align: center;
@@ -3380,7 +3380,7 @@ video.hero-background {
 .filter-pills button.active {
   color: #fff;
   background: var(--accent);
-  box-shadow: 0 8px 22px rgba(84, 88, 232, 0.24);
+  box-shadow: 0 8px 22px rgba(0, 113, 227, 0.24);
 }
 
 .projects .filter-pills button {
@@ -3427,7 +3427,7 @@ video.hero-background {
   border-radius: 0;
   color: var(--ink);
   background: transparent;
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.59rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -3481,7 +3481,7 @@ video.hero-background {
 .section-heading h2 em {
   display: inline-block;
   margin-left: 0.09em;
-  font-family: inherit;
+  font-family: var(--font-system);
   font-style: normal;
   font-weight: inherit;
 }
@@ -3538,7 +3538,7 @@ video.hero-background {
 .about-education-card > span,
 .about-education-meta {
   color: var(--muted-light);
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.58rem;
   letter-spacing: 0.055em;
   line-height: 1.55;
@@ -3607,7 +3607,7 @@ video.hero-background {
   grid-template-columns: 1fr auto;
   gap: 18px;
   align-content: space-between;
-  border: 1px solid rgba(84, 88, 232, 0.15);
+  border: 1px solid rgba(0, 113, 227, 0.15);
   border-radius: 18px;
   padding: 22px;
   background: var(--surface);
@@ -3616,14 +3616,14 @@ video.hero-background {
 }
 
 .coursework-card:hover {
-  border-color: rgba(84, 88, 232, 0.34);
+  border-color: rgba(0, 113, 227, 0.34);
   transform: translateY(-5px);
   box-shadow: 0 22px 48px rgba(38, 44, 66, 0.1);
 }
 
 .coursework-card > span {
   color: var(--muted-light);
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.59rem;
   letter-spacing: 0.07em;
 }
@@ -3759,7 +3759,7 @@ video.hero-background {
 .about-education-meta {
   gap: 7px;
   color: var(--ink-soft);
-  font-family: "Manrope", sans-serif;
+  font-family: var(--font-system);
   font-size: clamp(0.78rem, 0.95vw, 0.9rem);
   font-weight: 650;
   letter-spacing: -0.01em;
@@ -3797,7 +3797,7 @@ video.hero-background {
 
 .skill-group-heading span {
   color: var(--accent);
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.62rem;
 }
 
@@ -3814,7 +3814,7 @@ video.hero-background {
 }
 
 .skill-list span {
-  border: 1px solid rgba(84, 88, 232, 0.16);
+  border: 1px solid rgba(0, 113, 227, 0.16);
   border-radius: 999px;
   padding: 9px 12px;
   color: var(--ink-soft);

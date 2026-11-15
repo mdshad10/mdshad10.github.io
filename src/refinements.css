@@ -40,7 +40,7 @@
 
 .module-heading h2 em,
 .section-heading h2 em {
-  font-family: "Bodoni Moda", Georgia, serif;
+  font-family: var(--font-system);
   font-style: normal;
   font-weight: 600;
   letter-spacing: -0.035em;
@@ -73,7 +73,7 @@
 }
 
 .about-content .section-heading h2 em {
-  font-family: "Manrope", sans-serif;
+  font-family: var(--font-system);
   font-style: normal;
   font-weight: 760;
   letter-spacing: -0.06em;
@@ -152,7 +152,7 @@
   align-items: center;
   color: var(--ink);
   background: transparent;
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.06em;
@@ -177,7 +177,7 @@
 }
 
 .coursework-card:hover {
-  border-color: rgba(84, 88, 232, 0.38);
+  border-color: rgba(0, 113, 227, 0.38);
   box-shadow: 0 24px 52px rgba(38, 44, 66, 0.12);
 }
 
@@ -291,7 +291,7 @@
 }
 
 .timeline-subrole {
-  border: 1px solid rgba(84, 88, 232, 0.14);
+  border: 1px solid rgba(0, 113, 227, 0.14);
   border-radius: 13px;
   padding: 16px;
   background: #f8f9ff;
@@ -308,7 +308,7 @@
   display: block;
   margin-top: 6px;
   color: #586174;
-  font-family: "DM Mono", monospace;
+  font-family: var(--font-system);
   font-size: 0.66rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -546,7 +546,7 @@
 .section-heading h2 em,
 .about-content .section-heading h2 em {
   color: var(--accent);
-  font-family: "Bodoni Moda", Georgia, serif;
+  font-family: var(--font-system);
   font-style: normal;
   font-weight: 800;
   letter-spacing: -0.035em;
@@ -606,7 +606,7 @@
 }
 
 .timeline-card:hover {
-  border-color: rgba(84, 88, 232, 0.24);
+  border-color: rgba(0, 113, 227, 0.24);
   box-shadow: 0 26px 58px rgba(45, 52, 78, 0.13);
   transform: translateY(-4px);
 }
@@ -687,7 +687,7 @@
 .module-heading h2 em,
 .section-heading h2 em,
 .about-content .section-heading h2 em {
-  font-family: "Lora", Georgia, serif;
+  font-family: var(--font-system);
   font-style: normal;
   font-weight: 800;
 }
@@ -816,7 +816,7 @@ body {
 .module-heading h2 em,
 .section-heading h2 em,
 .about-content .section-heading h2 em {
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: var(--font-system);
   font-style: normal;
   font-weight: 700;
   letter-spacing: -0.045em;
@@ -878,7 +878,7 @@ body {
 .timeline-card:hover,
 .coursework-card:hover,
 .contact-info-card:hover {
-  border-color: rgba(84, 88, 232, 0.28);
+  border-color: rgba(0, 113, 227, 0.28);
   box-shadow: 0 18px 44px rgba(31, 38, 57, 0.1);
 }
 
@@ -1405,7 +1405,7 @@ body.mobile-menu-open {
 
 @media (hover: hover) {
   .about-education-card:hover {
-    border-color: rgba(84, 88, 232, 0.22);
+    border-color: rgba(0, 113, 227, 0.22);
     box-shadow: 0 18px 44px rgba(31, 38, 57, 0.1);
     transform: translateY(-3px);
   }
@@ -2081,3 +2081,100 @@ a:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .menu-toggle svg { animation: none; }
 }
+
+/* Apple-inspired typography and palette; retain the portfolio's structure. */
+:root {
+  --font-system: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --paper: #fff;
+  --paper-warm: #f5f5f7;
+  --surface: #fff;
+  --surface-blue: #f5f5f7;
+  --ink: #1d1d1f;
+  --ink-soft: #333336;
+  --muted: #6e6e73;
+  --muted-light: #6e6e73;
+  --accent: #0071e3;
+  --accent-soft: rgb(0 113 227 / 8%);
+  --line: rgb(0 0 0 / 12%);
+  --line-strong: rgb(0 0 0 / 20%);
+}
+
+body { letter-spacing: -0.01em; }
+
+.module-heading h2,
+.section-heading h2,
+.about-content .section-heading h2 {
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.module-heading h2 em,
+.section-heading h2 em,
+.about-content .section-heading h2 em {
+  font-family: var(--font-system);
+  font-size: 1em;
+  font-style: normal;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  vertical-align: baseline;
+  margin-left: 0;
+}
+
+.hero .hero-martin-content h1 {
+  font-weight: 600;
+  letter-spacing: -0.065em;
+}
+
+.project-card-copy h3,
+.timeline-card h3,
+.contact-message h3 {
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+}
+
+.project-card-lime,
+.project-card-violet,
+.project-card-orange,
+.project-card-blue {
+  --card-accent: var(--accent);
+  --card-pale: var(--surface-blue);
+}
+
+.about-education-card,
+.timeline-card,
+.skill-group,
+.coursework-card,
+.contact-info-card,
+.contact-message,
+.project-card-flippable .project-card-face {
+  box-shadow: 0 4px 20px rgb(0 0 0 / 4%);
+}
+
+.project-card:not(.project-card-flippable) {
+  box-shadow: 0 4px 20px rgb(0 0 0 / 4%);
+}
+
+.project-result strong,
+.project-card-copy p,
+.timeline-card ul,
+.contact-message > p {
+  color: var(--ink-soft);
+}
+
+.filter-pills button.active,
+.contact-button,
+.round-link-accent {
+  color: #fff;
+  background: var(--accent);
+  box-shadow: none;
+}
+
+.contact-button:hover,
+.round-link-accent:hover {
+  background: #0077ed;
+}
+
+.hero-media-controls > div { background: #333336; }
