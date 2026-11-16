@@ -2443,3 +2443,29 @@ body { letter-spacing: -0.01em; }
   .contact-info-card strong { font-size: 1rem; }
   .projects .filter-pills button { font-size: 0.9375rem; padding-inline: 16px; }
 }
+
+/* Larger course titles and clearer homepage introduction/navigation. */
+.coursework-card h3 {
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+.site-header .desktop-nav a {
+  font-size: clamp(1.25rem, 2vw, 1.875rem);
+  letter-spacing: -0.015em;
+}
+
+.site-header .wordmark { font-size: 1.25rem; }
+.site-header .menu-toggle { font-size: 0.9375rem; }
+.hero-hello { font-size: clamp(1.5rem, 3vw, 3.125rem); }
+.hero-martin-meta > div:first-child { font-size: 0.875rem; line-height: 1.5; }
+
+@media (max-width: 900px) {
+  .coursework-card h3 { font-size: 1.125rem; }
+}
+
+@media (max-width: 620px) {
+  .site-header .wordmark { font-size: 1.125rem; }
+  .hero-hello { font-size: 1.25rem; }
+  .hero-martin-meta > div:first-child { font-size: 0.75rem; }
+}
