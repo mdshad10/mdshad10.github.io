@@ -13,6 +13,7 @@ import {
   Cpu,
   Github,
   Menu,
+  Plus,
   X,
 } from "lucide-react";
 import heroImage from "../IMG_0005.JPG";
@@ -915,190 +916,78 @@ function ProjectGraphic({ type }) {
   );
 }
 
-function ProjectCard({ project, compactLayout }) {
-  const reduceMotion = useReducedMotion();
-  const projectLink = project.website || project.report || project.href;
-  const [flipped, setFlipped] = useState(false);
-  const [detailsOpen, setDetailsOpen] = useState(false);
-  const canFlip = Boolean(project.detail);
-  const detailId = useId();
-  const learnMoreRef = useRef(null);
-  const backRef = useRef(null);
+function ProjectCard({ project }) {
   const dialogRef = useRef(null);
-  const shouldFocus = useRef(false);
+  const learnMoreRef = useRef(null);
+  const detailId = useId();
+  const [detailsOpen, setDetailsOpen] = useState(false);
+  const projectLink = project.website || project.report || project.href;
 
-  const toggleFlip = () => {
-    if (compactLayout) {
-      dialogRef.current?.showModal();
-      setDetailsOpen(true);
-      return;
-    }
-    shouldFocus.current = true;
-    setFlipped((current) => !current);
-  };
-  const stopFlipPropagation = (event) => event.stopPropagation();
+  function openDetails() {
+    dialogRef.current?.showModal();
+    setDetailsOpen(true);
+  }
 
-  useEffect(() => {
-    if (shouldFocus.current) {
-      (flipped ? backRef : learnMoreRef).current?.focus({ preventScroll: true });
-    }
-  }, [flipped]);
-
-  useEffect(() => {
+  function closeDetails() {
     dialogRef.current?.close();
-    setFlipped(false);
-  }, [compactLayout]);
+  }
 
   return (
-    <motion.article
-      className={`project-card project-card-${project.tone}${canFlip ? " project-card-flippable" : ""}`}
-      whileHover={reduceMotion ? undefined : { y: -3 }}
-      transition={{ duration: 0.2, ease: "easeOut" }}
-      onClick={canFlip && !flipped && !detailsOpen ? toggleFlip : undefined}
-      onKeyDown={(event) => {
-        if (flipped && event.key === "Escape") {
-          event.preventDefault();
-          toggleFlip();
-        }
-      }}
-    >
-      <div className={`project-card-flip${flipped ? " is-flipped" : ""}`}>
-        <div className="project-card-face project-card-front" inert={flipped} aria-hidden={flipped}>
-          <div className={`project-graphic${project.image ? " project-graphic-image" : ""}`}>
-            {project.image ? (
-              <a
-                className="project-thumbnail-link"
-                href={project.report || project.website || project.href}
-                target="_blank"
-                rel="noreferrer"
-                onClick={stopFlipPropagation}
-                aria-label={project.report ? `Read the ${project.title} report` : `Open the ${project.title} project page`}
-              >
-                <img className="project-thumbnail" src={project.image} alt={project.imageAlt} />
-              </a>
-            ) : (
-              <ProjectGraphic type={project.visual} />
-            )}
-          </div>
-          <div className="project-case-number">{project.number}</div>
-          <div className="project-case-label"><i /> Case · {project.category}</div>
-          <div className="project-card-copy">
-            <h3>{project.title}</h3>
-            <p>{project.summary}</p>
-          </div>
-          <div className="project-result">
-            <span>Key result</span><strong>{project.impact}</strong>
-          </div>
-          <div className="tags project-tags">
-            {project.tools.slice(0, 3).map((tool) => <span key={tool}>{tool}</span>)}
-          </div>
-          <div className="project-card-bottom">
-            <div className="project-card-actions">
-              {project.report && (
-                <a className="project-report-link" href={project.report} target="_blank" rel="noreferrer" onClick={stopFlipPropagation}>
-                  Read report <ArrowUpRight size={14} />
-                </a>
-              )}
-              {project.website && (
-                <a className="project-website-link" href={project.website} target="_blank" rel="noreferrer" onClick={stopFlipPropagation}>
-                  Project page <ArrowUpRight size={14} />
-                </a>
-              )}
-              {!project.report && !project.website && project.detail && (
-                <button
-                  type="button"
-                  className="project-learn-more"
-                  ref={learnMoreRef}
-                  aria-expanded={compactLayout ? detailsOpen : flipped}
-                  aria-controls={compactLayout ? `${detailId}-mobile` : detailId}
-                  aria-haspopup={compactLayout ? "dialog" : undefined}
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    toggleFlip();
-                  }}
-                >
-                  Learn more <ArrowUpRight size={14} />
-                </button>
-              )}
-            </div>
-            {projectLink ? (
-              <a
-                href={projectLink}
-                target="_blank"
-                rel="noreferrer"
-                onClick={stopFlipPropagation}
-                aria-label={project.website ? `Open the ${project.title} project page` : project.report ? `Read the ${project.title} report` : `Open ${project.title} on GitHub`}
-              >
-                {project.website ? <ArrowUpRight size={20} /> : project.report ? <BookOpen size={18} /> : <ArrowUpRight size={20} />}
-              </a>
-            ) : null}
-          </div>
+    <article className={`project-card project-card-${project.tone}`}>
+      <div className="project-card-face project-card-front">
+        <div className={`project-graphic${project.image ? " project-graphic-image" : ""}`}>
+          {project.image ? <img className="project-thumbnail" src={project.image} alt={project.imageAlt} loading="lazy" /> : <ProjectGraphic type={project.visual} />}
         </div>
-        {project.detail && (
-          <div className="project-card-face project-card-back" id={detailId} inert={!flipped} aria-hidden={!flipped}>
-            <div className="project-case-number">{project.number}</div>
-            <div className="project-card-back-copy">
-              <h3>{project.title}</h3>
-              <p>{project.detail}</p>
-            </div>
-            <button
-              type="button"
-              className="project-flip-back"
-              ref={backRef}
-              onClick={(event) => {
-                event.stopPropagation();
-                toggleFlip();
-              }}
-              aria-label={`Close ${project.title} summary`}
-            >
-              <X size={14} /> Back
-            </button>
-          </div>
-        )}
-      </div>
-      {project.detail && (
-        <dialog
-          className="project-details-dialog"
-          id={`${detailId}-mobile`}
-          ref={dialogRef}
-          aria-labelledby={`${detailId}-title`}
-          onClose={() => setDetailsOpen(false)}
-          onClick={(event) => {
-            event.stopPropagation();
-            const bounds = event.currentTarget.getBoundingClientRect();
-            if (event.clientX < bounds.left || event.clientX > bounds.right ||
-                event.clientY < bounds.top || event.clientY > bounds.bottom) {
-              dialogRef.current.close();
-            }
-          }}
-        >
+        <div className="project-case-label">{project.category}</div>
+        <div className="project-card-copy">
+          <h3>{project.title}</h3>
+          <p>{project.summary}</p>
+        </div>
+        <div className="project-result"><span>Key result</span><strong>{project.impact}</strong></div>
+        <div className="project-card-bottom">
           <button
             type="button"
-            className="project-flip-back"
-            onClick={() => dialogRef.current.close()}
-            aria-label={`Close ${project.title} details`}
+            className="project-learn-more"
+            ref={learnMoreRef}
+            aria-expanded={detailsOpen}
+            aria-controls={detailId}
+            aria-haspopup="dialog"
+            onClick={openDetails}
           >
-            <X size={16} /> Close
+            Learn more <span className="project-open-icon"><Plus size={20} aria-hidden="true" /></span>
           </button>
-          <div className="project-card-back-copy">
-            <h3 id={`${detailId}-title`}>{project.title}</h3>
-            <p>{project.detail}</p>
-          </div>
-        </dialog>
-      )}
-    </motion.article>
+        </div>
+      </div>
+      <dialog
+        className="project-details-dialog"
+        id={detailId}
+        ref={dialogRef}
+        aria-labelledby={`${detailId}-title`}
+        onClose={() => { setDetailsOpen(false); learnMoreRef.current?.focus({ preventScroll: true }); }}
+        onClick={(event) => {
+          if (event.target !== event.currentTarget) return;
+          const bounds = event.currentTarget.getBoundingClientRect();
+          if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) closeDetails();
+        }}
+      >
+        <button type="button" className="project-flip-back" onClick={closeDetails} aria-label={`Close ${project.title} details`} autoFocus><X size={20} aria-hidden="true" /></button>
+        <div className="project-card-back-copy">
+          <p className="project-detail-category">{project.category}</p>
+          <h3 id={`${detailId}-title`}>{project.title}</h3>
+          <p>{project.detail || project.summary}</p>
+          {project.image && <img className="project-detail-image" src={project.image} alt={project.imageAlt} loading="lazy" />}
+          <p className="project-detail-result">{project.impact}</p>
+          <ul className="project-detail-bullets">{project.bullets.map(bullet => <li key={bullet}>{bullet}</li>)}</ul>
+          <p>{project.tools.join(" · ")}</p>
+          {projectLink && <a className="project-detail-link" href={projectLink} target="_blank" rel="noreferrer">{project.report ? "Read report (PDF)" : "Visit project"} <ArrowUpRight size={18} aria-hidden="true" /></a>}
+        </div>
+      </dialog>
+    </article>
   );
 }
 
 function Projects() {
   const [activeFilter, setActiveFilter] = useState("All");
-  const [compactLayout, setCompactLayout] = useState(() => window.matchMedia("(max-width: 900px)").matches);
-  useEffect(() => {
-    const query = window.matchMedia("(max-width: 900px)");
-    const updateLayout = () => setCompactLayout(query.matches);
-    query.addEventListener("change", updateLayout);
-    return () => query.removeEventListener("change", updateLayout);
-  }, []);
   const visibleProjects = activeFilter === "All"
     ? projects
     : projects.filter((project) => project.filters.includes(activeFilter));
@@ -1126,7 +1015,7 @@ function Projects() {
         <div className="project-grid" role="region" aria-live="polite" aria-label={`${activeFilter} projects`}>
           {visibleProjects.map((project) => (
             <div className="project-shuffle-item" key={project.title}>
-              <ProjectCard project={project} compactLayout={compactLayout} />
+              <ProjectCard project={project} />
             </div>
           ))}
         </div>
