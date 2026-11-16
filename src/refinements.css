@@ -2380,3 +2380,66 @@ body { letter-spacing: -0.01em; }
   box-shadow: none;
   background-clip: padding-box;
 }
+
+/* Center course names and give contact information a readable hierarchy. */
+.coursework-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  place-items: center;
+  align-content: center;
+  text-align: center;
+}
+.coursework-card h3 { font-size: 1.125rem; line-height: 1.4; }
+.contact-info-card p { font-size: 0.875rem; letter-spacing: 0; text-transform: none; }
+.contact-info-card strong { font-size: 1.125rem; line-height: 1.4; }
+.contact-card-list { grid-auto-rows: 1fr; }
+.contact-card-list > a { display: flex; min-width: 0; }
+.contact-card-list .contact-info-card { width: 100%; height: 100%; }
+.contact-message h3 { font-size: clamp(1.6rem, 2.8vw, 2.75rem); line-height: 1.12; }
+
+/* A horizontally scrollable segmented control preserves each label's space. */
+.projects .filter-pills {
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+  gap: 4px;
+  padding: 6px;
+  border: 0;
+  border-radius: 28px;
+  background: #f5f5f7;
+  box-shadow: none;
+  scrollbar-width: thin;
+}
+.projects .filter-pills button {
+  flex: 0 0 auto;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 20px;
+  border-radius: 22px;
+  font-size: 1rem;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: nowrap;
+}
+.projects .filter-pills button.active {
+  color: #1d1d1f;
+  background: #fff;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 12%);
+}
+.projects .filter-pills button:hover { color: #0066cc; }
+.projects .filter-pills button:focus-visible { outline: 2px solid #0071e3; outline-offset: -2px; }
+
+/* Let the three-card stack determine the shared row height. Preserve all gaps. */
+@media (min-width: 1201px), (min-width: 621px) and (max-width: 900px) {
+  .contact-message { contain: size; min-height: 0; align-self: stretch; }
+}
+
+@media (max-width: 900px) {
+  .coursework-card h3 { font-size: 1rem; }
+  .contact-info-card strong { font-size: 1rem; }
+  .projects .filter-pills button { font-size: 0.9375rem; padding-inline: 16px; }
+}

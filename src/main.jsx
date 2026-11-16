@@ -1126,12 +1126,11 @@ function Coursework() {
         </div>
 
         <div className="coursework-grid">
-          {coursework.map((course, index) => (
+          {coursework.map((course) => (
             <motion.article
               className="coursework-card"
               key={course}
             >
-              <span>{String(index + 1).padStart(2, "0")}</span>
               <h3>{course}</h3>
             </motion.article>
           ))}
