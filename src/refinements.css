@@ -2354,3 +2354,29 @@ body { letter-spacing: -0.01em; }
     box-shadow: var(--card-shadow-hover);
   }
 }
+
+/* Let the soft shadows define card edges instead of dark outlines. */
+.about-education-card,
+.about-education-card:hover,
+.timeline-card,
+.timeline-card:hover,
+.skill-group,
+.coursework-card,
+.coursework-card:hover,
+.contact-info-card,
+.contact-info-card:hover,
+.contact-message,
+.timeline-brand,
+.timeline-subrole {
+  border-color: transparent;
+}
+
+.experience-group-title::after {
+  content: none;
+}
+
+.experience-group .timeline-dot {
+  border-color: transparent;
+  box-shadow: none;
+  background-clip: padding-box;
+}
