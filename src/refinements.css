@@ -1529,8 +1529,7 @@ body.mobile-menu-open {
 }
 
 .hero-typing-cursor.is-waiting {
-  animation: none;
-  opacity: 1;
+  animation: hero-caret-start 0.62s steps(1, end) 2 forwards;
 }
 
 .hero-typing-cursor.is-complete {
@@ -2470,4 +2469,10 @@ body { letter-spacing: -0.01em; }
   .site-header .wordmark { font-size: 1.125rem; }
   .hero-hello { font-size: 1.125rem; }
   .hero-martin-meta > div:first-child { font-size: 0.625rem; }
+}
+
+/* Keep the original opening blink distinct from the final two blinks. */
+@keyframes hero-caret-start {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
 }
