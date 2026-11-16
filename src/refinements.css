@@ -1529,11 +1529,12 @@ body.mobile-menu-open {
 }
 
 .hero-typing-cursor.is-waiting {
-  animation: hero-caret-finish 0.62s steps(1, end) 2 forwards;
+  animation: none;
+  opacity: 1;
 }
 
 .hero-typing-cursor.is-complete {
-  animation: hero-caret-finish 0.62s steps(1, end) 2 forwards;
+  animation: hero-caret-finish 0.8s steps(1, end) 2 forwards;
 }
 
 @keyframes hero-character-in {
@@ -2451,14 +2452,15 @@ body { letter-spacing: -0.01em; }
 }
 
 .site-header .desktop-nav a {
-  font-size: clamp(1.25rem, 2vw, 1.875rem);
-  letter-spacing: -0.015em;
+  font-size: clamp(1.125rem, 1.7vw, 1.5rem);
+  letter-spacing: 0;
+  line-height: 1.4;
 }
 
-.site-header .wordmark { font-size: 1.25rem; }
+.site-header .wordmark { font-size: 1.125rem; }
 .site-header .menu-toggle { font-size: 0.9375rem; }
-.hero-hello { font-size: clamp(1.5rem, 3vw, 3.125rem); }
-.hero-martin-meta > div:first-child { font-size: 0.875rem; line-height: 1.5; }
+.hero-hello { font-size: clamp(1.35rem, 2.6vw, 2.5rem); letter-spacing: -0.02em; line-height: 1.4; }
+.hero-martin-meta > div:first-child { font-size: 0.75rem; line-height: 1.5; }
 
 @media (max-width: 900px) {
   .coursework-card h3 { font-size: 1.125rem; }
@@ -2466,6 +2468,6 @@ body { letter-spacing: -0.01em; }
 
 @media (max-width: 620px) {
   .site-header .wordmark { font-size: 1.125rem; }
-  .hero-hello { font-size: 1.25rem; }
-  .hero-martin-meta > div:first-child { font-size: 0.75rem; }
+  .hero-hello { font-size: 1.125rem; }
+  .hero-martin-meta > div:first-child { font-size: 0.625rem; }
 }

@@ -689,7 +689,12 @@ function TypedHeroName({ ready }) {
             </span>
           ))}
         </span>
-        <span className={`hero-typing-cursor is-${typingPhase}`} />
+        <span
+          className={`hero-typing-cursor is-${typingPhase}`}
+          onAnimationEnd={() => {
+            if (typingPhase === "complete") setTypingPhase("settled");
+          }}
+        />
       </span>
     </span>
   );
