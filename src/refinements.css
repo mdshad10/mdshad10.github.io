@@ -2317,3 +2317,40 @@ body { letter-spacing: -0.01em; }
   .project-open-icon { transition: none; }
   .project-details-dialog[open] { animation: none; }
 }
+
+/* One restrained shadow per card surface, with no stacked wrapper shadow. */
+:root {
+  --card-shadow: 0 2px 12px rgb(0 0 0 / 8%);
+  --card-shadow-hover: 0 4px 20px rgb(0 0 0 / 12%);
+}
+
+.project-card,
+.project-card:not(.project-card-flippable) {
+  box-shadow: none;
+}
+
+.project-card .project-card-front,
+.about-education-card,
+.timeline-card,
+.skill-group,
+.coursework-card,
+.contact-info-card,
+.contact-message {
+  box-shadow: var(--card-shadow);
+}
+
+.filter-pills { box-shadow: none; }
+
+.project-details-dialog {
+  box-shadow: 0 20px 60px rgb(0 0 0 / 16%);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .project-card:hover .project-card-front,
+  .about-education-card:hover,
+  .timeline-card:hover,
+  .coursework-card:hover,
+  .contact-info-card:hover {
+    box-shadow: var(--card-shadow-hover);
+  }
+}
