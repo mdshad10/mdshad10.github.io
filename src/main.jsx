@@ -562,7 +562,6 @@ const coursework = [
   "Data Science for Engineers",
   "Foundations of Robotics",
   "Probability and Inference",
-  "Linear Algebra for Engineers",
   "Differential Equations for Engineers"
 ];
 
