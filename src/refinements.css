@@ -2504,3 +2504,68 @@ body { letter-spacing: -0.01em; }
     box-shadow: var(--card-shadow-hover);
   }
 }
+
+/* Consistent product-card motion and monochrome section headings. */
+.module-heading h2 em,
+.section-heading h2 em,
+.about-content .section-heading h2 em {
+  color: var(--ink);
+}
+
+.project-card,
+.about-education-card,
+.timeline-card,
+.skill-group,
+.coursework-card,
+.contact-info-card,
+.contact-message {
+  transition: transform 300ms var(--card-ease), box-shadow 300ms var(--card-ease);
+  transform-origin: center;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .project-card:hover,
+  .about-education-card:hover,
+  .timeline-card:hover,
+  .skill-group:hover,
+  .coursework-card:hover,
+  .contact-info-card:hover,
+  .contact-message:hover {
+    transform: translateY(-2px) scale(1.01);
+  }
+  .skill-group:hover { box-shadow: var(--card-shadow-hover); }
+}
+
+.projects .filter-pills button { position: relative; isolation: isolate; }
+.projects .filter-pills button.active { background: transparent; box-shadow: none; }
+.projects .filter-pills .filter-selection {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  min-width: 0;
+  padding: 0;
+  border-radius: inherit;
+  background: #fff;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 12%);
+}
+.projects .filter-pills .filter-label {
+  position: relative;
+  display: inline;
+  min-width: 0;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: none;
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card,
+  .about-education-card,
+  .timeline-card,
+  .skill-group,
+  .coursework-card,
+  .contact-info-card,
+  .contact-message { transform: none !important; transition: none; }
+}

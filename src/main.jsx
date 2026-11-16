@@ -992,6 +992,7 @@ function ProjectCard({ project }) {
 }
 
 function Projects() {
+  const reduceMotion = useReducedMotion();
   const [activeFilter, setActiveFilter] = useState("All");
   const visibleProjects = activeFilter === "All"
     ? projects
@@ -1011,18 +1012,26 @@ function Projects() {
                 onClick={() => setActiveFilter(filter)}
                 key={filter}
               >
-                {filter}
+                {activeFilter === filter && <motion.span
+                  className="filter-selection"
+                  layoutId="project-filter-selection"
+                  transition={reduceMotion ? { duration: 0 } : { duration: 0.28, ease: [0.2, 0.7, 0.2, 1] }}
+                  aria-hidden="true"
+                />}
+                <span className="filter-label">{filter}</span>
               </button>
             ))}
           </div>
         </div>
-        <div className="project-grid" role="region" aria-live="polite" aria-label={`${activeFilter} projects`}>
+        <motion.div className="project-grid" key={activeFilter} role="region" aria-live="polite" aria-label={`${activeFilter} projects`}
+          initial={reduceMotion ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.18 }}
+        >
           {visibleProjects.map((project) => (
             <div className="project-shuffle-item" key={project.title}>
               <ProjectCard project={project} />
             </div>
           ))}
-        </div>
+        </motion.div>
         <div className="github-row">
           <p>See source code and additional coursework on GitHub.</p>
           <ActionLink className="round-link round-link-light" href="https://github.com/mdshad10" target="_blank" rel="noreferrer">
