@@ -2569,3 +2569,7 @@ body { letter-spacing: -0.01em; }
   .contact-info-card,
   .contact-message { transform: none !important; transition: none; }
 }
+
+/* Separate white skill cards from the section without adding outlines. */
+.skills { background: #e8e8ed; }
+.skills .skill-group { background: #fff; }
