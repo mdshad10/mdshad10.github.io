@@ -562,7 +562,7 @@ const coursework = [
   "Data Science for Engineers",
   "Foundations of Robotics",
   "Probability and Inference",
-  "Differential Equations for Engineers"
+  "Linear Algebra for Engineers"
 ];
 
 function ActionLink({ children, className = "", ...props }) {
