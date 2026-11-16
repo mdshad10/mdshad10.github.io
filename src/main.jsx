@@ -1002,7 +1002,6 @@ function Projects() {
       <div className="section-shell">
         <div className="module-heading">
           <h2>My <em>Projects</em></h2>
-          <p>FPGA accelerators, RISC-V processors, and embedded systems, with implementation details and measured results.</p>
           <div className="filter-pills" aria-label="Filter projects">
             {projectFilters.map((filter) => (
               <button
@@ -1042,7 +1041,6 @@ function Experience() {
     <section className="experience section-shell" id="experience">
       <div className="module-heading">
         <h2>Professional <em>Experience</em></h2>
-        <p>Research, teaching, and industry experience applying engineering theory to real systems.</p>
       </div>
       <div className="experience-groups">
         {experienceGroups.map((group) => (
@@ -1101,7 +1099,6 @@ function Skills() {
       <div className="section-shell skills-inner">
         <div className="module-heading">
           <h2>Technical <em>Skills</em></h2>
-          <p>Tools I use for RTL design, hardware verification, firmware, and lab testing.</p>
         </div>
 
         <div className="skill-groups">
@@ -1127,7 +1124,6 @@ function Coursework() {
       <div className="section-shell">
         <div className="module-heading">
           <h2>Relevant <em>Coursework</em></h2>
-          <p>Cornell courses in computer architecture, digital design, embedded systems, and mathematics.</p>
         </div>
 
         <div className="coursework-grid">
@@ -1156,7 +1152,6 @@ function Contact() {
     <section className="contact section-shell" id="contact">
       <div className="module-heading">
         <h2>Get In <em>Touch</em></h2>
-        <p>Let’s talk about embedded systems, computer architecture, FPGA design, or your next engineering project.</p>
       </div>
 
       <div className="contact-layout">
