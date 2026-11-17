@@ -2608,3 +2608,18 @@ body { letter-spacing: -0.01em; }
   letter-spacing: 0;
   line-height: 1.4;
 }
+
+/* Compact project rows without changing content or text sizing. */
+.project-graphic,
+.project-graphic-image { aspect-ratio: 16 / 9; }
+.project-case-label { margin-top: 20px; }
+.project-card-copy { margin-top: 10px; }
+.project-card-copy p { margin-top: 12px; }
+.project-result { margin-top: 18px; }
+.project-card-bottom { padding-block: 18px; }
+
+@media (max-width: 620px) {
+  .project-case-label { margin-top: 12px; }
+  .project-result { margin-top: 16px; }
+  .project-card-bottom { padding-block: 12px; }
+}
