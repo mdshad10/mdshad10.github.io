@@ -2531,7 +2531,7 @@ body { letter-spacing: -0.01em; }
   .coursework-card:hover,
   .contact-info-card:hover,
   .contact-message:hover {
-    transform: translateY(-2px) scale(1.01);
+    transform: none;
   }
   .skill-group:hover { box-shadow: var(--card-shadow-hover); }
 }
@@ -2573,3 +2573,38 @@ body { letter-spacing: -0.01em; }
 /* Separate white skill cards from the section without adding outlines. */
 .skills { background: #e8e8ed; }
 .skills .skill-group { background: #fff; }
+
+/* Keep glyphs on a stable rendering plane; use shadows for hover feedback. */
+.project-card,
+.about-education-card,
+.timeline-card,
+.skill-group,
+.coursework-card,
+.contact-info-card,
+.contact-message,
+.project-card:hover,
+.about-education-card:hover,
+.timeline-card:hover,
+.skill-group:hover,
+.coursework-card:hover,
+.contact-info-card:hover,
+.contact-message:hover {
+  transform: none;
+  will-change: auto;
+  transition: box-shadow 240ms ease, border-color 240ms ease;
+}
+
+.site-header .desktop-nav a,
+.site-header .wordmark,
+.site-header .menu-toggle {
+  font-weight: 500;
+  letter-spacing: 0;
+  word-spacing: normal;
+  line-height: 1.5;
+}
+
+.hero-hello {
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.4;
+}
