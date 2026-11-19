@@ -622,9 +622,8 @@ function Header() {
             transition={{ duration: 0.22, ease: "easeOut" }}
           >
             <span>Navigate</span>
-            {navLinks.map((link, index) => (
+            {navLinks.map((link) => (
               <a href={link.href} key={link.href} onClick={() => setMenuOpen(false)}>
-                <small>{String(index + 1).padStart(2, "0")}</small>
                 {link.label}
               </a>
             ))}
@@ -880,47 +879,6 @@ function Intro() {
   );
 }
 
-function ProjectGraphic({ type }) {
-  if (type === "tpu") {
-    return (
-      <div className="tpu-graphic">
-        <div className="chip-label">STREAM / 50 MHZ</div>
-        <div className="chip-grid">
-          {Array.from({ length: 16 }).map((_, index) => <i key={index} />)}
-        </div>
-        <span className="signal-line signal-a" /><span className="signal-line signal-b" />
-      </div>
-    );
-  }
-  if (type === "cpu") {
-    return (
-      <div className="pipeline-graphic">
-        <span>INSTRUCTION FLOW</span>
-        <div>{["IF", "ID", "EX", "MEM", "WB"].map((stage, index) => <i key={stage} style={{ "--stage": index }}>{stage}</i>)}</div>
-        <svg viewBox="0 0 500 120" aria-hidden="true"><path d="M12 84 C80 22 132 96 194 48 S312 16 372 66 S438 92 490 30" /></svg>
-      </div>
-    );
-  }
-  if (type === "audio") {
-    return (
-      <div className="audio-graphic">
-
-        <div className="wave-bars">
-          {Array.from({ length: 28 }).map((_, index) => <i key={index} style={{ "--bar": index }} />)}
-        </div>
-        <span>REAL-TIME SYNTHESIS / 44.1 KHZ</span>
-      </div>
-    );
-  }
-  return (
-    <div className="sensor-graphic">
-      <div className="sensor-ring"><span /></div>
-      <i className="sensor-beam sensor-beam-a" /><i className="sensor-beam sensor-beam-b" />
-      <div className="sensor-label">EVENT DETECTED</div>
-    </div>
-  );
-}
-
 function ProjectCard({ project }) {
   const dialogRef = useRef(null);
   const learnMoreRef = useRef(null);
@@ -940,10 +898,9 @@ function ProjectCard({ project }) {
   return (
     <article className={`project-card project-card-${project.tone}`}>
       <div className="project-card-face project-card-front">
-        <div className={`project-graphic${project.image ? " project-graphic-image" : ""}`}>
-          {project.image ? <img className="project-thumbnail" src={project.image} alt={project.imageAlt} loading="lazy" /> : <ProjectGraphic type={project.visual} />}
-        </div>
-        <div className="project-case-label">{project.category}</div>
+        {project.image && <div className="project-graphic project-graphic-image">
+          <img className="project-thumbnail" src={project.image} alt={project.imageAlt} loading="lazy" />
+        </div>}
         <div className="project-card-copy">
           <h3>{project.title}</h3>
           <p>{project.summary}</p>
@@ -977,7 +934,6 @@ function ProjectCard({ project }) {
       >
         <button type="button" className="project-flip-back" onClick={closeDetails} aria-label={`Close ${project.title} details`} autoFocus><X size={20} aria-hidden="true" /></button>
         <div className="project-card-back-copy">
-          <p className="project-detail-category">{project.category}</p>
           <h3 id={`${detailId}-title`}>{project.title}</h3>
           <p>{project.detail || project.summary}</p>
           {project.image && <img className="project-detail-image" src={project.image} alt={project.imageAlt} loading="lazy" />}
@@ -1033,7 +989,6 @@ function Projects() {
           ))}
         </motion.div>
         <div className="github-row">
-          <p>See source code and additional coursework on GitHub.</p>
           <ActionLink className="round-link round-link-light" href="https://github.com/mdshad10" target="_blank" rel="noreferrer">
             Explore GitHub <Github size={18} />
           </ActionLink>
@@ -1072,7 +1027,6 @@ function Experience() {
                         )) || <div className="timeline-icon"><Icon size={22} /></div>}
                       </div>
                       <div>
-                        <p className="timeline-type">{item.type}</p>
                         <h3>{item.role}</h3>
                         <h4 className="timeline-company">{item.place}</h4>
                         {item.subroles ? (
@@ -1116,9 +1070,9 @@ function Skills() {
               <div className="skill-group-heading">
                 <h3>{category.label}</h3>
               </div>
-              <div className="skill-list">
-                {category.items.map((skill) => <span key={skill}>{skill}</span>)}
-              </div>
+              <ul className="skill-list">
+                {category.items.map((skill) => <li key={skill}>{skill}</li>)}
+              </ul>
             </article>
           ))}
         </div>

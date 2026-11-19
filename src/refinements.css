@@ -35,7 +35,7 @@
 .module-heading h2,
 .about-content .section-heading h2 {
   font-weight: 650;
-  letter-spacing: -0.065em;
+  letter-spacing: 0;
 }
 
 .module-heading h2 em,
@@ -43,7 +43,7 @@
   font-family: var(--font-system);
   font-style: normal;
   font-weight: 600;
-  letter-spacing: -0.035em;
+  letter-spacing: 0;
 }
 
 .site-header .desktop-nav a:hover,
@@ -76,7 +76,7 @@
   font-family: var(--font-system);
   font-style: normal;
   font-weight: 760;
-  letter-spacing: -0.06em;
+  letter-spacing: 0;
 }
 
 .about-education {
@@ -156,7 +156,7 @@
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .project-card-actions > a:hover,
@@ -194,7 +194,7 @@
   margin: 0 0 28px;
   color: var(--ink);
   font-size: clamp(2rem, 3.8vw, 3.4rem);
-  letter-spacing: -0.06em;
+  letter-spacing: 0;
 }
 
 .experience-group-title::after {
@@ -312,7 +312,7 @@
   font-size: 0.66rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .timeline-card .timeline-subrole .timeline-leader {
@@ -549,7 +549,7 @@
   font-family: var(--font-system);
   font-style: normal;
   font-weight: 800;
-  letter-spacing: -0.035em;
+  letter-spacing: 0;
 }
 
 .projects .filter-pills {
@@ -819,7 +819,7 @@ body {
   font-family: var(--font-system);
   font-style: normal;
   font-weight: 700;
-  letter-spacing: -0.045em;
+  letter-spacing: 0;
 }
 
 .experience .module-heading {
@@ -1771,7 +1771,7 @@ body:has(.project-details-dialog[open]) {
     min-height: 3.72em;
     font-size: clamp(0.9rem, 2.8vw, 1.3rem);
     line-height: 1.24;
-    letter-spacing: -0.035em;
+    letter-spacing: 0;
     -webkit-line-clamp: 3;
   }
 
@@ -2099,13 +2099,13 @@ a:focus-visible {
   --line-strong: rgb(0 0 0 / 20%);
 }
 
-body { letter-spacing: -0.01em; }
+body { letter-spacing: 0; }
 
 .module-heading h2,
 .section-heading h2,
 .about-content .section-heading h2 {
   font-weight: 600;
-  letter-spacing: -0.035em;
+  letter-spacing: 0;
   line-height: 1.08;
 }
 
@@ -2124,14 +2124,14 @@ body { letter-spacing: -0.01em; }
 
 .hero .hero-martin-content h1 {
   font-weight: 600;
-  letter-spacing: -0.065em;
+  letter-spacing: 0;
 }
 
 .project-card-copy h3,
 .timeline-card h3,
 .contact-message h3 {
   font-weight: 600;
-  letter-spacing: -0.035em;
+  letter-spacing: 0;
   line-height: 1.12;
 }
 
@@ -2260,7 +2260,7 @@ body { letter-spacing: -0.01em; }
 .project-details-dialog .project-flip-back { position: sticky; top: 0; z-index: 2; align-self: flex-end; align-items: center; justify-content: center; width: 44px; height: 44px; min-height: 44px; padding: 0; border: 0; border-radius: 50%; background: #e8e8ed; color: #333336; }
 .project-details-dialog .project-flip-back:hover { background: #dcdce1; }
 .project-card-back-copy { gap: 24px; }
-.project-card-back-copy h3 { font-size: 2.5rem; font-weight: 600; letter-spacing: -0.035em; line-height: 1.08; }
+.project-card-back-copy h3 { font-size: 2.5rem; font-weight: 600; letter-spacing: 0; line-height: 1.08; }
 .project-card-back-copy p { font-size: 1.0625rem; line-height: 1.6; color: #424245; }
 .project-card-back-copy .project-detail-category { font-size: 0.875rem; color: #6e6e73; }
 .project-detail-image { width: 100%; max-height: 440px; object-fit: contain; border-radius: 16px; background: #f5f5f7; }
@@ -2458,7 +2458,7 @@ body { letter-spacing: -0.01em; }
 
 .site-header .wordmark { font-size: 1.125rem; }
 .site-header .menu-toggle { font-size: 0.9375rem; }
-.hero-hello { font-size: clamp(1.35rem, 2.6vw, 2.5rem); letter-spacing: -0.02em; line-height: 1.4; }
+.hero-hello { font-size: clamp(1.35rem, 2.6vw, 2.5rem); letter-spacing: 0; line-height: 1.4; }
 .hero-martin-meta > div:first-child { font-size: 0.75rem; line-height: 1.5; }
 
 @media (max-width: 900px) {
@@ -2602,4 +2602,65 @@ body { letter-spacing: -0.01em; }
   .project-case-label { margin-top: 12px; }
   .project-result { margin-top: 16px; }
   .project-card-bottom { padding-block: 12px; }
+}
+
+/* Editorial cleanup: plain lists, quiet tabs, and fewer decorative surfaces. */
+:root { --card-radius: 20px; }
+.about-education-card,
+.timeline-card,
+.skill-group,
+.coursework-card,
+.contact-info-card,
+.contact-message { border-radius: 20px; }
+
+.skill-group .skill-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px 24px;
+  padding: 0;
+  list-style: none;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.skill-list li { color: var(--ink-soft); }
+.skill-group-heading { border: 0; padding-bottom: 0; }
+.timeline-meta span:first-child { border: 0; border-radius: 0; padding: 0; background: none; color: var(--muted); }
+.timeline-subrole { border: 0; padding-inline: 0; background: none; }
+.timeline-brand { border: 0; background: none; }
+.experience-timeline::before { content: none; }
+.contact footer { border: 0; }
+
+.projects .filter-pills {
+  padding: 0;
+  gap: 24px;
+  border-radius: 0;
+  background: none;
+}
+.projects .filter-pills button {
+  padding: 12px 0;
+  border-radius: 0;
+  color: var(--muted);
+  background: none;
+}
+.projects .filter-pills button.active { color: var(--ink); background: none; box-shadow: none; }
+.projects .filter-pills .filter-selection {
+  inset: auto 0 0;
+  height: 2px;
+  border-radius: 0;
+  background: var(--ink);
+  box-shadow: none;
+}
+.project-card-copy { margin-top: 24px; }
+.project-graphic,
+.project-graphic-image {
+  --image-inset: 12px;
+  --image-outer-radius: 20px;
+  border-radius: 20px 20px 0 0;
+}
+
+@media (max-width: 900px) {
+  :root { --card-radius: 16px; }
+  .project-graphic,
+  .project-graphic-image { --image-outer-radius: 16px; --image-inset: 8px; border-radius: 16px 16px 0 0; }
+  .skill-group .skill-list { grid-template-columns: minmax(0, 1fr); font-size: 0.9375rem; }
 }
